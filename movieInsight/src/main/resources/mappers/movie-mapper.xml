@@ -48,12 +48,13 @@
 
 
 	<!-- 2) 검색 결과  -->
+	<!-- 
 	<select id = "selectMovie"  resultMap = "movie_rm">
 	
 	
 	</select>
 
-
+	 -->
 
 
 

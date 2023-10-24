@@ -103,7 +103,7 @@ body {
         margin-bottom: 24px;
       }
 
-      section {
+      section:not(:nth-child(3)) {
         display: flex;
         flex-direction: column;
         gap: 16px;
