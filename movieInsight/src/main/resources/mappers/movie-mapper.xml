@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "movieMapper">
+	<!-- BoardImage resultMap -->
+	
+ 
+	<resultMap type="Movie" id="movie_rm">
+		<id property="movieNo" column="MOVIE_NO"/>
+		
+		<result property="movieTitle" column="MOVIE_TITLE"/>
+		<result property="movieImg" column="MOVIE_IMG"/>
+		<result property="movieSummary" column="MOVIE_SUMMARY"/>
+		<result property="movieGenre" column="MOVIE_GENRE"/>
+		<result property="movieReleaseDate" column="MOVIE_RELEASE_DATE"/>
+		<result property="movieAge" column="MOVIE_AGE"/>
+		<result property="movieRunningTitle" column="MOVIE_RUNNING_TIME"/>
+		<result property="movieEnrollDate" column="MOVIE_ENROLL_DATE"/>
+		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
+		<result property="actorNames" column="ACTOR_NAMES"/>
+		<result property="directorNames" column="DIRECTOR_NAMES"/>
+	</resultMap>
+
+	<!-- CDATA 태그 : 해당 태그 내부에 작성된 것은 모두 문자로 취급 -->
+
+	<!-- 검색 결과 ( 인물 검색은 안됨 )  -->
+
+	<select id = "searchMovieList" resultMap = "movie_rm">
+	SELECT * 
+	FROM (
+		SELECT
+	    M.MOVIE_NO,
+	    M.MOVIE_TITLE,
+	    M.MOVIE_IMG,
+	    M.MOVIE_SUMMARY,
+	    M.MOVIE_GENRE,
+	    TO_CHAR(M.MOVIE_RELEASE_DATE, 'YYYY"년" MM"월" DD"일"') AS MOVIE_RELEASE_DATE,
+	    M.MOVIE_AGE,
+	    M.MOVIE_RUNNING_TIME,
+	    LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'A' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS ACTOR_NAMES,
+	    LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'D' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS DIRECTOR_NAMES,
+	    M.MOVIE_DEL_YN
+		FROM MOVIE M
+		JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+		JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
+		GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN)
+	WHERE MOVIE_DEL_YN = 'N' AND (MOVIE_TITLE LIKE '%' || #{movieQuery} || '%' OR MOVIE_GENRE LIKE '%' || #{movieQuery} || '%' OR ACTOR_NAMES LIKE '%' || #{movieQuery} || '%' OR DIRECTOR_NAMES LIKE '%' || #{movieQuery} || '%')	
+	</select>
+
+
+
+
+
+
+
+
+
+</mapper>

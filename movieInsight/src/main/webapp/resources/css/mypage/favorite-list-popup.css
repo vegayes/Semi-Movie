@@ -1,0 +1,301 @@
+/* 즐겨찾기 리스트 */
+#favorite-list-modal-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom : 0;
+    right: 0;
+
+    background-color: rgba(0, 0, 0, 0.616);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+/* #favorite-list-modal-box.active{
+    display: flex;
+} */
+
+
+#favorite-list-modal-content{
+    background-color: #00171f;
+    width: 60%;
+    /* width: 1000px;
+    height: 570px;*/ 
+    padding: 20px ;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* 그림자 효과 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+	overflow : auto;
+}
+
+.favorite-list-modal-content::-webkit-scrollbar {
+    height: 10px; /* 가로 스크롤바의 높이 설정 */
+    width: auto; /* 가로 스크롤바의 너비를 자동으로 설정 */
+}
+
+.favorite-list-modal-content::-webkit-scrollbar-track {
+    background: #101322; /* 스크롤바 트랙 배경색 설정 */
+}
+
+.favorite-list-modal-content::-webkit-scrollbar-thumb {
+    background-color: #070583; /* 스크롤바 썸 배경색 설정 */
+    border-radius: 10px; /* 스크롤바 썸 모양 설정 */
+}
+#fv-modal-close{
+    color: white;
+
+    align-self: flex-end;
+    display: flex;
+    justify-content: end;
+    padding-right: 10px;
+
+    font-size: 25px;
+    cursor: pointer;
+} 
+
+#fv-modal-close:hover,
+#fv-modal-close:focus {
+  color: rgb(118, 118, 207);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+/* =================================================즐겨찾기 수정 팝업 ================================================================== */
+
+
+.popup-title{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    /* font-size: 50px; */
+
+    font-family: Inknut Antiqua;
+    font-size: 90px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.73) 33.43%, #0500FF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+
+    /* border: 2px solid yellow; */
+}
+
+.favorite-list-container{
+    width: 1000px;
+    height: 400px;
+
+    /* margin: 20px 20px 0px 20px; */
+
+    margin : 0px;
+    
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.favorite-list-container::-webkit-scrollbar{
+    width: 15px;
+}
+
+.favorite-list-container::-webkit-scrollbar{
+    background: #101322;
+}
+
+.favorite-list-container::-webkit-scrollbar-thumb{
+    height: 15%;
+    background-color:#070583;
+    border-radius: 10px;
+}
+
+
+
+.favorite-list-table{
+    width: 1000px;
+    border-spacing: 0;
+    width: 100%;
+}
+
+
+.favorite-list-table tr{
+    flex-basis: 100%;
+
+    /* border: 2px solid black; */
+
+
+    display: flex;
+
+    padding: 5px 0px;
+}
+
+.favorite-list-table > thead > tr{
+    background-color: orange;
+}
+
+
+
+.favorite-list-table th,
+.favorite-list-table td{
+    /* border: 2px solid black; */
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+/* .favorite-list-table > tr:nth-of-type(1){
+    position: sticky;
+    top: 0px;
+
+    background-color: orange;
+} */
+
+/* table.sticky thead tr{
+    position: sticky;
+    top: 500px;
+} */
+
+.favorite-list-table thead {
+    position: sticky;
+    top: 0;
+}
+
+.favorite-list-table thead th{
+    background-color: orange;  
+}
+
+.favorite-list-img{
+    flex-basis: 10%;
+
+    /* background-color: rebeccapurple; */
+    
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+}
+
+.favorite-list-img-wrapper{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border : 2px solid white;
+}
+
+.favorite-list-img-wrapper > img{
+    width: 100%;
+}
+
+
+.favorite-list-title{
+    flex-basis: 40%;
+
+    /* background-color: yellow; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.favorite-list-date{
+    flex-basis: 40%;
+
+    /* background-color: green; */
+
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.favorite-list-check{
+    flex-basis: 9%;
+
+    /* background-color: gray; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #check_btn{
+    display:none;
+}
+  
+#check_btn + label{
+    cursor:pointer;
+}
+  
+#check_btn + label > span{
+    vertical-align: middle;
+    padding-left: 5px;
+}*/
+  
+  /* label:before에 체크하기 전 상태 CSS */
+/* #check_btn + label:before{
+    content:"";
+    display:inline-block;
+    width:17px;
+    height:17px;
+    border:2px solid #F47C7C;
+    border-radius: 4px;
+    vertical-align:middle;
+} */
+    
+  /* label:before에 체크 된 상태 CSS */  
+/* #check_btn:checked + label:before{
+    content:"";
+    background-color:#F47C7C;
+    border-color:#F47C7C;
+    background-image: url('https://www.selecto.co.kr/assets/images/main/storeinfo-location/ic/c-check-ic.svg');
+    background-repeat: no-repeat;
+    background-position: 50%;
+}  */
+
+.favorite-delet-btn-container{
+    width: 1000px;
+    height: 30px;
+    display: flex;
+    justify-content: end; 
+    padding: 2px 35px;
+    
+}
+
+.favorite-delet-btn-container > div{
+	flex-basis: 10%;
+    background-color: red;
+	color : white;
+    font-weight: bold;
+	display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.favorite-delet-btn-container > div:hover{
+		 opacity: 0.9;
+}
+
+
+.favorite-deletAll-btn-container{
+    width: 1000px;
+    height: 30px;
+    display: flex;
+    justify-content: end;
+    /* background-color: blanchedalmond; */
+    padding: 2px;
+}

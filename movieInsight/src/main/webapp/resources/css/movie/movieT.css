@@ -1,0 +1,1729 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #101322;
+    color: #FFFFFF;
+
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    
+    height: 108px;
+    display: flex;
+    
+}
+
+header>a{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3%;
+}
+
+
+/* 검색창 */
+nav{
+    width: 80%;
+    padding-top: 20px;
+    
+}
+
+nav>form{
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+
+}
+
+
+#search{
+    height: 60%;
+    width: 80%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: none;
+  
+}
+
+
+
+input{
+    width: 100%;
+    height: 60%;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 10px 50px;
+    font-weight: bold;
+}
+
+#search>button{
+    position: absolute;
+    border: none;
+    outline: none;
+    background: none;
+    margin-left: 90%;
+
+
+}
+
+
+
+nav>div:nth-child(2){
+
+    height: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+nav>div:nth-child(2)>a{
+
+    padding: 0 100px;
+
+}
+
+
+
+
+
+header>div{
+    width: 20%;
+    display: flex;
+}
+
+
+header>div>div{
+    
+    flex: 1;
+ 
+    display: flex;
+    align-items: end;
+
+   
+}
+
+header>div>div:nth-child(1){
+
+    align-items: center;
+
+
+}
+
+
+#login_button{
+
+    height: 73px;
+    width: 160px;
+    border-radius: 30px 30px;
+    font-size: 24px;
+    font-weight:bold;
+    background-color: white;
+    font-weight:bold;
+
+}
+
+
+#user_button{
+
+    background: none;
+    border: none;
+    padding-bottom: 3px;
+
+}
+
+
+
+
+
+
+main{
+    height: 3060px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main>div{
+
+    margin: 50px 0px;
+    width: 1650px;
+}
+
+
+.movie{
+    height: 25%;
+    display: flex;
+}
+
+
+
+.movie_img{
+    width: 40%;
+    background-size: 100% 100%;
+}
+
+.movie_img img{
+   	width: 100%;
+   	height: 100%;
+}
+
+
+.movie>div:nth-child(2){
+    width: 70%;
+    margin-left: 3%;
+    background-color: #383B3E;
+}
+
+.movie_title{
+    display: flex;
+    height: 20%;
+}
+
+#star {
+    color: white; 
+    transition: color 0.3s; 
+    font-size: 50px;
+    margin-top: 43%;
+    margin-left: 25%;
+}
+
+#star:hover {
+    color: blue;
+}
+
+.star-clicked {
+    color: purple;
+}
+
+.movie_title>div:nth-child(1){
+    width: 10%;
+    background-size: 50% 50%;
+    background-position: center;
+}
+
+.movie_title>div:nth-child(2){
+    width: 50%;
+    font-size: 48.76px;
+    font-weight:bold;
+    display: flex;
+    align-items: center;
+
+}
+
+.movie_title>div:nth-child(3){
+    width: 30%;
+    display: flex;
+
+}
+
+.movie_title>div:nth-child(3)>div{
+   
+    flex: 1;
+    background-image: url(img/팝콘\ 1.png);
+    background-repeat: no-repeat;/* 배경 이미지 1개 */
+    background-position: center;
+}
+
+
+
+.movie_summary{
+    height: 40%;
+    line-height: 3; /* 글자 높이 설정*/
+    font-size: 20px;
+    word-wrap: break-word; 
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4; /* 말줄임표 줄 위치 */
+    -webkit-box-orient: vertical; /* 플렉스 방향 가로로 설정 */
+    overflow: hidden;
+    padding: 0 30px;
+
+
+}
+
+.movie_description{
+    height: 40%;
+    display: flex;
+    font-size: 20px;
+
+}
+
+
+.movie_description>div{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+}
+
+.movie_description>div>div{
+    display: flex;
+    flex: 1;
+    align-items: center;
+   
+}
+
+.movie_description>div>div{
+    margin-left: 3%;
+}
+
+.movie_description>div>div>a{
+    color: #6BB3F6;
+    margin-left: 3%;
+}
+
+
+.movie_description>div>div:nth-child(1)>a{
+    margin: 1%;
+}
+
+
+
+
+
+
+
+.movieP2 {
+    display: flex;
+    flex-direction: column;
+    background-color: #383B3E;
+    padding: auto;
+    height: 20%;
+    margin-top: 0%;
+}
+
+.mp2Head {
+    height: 15%;
+}
+
+.mmcon {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #474C50;
+}
+
+.line1 {
+    height: 162px;
+    display: flex;
+
+}
+
+.l1-1 {
+    width: 400px;
+}
+
+.l1-2 {
+    width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.l1-3 {
+    width: auto;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.line2 {
+    height: 162px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.line3 {
+    height: 162px;
+    display: flex;
+    
+}
+
+.l1-1 img {
+    margin-left: 35%;
+    margin-top: 8%;
+}
+
+
+#mm {
+    color: white;
+    font-size: 50px;
+    margin-left: 9%;
+    margin-top: 1%;
+}
+
+#ms {
+    color: white;
+    text-align: center;
+    font-weight: normal;
+    margin-left: 18%;
+}
+
+
+#my {
+    text-decoration: none ;
+    color: #7EDCF0;
+    margin-left: 280px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.l2-1 {
+    width: 400px;
+}
+
+.l2-2 {
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.l2-3 {
+    width: auto;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.line2 {
+    height: 162px;
+    display: flex;
+}
+
+.l2-1 img {
+    margin-left: 140px;
+    margin-top: 30px;
+}
+
+
+
+.l3-1 {
+    width: 400px;
+}
+
+.l3-2 {
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.l3-3 {
+    width: auto;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.l3-1 img {
+    margin-left: 140px;
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+.comment{
+    height: 800px;
+    background-color: #383B3E;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.comhead {
+    height: 13%;
+    width: auto;
+    background-color: #383B3E;
+}
+
+#comment {
+  font-size: 60px;
+  margin: 0;
+  margin-left: 5%;
+  
+}
+
+.combody {
+    height: 82%;
+    width: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #474C50;
+}
+
+
+.comb1 {
+    height: 90.5px;
+    width: auto;
+    display: flex;
+}
+
+.comb1 img {
+    margin-top: 2.5%;
+    width: 33px;
+}
+
+#pop1 {
+   margin-left: 5%; 
+}
+
+#pop2 {
+    margin-left: 20px;
+}
+
+.cb1 {
+ margin: 0;
+}
+
+.cb2 {
+ margin: 0;
+}
+
+.cb3 {
+ margin: 0;
+}
+
+.cb4 {
+ margin: 0;
+}
+
+#idd {
+    margin-left: 50%;
+    margin-top: 18%;
+    padding: 0;
+    font-weight: normal;
+}
+
+
+
+#dd1 {
+    margin-left: 1%;
+    margin-top: 20px;
+    margin-right: 0;
+    width: 80%;
+    padding: 0;
+    font-weight: normal;
+}
+
+.comb2 {
+    height: 72.5px;
+    width: auto;
+    padding: 0;
+    display: flex;
+}
+
+.cb1 {
+    flex-basis: 5%;
+    padding: 0;
+}
+
+.cb1-1 {
+    flex-basis: 55%;
+    padding: 0;
+}
+
+.cb1-2 {
+    flex-basis: 40%;
+    padding: 0;
+}
+
+.comb3 {
+    height: 80px;
+    display: flex;
+}
+
+.comb3 img {
+    width: 33px;
+    margin-top: 33px;
+}
+
+
+.comb4 {
+    height: 80px;
+    display: flex;
+}
+
+.cb2 {
+    flex-basis: 5%;
+}
+
+.cb2-1 {
+    flex-basis: 55%;
+    padding: 0;
+}
+
+.cb2-2 {
+    flex-basis: 40%;
+    padding: 0;
+}
+
+
+.comb5 {
+    height: 80px;
+    display: flex;
+}
+
+.comb6 {
+    height: 80px;
+    display: flex;
+}
+
+.cb3 {
+    flex-basis: 5%;
+}
+
+.cb3-1 {
+    flex-basis: 55%;
+    padding: 0;
+}
+
+.cb3-2 {
+    flex-basis: 40%;
+    padding: 0;
+}
+
+.editBtn {
+    margin-left: 58%;
+    margin-top: 2%;
+    background-color: #383B3E;
+    color: rgb(195, 195, 250);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-right: 10px;
+}
+
+.deletBtn {
+    margin-top: 2%;
+    background-color: #383B3E;
+    color: rgb(170, 170, 248);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-right: 10px;
+}
+
+.comb5 img {
+    width: 33px;
+    margin-top: 33px;
+}
+
+
+#ddd1 {
+    font-weight: 550;
+    font-size: 15px;
+    margin-left: 110px;
+    color: #3C1B66;
+}
+
+.commentForm{
+    display: flex;
+    align-items: center;
+    color: black;
+    height: 15%;
+    border: none;
+
+}
+   
+
+#facilityForm{
+   	margin-left: 3%;
+    height: 100%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+}
+
+#facilityForm>div:nth-child(1){
+
+    flex-basis: 60%;
+}
+
+#facilityForm>div:nth-child(2){
+
+    flex-basis: 5%;
+    font-size: 0.9rem;
+}
+
+#submit{
+    background-repeat: no-repeat;/* 배경 이미지 1개 */
+    background-position: center;
+    background-color: #383B3E;
+    width: 100px;
+    height: 100px;
+    border: 0px;
+}
+
+
+.CF2 {
+
+    flex-basis: 45%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-thumbs-up {
+
+    font-size: 3rem;
+    margin-right: 5%;
+    margin-bottom: 2%;
+
+   
+}
+
+.fa-thumbs-up:hover {
+    color: #742AD2;
+}
+
+
+
+
+#dddd1 {
+    margin-left: 27px;
+    margin-top: 11px;
+    font-size: 18px;
+    color: #8A8888;
+}
+
+.foot {
+    border-radius: 20px;
+    margin-top: 1%;
+    height: 13%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background-color: #383B3E;
+}
+
+
+
+
+.ftHead {
+    display: flex;
+    height: 25%;
+    width: 100%;
+}
+
+.ftMain {
+    display: flex;
+    height: 85%;
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+}
+
+.ftmain {
+    position: relative;
+    overflow: hidden;
+    height: 90%;
+    padding: 2%;
+    width: 100%;
+
+}
+
+.ftmain::-webkit-scrollbar-thumb {
+    background-color: gray; /* 원하는 색상으로 변경 */
+}
+
+.gallery > div {
+    margin-right: 4%; /* 이미지 간격 설정 */
+}
+
+.gallery-container {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+.gallery {
+    display: flex;
+    height: 100%;
+    padding: 0;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 110px;
+  cursor: pointer;
+  color: skyblue;
+  border-radius: 50%;
+}
+
+.prev-button {
+  left: 0;
+}
+
+.next-button {
+  right: 0;
+}
+
+#hi {
+    color: white;
+    margin-left: 5%;
+    margin-bottom: 0;
+    margin-top: 1.5%;
+    font-size: 30px;
+}
+
+.ft1 {
+    height: 220px;
+}
+
+.ft1 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
+.ft2 {
+    height: 220px;
+}
+
+.ft2 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
+.ft3 {
+    height: 220px;
+}
+
+.ft3 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
+.ft4 {
+    height: 220px;
+}
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #101322;
+    color: #FFFFFF;
+
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    
+    height: 108px;
+    display: flex;
+    
+}
+
+header>a{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3%;
+}
+
+
+/* 검색창 */
+nav{
+    width: 80%;
+    padding-top: 20px;
+    
+}
+
+nav>form{
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+
+}
+
+
+#search{
+    height: 60%;
+    width: 80%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: none;
+  
+}
+
+
+
+input{
+    width: 100%;
+    height: 60%;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 10px 50px;
+    font-weight: bold;
+}
+
+#search>button{
+    position: absolute;
+    border: none;
+    outline: none;
+    background: none;
+    margin-left: 90%;
+
+
+}
+
+
+
+nav>div:nth-child(2){
+
+    height: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+nav>div:nth-child(2)>a{
+
+    padding: 0 100px;
+
+}
+
+
+
+
+
+header>div{
+    width: 20%;
+    display: flex;
+}
+
+
+header>div>div{
+    
+    flex: 1;
+ 
+    display: flex;
+    align-items: end;
+
+   
+}
+
+header>div>div:nth-child(1){
+
+    align-items: center;
+
+
+}
+
+
+#login_button{
+
+    height: 73px;
+    width: 160px;
+    border-radius: 30px 30px;
+    font-size: 24px;
+    font-weight:bold;
+    background-color: white;
+    font-weight:bold;
+
+}
+
+
+#user_button{
+
+    background: none;
+    border: none;
+    padding-bottom: 3px;
+
+}
+
+
+
+
+
+
+main{
+    height: 3060px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main>div{
+
+    margin: 50px 0px;
+    width: 1650px;
+}
+
+
+.movie{
+    height: 25%;
+    display: flex;
+}
+
+
+
+.movie_img{
+    width: 40%;
+    background-image: url(img/영화\ 포스터.png);
+    background-size: 100% 100%;
+}
+
+
+.movie>div:nth-child(2){
+    width: 70%;
+    margin-left: 3%;
+    background-color: #383B3E;
+}
+
+.movie_title{
+    display: flex;
+    height: 20%;
+}
+
+#star {
+    color: white; 
+    transition: color 0.3s; 
+    font-size: 50px;
+    margin-top: 43%;
+    margin-left: 25%;
+}
+
+#star:hover {
+    color: blue;
+}
+
+.star-clicked {
+    color: purple;
+}
+
+.movie_title>div:nth-child(1){
+    width: 10%;
+    background-size: 50% 50%;
+    background-position: center;
+}
+
+.movie_title>div:nth-child(2){
+    width: 50%;
+    font-size: 48.76px;
+    font-weight:bold;
+    display: flex;
+    align-items: center;
+
+}
+
+.movie_title>div:nth-child(3){
+    width: 30%;
+    display: flex;
+
+}
+
+.movie_title>div:nth-child(3)>div{
+   
+    flex: 1;
+    background-image: url(img/팝콘\ 1.png);
+    background-repeat: no-repeat;/* 배경 이미지 1개 */
+    background-position: center;
+}
+
+
+
+.movie_summary{
+    height: 40%;
+    line-height: 3; /* 글자 높이 설정*/
+    font-size: 20px;
+    word-wrap: break-word; 
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4; /* 말줄임표 줄 위치 */
+    -webkit-box-orient: vertical; /* 플렉스 방향 가로로 설정 */
+    overflow: hidden;
+    padding: 0 30px;
+
+
+}
+
+.movie_description{
+    height: 40%;
+    display: flex;
+    font-size: 20px;
+
+}
+
+
+.movie_description>div{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+}
+
+.movie_description>div>div{
+    display: flex;
+    flex: 1;
+    align-items: center;
+   
+}
+
+.movie_description>div>div{
+    margin-left: 3%;
+}
+
+.movie_description>div>div>a{
+    color: #6BB3F6;
+    margin-left: 3%;
+}
+
+
+.movie_description>div>div:nth-child(1)>a{
+    margin: 1%;
+}
+
+
+
+
+
+
+
+.movieP2 {
+    display: flex;
+    flex-direction: column;
+    background-color: #383B3E;
+    padding: auto;
+    height: 20%;
+    margin-top: 0%;
+}
+
+.mp2Head {
+    height: 15%;
+}
+
+.mmcon {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #474C50;
+}
+
+.line1 {
+    height: 162px;
+    display: flex;
+
+}
+
+.l1-1 {
+    width: 400px;
+}
+
+.l1-2 {
+    width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.l1-3 {
+    width: auto;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.line2 {
+    height: 162px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.line3 {
+    height: 162px;
+    display: flex;
+    
+}
+
+.l1-1 img {
+    margin-left: 35%;
+    margin-top: 8%;
+}
+
+
+#mm {
+    color: white;
+    font-size: 50px;
+    margin-left: 9%;
+    margin-top: 1%;
+}
+
+#ms {
+    color: white;
+    text-align: center;
+    font-weight: normal;
+    margin-left: 18%;
+}
+
+
+#my {
+    text-decoration: none ;
+    color: #7EDCF0;
+    margin-left: 280px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.l2-1 {
+    width: 400px;
+}
+
+.l2-2 {
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.l2-3 {
+    width: auto;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.line2 {
+    height: 162px;
+    display: flex;
+}
+
+.l2-1 img {
+    margin-left: 140px;
+    margin-top: 30px;
+}
+
+
+
+.l3-1 {
+    width: 400px;
+}
+
+.l3-2 {
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.l3-3 {
+    width: auto;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.l3-1 img {
+    margin-left: 140px;
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+.comment{
+    height: 800px;
+    background-color: #383B3E;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.comhead {
+    height: 13%;
+    width: auto;
+    background-color: #383B3E;
+}
+
+#comment {
+  font-size: 60px;
+  margin: 0;
+  margin-left: 5%;
+  
+}
+
+.combody {
+    height: 82%;
+    width: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #474C50;
+}
+
+
+.comb1 {
+    height: 90.5px;
+    width: auto;
+    display: flex;
+}
+
+.comb1 img {
+    margin-top: 2.5%;
+    width: 33px;
+}
+
+#pop1 {
+   margin-left: 5%; 
+}
+
+#pop2 {
+    margin-left: 20px;
+}
+
+.cb1 {
+ margin: 0;
+}
+
+.cb2 {
+ margin: 0;
+}
+
+.cb3 {
+ margin: 0;
+}
+
+.cb4 {
+ margin: 0;
+}
+
+#idd {
+    margin-left: 50%;
+    margin-top: 18%;
+    padding: 0;
+    font-weight: normal;
+}
+
+
+
+#dd1 {
+    margin-left: 1%;
+    margin-top: 20px;
+    margin-right: 0;
+    width: 80%;
+    padding: 0;
+    font-weight: normal;
+}
+
+.comb2 {
+    height: 72.5px;
+    width: auto;
+    padding: 0;
+    display: flex;
+}
+
+.cb1 {
+    flex-basis: 5%;
+    padding: 0;
+}
+
+.cb1-1 {
+    flex-basis: 55%;
+    padding: 0;
+}
+
+.cb1-2 {
+    flex-basis: 40%;
+    padding: 0;
+}
+
+.comb3 {
+    height: 80px;
+    display: flex;
+}
+
+.comb3 img {
+    width: 33px;
+    margin-top: 33px;
+}
+
+
+.comb4 {
+    height: 80px;
+    display: flex;
+}
+
+.cb2 {
+    flex-basis: 5%;
+}
+
+.cb2-1 {
+    flex-basis: 55%;
+    padding: 0;
+}
+
+.cb2-2 {
+    flex-basis: 40%;
+    padding: 0;
+}
+
+
+.comb5 {
+    height: 80px;
+    display: flex;
+}
+
+.comb6 {
+    height: 80px;
+    display: flex;
+}
+
+.cb3 {
+    flex-basis: 5%;
+}
+
+.cb3-1 {
+    flex-basis: 55%;
+    padding: 0;
+}
+
+.cb3-2 {
+    flex-basis: 40%;
+    padding: 0;
+}
+
+.editBtn {
+    margin-left: 58%;
+    margin-top: 2%;
+    background-color: #383B3E;
+    color: rgb(195, 195, 250);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-right: 10px;
+}
+
+.deletBtn {
+    margin-top: 2%;
+    background-color: #383B3E;
+    color: rgb(170, 170, 248);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-right: 10px;
+}
+
+.comb5 img {
+    width: 33px;
+    margin-top: 33px;
+}
+
+
+#ddd1 {
+    font-weight: 550;
+    font-size: 15px;
+    margin-left: 110px;
+    color: #3C1B66;
+}
+
+.commentForm{
+    display: flex;
+    align-items: center;
+    color: black;
+    height: 15%;
+    border: none;
+
+}
+   
+
+#facilityForm{
+   
+    height: 100%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+}
+
+#facilityForm>div:nth-child(1){
+
+    flex-basis: 60%;
+}
+
+#facilityForm>div:nth-child(2){
+
+    flex-basis: 5%;
+    font-size: 0.9rem;
+}
+
+#submit{
+    background-image: url(img/list.png);
+    background-repeat: no-repeat;/* 배경 이미지 1개 */
+    background-position: center;
+    background-color: #383B3E;
+    width: 100px;
+    height: 100px;
+    border: 0px;
+}
+
+
+.CF2 {
+
+    flex-basis: 45%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-thumbs-up {
+
+    font-size: 3rem;
+    margin-right: 5%;
+    margin-bottom: 2%;
+
+   
+}
+
+.fa-thumbs-up:hover {
+    color: #742AD2;
+}
+
+
+
+
+#dddd1 {
+    margin-left: 27px;
+    margin-top: 11px;
+    font-size: 18px;
+    color: #8A8888;
+}
+
+.foot {
+    border-radius: 20px;
+    margin-top: 1%;
+    height: 13%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background-color: #383B3E;
+}
+
+
+
+
+.ftHead {
+    display: flex;
+    height: 25%;
+    width: 100%;
+}
+
+.ftMain {
+    display: flex;
+    height: 85%;
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+}
+
+.ftmain {
+    position: relative;
+    overflow: hidden;
+    height: 90%;
+    padding: 2%;
+    width: 100%;
+
+}
+
+.ftmain::-webkit-scrollbar-thumb {
+    background-color: gray; /* 원하는 색상으로 변경 */
+}
+
+.gallery > div {
+    margin-right: 4%; /* 이미지 간격 설정 */
+}
+
+.gallery-container {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+.gallery {
+    display: flex;
+    height: 100%;
+    padding: 0;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 110px;
+  cursor: pointer;
+  color: skyblue;
+  border-radius: 50%;
+}
+
+.prev-button {
+  left: 0;
+}
+
+.next-button {
+  right: 0;
+}
+
+#hi {
+    color: white;
+    margin-left: 5%;
+    margin-bottom: 0;
+    margin-top: 1.5%;
+    font-size: 30px;
+}
+
+.ft1 {
+    height: 220px;
+}
+
+.ft1 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
+.ft2 {
+    height: 220px;
+}
+
+.ft2 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
+.ft3 {
+    height: 220px;
+}
+
+.ft3 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
+.ft4 {
+    height: 220px;
+}
+
+.ft4 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
+.ft5 {
+    height: 220px;
+}
+
+.ft5 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
+
+.ft4 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
+.ft5 {
+    height: 220px;
+}
+
+.ft5 img {
+    margin-top: 0;
+    height: 220px;
+    width: 330px;
+    border-radius: 15%;
+}
+
