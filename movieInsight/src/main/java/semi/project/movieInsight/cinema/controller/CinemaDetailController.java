@@ -51,12 +51,14 @@ public class CinemaDetailController {
 		 	
 		 	model.addAttribute("cinemaInfo", cinemaInfo);
 		 	
-		 
+		 	
+		 	// 영화관에서 상영중인 영화 목록 조회
 		 	List<Movie> movieList = service.selectMovieList(cinemaInfo.getCinemaNo());
 		 	System.out.println("movieList : " + movieList);
 		
 		 	model.addAttribute("movieList", movieList);
-		
+		 	
+		 	
 			return "cinema/cinema-detail-page";
 	}
 	

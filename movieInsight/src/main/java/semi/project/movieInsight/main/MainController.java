@@ -48,9 +48,9 @@ public class MainController {
 //		default : return "common/main";
 //		}
 		
-//		return "cinema/cinema-homepage"; 
+		return "cinema/cinema-homepage"; 
 //		return "movie/movieT";
-		return "mypage/mypage";
+//		return "mypage/mypage";
 //		return "member/login_signUp";
 //		return "member/find_id";
 //		return "movie/home-page";
