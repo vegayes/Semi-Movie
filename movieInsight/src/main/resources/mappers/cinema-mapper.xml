@@ -40,7 +40,7 @@
 
 
 
-
+	<!-- 영화관 정보 얻어오기 -->
 	<select id="selectCinemaInfo" parameterType="Cinema" resultMap="cinema_rm">
   		SELECT CINEMA_NO, CINEMA_NAME, CINEMA_ADDRESS, CINEMA_CONTACT,
 		CINEMA_IMG, CINEMA_LINK, CINEMA_MAX_INCLUDE, CINEMA_DEL_YN
@@ -71,10 +71,13 @@
 		)
   	</select>
   	-->
+  	
+  	<!-- 영화관에서 상영중인 영화 목록 가져오기 -->
   	<select id="selectMovieList" parameterType="Movie" resultMap="movie_rm">
   	SELECT * 
 	FROM (
 		SELECT
+			M.MOVIE_RELEASE_DATE,
 		    M.MOVIE_NO,
 		    M.MOVIE_TITLE,
 		    M.MOVIE_IMG,
