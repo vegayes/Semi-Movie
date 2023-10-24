@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<!-- SqlSessionTemplate 관련 설정 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<!-- insert, update 사용 시 null 값이 있는 경우 값에 NULL을 대입하게 해 줌 -->
+	</settings>
+
+	<!-- 별칭 작성 부분 -->
+	<!--  VO/DTO 클래스의 패키지명+클래스명 작성하는게 불편하기 때문에 짧은 별칭을 부여 -->
+	<typeAliases>
+	 
+		<typeAlias type="semi.project.movieInsight.movie.dto.Movie" alias="Movie"/>
+		<typeAlias type="semi.project.movieInsight.cinema.dto.Cinema" alias="Cinema"/>
+	</typeAliases>	
+	
+	<!-- mapper파일(SQL 작성되는파일) 위치 등록 부분 -->
+	<mappers>
+  
+		<mapper resource="/mappers/movie-mapper.xml"/>
+		<mapper resource="/mappers/cinema-mapper.xml"/>
+		<mapper resource="/mappers/member-mapper.xml"/>
+
+	</mappers>
+
+
+</configuration>

@@ -1,0 +1,166 @@
+/*존재하지 않은 데이터에 대한 폰트*/
+@font-face {
+    font-family: 'KBO-Dia-Gothic_bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+*{
+    box-sizing: border-box;
+    list-style : none; /* 리스트 스타일 X */
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Noto Sans','GmarketSansMedium' ;
+}
+
+a, button{
+    cursor: pointer;
+    /* color : white; */
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+	justify-content: center;
+
+    background-color: #101322;
+    min-height: 1000px;
+
+    color: white;
+}
+
+
+.search-title-container{
+    flex-basis: 100%;
+
+    padding: 20px;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.movie-search-list-container{
+
+    flex-basis: 100%;
+
+    width: 1600px;
+    height: 300px;
+
+    background-color: #383B3E ;
+    margin: 0px 0px  50px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform:scale(1.0);        
+    transition: transform .5s; 
+
+}
+
+.movie-search-list-container:hover{
+    transform: scale(1.01);
+    transition: transform .5s;
+    box-shadow: 7px 7px 10px 0px rgb(143, 143, 143);
+}
+
+
+#none-list{
+	font-family : "KBO-Dia-Gothic_bold";
+	font-size : 35px;
+}
+
+.movie-search-img-wrapper{
+
+    width: 210px;
+    height: 280px;
+    
+    position: relative;
+    overflow:hidden;
+}
+
+
+.movie-search-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    padding: 5px;
+    display: none;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+}
+
+.movie-search-img-wrapper:hover .movie-search-title {
+    display : flex;
+    font-size : 25px;
+    font-weight : bold;
+	justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+/*
+
+.movie-search-img-wapper>img{
+	flex-basis :100%;
+    
+}
+
+*/
+
+.movie-image {
+    width: 100%;
+    height: 100%;
+}
+
+/* .poster{
+    width: 200px;
+    height: 240px;
+    background-color: rebeccapurple ;
+} */
+
+.movie-search-content-container{
+    flex-basis: 85%;
+    height: 100%;
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.movie-search-content{
+    flex-basis: 33%;
+
+
+    padding: 5px 10px; 
+
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-search-content>h1{
+    flex-basis: 5%;
+    font-size: 20px;
+    padding: 5px 0px;
+}
+
+.movie-search-content>div{
+    flex-basis: 95%;
+    background-color: #D9D9D9;
+    color: black;
+    border-radius: 10px;
+
+    padding: 5px;
+}
+

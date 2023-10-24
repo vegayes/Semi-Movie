@@ -1,0 +1,162 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+
+
+.admin-menu {
+
+   
+    width: 200px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    height: 100vh; /* 화면 높이를 최대한 활용 */
+    position: fixed;
+    overflow: scroll;
+    overflow-x: hidden;
+   
+}
+
+.admin-menu ul {
+    
+    margin-top: 70%;
+    list-style-type: none;
+    padding: 0;
+
+}
+
+
+.admin-list :hover {
+   font-size: xx-large;
+}
+
+
+.admin-menu li {
+
+    margin-bottom: 60%;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+
+.admin-menu a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: block;
+}
+
+
+
+
+.cinema-search {
+
+   
+    margin-left: 300px;
+    padding: 10px;
+    margin-bottom: 40px;
+
+}
+
+
+.cinema-search input {
+    
+    margin-top: 50px;
+    border-radius: 5px;
+    width: 40%;
+    line-height: 50px;
+    
+}
+
+
+.cinema-search span {
+
+    color: rgb(255, 255, 255); 
+    font-size: 20px;
+    border-radius: 5px;
+    margin-right: 100px;
+    
+}
+
+
+
+.cinema-item-list {
+
+    margin-right:  50px;
+    border: 1px solid white;
+    margin-left: 300px;
+    flex: 1;
+    padding: 0;
+    line-height: 50px;
+    height: 72vh; 
+    overflow: hidden scroll;
+    
+
+}
+
+
+
+
+
+.cinema-item {
+    
+    margin : 20px 0 40px 10px;
+    width: 95%;
+    height: 8%;
+    border-radius: 7px;
+    background-color: gray;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+
+
+
+
+.cinema-buttons {
+
+    display: flex;
+    font-weight: bold;
+   
+}
+
+.edit-button {
+
+    background-color: rgb(87, 87, 238);
+    border: 2px solid black;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+    
+}
+
+.delete-button {
+
+    background-color: red;
+    border: 2px solid black;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+   
+}
+
+.comment-button {
+
+    background-color: green;
+    border: 2px solid black;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+   
+}
+
+
+
+

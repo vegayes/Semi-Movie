@@ -1,0 +1,54 @@
+footer {
+    position: relative;
+    height: 200px;
+    width: 100%; /* 너비를 화면 너비에 맞게 설정 */
+    display: flex;
+    overflow: hidden;
+}
+
+.footer-image {
+    position: absolute;
+    width : 100%;
+    heigth: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+	opacity: 0.9;	
+}
+
+.footer-image img{
+	width : 100%;
+}
+
+.footer-content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 2;
+}
+
+.footer-content p {
+    color: white;
+    padding-bottom : 20px;
+    z-index: 2;
+}
+
+
+.footer-content a {
+    color: white;
+    text-decoration: none;
+    z-index: 2;
+}
+
+.footer-content span {
+    padding: 0 10px;
+    color : white;
+    z-index: 2;
+}
