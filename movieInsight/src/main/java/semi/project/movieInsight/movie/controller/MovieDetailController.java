@@ -15,6 +15,7 @@ import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieDetailService;
 
+
 @Controller
 @RequestMapping("/movie")
 public class MovieDetailController {
