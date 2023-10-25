@@ -24,7 +24,7 @@ nav{
     top: 0;
 
     background-color: #101322;
-    color: white;
+/*     color: white; */
     /* 요소 우선순위 주기 ( 앞으로 올리기 )  */
     z-index: 3;
 }
@@ -94,8 +94,6 @@ nav section:nth-child(2){
     background-color: white; /* transparent : 투명 */
     color: black;
 }
-
-
 
 
 .main-sort > a{

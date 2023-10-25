@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지-영화관</title>
-     <link rel="stylesheet" href="/resources/css/manager/manager_cinema.css">
+     <link rel="stylesheet" href="/movieInsight/resources/css/manager/manager_cinema.css">
 </head>
 <body>
     

@@ -96,80 +96,85 @@
                         <h4 class="mb-4 pb-3">Sign Up</h4>
                         <div class="form-group">
                           <h5 class="labela">USER ID</h5>
-                          <input
-                            type="text"
-                            name="logname"
-                            class="form-style"
-                            placeholder="Your Full Name"
-                            id="logname"
-                            autocomplete="off"
-                          />
-                          <button>본인인증</button>
-                          <i class="input-icon uil uil-user"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <h5 class="labela">PW</h5>
-
-                          <input
-                            type="password"
-                            name="logpass"
-                            class="form-style"
-                            placeholder="Your Password"
-                            id="asdasd"
-                            autocomplete="off"
-                          />
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <h5 class="labela">PW Check</h5>
-
-                          <input
-                            type="password"
-                            name="logpass"
-                            class="form-style"
-                            placeholder="Your Password"
-                            id="fff"
-                            onblur="document.getElementById('ggg').textContent = (document.getElementById('asdasd').textContent === document.getElementById('fff').textContent) ? '패스워드가 일치합니다' : '패스워드가 일치하지 않습니다d'"
-                            autocomplete="off"
-                          />
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <span id="ggg"></span>
-                        <div class="form-group mt-2">
-                          <h5 class="labela">EMAIL</h5>
-
-                          <input
-                            type="email"
-                            name="logpass"
-                            class="form-style"
-                            placeholder="Your Password"
-                            id="logpass"
-                            autocomplete="off"
-                          />
-                          <button>인증</button>
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <h5 class="labela">NICKNAME</h5>
-
-                          <input
-                            type="text"
-                            name="logpass"
-                            class="form-style"
-                            placeholder="Your Password"
-                            id="logpass"
-                            autocomplete="off"
-                          />
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <h5 class="labela">GENDER</h5>
-
-                          <button class="gender">남자</button>
-                          <button class="gender">여자</button>
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <a href="#" class="btn mt-4 blut">SIGN UP</a>
+                          
+                          		<form action="/member/login_signUp" method="POST" name="inputMember">
+			                          <input
+			                            type="text"
+			                            name="memberId"
+			                            class="form-style"
+			                            placeholder="your Id"
+			                            id="logname"
+			                            autocomplete="off"
+			                          />
+			                          <button onclick="return false;" type="button" id="idCheck">중복확인</button>
+			                          <i class="input-icon uil uil-user"></i>
+			                        </div>
+			                        <div class="form-group mt-2">
+			                          <h5 class="labela">PW</h5>
+			
+			                          <input
+			                            type="password"
+			                            name="memberPw"
+			                            class="form-style"
+			                            placeholder="Your Password"
+			                            id="asdasd"
+			                            autocomplete="off"
+			                          />
+			                          <i class="input-icon uil uil-lock-alt"></i>
+			                        </div>
+			                        <div class="form-group mt-2">
+			                          <h5 class="labela">PW Check</h5>
+			
+			                          <input
+			                            type="password"
+			                            name="memberPw"
+			                            class="form-style"
+			                            placeholder="Your Password"
+			                            id="fff"
+			                            onblur="document.getElementById('ggg').textContent = (document.getElementById('asdasd').textContent === document.getElementById('fff').textContent) ? '패스워드가 일치합니다' : '패스워드가 일치하지 않습니다d'"
+			                            autocomplete="off"
+			                          />
+			                          <i class="input-icon uil uil-lock-alt"></i>
+			                        </div>
+			                        <span id="ggg"></span>
+			                        <div class="form-group mt-2">
+			                          <h5 class="labela">EMAIL</h5>
+			
+			                          <input
+			                            type="email"
+			                            name="memberEmail"
+			                            class="form-style"
+			                            placeholder="Your Password"
+			                            id="logpass"
+			                            autocomplete="off"
+			                          />
+			                          <button>인증</button>
+			                          <i class="input-icon uil uil-lock-alt"></i>
+			                        </div>
+			                        <div class="form-group mt-2">
+			                          <h5 class="labela">NICKNAME</h5>
+			
+			                          <input
+			                            type="text"
+			                            name="memberNickname"
+			                            class="form-style"
+			                            placeholder="Your Password"
+			                            id="logpass"
+			                            autocomplete="off"
+			                          />
+			                          <i class="input-icon uil uil-lock-alt"></i>
+			                        </div>
+			                        <div class="form-group mt-2">
+			                          <h5 class="labela">GENDER</h5>
+			
+			                          <button class="gender">남자</button>
+			                          <button class="gender">여자</button>
+			                          <i class="input-icon uil uil-lock-alt"></i>
+			                        </div>
+			                        <a href="#" class="btn mt-4 blut">SIGN UP</a>
+			                    </form>    
+                        
+                        
                       </div>
                     </div>
                   </div>
@@ -181,4 +186,7 @@
       </div>
     </div>
   </body>
+  
+  <script src="/movieInsight/resources/js/member/login_signUp.js"></script>
+  
 </html>

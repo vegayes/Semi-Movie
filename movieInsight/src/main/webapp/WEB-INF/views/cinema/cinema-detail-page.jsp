@@ -60,10 +60,10 @@
                             수용인원 : ${cinemaInfo.cinemaMaxInclude} 명 
                         </div>
                               <div>   
-                            특별관 : 4DX,IMAX,SCREENX,Dolby Atmos
+                            특별관 : ${cinemaInfo.cinemaSpecialHall}
                         </div>
                         <div>
-                           <a href=${cinemaInfo.cinemaLink }>바로가기</a> 
+                           <a href=${cinemaInfo.cinemaLink} target="_blank">바로가기</a> 
                         </div>
                     </div>
                 </div>
@@ -71,153 +71,51 @@
         </section>
 
 
-        <section class="screening_movie">
+    <section class="screening_movie">
             <div>상영중인 영화</div>
-            <div class="screening_movie_detail">
-                <div>
-                    <div>
-                        <img src="/movieInsight/movieInsight/resources/images/cinema/유토피아.png">
-                    </div>
-                    <div>
-                        <div>콘크리트 유토피아</div>
-                        <div>15세/드라마/130분</div>
-                        <div>2023.08.09 개봉</div>
-                    </div>
-                    <div>
-                        <div>출연진</div>
-                        <div>박보영, 박서준, 이병헌</div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <img src="resources/images/cinema/movie_sleep.png">
-                    </div>
-                    <div>
-                        <div>잠</div>
-                        <div>15세/미스터리/94분</div>
-                        <div>2023.09.09 개봉</div>
-                    </div>
-                    <div>
-                        <div>출연진</div>
-                        <div>정유미, 이상경, 김국희</div>
-                    </div>
-                </div>
+            
 
-                <div>
-                    <div>
-                        <img src="resources/images/cinema/movie_oppenheimer.png">
-                    </div>
-                    <div>
-                        <div>오펜하이머</div>
-                        <div>15세/스릴러/180분</div>
-                        <div>2023.08.15 개봉</div>
-                    </div>
-                    <div>
-                        <div>출연진</div>
-                        <div>킬리언 머피, 플로렌스 퓨, 에밀리 블런트</div>
-                    </div>
-                </div>
+            <c:choose>
+                	<%-- 1) 검색 결과가 비어있는 경우  --%>
+                <c:when test="${empty movieList}">
 
+                    <div class = "screening_movie_detail"  id = "none-list">
+                        검색결과가 존재하지 않습니다.
+                    </div>
 
-                <div>
-                    <div>
-                        <img src="resources/images/cinema/movie_oppenheimer.png">
-                    </div>
-                    <div>
-                        <div>오펜하이머</div>
-                        <div>15세/스릴러/180분</div>
-                        <div>2023.08.15 개봉</div>
-                    </div>
-                    <div>
-                        <div>출연진</div>
-                        <div>킬리언 머피, 플로렌스 퓨, 에밀리 블런트</div>
-                    </div>
-                </div>
+                </c:when>
+                    
+                        <%-- 2) 검색 결과가 존재하는 경우 --%>
+                <c:otherwise> 
+                    
+                    <c:forEach items = "${movieList}"  var="movie" >
+                        <div class="screening_movie_detail">
+                            <a href="/movieInsight/movie/${movie.movieNo}">
+                                <div>
 
+                                    <div>			
+                                        <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
+                                    </div>
+                                    <div>
+                                        <div>${movie.movieTitle}</div>
+                                        <div>${movie.movieAge} / ${movie.movieGenre} / ${movie.movieRunningTime}분</div>
+                                        <div>${movie.movieReleaseDate} 개봉</div>
+                                    </div>
+                                    <div>
+                                        <div>출연진</div>
+                                        <div>${movie.actorNames}</div>
+                                    </div>
 
-                <div>
-                    <div>
-                        <img src="resources/images/cinema/movie_oppenheimer.png">
-                    </div>
-                    <div>
-                        <div>오펜하이머</div>
-                        <div>15세/스릴러/180분</div>
-                        <div>2023.08.15 개봉</div>
-                    </div>
-                    <div>
-                        <div>출연진</div>
-                        <div>킬리언 머피, 플로렌스 퓨, 에밀리 블런트</div>
-                    </div>
-                </div>
-
-
-                <div>
-                    <div>
-                        <img src="resources/images/cinema/movie_oppenheimer.png">
-                    </div>
-                    <div>
-                        <div>오펜하이머</div>
-                        <div>15세/스릴러/180분</div>
-                        <div>2023.08.15 개봉</div>
-                    </div>
-                    <div>
-                        <div>출연진</div>
-                        <div>킬리언 머피, 플로렌스 퓨, 에밀리 블런트</div>
-                    </div>
-                </div>
-
-
-                <div>
-                    <div>
-                        <img src="resources/images/cinema/movie_oppenheimer.png">
-                    </div>
-                    <div>
-                        <div>오펜하이머</div>
-                        <div>15세/스릴러/180분</div>
-                        <div>2023.08.15 개봉</div>
-                    </div>
-                    <div>
-                        <div>출연진</div>
-                        <div>킬리언 머피, 플로렌스 퓨, 에밀리 블런트</div>
-                    </div>
-                </div>
-
-
-                <div>
-                    <div>
-                        <img src="resources/images/cinema/movie_oppenheimer.png">
-                    </div>
-                    <div>
-                        <div>오펜하이머</div>
-                        <div>15세/스릴러/180분</div>
-                        <div>2023.08.15 개봉</div>
-                    </div>
-                    <div>
-                        <div>출연진</div>
-                        <div>킬리언 머피, 플로렌스 퓨, 에밀리 블런트</div>
-                    </div>
-                </div>
-
-                <div>
-                    <div>
-                        <img src="resources/images/cinema/movie_oppenheimer.png">
-                    </div>
-                    <div>
-                        <div>오펜하이머</div>
-                        <div>15세/스릴러/180분</div>
-                        <div>2023.08.15 개봉</div>
-                    </div>
-                    <div>
-                        <div>출연진</div>
-                        <div>킬리언 머피, 플로렌스 퓨, 에밀리 블런트</div>
-                    </div>
-                </div>
-
-
-
-            </div>
-        </section>
-
+                                </div>
+                            </a>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+                    
+            </c:choose>
+            
+    </section>
+    
 
         <section class="facility">
             <section class="block">

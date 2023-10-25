@@ -11,9 +11,10 @@
 	<!-- 별칭 작성 부분 -->
 	<!--  VO/DTO 클래스의 패키지명+클래스명 작성하는게 불편하기 때문에 짧은 별칭을 부여 -->
 	<typeAliases>
-	 
+		<typeAlias type="semi.project.movieInsight.member.dto.Member" alias="Member"/>
 		<typeAlias type="semi.project.movieInsight.movie.dto.Movie" alias="Movie"/>
 		<typeAlias type="semi.project.movieInsight.cinema.dto.Cinema" alias="Cinema"/>
+		<typeAlias type="semi.project.movieInsight.menu.dto.Menu" alias="Menu"/>
 	</typeAliases>	
 	
 	<!-- mapper파일(SQL 작성되는파일) 위치 등록 부분 -->
@@ -22,6 +23,7 @@
 		<mapper resource="/mappers/movie-mapper.xml"/>
 		<mapper resource="/mappers/cinema-mapper.xml"/>
 		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/menu-mapper.xml"/>
 
 	</mappers>
 

@@ -101,26 +101,18 @@ public class MovieController {
 	
 	
 	//@GetMapping("/movie/이동할 상세페이지의 movieNo")
-	@GetMapping("/movie/move")
-	public String movieMove() {
-		
-//		int movieNo = 1;
-//		String path = "redirect:";
-		
-//		path += "/movie/" + movieNo;
-		
-		return "movie/movieT";
-	}
+//	@GetMapping("/movie/move")
+//	public String movieMove() {
+//		
+////		int movieNo = 1;
+////		String path = "redirect:";
+//		
+////		path += "/movie/" + movieNo;
+//		
+//		return "movie/movieT";
+//	}
 	
 	
-	@GetMapping("/movie/{movieNo}")
-	public String searchMovieMove(@PathVariable("movieNo") int movieNo) {
-		
-		System.out.println("검색 후 이동");
-		System.out.println(movieNo);
-		
-		
-		return "movie/movieT";
-	}
+
 
 }

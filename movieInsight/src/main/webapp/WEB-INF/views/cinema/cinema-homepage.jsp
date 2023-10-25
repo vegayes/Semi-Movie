@@ -16,7 +16,7 @@
 
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
        
-    <div id="sortButton">
+    <!-- <div id="sortButton">
 
         <button onclick="sortKoreanLinks()" style="margin: 50px 0 0 100px;  
             border-radius: 10px;">&nbsp;한글순&nbsp;</button>
@@ -31,7 +31,7 @@
             border-radius: 10px;"> &nbsp;직원 친절도&nbsp; </button>
 
     </div>
-  
+   -->
 
     <div class="cinema_list_container">
 

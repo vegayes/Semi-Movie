@@ -72,11 +72,33 @@ main{
     box-shadow: 7px 7px 10px 0px rgb(143, 143, 143);
 }
 
-
+/*
 #none-list{
 	font-family : "KBO-Dia-Gothic_bold";
 	font-size : 35px;
 }
+*/
+.movie-search-list-none-container{
+
+    flex-basis: 100%;
+
+    width: 1600px;
+    height: 300px;
+
+    background-color: #383B3E ;
+    margin: 0px 0px  50px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform:scale(1.0);        
+    transition: transform .5s;
+    
+  	font-family : "KBO-Dia-Gothic_bold";
+	font-size : 35px; 
+
+}
+
 
 .movie-search-img-wrapper{
 

@@ -1,53 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<!--  
+<c:forEach items="${boardTypeList}" var="boardType">
+    <c:if test="${boardType.BOARD_CODE == boardCode}" >
+        <c:set var="boardName" value="${boardType.BOARD_NAME}"/>
+    </c:if>
+</c:forEach>
+-->
+
+<%-- map에 저장된 값들을 각각 변수에 저장 --%>
+<%-- 
+<c:set var="pagination" value="${map.pagination}"/>
+<c:set var="boardList" value="${map.boardList}"/>
+<c:set var="boardName" value ="${boardTypeList[boardCode-1].BOARD_NAME}"/>
+--%>
+<%-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+	1) 
+
+	2) 
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>movieT</title>
-    <link rel="stylesheet" href="/movieInsight/resources/css/movie/movieT.css">
+    <title>movie-Detail</title>
+    
+    <link rel="stylesheet" href="/movieInsight/resources/css/movie/movie-detail-page.css">
     <script src="https://kit.fontawesome.com/69a462bb6c.js" crossorigin="anonymous"></script>
     
-    <style>
-    </style>
 </head>
 <body>
-    <header>
 
-        <a>
-            <img src="/movieInsight/resources/images/movie/movieT/로고.png">
-        </a>
-        <nav>
-            <form action="#">
-                <fieldset id="search">
-                    <input type="search" placeholder="검색" >
-                    <button>
-                        <img src="/movieInsight/resources/images/movie/movieT/search-icon.png" id="search_icon">
-                    </button>
-                </fieldset>
-            </form>
-            <div>
-            </div>
-        </nav>
-        <div>
-            <div>
-                <button id="login_button">LOGIN</button>
-            </div>
-            <div>
-                <button id="user_button">
-                    <img src="/movieInsight/resources/images/movie/movieT/사용자.png">
-                </button>
-            </div>
-        </div>
-    </header>
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
     <main>
         <div class="movie">
             <div class="movie_img">
-            	<c:if test="">
-            	 	<img src="/movieInsight/resources/images/movie/movieT/moviePoster.png">
-            	</c:if>
+           	 	<img src="/movieInsight/resources/images/movie/${movieInfo.movieImg}">
             </div>
             <div>
                 <div class="movie_title">
@@ -56,8 +49,8 @@
                             <i class="fa-solid fa-star" id="star"></i>         
                         </a>
                     </div>
-                    <div>베니스 유령살인사건</div>
-                    <div>
+                    <div>${movieInfo.movieTitle}</div>
+                    <div> <%-- 평점 --%>
                         <div></div>
                         <div></div>
                         <div></div>
@@ -65,33 +58,80 @@
                         <div></div>
                     </div>
                 </div>
+ 	            <h2 class = "movie_summary_title">줄거리</h2>  
                 <div class="movie_summary">
-                    줄거리 : 애거서 크리스티 원작 기반 새로운 추리 서스펜스 미스터리가 찾아온다‘회색 뇌세포’ 세기의 명탐정 에르큘 포와로의 귀환!세계적 명탐정 '에르큘 포와로'는 오랜 탐정 생활에서 은퇴하여 아름다운 도시 베니스에서 평범한 삶을 살아가고 있다.그런 그에게 오랜 친구이자 베스트셀러 작가인 '아리아드네 올리버'가 찾아와죽은 영혼을 부를 수 있다고 알려진 영험한 심령술사의 실체를 밝혀달라고
+                     ${movieInfo.movieSummary} 
                 </div>
                 <div class="movie_description">
                     <div>
                         <div>
-                            <div>장르 :</div> 
-                            <a>범죄/</a>
-                            <a>공포/</a>
-                            <a>미스터리/</a>
-                            <a>스릴러</a>
+                            <div>장르 :
+                            	${movieInfo.movieGenre}
+                            </div> 
+								
                         </div>
                         <div>
                             <div>감독 :</div>
-                            <a> 케네스 브래너</a>
+                            
+							<c:forEach items = "${directorInfoList}" var="directorInfo" varStatus="status">
+							
+									<c:if test="${status.index >= 0}">
+										<a href="${directorInfo.CASTING_URL}" target="_blank">
+											${directorInfo.CASTING_NAME}
+										</a>
+									
+										<c:if test="${!status.last}">&nbsp; / </c:if>
+									
+									</c:if>
+
+							</c:forEach>                             
+                            
+                            
+                            <%-- 감독 나무위키 링크 걸어두기 (inline 으로 잡아서?? 구분자를 기준으로 많이 존재하면 그만큼 받아서 링크 걸어두기--%>
+                            <%-- <c:choose>></c:choose>--%>
+                            <a> ${movieInfo.directorNames}</a>
                         </div>
                         <div>
                             <div>출연진 :</div>
-                            <a>카일 앨런,</a>
+                            	
+							<c:forEach items = "${actorInfoList}" var="actorInfo" varStatus="status">
+							
+									<c:if test="${status.index >= 0}">
+										<a href="${actorInfo.CASTING_URL}" target="_blank">
+											${actorInfo.CASTING_NAME}
+										</a>
+									
+										<c:if test="${!status.last}">&nbsp; / </c:if>
+									
+									</c:if>
+
+							</c:forEach>                            
+                           	<%-- 
+                            <a> ${movieInfo.actorNames}</a>
+                            
+                            --%>
+                            <%-- 
                             <a>케네스 브래너,</a>
                             <a>카밀 코탄</a>
+                            --%>
                         </div>
                     </div>
                     <div>
-                        <div>개봉일 : 2023.09.13</div>
-                        <div>등급 : 12세이상관람가</div>
-                        <div>러닝타임 : 103분</div>
+                        <div>개봉일 : ${movieInfo.movieReleaseDate}</div>
+                        <div>등급 : 
+                        <%-- 
+                        	<c:choose>
+                        		<c:when test="${movie.movieAge}.length() > 2">
+                        			${movie.movieAge}
+                        		</c:when>
+                        		<c:otherwise>
+                        			${movie.movieRunningTime}이상 관람가
+                        		</c:otherwise>
+                        	</c:choose>
+                        --%>
+                        	${movieInfo.movieAge}
+                        </div>
+                        <div>러닝타임 : ${movieInfo.movieRunningTime }분</div>
                     </div>
                 </div>
             </div>
@@ -101,60 +141,30 @@
             <div class="mp2Head">
                 <h1 id="mm">영화 예매</h1>
             </div>
-            	<form action="/Reservation" method="POST" name="movieReservation">
-		            <div class="mmcon">
-		                <div class="line1">
-		                    <div class="l1-1">
-		                        <a href="">
-		                            <img src="/movieInsight/resources/images/movie/movieT/Rectangle 3.png">
+     <!--       	<form action="/Reservation" method="POST" name="movieReservation">  --> 
+   				<div class = "selectCinemaList-Container">
+    				<c:forEach items = "${selectCinemaList}" var="cinema" >
+						<div class = "cinemaList">
+							<div class="cinemaList-img">
+		                        <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">
+		                        	<div class = "cinemaImg-wrapper">
+			                            <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
+		                        	</div>
+		                        	<div class="cinema-hover">영화관 정보 보러가기</div>
 		                        </a>
 		                    </div>
-		                    <div class="l1-2">
-		                        <h3 id="ms">메가박스 코엑스몰 <br>
-		                            서울 강남구 봉은사로 524 코엑스몰 B1</h3>
+		                    <div class="cinemaList-info">
+		                        <div class = "cinemaList-info-content">${cinema.cinemaName}</div>
+		                        <div class = "cinemaList-info-content">${cinema.cinemaAddress}</div>
 		                    </div>
-		                    <div class="l1-3">
-		                        <h3>
-		                            <a id="my" href="https://www.megabox.co.kr/booking">예매 바로가기</a>
-		                        </h3>
+		                    <div class="cinemaList-url">
+	                            <a href="${cinema.cinemaLink}" target="_blank">예매 바로가기</a>
 		                    </div>
-		                </div>
-		                <div class="line2">
-		                    <div class="l2-1">
-		                        <a href="">
-		                            <img src="/movieInsight/resources/images/movie/movieT/Rectangle 4.png">
-		                        </a>
-		                    </div>
-		                    <div class="l2-2">
-		                        <h3 id="ms">CGV 용산아이파크몰 <br>
-		                            서울특별시 용산구 한강대로23길 55</h3>
-		                    </div>
-		                    <div class="l2-3">
-		                        <h3>
-		                            <a id="my" href="http://www.cgv.co.kr/theaters/?theaterCode=0013">예매 바로가기</a>
-		                        </h3>
-		                    </div>
-		                </div>
-		                <div class="line3">
-		                    <div class="l3-1">
-		                        <a href="">
-		                            <img src="/movieInsight/resources/images/movie/movieT/Rectangle 2.png">
-		                        </a>
-		                    </div>
-		                    <div class="l3-2">
-		                        <h3 id="ms">
-		                            CGV 왕십리 <br>
-		                            서울특별시 성동구 행당동 왕십리광장로 17
-		                        </h3>
-		                    </div>
-		                    <div class="l3-3">
-		                        <h3>
-		                            <a id="my" href="http://www.cgv.co.kr/theaters/?areacode=01&theaterCode=0074&date=20230919">예매 바로가기</a>
-		                        </h3>
-		                    </div>
-		                </div>
-		            </div>
-			   </form>
+						</div>
+    				</c:forEach>    				
+   				</div>
+
+			   <!-- </form> -->
           </div>
 
 
@@ -211,12 +221,13 @@
 
         <div class="foot">
             <div class="ftHead">
-                <h1 id="hi">사용자가 종아할 만한 영화</h1>
+                <h1 id="hi">와 비슷한 영화 추천</h1>
             </div>
             <div class="ftMain">
                 <div class="ftmain">
                     <div class="gallery-container">
                       <div class="gallery">
+                      
                         <div class="ft1">
                           <a href="/favorite1">
                             <img src="/movieInsight/resources/images/movie/movieT/youtube-logo 1.png" alt="Image 1">
@@ -252,6 +263,7 @@
         </div>
     </main>
 
-    <script src="/movieInsight/resources/js/movie/movieT.js"></script>
+
+    <script src="/movieInsight/resources/js/movie/movie-detail-page.js"></script>
 </body>
 </html>
