@@ -56,8 +56,8 @@ public class MainController {
 
 		
 
-		return "cinema/cinema-homepage";
-//		return "manager/manager-menu";
+//		return "cinema/cinema-homepage";
+		return "manager/manager-menu";
 
 	}
 	

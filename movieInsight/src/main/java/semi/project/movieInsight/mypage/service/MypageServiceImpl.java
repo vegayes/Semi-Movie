@@ -16,6 +16,10 @@ public class MypageServiceImpl implements MypageService{
 	@Autowired
 	MypageDAO dao;
 	
+	
+	
+	 
+	 
 	@Override
 	public Map<String, List<Menu>> selectMenu() {
 		

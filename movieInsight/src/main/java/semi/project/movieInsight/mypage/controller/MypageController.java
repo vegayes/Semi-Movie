@@ -27,6 +27,10 @@ public class MypageController {
 	}
 	
 	
+	
+	/** 관리자 페이지의 메뉴 관리 페이지에서 전체 메뉴 조회 
+	 * @return
+	 */
 	@GetMapping("/manager/menu") 
 	public String managerPageMenu() {
 		
@@ -34,7 +38,7 @@ public class MypageController {
 		
 		System.out.println("selectmenu : " + selectMenu);
 		
-		return null;
+		return "manager/manager-menu";
 		
 	}
 		

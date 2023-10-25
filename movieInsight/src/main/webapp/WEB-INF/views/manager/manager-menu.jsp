@@ -16,7 +16,7 @@
         <nav>
             <div class="admin-menu">
                 <ul>
-                    <li class="admin-list"><a href="/movieInsight/mypage/$">회원 관리</a></li> 
+                    <li class="admin-list"><a href="/movieInsight/mypage/manager/menu">회원 관리</a></li> 
                     <li class="admin-list"><a href="#">영화</a></li>               
                     <li class="admin-list"><a href="#">영화관</a></li>
                     <li class="admin-list"><a href="#">메뉴</a></li>

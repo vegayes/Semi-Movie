@@ -15,14 +15,17 @@
 
 
 
-<select id="selectPopcorn"  resultMap = "menu_rm">
-	SELECT * FROM MENU m
-	WHERE MENU_CATEGORY = '팝콘'
-</select>
+	<select id="selectPopcorn"  resultMap = "menu_rm">
+		SELECT * FROM MENU m
+		WHERE MENU_CATEGORY = '팝콘'
+	</select>
 
 
 
-
+	<select id="selectDrink"  resultMap = "menu_rm">
+		SELECT * FROM MENU m
+		WHERE MENU_CATEGORY = '음료'
+	</select>
 
 
 
