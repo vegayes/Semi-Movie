@@ -96,7 +96,7 @@
                                 </div>
                                 <div>
                                     <div>${movie.movieTitle}</div>
-                                    <div>${movie.movieAge} / ${movie.movieGenre} / ${movie.movieRunningTitle}분</div>
+                                    <div>${movie.movieAge} / ${movie.movieGenre} / ${movie.movieRunningTime}분</div>
                                     <div>${movie.movieReleaseDate} 개봉</div>
                                 </div>
                                 <div>
