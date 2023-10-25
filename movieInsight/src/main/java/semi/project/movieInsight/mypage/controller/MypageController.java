@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,11 +33,15 @@ public class MypageController {
 	 * @return
 	 */
 	@GetMapping("/manager/menu") 
-	public String managerPageMenu() {
+	public String managerPageMenu(Model model) {
 		
 		Map<String,List<Menu>> selectMenu = service.selectMenu();
 		
 		System.out.println("selectmenu : " + selectMenu);
+		
+		model.addAttribute("popcorn", selectMenu.get("popcorn"));
+		model.addAttribute("drink", selectMenu.get("drink"));
+		model.addAttribute("snack", selectMenu.get("snack"));
 		
 		return "manager/manager-menu";
 		

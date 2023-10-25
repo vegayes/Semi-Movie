@@ -24,13 +24,24 @@ public class MypageDAO {
 		
 		List<Menu> popcorn = sqlSession.selectList("menuMapper.selectPopcorn");
 		
-		System.out.println("popcorn : " + popcorn);
+		//System.out.println("popcorn : " + popcorn);
 		
 		List<Menu> drink = sqlSession.selectList("menuMapper.selectDrink");
 		
-		System.out.println("drink : " + drink);
+		//System.out.println("drink : " + drink);
 		
-		return null;
+		
+		List<Menu> snack = sqlSession.selectList("menuMapper.selectSnack");
+		
+		//System.out.println("snack : " + snack);
+		
+		menuMap.put("popcorn", popcorn);
+		menuMap.put("drink", drink);
+		menuMap.put("snack", snack);
+		
+		//System.out.println("menuMap : " + menuMap);
+		
+		return menuMap;
 	}
 
 	

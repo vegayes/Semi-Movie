@@ -28,19 +28,11 @@
 	</select>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	<select id="selectSnack"  resultMap = "menu_rm">
+		SELECT * FROM MENU m
+		WHERE MENU_CATEGORY = '스낵'
+	</select>
 
 
 
