@@ -53,10 +53,10 @@ public class MainController {
 //		return "member/find_id";
 //		return "movie/home-page";
 //		return "cinema/cinema-detail-page";
-
+		return "mypage/mypage";
 		
 
-		return "cinema/cinema-homepage";
+//		return "cinema/cinema-homepage";
 //		return "manager/manager-menu";
 
 	}

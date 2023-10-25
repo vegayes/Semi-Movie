@@ -54,11 +54,14 @@ public class MovieDetailDAO {
 
 
 	/** 5) 해당 영화와 비슷한 (장르기준) 추천
-	 * @param movieGenre
+	 * @param genreList
 	 * @return
 	 */
-	public List<Movie> recommendMovie(String movieGenre) {
-		return sqlSession.selectList("movieMapper.recommendMovie", movieGenre);
+	public List<Movie> recommendMovie(List<String> list) {
+		
+		System.out.println("DAO에서의 list" + list);
+		
+		return sqlSession.selectList("movieMapper.recommendMovie", list);
 	}
 
 	

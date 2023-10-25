@@ -63,8 +63,8 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 	 * 5) 해당 영화와 비슷한 (장르기준) 추천
 	 */
 	@Override
-	public List<Movie> recommendMovie(String movieGenre) {
-		return dao.recommendMovie(movieGenre);
+	public List<Movie> recommendMovie(List<String> genreList) {
+		return dao.recommendMovie(genreList);
 	}
 
 

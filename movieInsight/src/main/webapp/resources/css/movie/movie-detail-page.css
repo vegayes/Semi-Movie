@@ -1401,17 +1401,34 @@ main>div{
     font-size: 30px;
 }
 
-.ft1 {
-    height: 220px;
+.recommend-container {
+ 	height: 200px;
 }
 
-.ft1 img {
-    margin-top: 0;
-    height: 220px;
+.recommendImg-wrapper{
+	height: 200px;
     width: 330px;
+    overflow : hidden;	
+    
+    border : 2px solid white;
     border-radius: 15%;
+
+	display : flex;
+    justify-content: center;
+    align-items: center;
+	
 }
 
+.recommendImg-wrapper img {
+	
+	heigth : 100%;
+	width : 100%;
+
+    margin-top: 0;
+}
+
+
+/*
 .ft2 {
     height: 220px;
 }
@@ -1421,6 +1438,7 @@ main>div{
     height: 220px;
     width: 330px;
     border-radius: 15%;
+    border:2px solid white;
 }
 
 .ft3 {
@@ -1474,4 +1492,4 @@ main>div{
     width: 330px;
     border-radius: 15%;
 }
-
+*/

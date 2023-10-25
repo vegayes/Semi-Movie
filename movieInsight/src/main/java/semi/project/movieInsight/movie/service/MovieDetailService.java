@@ -33,10 +33,10 @@ public interface MovieDetailService {
 	List<Cinema> selectCinemaList(int movieNo);
 
 	/** 5) 해당 영화 장르와 비슷한 영화 
-	 * @param movieGenre
+	 * @param genreList
 	 * @return
 	 */
-	List<Movie> recommendMovie(String movieGenre);
+	List<Movie> recommendMovie(List<String> genreList);
 
 
 
