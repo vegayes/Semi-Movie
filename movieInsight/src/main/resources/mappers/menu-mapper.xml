@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "menuMapper">
+
+
+  <resultMap type="Menu" id="menu_rm">
+		<id property="menuNo" column="MENU_NO"/>
+		
+		<result property="menuName" column="MENU_NAME"/>
+		<result property="menuPrice" column="MENU_PRICE"/>
+		<result property="menuImg" column="MENU_IMG"/>
+		<result property="menuCategory" column="MENU_CATEGORY"/>
+	
+  </resultMap>
+
+
+
+<select id="selectPopcorn"  resultMap = "menu_rm">
+	SELECT * FROM MENU m
+	WHERE MENU_CATEGORY = '팝콘'
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
+
+
+
+

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieDetailService;
 
-@RequestMapping("/movie")
+
 @Controller
 @RequestMapping("/movie")
 public class MovieDetailController {

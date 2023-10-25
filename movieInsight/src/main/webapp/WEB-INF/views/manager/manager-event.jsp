@@ -7,7 +7,7 @@
 		<title>Admin-Event</title>
 		
 		
-        <link rel="stylesheet" href = "/resources/css/admin/admin-event.css">
+        <link rel="stylesheet" href = "/movieInsight/resources/css/manager/manager-event.css">
         <!-- 아이콘 -->
         <script src="https://kit.fontawesome.com/ac58eafae7.js" crossorigin="anonymous"></script>
 		
@@ -258,7 +258,7 @@
 
 
 
-            <script src="/resources/js/admin/admin-event.js"></script>
+            <script src="/movieInsight/resources/js/manager/manager-event.js"></script>
         </main>	
 	
 	</body>
