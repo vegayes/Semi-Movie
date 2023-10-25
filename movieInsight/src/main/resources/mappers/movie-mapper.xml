@@ -13,7 +13,7 @@
 		<result property="movieGenre" column="MOVIE_GENRE"/>
 		<result property="movieReleaseDate" column="MOVIE_RELEASE_DATE"/>
 		<result property="movieAge" column="MOVIE_AGE"/>
-		<result property="movieRunningTitle" column="MOVIE_RUNNING_TIME"/>
+		<result property="movieRunningTime" column="MOVIE_RUNNING_TIME"/>
 		<result property="movieEnrollDate" column="MOVIE_ENROLL_DATE"/>
 		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
 		<result property="actorNames" column="ACTOR_NAMES"/>

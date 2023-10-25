@@ -22,8 +22,9 @@ import semi.project.movieInsight.movie.dto.Movie;
 
 
 //@SessionAttributes({"loginMember"})
-@RequestMapping("/cinemaDetail")
+
 @Controller
+@RequestMapping("/cinemaDetail")
 public class CinemaDetailController {
 
 	

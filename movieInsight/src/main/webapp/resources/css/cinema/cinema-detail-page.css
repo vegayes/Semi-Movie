@@ -220,6 +220,12 @@ main>section{
 }
 
 
+#none-list{
+    font-size: 50px;
+    text-align: center;
+    line-height: 500px;
+}
+
 
 .screening_movie>div:nth-child(1){
 
@@ -236,7 +242,7 @@ main>section{
 
 
 
-.screening_movie>.screening_movie_detail{
+.screening_movie_detail{
 
     /*영화 칸  */
 
@@ -252,17 +258,17 @@ main>section{
 
 
 
-.screening_movie_detail>div{
+.screening_movie_detail>a>div{
 
     /* 영화 가로줄 */
-    flex: 1;
+    flex-basis:30%;
     display: flex;
-
+   
 
 }
 
 
-.screening_movie_detail>div>div{
+.screening_movie_detail>a>div>div{
 
     /* 영화 줄 칸 */
     flex: 1;
@@ -271,7 +277,7 @@ main>section{
 }
 
 
-.screening_movie_detail>div>div:nth-child(1){
+.screening_movie_detail>a>div>div:nth-child(1){
 
     /* 영화 이미지 칸 */
 
@@ -285,7 +291,7 @@ main>section{
 
 
 
-.screening_movie_detail>div>div>img{
+.screening_movie_detail>a>div>div>img{
 
     /* 영화 이미지 */
     width: 40%;
@@ -295,7 +301,7 @@ main>section{
 
 
 
-.screening_movie_detail>div>div:nth-child(2){
+.screening_movie_detail>a>div>div:nth-child(2){
 
     /* 영화 설명 칸*/
 
@@ -308,7 +314,7 @@ main>section{
 }
 
 
-.screening_movie_detail>div>div:nth-child(2)>div{
+.screening_movie_detail>a>div>div:nth-child(2)>div{
 
     /* 영화 설명 칸 글자 줄*/
     padding: 0.5%;
@@ -318,7 +324,7 @@ main>section{
 }
 
 
-.screening_movie_detail>div>div:nth-child(2)>div:nth-child(1){
+.screening_movie_detail>a>div>div:nth-child(2)>div:nth-child(1){
 
     /* 영화 제목*/
     font-size: 2rem;
@@ -331,7 +337,7 @@ main>section{
 
 
 
-.screening_movie_detail>div>div:nth-child(2)>div:nth-child(1){
+.screening_movie_detail>a>div>div:nth-child(2)>div:nth-child(1){
 
     /* 영화 설명 칸 글자 첫번째 줄*/
     padding-bottom: 5%;
@@ -344,7 +350,7 @@ main>section{
 
 
 
-.screening_movie_detail>div>div:nth-child(3){
+.screening_movie_detail>a>div>div:nth-child(3){
 
     /* 영화 출연진 칸*/
 
@@ -358,7 +364,7 @@ main>section{
 
 
 
-.screening_movie_detail>div>div:nth-child(3)>div{
+.screening_movie_detail>a>div>div:nth-child(3)>div{
 
     /* 영화 출연 칸 글자 줄*/
     padding: 0.5%;

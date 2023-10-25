@@ -18,7 +18,7 @@ public class Movie {
     private String movieGenre;			// 영화 장르
     private String movieReleaseDate;	// 영화 개봉일
     private String movieAge;			// 관람 나이
-    private int movieRunningTitle;		// 영화 상영시간
+    private int movieRunningTime;		// 영화 상영시간
     private String movieEnrollDate; 	// 동영상 등록날짜
     private String movieDelYN;			// 영화 삭제 여부
     

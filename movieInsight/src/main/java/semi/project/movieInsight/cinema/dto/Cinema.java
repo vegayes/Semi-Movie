@@ -19,5 +19,6 @@ public class Cinema {
 	private String cinemaLink;
 	private int cinemaMaxInclude;
 	private String cinemaDelYN;
+	private String cinemaSpecialHall;
 	
 }
