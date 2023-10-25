@@ -73,6 +73,20 @@
                         <div>
                             <div>감독 :</div>
                             
+							<c:forEach items = "${directorInfoList}" var="directorInfo" varStatus="status">
+							
+									<c:if test="${status.index >= 0}">
+										<a href="${directorInfo.CASTING_URL}" target="_blank">
+											${directorInfo.CASTING_NAME}
+										</a>
+									
+										<c:if test="${!status.last}">&nbsp; / </c:if>
+									
+									</c:if>
+
+							</c:forEach>                             
+                            
+                            
                             <%-- 감독 나무위키 링크 걸어두기 (inline 으로 잡아서?? 구분자를 기준으로 많이 존재하면 그만큼 받아서 링크 걸어두기--%>
                             <%-- <c:choose>></c:choose>--%>
                             <a> ${movieInfo.directorNames}</a>
@@ -127,60 +141,30 @@
             <div class="mp2Head">
                 <h1 id="mm">영화 예매</h1>
             </div>
-            	<form action="/Reservation" method="POST" name="movieReservation">
-		            <div class="mmcon">
-		                <div class="line1">
-		                    <div class="l1-1">
-		                        <a href="">
-		                            <img src="/movieInsight/resources/images/movie/movieT/Rectangle 3.png">
+     <!--       	<form action="/Reservation" method="POST" name="movieReservation">  --> 
+   				<div class = "selectCinemaList-Container">
+    				<c:forEach items = "${selectCinemaList}" var="cinema" >
+						<div class = "cinemaList">
+							<div class="cinemaList-img">
+		                        <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">
+		                        	<div class = "cinemaImg-wrapper">
+			                            <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
+		                        	</div>
+		                        	<div class="cinema-hover">영화관 정보 보러가기</div>
 		                        </a>
 		                    </div>
-		                    <div class="l1-2">
-		                        <h3 id="ms">메가박스 코엑스몰 <br>
-		                            서울 강남구 봉은사로 524 코엑스몰 B1</h3>
+		                    <div class="cinemaList-info">
+		                        <div class = "cinemaList-info-content">${cinema.cinemaName}</div>
+		                        <div class = "cinemaList-info-content">${cinema.cinemaAddress}</div>
 		                    </div>
-		                    <div class="l1-3">
-		                        <h3>
-		                            <a id="my" href="https://www.megabox.co.kr/booking">예매 바로가기</a>
-		                        </h3>
+		                    <div class="cinemaList-url">
+	                            <a href="${cinema.cinemaLink}" target="_blank">예매 바로가기</a>
 		                    </div>
-		                </div>
-		                <div class="line2">
-		                    <div class="l2-1">
-		                        <a href="">
-		                            <img src="/movieInsight/resources/images/movie/movieT/Rectangle 4.png">
-		                        </a>
-		                    </div>
-		                    <div class="l2-2">
-		                        <h3 id="ms">CGV 용산아이파크몰 <br>
-		                            서울특별시 용산구 한강대로23길 55</h3>
-		                    </div>
-		                    <div class="l2-3">
-		                        <h3>
-		                            <a id="my" href="http://www.cgv.co.kr/theaters/?theaterCode=0013">예매 바로가기</a>
-		                        </h3>
-		                    </div>
-		                </div>
-		                <div class="line3">
-		                    <div class="l3-1">
-		                        <a href="">
-		                            <img src="/movieInsight/resources/images/movie/movieT/Rectangle 2.png">
-		                        </a>
-		                    </div>
-		                    <div class="l3-2">
-		                        <h3 id="ms">
-		                            CGV 왕십리 <br>
-		                            서울특별시 성동구 행당동 왕십리광장로 17
-		                        </h3>
-		                    </div>
-		                    <div class="l3-3">
-		                        <h3>
-		                            <a id="my" href="http://www.cgv.co.kr/theaters/?areacode=01&theaterCode=0074&date=20230919">예매 바로가기</a>
-		                        </h3>
-		                    </div>
-		                </div>
-		            </div>
-			   </form>
+						</div>
+    				</c:forEach>    				
+   				</div>
+
+			   <!-- </form> -->
           </div>
 
 
@@ -237,12 +221,13 @@
 
         <div class="foot">
             <div class="ftHead">
-                <h1 id="hi">사용자가 종아할 만한 영화</h1>
+                <h1 id="hi">와 비슷한 영화 추천</h1>
             </div>
             <div class="ftMain">
                 <div class="ftmain">
                     <div class="gallery-container">
                       <div class="gallery">
+                      
                         <div class="ft1">
                           <a href="/favorite1">
                             <img src="/movieInsight/resources/images/movie/movieT/youtube-logo 1.png" alt="Image 1">

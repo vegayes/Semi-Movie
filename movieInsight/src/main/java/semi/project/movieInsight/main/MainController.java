@@ -49,8 +49,6 @@ public class MainController {
 //		}
 		
 
-
-//		return "mypage/mypage";
 //		return "member/login_signUp";
 //		return "member/find_id";
 //		return "movie/home-page";

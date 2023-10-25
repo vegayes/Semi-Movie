@@ -63,7 +63,7 @@
                             특별관 : ${cinemaInfo.cinemaSpecialHall}
                         </div>
                         <div>
-                           <a href=${cinemaInfo.cinemaLink }>바로가기</a> 
+                           <a href=${cinemaInfo.cinemaLink} target="_blank">바로가기</a> 
                         </div>
                     </div>
                 </div>

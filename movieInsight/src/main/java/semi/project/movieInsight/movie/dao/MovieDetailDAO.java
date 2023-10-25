@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.movie.dto.Movie;
 
 @Repository
@@ -33,4 +34,41 @@ public class MovieDetailDAO {
 		return sqlSession.selectList("movieMapper.actorInfoList", movieNo);
 	}
 
+
+	/** 3) 영화 감독 정보 가져오기
+	 * @param movieNo
+	 * @return
+	 */
+	public List<Map<String, Object>> directorInfoList(int movieNo) {
+		return sqlSession.selectList("movieMapper.directorInfoList", movieNo);
+	}
+
+
+	/** 4) 해당 영화가 상영하는 상영관 리스트 가져오기
+	 * @param movieNo
+	 * @return
+	 */
+	public List<Cinema> selectCinemaList(int movieNo) {
+		return sqlSession.selectList("movieMapper.selectCinemaList", movieNo);
+	}
+
+
+	/** 5) 해당 영화와 비슷한 (장르기준) 추천
+	 * @param movieGenre
+	 * @return
+	 */
+	public List<Movie> recommendMovie(String movieGenre) {
+		return sqlSession.selectList("movieMapper.recommendMovie", movieGenre);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
