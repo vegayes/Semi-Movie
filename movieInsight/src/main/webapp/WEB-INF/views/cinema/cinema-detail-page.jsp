@@ -92,6 +92,7 @@
                         <div class="screening_movie_detail">
                             <a href="/movieInsight/movie/${movie.movieNo}">
                                 <div>
+
                                     <div>			
                                         <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
                                     </div>
@@ -104,6 +105,7 @@
                                         <div>출연진</div>
                                         <div>${movie.actorNames}</div>
                                     </div>
+
                                 </div>
                             </a>
                         </div>

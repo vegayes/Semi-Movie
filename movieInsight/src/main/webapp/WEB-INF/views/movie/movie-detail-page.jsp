@@ -40,9 +40,7 @@
     <main>
         <div class="movie">
             <div class="movie_img">
-            	<c:if test="">
-            	 	<img src="/movieInsight/resources/images/movie/movieT/moviePoster.png">
-            	</c:if>
+           	 	<img src="/movieInsight/resources/images/movie/${movieInfo.movieImg}">
             </div>
             <div>
                 <div class="movie_title">
@@ -51,8 +49,8 @@
                             <i class="fa-solid fa-star" id="star"></i>         
                         </a>
                     </div>
-                    <div>베니스 유령살인사건</div>
-                    <div>
+                    <div>${movieInfo.movieTitle}</div>
+                    <div> <%-- 평점 --%>
                         <div></div>
                         <div></div>
                         <div></div>
@@ -60,33 +58,66 @@
                         <div></div>
                     </div>
                 </div>
+ 	            <h2 class = "movie_summary_title">줄거리</h2>  
                 <div class="movie_summary">
-                    줄거리 : 애거서 크리스티 원작 기반 새로운 추리 서스펜스 미스터리가 찾아온다‘회색 뇌세포’ 세기의 명탐정 에르큘 포와로의 귀환!세계적 명탐정 '에르큘 포와로'는 오랜 탐정 생활에서 은퇴하여 아름다운 도시 베니스에서 평범한 삶을 살아가고 있다.그런 그에게 오랜 친구이자 베스트셀러 작가인 '아리아드네 올리버'가 찾아와죽은 영혼을 부를 수 있다고 알려진 영험한 심령술사의 실체를 밝혀달라고
+                     ${movieInfo.movieSummary} 
                 </div>
                 <div class="movie_description">
                     <div>
                         <div>
-                            <div>장르 :</div> 
-                            <a>범죄/</a>
-                            <a>공포/</a>
-                            <a>미스터리/</a>
-                            <a>스릴러</a>
+                            <div>장르 :
+                            	${movieInfo.movieGenre}
+                            </div> 
+								
                         </div>
                         <div>
                             <div>감독 :</div>
-                            <a> 케네스 브래너</a>
+                            
+                            <%-- 감독 나무위키 링크 걸어두기 (inline 으로 잡아서?? 구분자를 기준으로 많이 존재하면 그만큼 받아서 링크 걸어두기--%>
+                            <%-- <c:choose>></c:choose>--%>
+                            <a> ${movieInfo.directorNames}</a>
                         </div>
                         <div>
                             <div>출연진 :</div>
-                            <a>카일 앨런,</a>
+                            	
+							<c:forEach items = "${actorInfoList}" var="actorInfo" varStatus="status">
+							
+									<c:if test="${status.index >= 0}">
+										<a href="${actorInfo.CASTING_URL}" target="_blank">
+											${actorInfo.CASTING_NAME}
+										</a>
+									
+										<c:if test="${!status.last}">&nbsp; / </c:if>
+									
+									</c:if>
+
+							</c:forEach>                            
+                           	<%-- 
+                            <a> ${movieInfo.actorNames}</a>
+                            
+                            --%>
+                            <%-- 
                             <a>케네스 브래너,</a>
                             <a>카밀 코탄</a>
+                            --%>
                         </div>
                     </div>
                     <div>
-                        <div>개봉일 : 2023.09.13</div>
-                        <div>등급 : 12세이상관람가</div>
-                        <div>러닝타임 : 103분</div>
+                        <div>개봉일 : ${movieInfo.movieReleaseDate}</div>
+                        <div>등급 : 
+                        <%-- 
+                        	<c:choose>
+                        		<c:when test="${movie.movieAge}.length() > 2">
+                        			${movie.movieAge}
+                        		</c:when>
+                        		<c:otherwise>
+                        			${movie.movieRunningTime}이상 관람가
+                        		</c:otherwise>
+                        	</c:choose>
+                        --%>
+                        	${movieInfo.movieAge}
+                        </div>
+                        <div>러닝타임 : ${movieInfo.movieRunningTime }분</div>
                     </div>
                 </div>
             </div>

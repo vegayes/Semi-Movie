@@ -17,7 +17,7 @@
 		<result property="movieEnrollDate" column="MOVIE_ENROLL_DATE"/>
 		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
 		<result property="actorNames" column="ACTOR_NAMES"/>
-		<result property="directorNames" column="DIRECTOR_NAMES"/>
+		<result property="directorNames" column="DIRECTOR_NAMES"/>	
 	</resultMap>
 
 	<!-- CDATA 태그 : 해당 태그 내부에 작성된 것은 모두 문자로 취급 -->
@@ -48,15 +48,34 @@
 
 
 	<!-- 2) 검색 결과  -->
-	<!-- 
 	<select id = "selectMovie"  resultMap = "movie_rm">
-	
-	
+		SELECT * 
+		FROM (
+			SELECT
+		    M.MOVIE_NO,
+		    M.MOVIE_TITLE,
+		    M.MOVIE_IMG,
+		    M.MOVIE_SUMMARY,
+		    M.MOVIE_GENRE,
+		    TO_CHAR(M.MOVIE_RELEASE_DATE, 'YYYY"년" MM"월" DD"일"') AS MOVIE_RELEASE_DATE,
+		    M.MOVIE_AGE,
+		    M.MOVIE_RUNNING_TIME,
+		    M.MOVIE_DEL_YN
+			FROM MOVIE M
+			JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+			GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN)
+		WHERE MOVIE_DEL_YN = 'N' AND MOVIE_NO = #{movieNo}		
 	</select>
 
-	 -->
 
-
+	<!-- 3) 배우 정보 검색 결과  -->
+	<select id = "actorInfoList" resultType = "map">
+		SELECT CASTING_NAME, CASTING_URL
+		FROM MOVIE M
+		JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+		JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
+		WHERE CASTING_CATEGORY = 'A' AND M.MOVIE_NO = #{movieNo}
+	</select>
 
 
 </mapper>

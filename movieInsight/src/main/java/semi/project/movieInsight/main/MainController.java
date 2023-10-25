@@ -55,7 +55,7 @@ public class MainController {
  	return "cinema/cinema-homepage"; 
 //		return "movie/movie-detail-page";
 
-//		return "mypage/mypage";
+		return "mypage/mypage";
 //		return "member/login_signUp";
 //		return "member/find_id";
 //		return "movie/home-page";

@@ -1,5 +1,7 @@
 package semi.project.movieInsight.movie.dto;
 
+import java.util.Map;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,11 +25,16 @@ public class Movie {
     private String movieDelYN;			// 영화 삭제 여부
     
 
-//  배우 이름 조회 
+//  배우 이름 검색 구분자 조회 
     private String actorNames;
-//  감독 이름 조회 
+//  감독 이름 검색 구분자 조회 
     private String directorNames;
     
+ /*
+// 출연진 이름 
+    private String castingName;
+// 출연진 나무위키 URL
+    private String castingURL;
     
-    
+    */
 }
