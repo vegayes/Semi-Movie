@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieDetailService;
 
+@RequestMapping("/movie")
 @Controller
 @RequestMapping("/movie")
 public class MovieDetailController {
@@ -25,6 +26,7 @@ public class MovieDetailController {
 	 * @param movieNo
 	 * @return
 	 */
+
 //	@GetMapping("/movie/{movieNo}")
 	@GetMapping("/{movieNo:^[^0]\\d*}") // 정수 숫자만
 	public String selectMovie(@PathVariable("movieNo") int movieNo,

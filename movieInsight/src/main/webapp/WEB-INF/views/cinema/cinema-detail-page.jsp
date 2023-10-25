@@ -60,7 +60,7 @@
                             수용인원 : ${cinemaInfo.cinemaMaxInclude} 명 
                         </div>
                               <div>   
-                            특별관 : 4DX,IMAX,SCREENX,Dolby Atmos
+                            특별관 : ${cinemaInfo.cinemaSpecialHall}
                         </div>
                         <div>
                            <a href=${cinemaInfo.cinemaLink }>바로가기</a> 
@@ -90,20 +90,24 @@
                     
                     <c:forEach items = "${movieList}"  var="movie" >
                         <div class="screening_movie_detail">
-                            <div>
-                                <div>			
-                                    <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
-                                </div>
+                            <a href="/movieInsight/movie/${movie.movieNo}">
                                 <div>
-                                    <div>${movie.movieTitle}</div>
-                                    <div>${movie.movieAge} / ${movie.movieGenre} / ${movie.movieRunningTime}분</div>
-                                    <div>${movie.movieReleaseDate} 개봉</div>
+
+                                    <div>			
+                                        <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
+                                    </div>
+                                    <div>
+                                        <div>${movie.movieTitle}</div>
+                                        <div>${movie.movieAge} / ${movie.movieGenre} / ${movie.movieRunningTime}분</div>
+                                        <div>${movie.movieReleaseDate} 개봉</div>
+                                    </div>
+                                    <div>
+                                        <div>출연진</div>
+                                        <div>${movie.actorNames}</div>
+                                    </div>
+
                                 </div>
-                                <div>
-                                    <div>출연진</div>
-                                    <div>${movie.actorNames}</div>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </c:forEach>
                 </c:otherwise>

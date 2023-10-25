@@ -39,6 +39,7 @@
                 		<%-- 2-1) 반복해서 보여주기 --%>
 
                 		<c:forEach items = "${movieList}" var="movie" >
+
                 			<a href="/movieInsight/movie/${movie.movieNo}">
 				                 <div class = "movie-search-list-container" onclick="movieInfo('${movie.movieNo}')"> <%-- value 값으로 전달가능? --%>
 				                    <div class = "movie-search-img-wrapper">
@@ -92,6 +93,7 @@
 				                    </div>
 				                </div>
 			                </a>
+
                 		</c:forEach>
 
                 	</c:otherwise>
