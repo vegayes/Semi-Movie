@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Main 페이지</title>
 	
-    <link rel="stylesheet" href="/resources/css/movie/home-page.css">
+    <link rel="stylesheet" href="/movieInsight/resources/css/movie/home-page.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
@@ -27,7 +27,6 @@
         <div class="user"><a href="mypage.jsp"><img src="바탕화면/info.png" width="36" /></div>
       </div>
     </header>
-    
    --> 
    
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />

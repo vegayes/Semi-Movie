@@ -113,14 +113,6 @@ public class MovieController {
 	}
 	
 	
-	@GetMapping("/movie/{movieNo}")
-	public String searchMovieMove(@PathVariable("movieNo") int movieNo) {
-		
-		System.out.println("검색 후 이동");
-		System.out.println(movieNo);
-		
-		
-		return "movie/movieT";
-	}
+
 
 }

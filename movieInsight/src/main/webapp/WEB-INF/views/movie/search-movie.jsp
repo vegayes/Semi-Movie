@@ -29,7 +29,7 @@
                 	<%-- 1) 검색 결과가 비어있는 경우  --%>
                 	<c:when test="${empty movieList}">
                 		<%-- ★★★★★★★★★★★★★★★★★★★ 아니 이거 왜 CSS 안먹는지 모르겠음.★★★★★★★★★★★★★★★★★★★★★★★ --%>
-                		<div class = "movie-search-list-container"  id = "none-list">
+                		<div class = "movie-search-list-none-container"  id = "none-list">
                 			검색결과가 존재하지 않습니다.
                 		</div>
                 	</c:when>
