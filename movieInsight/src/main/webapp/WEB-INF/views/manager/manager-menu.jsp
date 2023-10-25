@@ -7,7 +7,7 @@
 		<meta charset="UTF-8">
 		<title>Admin-Menu</title>
 		
-		<link rel="stylesheet" href = "/resources/css/admin/admin-menu.css">
+		<link rel="stylesheet" href = "/movieInsight/resources/css/manager/manager-menu.css">
 
         <script src="https://kit.fontawesome.com/ac58eafae7.js" crossorigin="anonymous"></script>
 		
@@ -16,7 +16,7 @@
         <nav>
             <div class="admin-menu">
                 <ul>
-                    <li class="admin-list"><a href="#">회원 관리</a></li> 
+                    <li class="admin-list"><a href="/movieInsight/mypage/$">회원 관리</a></li> 
                     <li class="admin-list"><a href="#">영화</a></li>               
                     <li class="admin-list"><a href="#">영화관</a></li>
                     <li class="admin-list"><a href="#">메뉴</a></li>
@@ -679,7 +679,7 @@
 
         </main>
 
-        <script src ="/resources/js/admin/admin-menu.js"></script>
+        <script src ="/movieInsight/resources/js/manager/manager-menu.js"></script>
     </body>	
 	</body>
 </html>
