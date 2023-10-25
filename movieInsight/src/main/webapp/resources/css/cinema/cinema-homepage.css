@@ -50,7 +50,7 @@ body {background-color: #000;  box-sizing: border-box;}
         
         /* 영화이동 링크 */
         .movie_link { width: 23%; height: 50%;  border-radius: 10px;  position: fixed;  
-                      background: url(/resources/images/cinema/44014266-영화-슬레이트.jpg), lightgray 50% / cover no-repeat;
+                      background: url(/movieInsight/resources/images/cinema/44014266-영화-슬레이트.jpg), lightgray 50% / cover no-repeat;
                       background-size: cover;  background-position: center; margin-left: 1%;  margin-top:3%}
         
         /* 맨 위 영화관 리스트 */

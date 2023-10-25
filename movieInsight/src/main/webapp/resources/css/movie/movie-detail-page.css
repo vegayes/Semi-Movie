@@ -832,10 +832,13 @@ main>div{
     background-position: center;
 }
 
-
+.movie_summary_title{
+	height : 5%;
+    padding: 0 30px;
+}
 
 .movie_summary{
-    height: 40%;
+    height: 35%;
     line-height: 3; /* 글자 높이 설정*/
     font-size: 20px;
     word-wrap: break-word; 
