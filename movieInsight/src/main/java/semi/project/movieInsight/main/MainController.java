@@ -51,13 +51,13 @@ public class MainController {
 
 //		return "member/login_signUp";
 //		return "member/find_id";
-//	return "movie/home-page";
+//		return "movie/home-page";
 //		return "cinema/cinema-detail-page";
 
 		
 
-//		return "cinema/cinema-homepage";
-		return "manager/manager-menu";
+		return "cinema/cinema-homepage";
+//		return "manager/manager-menu";
 
 	}
 	

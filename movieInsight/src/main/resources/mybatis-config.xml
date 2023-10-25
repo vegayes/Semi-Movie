@@ -14,7 +14,7 @@
 		<typeAlias type="semi.project.movieInsight.member.dto.Member" alias="Member"/>
 		<typeAlias type="semi.project.movieInsight.movie.dto.Movie" alias="Movie"/>
 		<typeAlias type="semi.project.movieInsight.cinema.dto.Cinema" alias="Cinema"/>
-		<typeAlias type="semi.project.movieInsight.menu.dto.Menu" alias="Menu"/>
+		<typeAlias type="semi.project.movieInsight.cinema.dto.Menu" alias="Menu"/>
 	</typeAliases>	
 	
 	<!-- mapper파일(SQL 작성되는파일) 위치 등록 부분 -->
