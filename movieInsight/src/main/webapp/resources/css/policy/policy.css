@@ -1,0 +1,90 @@
+body{
+
+    height: 2000px;
+ 
+
+}
+
+
+
+
+#tos{
+  height: 900px;
+  margin-bottom: 8%;
+
+
+}
+
+
+#policy{
+    height: 900px;
+    margin-bottom: 5%;
+  
+  
+  }
+  
+
+#tos-title{
+
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: teal;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+
+
+
+}
+
+
+
+#policy-title{
+
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: teal;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+
+
+
+}
+
+
+
+
+#tou-detail{
+
+height: 80%;
+overflow: hidden scroll;
+background-color: #E6E6FA;
+padding: 0;
+margin: 0 5% 0 5%;
+
+font-size: 1rem;
+white-space: pre-wrap;
+text-align: left;
+
+}
+
+
+
+/*이동시 짤림방지 */
+.anchor{
+    display: block;
+    height: 88px;       /* 헤더의 height와 동일한 값 */
+    margin-top: -88px;  /* 헤더의 height와 동일한 값 */
+    visibility: hidden;
+}
+
+/*강조  */
+.emphasis{
+    text-align: center;
+    font-size:2rem;
+}

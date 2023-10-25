@@ -31,9 +31,9 @@
 		        <p>Copyright &copy; 2023 MovieInsight Institute E-Class</p>
 				<a href="#">프로젝트 소개</a>
 		        <span>|</span>
-		        <a href="#">이용약관</a>
+		        <a href="/movieInsight/policy#tos">이용약관</a>
 		        <span>|</span>
-		        <a href="#">개인정보처리방침</a>
+		        <a href="/movieInsight/policy#policy">개인정보처리방침</a>
 		    </div>
 		</footer>
 		
