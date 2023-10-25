@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "movieMapper">
+	<!-- BoardImage resultMap -->
+	
+ 
+	<resultMap type="Movie" id="movie_rm">
+		<id property="movieNo" column="MOVIE_NO"/>
+		
+		<result property="movieTitle" column="MOVIE_TITLE"/>
+		<result property="movieImg" column="MOVIE_IMG"/>
+		<result property="movieSummary" column="MOVIE_SUMMARY"/>
+		<result property="movieGenre" column="MOVIE_GENRE"/>
+		<result property="movieReleaseDate" column="MOVIE_RELEASE_DATE"/>
+		<result property="movieAge" column="MOVIE_AGE"/>
+		<result property="movieRunningTime" column="MOVIE_RUNNING_TIME"/>
+		<result property="movieEnrollDate" column="MOVIE_ENROLL_DATE"/>
+		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
+		<result property="actorNames" column="ACTOR_NAMES"/>
+		<result property="directorNames" column="DIRECTOR_NAMES"/>	
+	</resultMap>
+	
+	
+		
+	<resultMap type="Cinema" id="cinema_rm">
+		<id property="cinemaNo" column="CINEMA_NO" />
+
+		<result property="cinemaName" column="CINEMA_NAME" />
+		<result property="cinemaAddress" column="CINEMA_ADDRESS" />
+		<result property="cinemaContact" column="CINEMA_CONTACT" />
+		<result property="cinemaImg" column="CINEMA_IMG" />
+		<result property="cinemaLink" column="CINEMA_LINK" />
+		<result property="cinemaMaxInclude" column="CINEMA_MAX_INCLUDE" />
+		<result property="cinemaDelYN" column="CINEMA_DEL_YN" />
+		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
+	</resultMap>
+	
+
+	<!-- CDATA 태그 : 해당 태그 내부에 작성된 것은 모두 문자로 취급 -->
+
+	<!--Search 1) 검색 결과 리스트 -->
+	<select id = "searchMovieList" resultMap = "movie_rm">
+	SELECT * 
+	FROM (
+		SELECT
+	    M.MOVIE_NO,
+	    M.MOVIE_TITLE,
+	    M.MOVIE_IMG,
+	    M.MOVIE_SUMMARY,
+	    M.MOVIE_GENRE,
+	    TO_CHAR(M.MOVIE_RELEASE_DATE, 'YYYY"년" MM"월" DD"일"') AS MOVIE_RELEASE_DATE,
+	    M.MOVIE_AGE,
+	    M.MOVIE_RUNNING_TIME,
+	    LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'A' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS ACTOR_NAMES,
+	    LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'D' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS DIRECTOR_NAMES,
+	    M.MOVIE_DEL_YN
+		FROM MOVIE M
+		JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+		JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
+		GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN)
+	WHERE MOVIE_DEL_YN = 'N' AND (MOVIE_TITLE LIKE '%' || #{movieQuery} || '%' OR MOVIE_GENRE LIKE '%' || #{movieQuery} || '%' OR ACTOR_NAMES LIKE '%' || #{movieQuery} || '%' OR DIRECTOR_NAMES LIKE '%' || #{movieQuery} || '%')	
+	</select>
+
+
+<!-- 영화 상세 설명 -->
+
+
+	<!-- 1) 검색 결과  -->
+	<select id = "selectMovie"  resultMap = "movie_rm">
+		SELECT * 
+		FROM (
+			SELECT
+		    M.MOVIE_NO,
+		    M.MOVIE_TITLE,
+		    M.MOVIE_IMG,
+		    M.MOVIE_SUMMARY,
+		    M.MOVIE_GENRE,
+		    TO_CHAR(M.MOVIE_RELEASE_DATE, 'YYYY"년" MM"월" DD"일"') AS MOVIE_RELEASE_DATE,
+		    M.MOVIE_AGE,
+		    M.MOVIE_RUNNING_TIME,
+		    M.MOVIE_DEL_YN
+			FROM MOVIE M
+			JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+			GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN)
+		WHERE MOVIE_DEL_YN = 'N' AND MOVIE_NO = #{movieNo}		
+	</select>
+
+
+	<!-- 2) 배우 정보 검색 결과  -->
+	<select id = "actorInfoList" resultType = "map">
+		SELECT CASTING_NAME, CASTING_URL
+		FROM MOVIE M
+		JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+		JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
+		WHERE CASTING_CATEGORY = 'A' AND M.MOVIE_NO = #{movieNo}
+	</select>
+	
+	<!--  3) 감독 정보 검색 결과 -->
+	<select id = "directorInfoList" resultType = "map">
+		SELECT CASTING_NAME, CASTING_URL
+		FROM MOVIE M
+		JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+		JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
+		WHERE CASTING_CATEGORY = 'D' AND M.MOVIE_NO = #{movieNo}
+	</select>
+	
+	
+	<!-- 4) 영화를 상영하는 상영관 리스트 가져오기 -->
+	<select id ="selectCinemaList" resultMap = "cinema_rm">
+	SELECT CINEMA_NO, CINEMA_NAME, CINEMA_ADDRESS, CINEMA_IMG, CINEMA_LINK
+	FROM CINEMA 
+	WHERE CINEMA_NO = (	SELECT CINEMA_NO
+						FROM MOVIE_STATUS ms
+						WHERE MOVIE_NO = #{movieNo})	
+	</select>
+	
+	
+	<!-- 5) 해당 영화와 비슷한 (장르기준) 추천  -->
+	<select id ="recommendMovie" resultMap = "movie_rm">
+	SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_IMG
+	FROM (SELECT *
+			FROM MOVIE 
+			WHERE MOVIE_DEL_YN ='N'AND MOVIE_GENRE = #{movieGenre} 
+			ORDER BY DBMS_RANDOM.VALUE)
+	<![CDATA[WHERE ROWNUM <= 10]]>
+	</select>
+	
+
+</mapper>
+
+

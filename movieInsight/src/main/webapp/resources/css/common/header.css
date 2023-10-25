@@ -1,0 +1,267 @@
+*{
+    box-sizing: border-box;
+    list-style : none; /* 리스트 스타일 X */
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Noto Sans','GmarketSansMedium' ;
+    /* font-family: 'KBO-Dia-Gothic_bold'; */
+}
+
+a, button{
+    cursor: pointer;
+    color : white; 
+}
+
+
+nav{
+    height: 88px;
+
+    display: flex;
+
+    /* 위에 고정 */
+    position:sticky;
+    top: 0;
+
+    background-color: #101322;
+/*     color: white; */
+    /* 요소 우선순위 주기 ( 앞으로 올리기 )  */
+    z-index: 3;
+}
+
+.logo{
+    padding-top: 10px;
+}
+
+nav section:not(:nth-child(2)){
+    flex-basis: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 로고 폰트 사이즈  ① 로고 사이즈 변경 및 이미지면 이미지 사이즈 변경  */
+    font-size: 40px;
+    font-weight: bold;
+}
+
+/* nav- 검색창 */
+nav section:nth-child(2){
+    flex-basis: 60%;
+
+    padding: 10px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .movie-search-area > form{
+    padding-top: px;
+} */
+
+.movie-search-area fieldset{
+    width: 900px;
+    border: 2px solid black;
+
+    height: 40px; /*원래 45px*/
+    /*border-radius: 5px; */
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 2px;
+    display: flex;
+}
+
+#query{
+    flex-basis: 92%;
+    /* padding: 5px; */
+    padding: 5px  10px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px 0px 0px 5px  ;
+    outline: 0;  
+    background-color: white;
+    
+}
+
+#search-btn{
+    flex-basis: 8%;
+    /* line-height: 30px; */
+    line-height: 35px;
+    font-size: 1.1em;
+    border-radius: 0px 5px 5px 0px   ;
+    border: none;
+    background-color: white; /* transparent : 투명 */
+    color: black;
+}
+
+
+.main-sort > a{
+    margin : 0px 50px;
+
+    font-size: 12px;
+}
+
+.main-sort > a:nth-of-type(1):hover{
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(253, 182, 206);
+    transition-duration : 0.3s;
+}
+
+
+.main-sort > a:nth-of-type(2):hover{
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(160, 212, 80);
+    transition-duration : 0.3s;
+}
+
+
+.main-sort > a:nth-of-type(3):hover{
+    font-size: 14px;
+    font-weight: bold;
+    color:rgb(165, 230, 255);
+    transition-duration : 0.3s;
+}
+
+/* nav - 유저 버튼 */
+/* .user-login{
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+} */
+
+.user-login,
+.user-logout {
+    width: 170px;
+    height: 55px;
+    border-radius: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+    color:black;
+    font-size: 26px;
+
+    position: relative;
+
+}
+
+
+ .user-login:hover {
+   border: 3px solid #48cae4;
+   border-radius: 50px;
+   transition: border 0.1s ease;
+ }
+ 
+ .user-logout:hover{
+   border: 3px solid #ff006e ;
+   border-radius: 50px;
+   transition: border 0.1s ease;
+ }
+
+
+/*
+.user-login span:nth-child(1) {
+  position: absolute;
+  border-top: 2px solid red;
+  top: 0;
+  left: 0;
+  right: 100%;
+  transition: 0.3s; 
+  transition-delay: 0.4s; 
+}
+
+.user-login:hover span:nth-child(1) {
+  right: 0%;
+  transition-delay: 0s;
+}
+
+.user-login span:nth-child(2) {
+  position: absolute;
+  border-right: 2px solid yellow;
+  top: 0;
+  right: 0;
+  bottom: 100%;
+  transition: 0.3s; 
+  transition-delay: 0.3s; 
+}
+
+.user-login:hover span:nth-child(2) {
+  bottom: 0%;
+  transition-delay: 0.1s;
+}
+
+.user-login span:nth-child(3) {
+  position: absolute;
+  border-bottom: 2px solid green;
+  bottom: 0;
+  left: 100%;
+  right: 0;
+  transition: 0.3s;
+  transition-delay: 0.2s; 
+}
+
+.user-login:hover span:nth-child(3) {
+  left: 0%;
+  transition-delay: 0.2s;
+}
+
+.user-login span:nth-child(4) {
+  position: absolute;
+  border-left: 2px solid blue;
+  top: 100%;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s; 
+  transition-delay: 0.1s; 
+}
+
+.user-login:hover span:nth-child(4) {
+  top: 0%;
+  transition-delay: 0.3s;
+}
+*/
+
+
+.user-login > p,
+.user-logout > p{
+    flex-basis: 60%;
+    padding-left: 10px;
+}
+
+
+.user-mypage{
+    flex-basis: 50%;
+    padding-left: 50px;
+    font-size: 30px;
+
+}
+
+.mypage-wrapper{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: white;
+    color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    overflow: hidden;
+}
+
+ .mypage-wrapper:hover {
+   border: 3px solid #ffbe0b;
+   border-radius: 50px;
+   transition: border 0.1s ease;
+ }
+ 
+
+
+.mypage-wrapper>img{
+    width: 100%;
+}

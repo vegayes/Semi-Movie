@@ -1,0 +1,913 @@
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #101322;
+    color: #FFFFFF;
+    height: 6490px;
+
+}
+
+button {
+    cursor: pointer;
+}
+
+
+
+main{
+
+    margin: 2% 8%;
+   
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+main>section{
+  
+
+   
+   margin: 3% 0;
+   background-color: #383B3E;
+   border-radius: 20px;
+
+
+}
+
+
+
+
+/*////// 영화관 설명페이지/////////////////*/
+
+.cinema{
+
+
+
+    height: 11.5%;
+    display: flex;
+    background-color: #6A5A56;
+    
+}
+
+
+
+.cinema>div{
+    flex: 1;
+
+
+}
+
+
+
+
+.cinema>div:nth-child(1){
+ display: flex;
+ justify-content: center;
+ align-items: center;
+
+}
+
+#cgv_yongsan{
+
+    width: 85%;
+    height: 80%;
+
+}
+
+
+.cinema>div:nth-child(2){
+    
+    margin-right: 3%;
+   
+   }
+   
+
+
+
+
+.cinema>div:nth-child(2)>.cinema_title{
+
+    height: 20%;
+    display: flex;
+
+
+
+}
+
+
+
+
+
+#star {
+    color: white; 
+    transition: color 0.3s; 
+    font-size: 3.5rem;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+#star:hover {
+    color: blue;
+}
+
+.star-clicked {
+    color: purple;
+}
+
+.star{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 2%;
+}
+
+
+
+
+
+
+.cinema_title>div:nth-child(2){
+
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+
+.cinema_title>div:nth-child(3){
+
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.cinema_title>div:nth-child(3)>div{
+
+    margin-left: 3.5%;
+
+}
+
+
+
+
+
+
+
+.cinema>div:nth-child(2)>.cinema_description{
+
+    height: 60%;
+    background-color: #FFF2F2;
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15%;
+    color: black;
+    font-size: 1.3rem;
+    font-weight: 600;
+    
+}
+
+
+
+.cinema_description>div>div{
+
+    padding-bottom: 5%;
+    /* 줄 간격 */
+
+}
+
+
+
+
+
+.cinema_description>div>div a{
+
+    text-decoration-line: none;
+         color: mediumpurple
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+/* 상영중인 영화 */
+
+
+.screening_movie{
+
+    height: 17%
+
+}
+
+
+#none-list{
+    font-size: 50px;
+    text-align: center;
+    line-height: 500px;
+}
+
+
+.screening_movie>div:nth-child(1){
+
+    /* 제목 칸*/
+
+    height: 12%;
+    font-size: 3rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding-left: 6%;
+
+}
+
+
+
+.screening_movie_detail{
+
+    /*영화 칸  */
+
+    height: 88%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 5%;
+    padding: 2%;
+    overflow: hidden scroll;
+    background-color: #474C50;
+  
+}
+
+
+
+.screening_movie_detail>a>div{
+
+    /* 영화 가로줄 */
+    flex-basis:30%;
+    display: flex;
+   
+
+}
+
+
+.screening_movie_detail>a>div>div{
+
+    /* 영화 줄 칸 */
+    flex: 1;
+
+
+}
+
+
+.screening_movie_detail>a>div>div:nth-child(1){
+
+    /* 영화 이미지 칸 */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+
+
+
+.screening_movie_detail>a>div>div>img{
+
+    /* 영화 이미지 */
+    width: 40%;
+    height: 70%;
+
+}
+
+
+
+.screening_movie_detail>a>div>div:nth-child(2){
+
+    /* 영화 설명 칸*/
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+
+.screening_movie_detail>a>div>div:nth-child(2)>div{
+
+    /* 영화 설명 칸 글자 줄*/
+    padding: 0.5%;
+    font-size: 1.3rem;
+
+
+}
+
+
+.screening_movie_detail>a>div>div:nth-child(2)>div:nth-child(1){
+
+    /* 영화 제목*/
+    font-size: 2rem;
+
+
+}
+
+
+
+
+
+
+.screening_movie_detail>a>div>div:nth-child(2)>div:nth-child(1){
+
+    /* 영화 설명 칸 글자 첫번째 줄*/
+    padding-bottom: 5%;
+
+
+
+}
+
+
+
+
+
+.screening_movie_detail>a>div>div:nth-child(3){
+
+    /* 영화 출연진 칸*/
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+
+
+.screening_movie_detail>a>div>div:nth-child(3)>div{
+
+    /* 영화 출연 칸 글자 줄*/
+    padding: 0.5%;
+    font-size: 1.3rem;
+
+
+}
+
+
+
+
+
+#img_checkbox{
+    /*체크박스 이미지  */
+    background-image: url(img/팝콘.png);
+
+}
+
+
+
+
+
+
+/**********************************/
+
+.facility {
+    /* 시설 만족도 */
+    display: flex;
+    flex-direction: column;
+    width: 1;
+    height: 16%;
+    background-color: #383B3E;
+}
+
+
+.facility .block{
+ 
+  height: 80%;
+
+
+
+}
+
+
+
+.block_name{
+    /* 제목 */
+    font-size: 3rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 6%;
+    height: 18%;
+
+    
+}
+
+
+
+
+
+
+
+
+.facility .block_body{
+
+    /* 댓글들 */
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+ 
+    background-color: #474C50;
+  
+
+}
+
+
+
+
+.combody {
+    height: 100%;
+    width: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #474C50;
+    overflow: hidden scroll;
+}
+
+
+.comb {
+    height: 90.5px;
+    width: auto;
+    display: flex;
+}
+
+.comb img {
+    margin-top: 2.5%;
+    width: 33px;
+}
+
+#pop1 {
+   margin-left: 5%; 
+}
+
+#pop2 {
+    margin-left: 20px;
+}
+
+.cb1 {
+ margin: 0;
+}
+
+.cb2 {
+ margin: 0;
+}
+
+.cb3 {
+ margin: 0;
+}
+
+.cb4 {
+ margin: 0;
+}
+
+#idd {
+    margin-left: 50%;
+    margin-top: 18%;
+    padding: 0;
+    font-weight: normal;
+}
+
+
+
+#dd1 {
+    margin-left: 1%;
+    margin-top: 20px;
+    margin-right: 0;
+    width: 80%;
+    padding: 0;
+    font-weight: normal;
+}
+
+.comb2 {
+    height: 72.5px;
+    width: auto;
+    padding: 0;
+    display: flex;
+}
+
+.cb1 {
+    flex-basis: 5%;
+    padding: 0;
+}
+
+.cb1-1 {
+    flex-basis: 55%;
+    padding: 0;
+}
+
+.cb1-2 {
+    flex-basis: 40%;
+    padding: 0;
+}
+
+.comb3 {
+    height: 80px;
+    display: flex;
+}
+
+
+.comb4 {
+    height: 80px;
+    display: flex;
+}
+
+.cb2 {
+    flex-basis: 5%;
+}
+
+.cb2-1 {
+    flex-basis: 55%;
+    padding: 0;
+}
+
+.cb2-2 {
+    flex-basis: 40%;
+    padding: 0;
+}
+
+
+.comb5 {
+    height: 80px;
+    display: flex;
+}
+
+.comb6 {
+    height: 80px;
+    display: flex;
+}
+
+.cb3 {
+    flex-basis: 5%;
+}
+
+.cb3-1 {
+    flex-basis: 55%;
+    padding: 0;
+}
+
+.cb3-2 {
+    flex-basis: 40%;
+    padding: 0;
+}
+
+.editBtn {
+    margin-left: 58%;
+    margin-top: 2%;
+    background-color: #383B3E;
+    color: rgb(195, 195, 250);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-right: 10px;
+}
+
+.deletBtn {
+    margin-top: 2%;
+    background-color: #383B3E;
+    color: rgb(170, 170, 248);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.facility .commentForm{
+
+    /* 평가 입력창 */
+
+    flex-basis: 18%;
+    display: flex;
+    align-items: center;
+    color: black;
+    margin-left: 6%;
+    border: none;
+
+}
+   
+
+#facilityForm{
+   
+    height: 60%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+
+
+    
+
+}
+
+
+#facilityForm input{
+	
+	height:100%;
+	width: 85%;
+	border: none;
+	font-size: 1rem;
+	margin-left: 10%;
+	
+	
+}
+
+#facilityForm>div:nth-child(1){
+
+    flex-basis: 60%;
+
+  
+}
+
+#facilityForm>div:nth-child(2){
+
+    flex-basis: 5%;
+    font-size: 0.9rem;
+
+  
+}
+
+
+
+/* /////따봉///// */
+
+.CF2 {
+
+    flex-basis: 45%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-thumbs-up {
+
+    font-size: 3rem;
+    margin-right: 5%;
+    margin-bottom: 2%;
+
+   
+}
+
+.fa-thumbs-up:hover {
+    color: #742AD2;
+}
+
+
+
+
+
+
+
+/* //////////////////////////// */
+
+
+
+/**********************************/
+
+
+
+
+
+
+
+/* 메뉴 추천 */
+
+.recommended_menu{
+
+    height: 16%;
+
+}
+
+
+
+
+.recommended_menu>div:nth-child(1){
+    /* 메뉴 제목 */
+    
+    height: 13%;
+    font-size: 3rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 6%;
+
+
+
+}
+
+
+
+.recommended_menu img{
+
+    width: 60%;
+    height: 80%;
+
+}
+
+
+
+.recommended_menu>div:nth-child(2){
+    /* 메뉴 칸 */
+    
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    background-color: #474C50;
+
+
+}
+
+
+.recommended_menu>div:nth-child(2)>div{
+    /* 메뉴 음식 줄 */
+    flex: 1;
+    display: flex;
+  
+
+
+}
+
+
+.recommended_menu>div:nth-child(2)>div>div{
+    /* 메뉴 음식 줄 칸 */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  
+
+}
+
+
+
+
+.recommended_menu>div:nth-child(2)>div>div:nth-child(1){
+    /* 메뉴 음식 줄 제목 칸 */
+
+    font-size: 2rem;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------- */
+
+
+
+
+
+/* 댓글 */
+
+
+.comment{
+
+    height: 15%;
+    display: flex;
+
+
+}
+
+.comment fieldset{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: none;
+    color: black;
+    height: 100%;
+    margin-left: 6%;
+    width: 100%;
+
+}
+
+
+
+
+#menuForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 58%;
+    height: 80%;
+    border-radius: 20px;
+    
+
+
+}
+
+
+#menuForm #menu{
+
+
+    margin-top: 0.5%;
+    margin-left: 2%;
+    margin-right: 5%;
+
+}
+
+
+
+
+/* 등록 버튼 */
+#submit{
+    background-image: url(/resources/images/cinema/write.png);
+    background-repeat: no-repeat;/* 배경 이미지 1개 */
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    border: 0px;
+    margin-left: 5%;
+ 
+
+
+
+
+}
+
+
+
+
+
+
+
+#correction{
+
+    display: flex;
+    justify-content: center;
+    height: 2%;
+    
+
+}
+
+#correction button{
+
+    width: 60%;
+    height: 100%;
+    font-size: 3rem;
+
+}
