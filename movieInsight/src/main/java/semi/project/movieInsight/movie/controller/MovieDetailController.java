@@ -1,5 +1,6 @@
 package semi.project.movieInsight.movie.controller;
 
+import java.nio.file.spi.FileSystemProvider;
 import java.util.List;
 import java.util.Map;
 
@@ -10,10 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieDetailService;
 
-@RequestMapping("/movie")
 @Controller
 @RequestMapping("/movie")
 public class MovieDetailController {
@@ -46,6 +47,20 @@ public class MovieDetailController {
 		model.addAttribute("actorInfoList", actorInfoList);
 		
 		
+		// 2) 영화를 상영중인 영화관 찾기
+		List<Cinema> selectCinemaList = service.selectCinemaList(movieNo);
+		
+		model.addAttribute("selectCinemaList", selectCinemaList);
+		
+		
+		
+		// 3) 해당 영화와 비슷한 장르 추천		
+		
+		List<Movie> recommendMovie = service.recommendMovie(movieInfo.getMovieGenre());
+		
+		System.out.println(recommendMovie);
+		
+			
 		return "movie/movie-detail-page";
 	}
 	

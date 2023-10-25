@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.movie.dao.MovieDetailDAO;
 import semi.project.movieInsight.movie.dto.Movie;
 
@@ -45,8 +46,28 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 	 */
 	@Override
 	public List<Map<String, Object>> directorInfoList(int movieNo) {
-		return null;
+		return dao.directorInfoList(movieNo);
 	}
+
+	/**
+	 * 4) 해당 영화가 상영하는 정보 리스르토 가져오기
+	 */
+	@Override
+	public List<Cinema> selectCinemaList(int movieNo) {
+		return dao.selectCinemaList(movieNo);
+	}
+
+	
+	
+	/**
+	 * 5) 해당 영화와 비슷한 (장르기준) 추천
+	 */
+	@Override
+	public List<Movie> recommendMovie(String movieGenre) {
+		return dao.recommendMovie(movieGenre);
+	}
+
+
 	
 	
 	

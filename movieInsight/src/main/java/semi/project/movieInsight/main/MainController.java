@@ -48,8 +48,6 @@ public class MainController {
 //		default : return "common/main";
 //		}
 		
-
-
 		return "mypage/mypage";
 //		return "member/login_signUp";
 //		return "member/find_id";
