@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import semi.project.movieInsight.movie.service.MovieDetailService;
 
+@RequestMapping("/movie")
 @Controller
 public class MovieDetailController {
 	
@@ -20,7 +22,7 @@ public class MovieDetailController {
 	 * @param movieNo
 	 * @return
 	 */
-	@GetMapping("/movie/{movieNo}")
+	@GetMapping("/{movieNo}")
 	public String searchMovieMove(@PathVariable("movieNo") int movieNo) {
 		
 		System.out.println("검색 후 이동");

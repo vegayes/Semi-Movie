@@ -80,7 +80,7 @@
 			                            				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상영등급 : ${movie.movieAge} 
 			                            			</td>
 			                            			<td>
-			                            				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;러닝타임 : ${movie.movieRunningTitle}분
+			                            				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;러닝타임 : ${movie.movieRunningTime}분
 			                            			</td>
 			                            						                            			
 			                            		</tr>

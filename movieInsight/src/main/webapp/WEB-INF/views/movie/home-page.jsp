@@ -250,7 +250,7 @@
                 src="바탕화면/5.png"
                 width="100%"
                 height="100%"
-                style="object-fit: cover"
+                style="object-fit: cover";
               />
             </div>
             <div class="swiper-slide">
