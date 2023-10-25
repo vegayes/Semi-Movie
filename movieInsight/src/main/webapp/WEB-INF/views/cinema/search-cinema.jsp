@@ -24,7 +24,7 @@
                 <c:choose>
                 	<%-- 1) 검색결과가 비어있는 경우 --%>
                 	<c:when test="${empty cinemaList}">
-    					<div class = "cinema-search-list-container" id = "none-list"> 
+    					<div class = "cinema-search-list-none-container" > 
     						검색결과가 존재하지 않습니다.
     					</div>            		
                 	</c:when>

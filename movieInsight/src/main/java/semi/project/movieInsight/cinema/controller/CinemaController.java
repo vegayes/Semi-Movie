@@ -17,6 +17,14 @@ public class CinemaController {
     
 	@Autowired
 	private CinemaService service;
+	
+	public String cinemaMain() {
+		
+		System.out.println("메인페이지 이동");
+		
+		return "cinema/cinema-homepage";
+	}
+	
 
 	@GetMapping("/search")
     public String searchCinema(String cinemaQuery, Model model) {

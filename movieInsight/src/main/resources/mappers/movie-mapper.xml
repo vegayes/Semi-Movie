@@ -22,8 +22,7 @@
 
 	<!-- CDATA 태그 : 해당 태그 내부에 작성된 것은 모두 문자로 취급 -->
 
-	<!-- 검색 결과 ( 인물 검색은 안됨 )  -->
-
+	<!--1) 검색 결과 리스트 -->
 	<select id = "searchMovieList" resultMap = "movie_rm">
 	SELECT * 
 	FROM (
@@ -48,8 +47,14 @@
 
 
 
+	<!-- 2) 검색 결과  -->
+	<!-- 
+	<select id = "selectMovie"  resultMap = "movie_rm">
+	
+	
+	</select>
 
-
+	 -->
 
 
 

@@ -1,46 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<!--  
+<c:forEach items="${boardTypeList}" var="boardType">
+    <c:if test="${boardType.BOARD_CODE == boardCode}" >
+        <c:set var="boardName" value="${boardType.BOARD_NAME}"/>
+    </c:if>
+</c:forEach>
+-->
+
+<%-- map에 저장된 값들을 각각 변수에 저장 --%>
+<%-- 
+<c:set var="pagination" value="${map.pagination}"/>
+<c:set var="boardList" value="${map.boardList}"/>
+<c:set var="boardName" value ="${boardTypeList[boardCode-1].BOARD_NAME}"/>
+--%>
+<%-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+	1) 
+
+	2) 
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>movieT</title>
-    <link rel="stylesheet" href="/movieInsight/resources/css/movie/movieT.css">
+    <title>movie-Detail</title>
+    
+    <link rel="stylesheet" href="/movieInsight/resources/css/movie/movie-detail-page.css">
     <script src="https://kit.fontawesome.com/69a462bb6c.js" crossorigin="anonymous"></script>
     
-    <style>
-    </style>
 </head>
 <body>
-    <header>
 
-        <a>
-            <img src="/movieInsight/resources/images/movie/movieT/로고.png">
-        </a>
-        <nav>
-            <form action="#">
-                <fieldset id="search">
-                    <input type="search" placeholder="검색" >
-                    <button>
-                        <img src="/movieInsight/resources/images/movie/movieT/search-icon.png" id="search_icon">
-                    </button>
-                </fieldset>
-            </form>
-            <div>
-            </div>
-        </nav>
-        <div>
-            <div>
-                <button id="login_button">LOGIN</button>
-            </div>
-            <div>
-                <button id="user_button">
-                    <img src="/movieInsight/resources/images/movie/movieT/사용자.png">
-                </button>
-            </div>
-        </div>
-    </header>
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
     <main>
         <div class="movie">
@@ -252,6 +247,7 @@
         </div>
     </main>
 
-    <script src="/movieInsight/resources/js/movie/movieT.js"></script>
+
+    <script src="/movieInsight/resources/js/movie/movie-detail-page.js"></script>
 </body>
 </html>
