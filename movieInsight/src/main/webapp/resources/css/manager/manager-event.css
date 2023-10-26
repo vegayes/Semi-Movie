@@ -108,7 +108,7 @@ main{
 }
 
 .event-list{
-    flex:1;
+    flex:1;t
     background-color: rgb(35, 44, 126);
     border-radius: 10px;
 
@@ -210,8 +210,17 @@ tr >td:nth-of-type(1){
     flex-basis: 70%;
    
 }
+/*
+tr >td:nth-of-type(2){
 
-tr >td:not(:nth-of-type(1)){
+    flex-basis: 30%;
+   
+}
+*/
+
+tr >td:not(:nth-of-type(1)),
+/*tr >td:not(:nth-of-type(2)),
+tr >td:not(:nth-of-type(3))*/{
 
     flex-basis: 15%;
 

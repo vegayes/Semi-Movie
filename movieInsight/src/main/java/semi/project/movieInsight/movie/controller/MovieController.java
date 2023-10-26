@@ -1,7 +1,10 @@
 package semi.project.movieInsight.movie.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,13 +27,25 @@ public class MovieController {
 	@Autowired
 	private CinemaService service2;
 	
+	
+	@GetMapping("/movie")
+	public String movieMain(HttpServletRequest request, Model model) {
+		
+		System.out.println("영화 메인페이지 이동");
+		// 해당 위치 넘기기
+		List<Object> currentUrl =  Arrays.asList(request.getRequestURI().toString().split("/"));
+		model.addAttribute("currentUrl" + currentUrl.get(2));
+		
+		return "movie/home-page";
+	}
+	
 
 	/** 1) 영화 관련 페이지에서 검색한 내용 가져오기 
 	 * @param movieQuery
 	 * @return movie/search-movie
 	 */
-	@GetMapping("/search")
-    public String searchMovie(String movieQuery, Model model) {
+	@GetMapping("/movie/search")
+    public String searchMovie(String movieQuery, Model model,HttpServletRequest request) {
 		
 		System.out.println("search 페이지 들어옴");
 		
@@ -43,6 +58,11 @@ public class MovieController {
 		
 		model.addAttribute("movieQuery", movieQuery);
 		model.addAttribute("movieList", movieList);
+		
+		// 해당 위치 넘기기
+//		List<Object> currentUrl =  Arrays.asList(request.getRequestURI().toString().split("/"));
+//		model.addAttribute("currentUrl" + currentUrl.get(2));
+//		System.out.println("currentUrl" + currentUrl);
 		
         return "movie/search-movie";
     }
@@ -58,49 +78,7 @@ public class MovieController {
     
     
 	
-	/** 좋아할 만한 영화 클릭
-	 * @return
-	 */
-	@GetMapping("/favorite1")
-	public String favorite1() {
-		return "movie/movieT";
-	}
-	
-	/** 좋아할 만한 영화 클릭
-	 * @return
-	 */
-	@GetMapping("/favorite2")
-	public String favorite2() {
-		return "movie/movieT";
-	}
-	
-	/** 좋아할 만한 영화 클릭
-	 * @return
-	 */
-	@GetMapping("/favorite3")
-	public String favorite3() {
-		return "movie/movieT";
-	}
-	
-	/** 좋아할 만한 영화 클릭
-	 * @return
-	 */
-	@GetMapping("/favorite4")
-	public String favorite4() {
-		return "movie/movieT";
-	}
-	
-	/** 좋아할 만한 영화 클릭
-	 * @return
-	 */
-	@GetMapping("/favorite5")
-	public String favorite5() {
-		return "movie/movieT";
-	}
-	
-	
-	
-	//@GetMapping("/movie/이동할 상세페이지의 movieNo")
+//@GetMapping("/movie/이동할 상세페이지의 movieNo")
 //	@GetMapping("/movie/move")
 //	public String movieMove() {
 //		
@@ -111,6 +89,9 @@ public class MovieController {
 //		
 //		return "movie/movieT";
 //	}
+	
+	
+	
 	
 	
 

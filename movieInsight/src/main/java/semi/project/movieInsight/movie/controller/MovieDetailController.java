@@ -6,7 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -31,11 +35,11 @@ public class MovieDetailController {
 	 * @param movieNo
 	 * @return
 	 */
-
-//	@GetMapping("/movie/{movieNo}")
+//	@GetMapping("/movie/{movieNo:^[^0]\\d*}")
 	@GetMapping("/{movieNo:^[^0]\\d*}") // 정수 숫자만
 	public String selectMovie(@PathVariable("movieNo") int movieNo,
-								Model model) {
+								Model model,
+								HttpServletRequest request) {
 		
 		System.out.println("검색 후 이동");
 		System.out.println(movieNo);
@@ -71,18 +75,22 @@ public class MovieDetailController {
 		*/
 		// 출력
 			Map<String,Object> genreMap = new HashMap<String, Object>();
-		
+			
 			genreMap.put("genreList", genreList);
 			genreMap.put("movieNo", movieNo);
 			
 			System.out.println(genreMap);
 			
 			List<Movie> recommendMovie = service.recommendMovie(genreMap);
-			
-			System.out.println("recommendMovie Map전달 결과 : " + recommendMovie );
-		
 			model.addAttribute("recommendMovie", recommendMovie);
 		
+			
+			// 해당 위치 넘기기
+//			List<Object> currentUrl =  Arrays.asList(request.getRequestURI().toString().split("/"));
+//			model.addAttribute("currentUrl" + currentUrl.get(2));
+//			System.out.println("url : " + currentUrl);
+			
+			
 			
 		return "movie/movie-detail-page";
 	}
