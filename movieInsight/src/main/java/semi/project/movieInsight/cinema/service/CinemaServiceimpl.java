@@ -14,6 +14,10 @@ public class CinemaServiceimpl implements CinemaService {
 	@Autowired
 	private CinemaDAO dao;
 	
+	
+	/**
+	 *	영화관 검색결과 조회
+	 */
 	@Override
 	public List<Cinema> searchCinemaList(String cinemaQuery) {
 
