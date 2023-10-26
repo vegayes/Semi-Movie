@@ -13,4 +13,11 @@
 			, NULL, DEFAULT, DEFAULT)
 </insert>
 
+<select id="checkId" parameterType="java.lang.String">
+	SELECT COUNT(*) 
+	FROM MEMBER
+	WHERE MEMBER_ID = #{id_check}
+</select>
+
+
 </mapper>

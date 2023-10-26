@@ -17,6 +17,8 @@ public class MemberServiceimpl implements MemberService{
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
+
+	
 	@Transactional
 	@Override
 	public int signUp(Member inputMember) {
@@ -25,6 +27,12 @@ public class MemberServiceimpl implements MemberService{
 		inputMember.setMemberPw(encPw);
 		
 		return dao.signUp(inputMember);
+	}
+
+	@Override
+	public int idCheck(String id_check) {
+
+		return dao.idCheck(id_check);
 	}
 
 }

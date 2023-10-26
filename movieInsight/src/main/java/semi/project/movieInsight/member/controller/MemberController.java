@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import semi.project.movieInsight.member.dto.Member;
@@ -56,5 +57,13 @@ public class MemberController {
 		return "common/error";
 	
 }
+	
+	@ResponseBody
+	@PostMapping("/idCheck")
+	public int IdCheck(String id_check) {
+		int result = service.idCheck(id_check);
+		return result;
+	}
+	
 	
 }

@@ -103,10 +103,11 @@
 			                            name="memberId"
 			                            class="form-style"
 			                            placeholder="your Id"
-			                            id="logname"
+			                            id="member_Id"
 			                            autocomplete="off"
 			                          />
 			                          <button onclick="return false;" type="button" id="idCheck">중복확인</button>
+			                          <p id="messageDiv_1"></p>
 			                          <i class="input-icon uil uil-user"></i>
 			                        </div>
 			                        <div class="form-group mt-2">
@@ -117,7 +118,7 @@
 			                            name="memberPw"
 			                            class="form-style"
 			                            placeholder="Your Password"
-			                            id="asdasd"
+			                            id="member_Pw"
 			                            autocomplete="off"
 			                          />
 			                          <i class="input-icon uil uil-lock-alt"></i>
@@ -127,13 +128,13 @@
 			
 			                          <input
 			                            type="password"
-			                            name="memberPw"
+			                            name="memberPwCheck"
 			                            class="form-style"
 			                            placeholder="Your Password"
-			                            id="fff"
-			                            onblur="document.getElementById('ggg').textContent = (document.getElementById('asdasd').textContent === document.getElementById('fff').textContent) ? '패스워드가 일치합니다' : '패스워드가 일치하지 않습니다d'"
+			                            id="member_PwConfirm"
 			                            autocomplete="off"
 			                          />
+			                          <p id="messageDiv_2"></p>
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
 			                        <span id="ggg"></span>
@@ -144,7 +145,7 @@
 			                            type="email"
 			                            name="memberEmail"
 			                            class="form-style"
-			                            placeholder="Your Password"
+			                            placeholder="Your Email"
 			                            id="logpass"
 			                            autocomplete="off"
 			                          />
@@ -158,7 +159,7 @@
 			                            type="text"
 			                            name="memberNickname"
 			                            class="form-style"
-			                            placeholder="Your Password"
+			                            placeholder="Your Nickname"
 			                            id="logpass"
 			                            autocomplete="off"
 			                          />
