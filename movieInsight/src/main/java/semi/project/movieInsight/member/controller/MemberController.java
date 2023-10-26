@@ -60,9 +60,10 @@ public class MemberController {
 	
 	@ResponseBody
 	@PostMapping("/idCheck")
-	public int emailCheck(String id_check) {
+	public int IdCheck(String id_check) {
 		int result = service.idCheck(id_check);
 		return result;
 	}
+	
 	
 }

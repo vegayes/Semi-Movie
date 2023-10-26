@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import semi.project.movieInsight.member.dao.MemberDAO;
-import semi.project.movieInsight.member.domain.MemberRepository;
 import semi.project.movieInsight.member.dto.Member;
 
 @Service
@@ -18,13 +17,7 @@ public class MemberServiceimpl implements MemberService{
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
-	@Autowired
-	private MemberRepository memberRepo;
-	
-	@Autowired
-	public void MemberServiceImpl(MemberRepository memberRepo) {
-		this.memberRepo = memberRepo;
-	}
+
 	
 	@Transactional
 	@Override
@@ -39,7 +32,7 @@ public class MemberServiceimpl implements MemberService{
 	@Override
 	public int idCheck(String id_check) {
 
-		return 0;
+		return dao.idCheck(id_check);
 	}
 
 }
