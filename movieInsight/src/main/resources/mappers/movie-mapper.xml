@@ -18,6 +18,8 @@
 		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
 		<result property="actorNames" column="ACTOR_NAMES"/>
 		<result property="directorNames" column="DIRECTOR_NAMES"/>	
+		<result property="movieGrade" column="MOVIE_GRADE"/>	
+		
 	</resultMap>
 	
 	
@@ -153,6 +155,16 @@
    		ORDER BY DBMS_RANDOM.VALUE
 		FETCH FIRST 10 ROWS ONLY   	
 	 </select>
+	
+	
+	<!-- 관리자-영화 페이지에서 영화 목록 조회 -->
+	<select id="selectManagerMovieList" resultMap = "movie_rm">
+	
+		SELECT MOVIE_NO,MOVIE_TITLE,MOVIE_GENRE,NVL2('NULL',0,MOVIE_GRADE) MOVIE_GRADE,MOVIE_RUNNING_TIME  
+		FROM MOVIE m 
+		LEFT JOIN MOVIE_EVALUATION me USING (MOVIE_NO)
+		
+	</select>
 	
 	
 </mapper>

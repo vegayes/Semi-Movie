@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 	
+	
 	@RequestMapping("/")
 	public String test1() {
 
@@ -48,14 +49,23 @@ public class MainController {
 //		default : return "common/main";
 //		}
 		
+		
+		
+		
 
 //	return "member/login_signUp";
 //		return "member/find_id";
 //		return "movie/home-page";
 //		return "cinema/cinema-detail-page";
+
 	return "mypage/mypage";
 	
 //		return "policy/policy";
+
+
+
+	
+		
 
 //		return "cinema/cinema-homepage";
 

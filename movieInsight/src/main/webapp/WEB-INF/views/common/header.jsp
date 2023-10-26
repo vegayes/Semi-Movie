@@ -52,7 +52,7 @@
                 	<%-- 1-1) 영화 메인 페이지의 경우 --%>
                 	<c:choose>
 	                    <c:when test="true">
-			              	<form action="/movieInsight/search" name="movieSearch"> <!-- ② action 값 변경-->
+			              	<form action="search" name="movieSearch"> <!-- ② action 값 변경-->
 			                  <fieldset>
 			                      <input type="search" id="query" name="movieQuery"
 			                      autocomplete="on" placeholder="검색">

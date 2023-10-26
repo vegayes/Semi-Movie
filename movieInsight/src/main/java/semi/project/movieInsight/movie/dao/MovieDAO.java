@@ -17,6 +17,12 @@ public class MovieDAO {
 		
 		return sqlSession.selectList("movieMapper.searchMovieList", movieQuery);
 	}
+
+	public List<Movie> selectManagerMovieList() {
+		
+		return sqlSession.selectList("movieMapper.selectManagerMovieList");
+
+	}
 	
 
 
