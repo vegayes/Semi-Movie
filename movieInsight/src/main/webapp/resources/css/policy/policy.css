@@ -1,7 +1,10 @@
+
+
+
 body{
 
     height: 2000px;
- 
+    font-family: '맑은고딕';
 
 }
 
@@ -10,13 +13,21 @@ body{
 
 #tos{
   height: 900px;
-  margin-bottom: 8%;
+  margin-bottom: 10%;
 
 
 }
 
 
 #policy{
+    height: 900px;
+    margin-bottom: 10%;
+  
+  
+  }
+
+
+#location{
     height: 900px;
     margin-bottom: 5%;
   
@@ -58,6 +69,24 @@ body{
 
 
 
+#location-title{
+
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: teal;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+
+
+
+}
+
+
+
+
 
 #tou-detail{
 
@@ -83,8 +112,75 @@ text-align: left;
     visibility: hidden;
 }
 
-/*강조  */
+/*글자 강조  */
 .emphasis{
     text-align: center;
     font-size:2rem;
+    font-weight: bold;
+}
+
+
+
+
+
+
+/* //////////////////////////////////////////////////////////////////// */
+
+/* 선택창 */
+
+.link-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+    margin-top : 5%;
+}
+
+.link-wrap-box{
+    display: table;
+    width: 50%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    table-layout: fixed;
+    position: relative;
+
+}
+
+
+
+.link-wrap-box .link-policy{
+
+    list-style : none;
+    display: table-cell;
+    /* 동일간격으로 영역 */
+    vertical-align: middle; 
+    /* 중앙정렬 */
+    border: 1px #e6e6fac7 solid;
+    text-align: center;
+    cursor: pointer;
+
+
+}
+
+
+
+.link-policy a {
+
+    text-decoration-line: none;
+    color: #79798ffd;
+
+
+}
+
+
+.link-policy:hover a{
+ 
+
+    color: white;
+}
+
+.link-policy:hover {
+    background: teal;
+   
 }
