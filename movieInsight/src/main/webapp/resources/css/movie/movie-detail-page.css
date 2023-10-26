@@ -204,23 +204,27 @@ main>div{
 	
 	width:200px;
 	
-	overflow : hidden;
-	
-	dispay : flex;
-	position: relative;
+    position: relative;
+    overflow:hidden;
 }
 
 .cinema-hover {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(155, 220, 255, 0.3);
     color: #fff;
     padding: 5px;
     display: none;
     width: 100%;
     height: 100%;
-    font-size: 20px;
+    
+}
+
+.cinema-hover p {
+	font-size : 18px;
+	font-weight : bold;
+	color : #f3de2c;
 }
 
 .cinemaImg-wrapper:hover .cinema-hover {
@@ -235,11 +239,8 @@ main>div{
 .cinemaImg-wrapper img {
 	
 	width : 100%;
-	
-	/*
-    margin-left: 35%;
-    margin-top: 8%;
-    */
+	height : 100%;
+
 }
 
 
@@ -278,6 +279,9 @@ main>div{
 	
 }
 
+.cinemaList-url > a > p {
+	color : #43aa8b;
+}
 
 
 
@@ -1416,7 +1420,23 @@ main>div{
 	display : flex;
     justify-content: center;
     align-items: center;
-	
+    
+    position: relative;
+}
+
+
+
+.recommendImg-hover{
+	    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 207, 220, 0.3);
+    color: #fff;
+    padding: 5px;
+    display: none;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
 }
 
 .recommendImg-wrapper img {
@@ -1428,68 +1448,12 @@ main>div{
 }
 
 
-/*
-.ft2 {
-    height: 220px;
+.recommendImg-wrapper:hover .recommendImg-hover{
+	display : flex;
+    font-size : 25px;
+    font-weight : bold;
+	justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.ft2 img {
-    margin-top: 0;
-    height: 220px;
-    width: 330px;
-    border-radius: 15%;
-    border:2px solid white;
-}
-
-.ft3 {
-    height: 220px;
-}
-
-.ft3 img {
-    margin-top: 0;
-    height: 220px;
-    width: 330px;
-    border-radius: 15%;
-}
-
-.ft4 {
-    height: 220px;
-}
-
-.ft4 img {
-    margin-top: 0;
-    height: 220px;
-    width: 330px;
-    border-radius: 15%;
-}
-
-.ft5 {
-    height: 220px;
-}
-
-.ft5 img {
-    margin-top: 0;
-    height: 220px;
-    width: 330px;
-    border-radius: 15%;
-}
-
-
-.ft4 img {
-    margin-top: 0;
-    height: 220px;
-    width: 330px;
-    border-radius: 15%;
-}
-
-.ft5 {
-    height: 220px;
-}
-
-.ft5 img {
-    margin-top: 0;
-    height: 220px;
-    width: 330px;
-    border-radius: 15%;
-}
-*/

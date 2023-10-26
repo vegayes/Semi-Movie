@@ -62,10 +62,10 @@ public class CinemaDetailController {
 		 	
 		 	
 			// 해당 위치 넘기기
-			List<Object> currentUrl =  Arrays.asList(req.getRequestURI().toString().split("/"));
-			model.addAttribute("cureentUrl" + currentUrl.get(2));
+//			List<Object> currentUrl =  Arrays.asList(req.getRequestURI().toString().split("/"));
+//			model.addAttribute("cureentUrl" + currentUrl.get(2));
 		 	
-			System.out.println("url" + currentUrl.get(2));
+			model.addAttribute("pageType","cinema");
 			
 			return "cinema/cinema-detail-page";
 	}

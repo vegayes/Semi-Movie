@@ -233,9 +233,9 @@
 					<%--1) 즐겨찾기 리스트가 없는 경우  --%>
 					
 					<%--<c:if test="${empty }">--%>
-					<div class = "favorite-list swiper" id = "movie-favorite-container"  >
+					<div class = "favorite-list" id = "movie-favorite-container"  >
 						<%--1) 즐겨찾기 리스트가 없는 경우  --%>
-						<c:if test = "true">
+						<c:if test = "false">
 							
 							<div class = "favorite-not-content">
 								 현재 저장된 즐겨찾기가 없습니다. 
@@ -247,7 +247,31 @@
 						
 						<%-- 1-1) 즐겨 찾기 리스트가 있는 경우 --%>
                     	<c:if test = "false">
-
+				            <div class="likeContainer">
+				                <div class="likeSwiper">
+				                    <div class="gallery-container">
+				                      <div class="gallery">
+				                      
+				                      	<c:forEach items = "${likeMovie}" var = "movie">
+					                        <div class="recommend-container">
+					                          <a href="/movieInsight/movie/${movie.movieNo}">
+					                    		<div class = "recommendImg-wrapper">	                    		
+						                            <img src="/movieInsight/resources/images/movie/${movie.movieNo}" alt="movieTitle : ${movie.movieTitle}">
+						                            <div class = "recommendImg-hover">${movie.movieTitle}</div>
+					                    		</div>
+					                          </a>
+					                        </div>
+				                      	</c:forEach>
+				                      	
+				                      </div>
+				                    </div>
+				                    <button class="prev-button">&lt;</button>
+				                    <button class="next-button">&gt;</button>
+				                  </div>
+				            </div>
+                    	</c:if>							
+							
+							<!-- 
 	                        <div class="swiper-wrapper">
 	                            <div class = "swiper-slide">
 	                                <div class = "favorite-list-wrapper">
@@ -281,21 +305,11 @@
 	                            </div>
 	
 	                        </div>
-	                        
-	                            <!-- If we need pagination -->
-	                        <div class="swiper-pagination"></div>
-	                    
-	                        <!-- If we need navigation buttons -->
-	                        <div class="swiper-button-prev"></div>
-	                        <div class="swiper-button-next"></div>
-	
-	                        <!-- If we need scrollbar -->
-	                        <div class="swiper-scrollbar"></div>
-                    	</c:if>
-
+	                        -->
 
                     </div>
 
+<!-- 
                     <div class = "ftMain" style="display: none;"> 
                         <div class="ftmain">
                             <div class="gallery-container">
@@ -320,92 +334,7 @@
                             <button class="next-button">&gt;</button>
                         </div>
                     </div>
-
-                    <div class = "favorite-list swiper" id = "cinema-favorite-container" style = "display: none;">
-                        <!-- ③ 가로 슬라이드 만들기!! wrapper 더 만들어야 하나? 아니면 안만들어도 되는지 모르겠음
-                        Carousel Slider 이용하기-->
-                        <!-- 누르면 옆으로 슬라이드  -->  
-
-                        <!-- ④ 즐겨찾기가 없는 경우 jsp로 loop 값. -->
-                        <div class="swiper-wrapper">
-
-                            <div class = "swiper-slide">
-                                <div class = "favorite-list-cinema-wrapper ">
-                                    <!-- ② src은 JSP에서?? DB에서?? 변경해야 함 -->
-                                    <img src = "">
-                                </div>
-                            </div>
-
-                            <div class = "swiper-slide">
-                                <div class = "favorite-list-cinema-wrapper ">
-                                    <img src = "">
-                                </div>
-                            </div>
-
-                            <div class = "swiper-slide">
-                                <div class = "favorite-list-cinema-wrapper ">
-                                    <img src = "">
-                                </div>
-                            </div>
-
-
-                            <div class = "swiper-slide">
-                                <div class = "favorite-list-cinema-wrapper ">
-                                    <img src = "">
-                                </div>
-                            </div>
-
-                            <div class = "swiper-slide">
-                                <div class = "favorite-list-cinema-wrapper ">
-                                    <img src = "">
-                                </div>
-                            </div>
-
-
-                            <div class = "swiper-slide">
-                                <div class = "favorite-list-cinema-wrapper ">
-                                    <img src = "">
-                                </div>
-                            </div>
-
-                            <div class = "swiper-slide">
-                                <div class = "favorite-list-cinema-wrapper ">
-                                    <img src = "">
-                                </div>
-                            </div>
-
-
-                           
-
-                            <!-- 누르면 옆으로 슬라이드  -->
-                            <!-- <div class ="next-btn-container">
-                                <button type="button" class = "next-btn">
-                                </button>
-                            </div> -->
-                        </div>
-
-                        <!-- If we need pagination -->
-                        <div class="swiper-pagination"></div>
-                    
-                        <!-- If we need navigation buttons -->
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-
-                        <!-- If we need scrollbar -->
-                        <div class="swiper-scrollbar"></div>
-                        
-                        <!-- <div class = "favorite-list-cinema-wrapper">
-                            <img src = "ex-img/CGV 용산아이파크몰.png">
-                        </div>
-
-                        <div class = "favorite-list-cinema-wrapper">
-                            <img src = "ex-img/씨네 리빙룸.jpg">
-                        </div>
-                        <div class ="next-btn-container">
-                            <button type="button" class = "next-btn">
-                            </button>
-                        </div> -->
-                    </div>
+-->
 
                 </section>
 
@@ -563,12 +492,13 @@
 
                     <div class = "comment-list-container">
                         <div class = "comment-list-title">
-                            내가 작성한 댓글 (table로 제작)
+                            내가 작성한 댓글
                         </div>
                     </div>
 
                     <div class = "comment-list-content-container">
-                        <table class = "comment-list-table">     
+                        <table class = "comment-list-table">
+ 
                             <tr class = "comment-list-col">
                                 <td class = "comment-list-check">
                                     <input type="checkbox" name = "comment-check" id = "check">

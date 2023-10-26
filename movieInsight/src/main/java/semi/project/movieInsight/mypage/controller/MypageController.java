@@ -24,8 +24,19 @@ public class MypageController {
 	@Autowired
 	MovieService movieService;
 	
+	// 예시
+	
+	
+	/** 즐겨찾기 페이지 조회 
+	 * @return
+	 */
 	@GetMapping("/member")
-	public String mypageMove() {
+	public String mypageMove(Model model) {
+		
+		// 1) 영화 즐겨찾기 목록 조회 
+		List<Movie> selectLikeMovie = movieService.selectLikeMovie();
+		
+		model.addAttribute("movieList", selectLikeMovie);
 		
 		return "mypage/mypage";
 	}

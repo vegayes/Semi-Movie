@@ -167,6 +167,13 @@
 	</select>
 	
 	
+	<!-- 마이페이지 즐겨찾기 영화 목록 조회  -->
+	<select id="selectLikeMovie" resultMap = "movie_rm">
+		SELECT * 
+		FROM MOVIE
+		WHERE MOVIE_GENRE LIKE '%SF%'
+	</select>
+	
 </mapper>
 
 
