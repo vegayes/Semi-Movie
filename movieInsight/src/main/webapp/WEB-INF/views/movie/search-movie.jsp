@@ -104,8 +104,10 @@
 
         </main>
         
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
 		<script src="/movieInsight/resources/js/movie/search-movie.js"></script>
-	
+		
         
 	</body>
 </html>
