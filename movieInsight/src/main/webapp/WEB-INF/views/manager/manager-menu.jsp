@@ -16,10 +16,10 @@
         <nav>
             <div class="admin-menu">
                 <ul>
-                    <li class="admin-list"><a href="/movieInsight/mypage/$">회원 관리</a></li> 
+                    <li class="admin-list"><a href="#">회원 관리</a></li> 
                     <li class="admin-list"><a href="#">영화</a></li>               
                     <li class="admin-list"><a href="#">영화관</a></li>
-                    <li class="admin-list"><a href="#">메뉴</a></li>
+                    <li class="admin-list"><a href="/movieInsight/mypage/manager/menu">메뉴</a></li>
                     <li class="admin-list"><a href="#">이벤트</a></li>
                 </ul>
             </div>
@@ -49,249 +49,39 @@
                         </div>
 
                         <div class = "menu-info-container">
+
                             <table class = "menu-info-table">
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
 
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
+                                <c:forEach items = "${popcorn}" var="popcorn" >
+                                    <tr>
+                                        <td class = "menu-title">
+                                           ${popcorn.menuName}
+                                        </td>
 
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <td class = "menu-price">
+                                            ${popcorn.menuPrice}
+                                        </td>
 
-
-                                <tr>
-                                    <td class = "menu-title">
-                                            메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <td class = "menu-update">
+                                            <div>
+                                                수정
+                                            </div>
+                                        </td>
+                                        <td class = "menu-del">
+                                            <div>
+                                                삭제
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
 
 
 
 
                             </table>
+
+
+
                         </div>
 
 
@@ -340,221 +130,7 @@
                                 </tr>
 
 
-                                <tr>
-                                    <td class = "menu-title">
-                                            메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
+                             
 
 
                             </table>

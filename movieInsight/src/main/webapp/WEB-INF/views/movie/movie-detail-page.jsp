@@ -221,39 +221,21 @@
 
         <div class="foot">
             <div class="ftHead">
-                <h1 id="hi">와 비슷한 영화 추천</h1>
+                <h1 id="hi">'<span style = "color : #74bbe8">${movieInfo.movieTitle}</span>'와 비슷한 영화 추천</h1>
             </div>
             <div class="ftMain">
                 <div class="ftmain">
                     <div class="gallery-container">
                       <div class="gallery">
-                      
-                        <div class="ft1">
-                          <a href="/favorite1">
-                            <img src="/movieInsight/resources/images/movie/movieT/youtube-logo 1.png" alt="Image 1">
-                          </a>
-                        </div>
-                        <div class="ft2">
-                          <a href="/favorite2">
-                            <img src="/movieInsight/resources/images/movie/movieT/logo 2.png" alt="Image 2">
-                          </a>
-                        </div>
-                        <div class="ft3">
-                          <a href="/favorite3">
-                            <img src="/movieInsight/resources/images/movie/movieT/cat2 3.png" alt="Image 3">
-                          </a>
-                        </div>
-                        <div class="ft4">
-                          <a href="/favorite4">
-                            <img src="/movieInsight/resources/images/movie/movieT/cat2 4.png" alt="Image 4">
-                          </a>
-                        </div>
-                        <div class="ft5">
-                          <a href="/favorite5">
-                            <img src="/movieInsight/resources/images/movie/movieT/DR.CHEON.jpg" alt="Image 5">
-                          </a>
-                        </div>
-                        <!-- 추가 이미지들을 이곳에 추가 -->
+                      	<c:forEach items = "${recommendMovie}" var = "recommend">
+	                        <div class="recommend-container">
+	                          <a href="/${recommend.movieNo}">
+	                    		<div class = "recommendImg-wrapper">	                    		
+		                            <img src="/movieInsight/resources/images/movie/${recommend.movieImg}" alt="movieTitle : ${recommend.movieTitle}">
+	                    		</div>
+	                          </a>
+	                        </div>
+                      	</c:forEach>
                       </div>
                     </div>
                     <button class="prev-button">&lt;</button>
@@ -262,7 +244,8 @@
             </div>
         </div>
     </main>
-
+	
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <script src="/movieInsight/resources/js/movie/movie-detail-page.js"></script>
 </body>
