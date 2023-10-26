@@ -1,8 +1,12 @@
 package semi.project.movieInsight.cinema.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +22,22 @@ public class CinemaController {
 	@Autowired
 	private CinemaService service;
 	
-	public String cinemaMain() {
+	public String cinemaMain(Model model, HttpServletRequest request) {
 		
 		System.out.println("메인페이지 이동");
+		
+		// 현재 주소가져오기
+		List<Object> currentUrl =  Arrays.asList(request.getRequestURI().toString().split("/"));
+		model.addAttribute("currentUrl" + currentUrl.get(2));
+	 	
+		System.out.println("url" + currentUrl.get(2));
 		
 		return "cinema/cinema-homepage";
 	}
 	
 
 	@GetMapping("/search")
-    public String searchCinema(String cinemaQuery, Model model) {
+    public String searchCinema(String cinemaQuery, Model model ,HttpServletRequest request) {
 		
 		System.out.println("search 페이지 들어옴");
 		
@@ -40,6 +50,12 @@ public class CinemaController {
 		
 		model.addAttribute("cinemaQuery", cinemaQuery);
 		model.addAttribute("cinemaList", cinemaList);
+		
+		
+		// 현재 주소가져오기
+//		List<Object> currentUrl =  Arrays.asList(request.getRequestURI().toString().split("/"));
+//		model.addAttribute("currentUrl" + currentUrl.get(2));
+//		System.out.println("url" + currentUrl.get(2));
 		
         return "cinema/search-cinema";
     }

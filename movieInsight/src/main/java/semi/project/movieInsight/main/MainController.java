@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-
-
 @Controller
 public class MainController {
+	
 	
 	@RequestMapping("/")
 	public String test1() {
@@ -48,17 +47,33 @@ public class MainController {
 //		default : return "common/main";
 //		}
 		
+		
+		
+		
 
-		return "member/login_signUp";
+
+//	return "member/login_signUp";
 //		return "member/find_id";
 //		return "movie/home-page";
 //		return "cinema/cinema-detail-page";
-//		return "mypage/mypage";
+
+
 		
+		System.out.println("메인 가려고함.");
+
+		
+//		return "movie/home-page";
+//		return "redirect:/movie";
+		return "redirect:/mypage/member";
+//		return "/manager/event";
 
 //		return "cinema/cinema-homepage";
 //		return "manager/manager-menu";
 
 	}
+	
+	
+	
+	
 	
 }

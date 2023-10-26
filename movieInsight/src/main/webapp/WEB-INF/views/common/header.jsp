@@ -27,18 +27,19 @@
 	</head>
 	<body>
         <nav>
-            <section class = "logo">
+            <section class = "logo" id = "logo">
             <!-- movie , cinema 확인하고 logo 눌렀을 때 이동 시, 제대로 이동하기. -->
             	<c:choose>
 
-            		<c:when test="false"> <%-- 영화관 페이지인 경우 --%>            	
-		                <a href="/movieInsight/cinema">   <%-- 영화 메인페이지 컨트롤러- --%>               
+            		<c:when test="true"> <%-- 영화, 마이페이지 페이지인 경우 --%>  
+            		 	<a href="/movieInsight/movie">  <%-- 영화 메인페이지 컨트롤러- --%>              
 		                    <img src="/movieInsight/resources/images/common/logo.png">
-		                </a>
+		                </a>            	
+
             		</c:when>
             		
-            		<c:otherwise> <%-- 영화, 마이페이지 페이지인 경우 --%>  
-            		 	<a href="/movie">  <%-- 영화 메인페이지 컨트롤러- --%>              
+            		<c:otherwise> <%-- 영화관 페이지인 경우 --%>
+		                <a href="/movieInsight/cinema">   <%-- 영화관 메인페이지 컨트롤러- --%>               
 		                    <img src="/movieInsight/resources/images/common/logo.png">
 		                </a>
             		</c:otherwise>
@@ -52,7 +53,11 @@
                 	<%-- 1-1) 영화 메인 페이지의 경우 --%>
                 	<c:choose>
 	                    <c:when test="true">
-			              	<form action="/movieInsight/search" name="movieSearch"> <!-- ② action 값 변경-->
+
+			              	<form action="/movieInsight/movie/search" name="movieSearch"> <!-- ② action 값 변경-->
+
+			              	
+
 			                  <fieldset>
 			                      <input type="search" id="query" name="movieQuery"
 			                      autocomplete="on" placeholder="검색">
@@ -67,7 +72,7 @@
 			                 </div>
 		                </c:when>
 		                <%-- 1-2)영화관 메인 페이지의 경우 --%>
-		                <c:when test="false">
+		                <c:when test="${currentUrl eq 'cinema'}">
 			              	<form action="/movieInsight/cinema/search" name="cinemaSearch"> <!-- ② action 값 변경-->
 			                  <fieldset>
 			                      <input type="search" id="query" name="cinemaQuery"
@@ -84,7 +89,13 @@
 		                </c:when>
 		                <%-- 1-3)마이페이지 혹은 정렬이 필요 없지만, 헤더는 필요한 페이지의 경우 --%>
 		                <c:otherwise>
-							
+		                	<form action="/movieInsight/movie/search" name="movieSearch"> <!-- ② action 값 변경-->
+			                  <fieldset>
+			                      <input type="search" id="query" name="movieQuery"
+			                      autocomplete="on" placeholder="검색">
+			                      <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
+			                  </fieldset>
+			              	</form>	                    	
 		                </c:otherwise>
                 	</c:choose>
             </section>
@@ -118,8 +129,8 @@
 		                   <span>LOGOUT</span>
 		               </a>
 		               
-		               <!-- ⑤ 버튼으로 만들어야 하나? -->
-		                <a class = "user-mypage" href="/mypage">
+		               <!-- ⑤ 버튼으로 만들어야 하나? 필터로 만들어버리기 -->
+		                <a class = "user-mypage" href="/movieInsight/manager/promotion">
 		                    <div class = "mypage-wrapper">
 		                    
 		                    	<%-- 3) 프로필 유무 ( 로그인부터 파악해야 하나..? ) --%>
@@ -141,5 +152,10 @@
                 </c:choose>
             </section>
         </nav>
+        
+        
+    <script src="/movieInsight/resources/js/common/header.js"></script>
+        
 	</body>
+	
 </html>

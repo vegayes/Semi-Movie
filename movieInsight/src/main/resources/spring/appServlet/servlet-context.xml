@@ -45,5 +45,15 @@
 	</interceptors>
 	-->
 	
-	
+	<!-- 메인페이지 인터셉터 -->
+	<!--  
+	<interceptors>
+		<interceptor>
+			<mapping path = "/**/*">
+			<exclude-mapping path = "/resources/**"/>
+			<exclude-mapping path = "/user/*"/>
+			<beans:bean class = "semi.project.movieInsight.interceptor.AuthInterceptor"/>
+		</interceptor>
+	</interceptors>
+	-->
 </beans:beans>

@@ -13,4 +13,6 @@ public interface MovieService {
 	 */
 	List<Movie> searchMovieList(String movieQuery);
 
+	List<Movie> selectManagerMovieList();
+
 }

@@ -25,7 +25,7 @@
 
 		<footer>
 		    <div class="footer-image">
-		        <img src="resources/images/common/footer.png">
+		        <img src="/movieInsight/resources/images/common/footer.png">
 		    </div>
 		    <div class="footer-content">
 		        <p>Copyright &copy; 2023 MovieInsight Institute E-Class</p>
