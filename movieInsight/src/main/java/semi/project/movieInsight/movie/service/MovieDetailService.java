@@ -36,7 +36,8 @@ public interface MovieDetailService {
 	 * @param genreList
 	 * @return
 	 */
-	List<Movie> recommendMovie(List<String> genreList);
+//	List<Movie> recommendMovie(List<String> genreList);
+	List<Movie> recommendMovie(Map<String, Object> genreMap);
 
 
 

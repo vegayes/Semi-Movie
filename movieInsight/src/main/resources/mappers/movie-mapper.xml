@@ -126,6 +126,7 @@
 	<![CDATA[WHERE ROWNUM <= 10]]>
 	</select>
 	 -->
+	 <!--  
 	 <select id = "recommendMovie" resultMap = "movie_rm">
 	 	SELECT DISTINCT MOVIE_NO, MOVIE_TITLE, MOVIE_IMG
 		FROM (<foreach  collection="list"  item = "genre" separator = "UNION ">
@@ -136,9 +137,22 @@
    		ORDER BY DBMS_RANDOM.VALUE
 		FETCH FIRST 10 ROWS ONLY   	
 	 </select>
-
+-->
 	
-	
+	 <select id = "recommendMovie" resultMap = "movie_rm">
+	 	SELECT DISTINCT *
+		FROM (
+			<foreach  collection="genreList"  item = "value" separator = "UNION ">
+				SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_IMG, MOVIE_GENRE 
+				FROM MOVIE 
+				WHERE MOVIE_DEL_YN ='N'
+				AND MOVIE_GENRE LIKE '%' || #{value} || '%' 
+   			 </foreach >
+   			 )
+   		WHERE MOVIE_NO != ${movieNo}
+   		ORDER BY DBMS_RANDOM.VALUE
+		FETCH FIRST 10 ROWS ONLY   	
+	 </select>
 	
 	
 </mapper>

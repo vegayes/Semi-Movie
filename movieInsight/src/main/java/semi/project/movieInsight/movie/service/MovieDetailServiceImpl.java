@@ -57,17 +57,22 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 		return dao.selectCinemaList(movieNo);
 	}
 
+
+
 	
 	
 	/**
 	 * 5) 해당 영화와 비슷한 (장르기준) 추천
 	 */
+//	@Override
+//	public List<Movie> recommendMovie(List<String> genreList) {
+//		return dao.recommendMovie(genreList);
+//	}
+
 	@Override
-	public List<Movie> recommendMovie(List<String> genreList) {
-		return dao.recommendMovie(genreList);
+	public List<Movie> recommendMovie(Map<String, Object> genreMap) {
+		return dao.recommendMovie(genreMap);
 	}
-
-
 	
 	
 	

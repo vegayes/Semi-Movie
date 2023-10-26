@@ -221,7 +221,7 @@
 
         <div class="foot">
             <div class="ftHead">
-                <h1 id="hi">'<span style = "color : #a3cef1">${movieInfo.movieTitle}</span>'와 비슷한 영화 추천</h1>
+                <h1 id="hi">'<span style = "color : #74bbe8">${movieInfo.movieTitle}</span>'와 비슷한 영화 추천</h1>
             </div>
             <div class="ftMain">
                 <div class="ftmain">
@@ -244,7 +244,8 @@
             </div>
         </div>
     </main>
-
+	
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <script src="/movieInsight/resources/js/movie/movie-detail-page.js"></script>
 </body>

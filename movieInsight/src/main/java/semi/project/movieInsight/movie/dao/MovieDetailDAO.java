@@ -57,11 +57,19 @@ public class MovieDetailDAO {
 	 * @param genreList
 	 * @return
 	 */
-	public List<Movie> recommendMovie(List<String> list) {
+//	public List<Movie> recommendMovie(List<String> list) {
+//		
+//		System.out.println("DAO에서의 list" + list);
+//		
+//		return sqlSession.selectList("movieMapper.recommendMovie", list);
+//	}
+
+
+	public List<Movie> recommendMovie(Map<String, Object> genreMap) {
 		
-		System.out.println("DAO에서의 list" + list);
+		System.out.println("DAO에서의 Map  : " + genreMap);
 		
-		return sqlSession.selectList("movieMapper.recommendMovie", list);
+		return sqlSession.selectList("movieMapper.recommendMovie", genreMap);
 	}
 
 	

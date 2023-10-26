@@ -2,6 +2,7 @@ package semi.project.movieInsight.movie.controller;
 
 import java.nio.file.spi.FileSystemProvider;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,16 +60,28 @@ public class MovieDetailController {
 		
 		// 3) 해당 영화와 비슷한 장르 추천
 		List<String>  genreList = Arrays.asList(movieInfo.getMovieGenre().split("/"));
-		List<Movie> recommendMovie = service.recommendMovie(genreList);
-		
-		// 출력
-		for (Movie movie : recommendMovie) {
+		/*
+			List<Movie> recommendMovie = service.recommendMovie(genreList);
+			
+			for (Movie movie : recommendMovie) {
 		    String movieTitle = movie.getMovieTitle();
 		    System.out.println("추천영화 Movie Title: " + movieTitle);
 		    // 내가 들어온 장르도 포함할 수 있음.
-		}
+		    }
+		*/
+		// 출력
+			Map<String,Object> genreMap = new HashMap<String, Object>();
 		
-		model.addAttribute("recommendMovie", recommendMovie);
+			genreMap.put("genreList", genreList);
+			genreMap.put("movieNo", movieNo);
+			
+			System.out.println(genreMap);
+			
+			List<Movie> recommendMovie = service.recommendMovie(genreMap);
+			
+			System.out.println("recommendMovie Map전달 결과 : " + recommendMovie );
+		
+			model.addAttribute("recommendMovie", recommendMovie);
 		
 			
 		return "movie/movie-detail-page";
