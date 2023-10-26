@@ -229,7 +229,7 @@
                       <div class="gallery">
                       	<c:forEach items = "${recommendMovie}" var = "recommend">
 	                        <div class="recommend-container">
-	                          <a href="/${recommend.movieNo}">
+	                          <a href="/movieInsight/movie/${recommend.movieNo}">
 	                    		<div class = "recommendImg-wrapper">	                    		
 		                            <img src="/movieInsight/resources/images/movie/${recommend.movieImg}" alt="movieTitle : ${recommend.movieTitle}">
 	                    		</div>

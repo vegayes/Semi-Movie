@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+
+<c:set var="promotion" value="${promotionMap.promotion}"/>
+<c:set var="event" value="${promotionMap.event}"/>    
+    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,7 +26,7 @@
                     <li class="admin-list"><a href="#">영화</a></li>               
                     <li class="admin-list"><a href="#">영화관</a></li>
                     <li class="admin-list"><a href="#">메뉴</a></li>
-                    <li class="admin-list"><a href="#">이벤트</a></li>
+                    <li class="admin-list"><a href="/moviInsight/manager/promotion">이벤트</a></li>
                 </ul>
             </div>
         </nav>
@@ -43,37 +49,25 @@
 
                         <div class = "event-info-container">
                             <table class = "event-info-table">
-                                <tr>
-                                    <td class = "event-title">
-                                        특별관1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class = "event-title">
-                                        특별관1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
- 
+
+                            	<c:forEach items="${promotion}" var = "promotion">
+	                            	<tr>
+	                                    <td class = "event-title">
+	                                        ${promotion.promotionType}
+	                                    </td>
+	                                    <td class = "event-update">
+	                                        <div>
+	                                            수정
+	                                        </div>
+	                                    </td>
+	                                    <td class = "event-del">
+	                                        <div>
+	                                            삭제
+	                                        </div>
+	                                    </td>
+	                                </tr>
+                            	
+                            	</c:forEach>
                             </table>
                         </div>
 
@@ -92,161 +86,24 @@
                         <div class = "event-info-container">
                             
                             <table class = "event-info-table">
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class = "event-title">
-                                        이벤트1
-                                    </td>
-                                    <td class = "event-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "event-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-
-
-
+                            
+                            	<c:forEach items="${event}" var = "event">
+	                                <tr>
+	                                    <td class = "event-title">
+	                                        ${event.eventTitle}
+	                                    </td>
+	                                    <td class = "event-update">
+	                                        <div>
+	                                            수정
+	                                        </div>
+	                                    </td>
+	                                    <td class = "event-del">
+	                                        <div>
+	                                            삭제
+	                                        </div>
+	                                    </td>
+	                                </tr>
+	                            </c:forEach>
                             </table>
 
                         </div>

@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-
-
 @Controller
 public class MainController {
 	
@@ -58,17 +56,21 @@ public class MainController {
 //		return "movie/home-page";
 //		return "cinema/cinema-detail-page";
 
-	return "mypage/mypage";
-	
-//		return "policy/policy";
-
-
-
-	
 		
+		System.out.println("메인 가려고함.");
+
+		
+//		return "movie/home-page";
+//		return "redirect:/movie";
+		return "redirect:/mypage/member";
+//		return "/manager/event";
 
 //		return "cinema/cinema-homepage";
 
 	}
+	
+	
+	
+	
 	
 }
