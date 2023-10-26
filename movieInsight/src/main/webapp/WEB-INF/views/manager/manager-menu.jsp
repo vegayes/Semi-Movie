@@ -17,7 +17,7 @@
             <div class="admin-menu">
                 <ul>
                     <li class="admin-list"><a href="#">회원 관리</a></li> 
-                    <li class="admin-list"><a href="#">영화</a></li>               
+                    <li class="admin-list"><a href="/movieInsight/mypage/manager/movie">영화</a></li>                 
                     <li class="admin-list"><a href="#">영화관</a></li>
                     <li class="admin-list"><a href="/movieInsight/mypage/manager/menu">메뉴</a></li>
                     <li class="admin-list"><a href="#">이벤트</a></li>
@@ -73,14 +73,10 @@
                                             </div>
                                         </td>
                                     </tr>
+
                                 </c:forEach>
 
-
-
-
                             </table>
-
-
 
                         </div>
 
@@ -108,27 +104,28 @@
                             
                             <table class = "menu-info-table">
 
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
+                                <c:forEach items = "${drink}" var="drink" >
+                                    <tr>
+                                        <td class = "menu-title">
+                                            ${drink.menuName}
+                                        </td>
 
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
+                                        <td class = "menu-price">
+                                            ${drink.menuPrice}
+                                        </td>
 
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
+                                        <td class = "menu-update">
+                                            <div>
+                                                수정
+                                            </div>
+                                        </td>
+                                        <td class = "menu-del">
+                                            <div>
+                                                삭제
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
 
                              
 
@@ -158,90 +155,33 @@
 
                         <div class = "menu-info-container">
                             <table class = "menu-info-table">
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
 
 
-                                <tr>
-                                    <td class = "menu-title">
-                                            메뉴1
-                                    </td>
 
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
+                                <c:forEach items = "${snack}" var="snack" >
+                                    <tr>
+                                        <td class = "menu-title">
+                                            ${snack.menuName}
+                                        </td>
 
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <td class = "menu-price">
+                                            ${snack.menuPrice}
+                                        </td>
 
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
+                                        <td class = "menu-update">
+                                            <div>
+                                                수정
+                                            </div>
+                                        </td>
+                                        <td class = "menu-del">
+                                            <div>
+                                                삭제
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
 
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class = "menu-title">
-                                         메뉴1
-                                    </td>
-
-                                    <td class = "menu-price">
-                                        가격
-                                    </td>
-
-                                    <td class = "menu-update">
-                                        <div>
-                                            수정
-                                        </div>
-                                    </td>
-                                    <td class = "menu-del">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
+                               
                                 
                                 
                             </table>

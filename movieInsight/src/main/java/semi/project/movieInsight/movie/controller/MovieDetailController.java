@@ -33,7 +33,7 @@ public class MovieDetailController {
 	 */
 
 //	@GetMapping("/movie/{movieNo}")
-	@GetMapping("/{movieNo:^[^0]\\d*}") // 정수 숫자만
+	@GetMapping("{movieNo:^[^0]\\d*}") // 정수 숫자만
 	public String selectMovie(@PathVariable("movieNo") int movieNo,
 								Model model) {
 		
@@ -50,13 +50,14 @@ public class MovieDetailController {
 		model.addAttribute("directorInfoList", directorInfoList);
 		model.addAttribute("actorInfoList", actorInfoList);
 		
+		System.out.println("movieInfo : " + movieInfo);
 		
 		// 2) 영화를 상영중인 영화관 찾기
 		List<Cinema> selectCinemaList = service.selectCinemaList(movieNo);
 		
 		model.addAttribute("selectCinemaList", selectCinemaList);
 		
-		
+		System.out.println("장르 : " + movieInfo.getMovieGenre());
 		
 		// 3) 해당 영화와 비슷한 장르 추천
 		List<String>  genreList = Arrays.asList(movieInfo.getMovieGenre().split("/"));

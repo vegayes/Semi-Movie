@@ -69,6 +69,7 @@ body {
     border-radius: 5px;
     width: 40%;
     line-height: 50px;
+    font-size: 25px;
     
 }
 
@@ -101,6 +102,7 @@ body {
 
 .movie-item {
    
+   
     margin : 20px 0 40px 10px;
     width: 95%;
     height: 8%;
@@ -113,18 +115,30 @@ body {
 }
 
 
+.movie-item .movie-title {
+    flex: 1;
+    text-align: center;
+}
+
+
+
 .movie-buttons {
 
+    width: 10%;
     display: flex;
     font-weight: bold;
+    justify-content: space-between;
    
 }
 
+
 .edit-button {
 
+    flex-basis: 25%;
+    text-decoration: none;
+    color: black;      
     background-color: rgb(87, 87, 238);
     border: 2px solid black;
-    margin-left: 10px;
     cursor: pointer;
     border-radius: 7px;
     
@@ -132,23 +146,31 @@ body {
 
 .delete-button {
 
+    flex-basis: 25%;
+    text-decoration: none;
+    color: black;      
     background-color: red;
     border: 2px solid black;
-    margin-left: 10px;
     cursor: pointer;
     border-radius: 7px;
    
 }
 
 
+
+
+
 .comment-button {
 
+    flex-basis: 25%;
+    text-decoration: none;
+    color: black;       
     background-color: green;
     border: 2px solid black;
-    margin-left: 10px;
     cursor: pointer;
     border-radius: 7px;
-   
+    
+    
 }
 
 
