@@ -10,7 +10,11 @@ public interface MemberService {
 
 	int idCheck(String id_check);
 
+
+	Member login(Member inputMember);
+
 	int checkEmail(String email);
+
 
 
 

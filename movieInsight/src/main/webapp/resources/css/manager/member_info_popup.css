@@ -1,0 +1,228 @@
+/* 즐겨찾기 리스트 */
+#manager-member-info-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom : 0;
+    right: 0;
+
+    background-color: rgba(0, 0, 0, 0.616);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+/* #favorite-list-modal-box.active{
+    display: flex;
+} */
+
+
+#manager-member-info-content{
+    background-color: #00171f;
+    width: 60%;
+    /* width: 1000px;
+    height: 570px;*/ 
+    padding: 20px ;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* 그림자 효과 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+	overflow : auto;
+}
+
+.manager-member-info-content::-webkit-scrollbar {
+    height: 10px; /* 가로 스크롤바의 높이 설정 */
+    width: auto; /* 가로 스크롤바의 너비를 자동으로 설정 */
+}
+
+.manager-member-info-content::-webkit-scrollbar-track {
+    background: #101322; /* 스크롤바 트랙 배경색 설정 */
+}
+
+.manager-member-info-content::-webkit-scrollbar-thumb {
+    background-color: #070583; /* 스크롤바 썸 배경색 설정 */
+    border-radius: 10px; /* 스크롤바 썸 모양 설정 */
+}
+#closeBtn{
+    color: white;
+
+    align-self: flex-end;
+    display: flex;
+    justify-content: end;
+    padding-right: 10px;
+
+    font-size: 25px;
+    cursor: pointer;
+} 
+
+#closeBtn:hover,
+#fcloseBtn:focus {
+  color: rgb(118, 118, 207);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.popup-member-info-container{
+    flex-basis: 20%;
+    /* border: 5px solid green; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    padding:30px 0px;
+}
+
+.popup-member-info-title{
+    font-size: 30px;
+    font-weight: bold;
+    
+    color : white;
+
+    padding: 20px 0px;
+}
+
+
+/* member-댓글 list  */
+.popup-member-list-container{
+    flex-basis: 80%;
+    /* border: 2px solid yellow; */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-member-write-list-container{
+    height: 450px;
+    width: 900px;
+
+    overflow: auto;
+
+    display: flex;
+}
+
+table{
+    flex-basis: 100%;
+    border-spacing: 0;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+
+    /* padding: 20px 0px; */
+}
+
+.table-info{
+    background-color: transparent;
+
+    color : white;
+}
+
+
+td{
+    text-align: center;
+    padding: 10px 30px;
+}
+
+.popup-member-write-list-table  td{
+    padding: 20px;
+    border: 2px solid rgb(43, 26, 6);
+}
+
+
+.popup-member-write-list-table thead{
+    background-color:plum;
+    position: sticky;
+    top: 0;
+}
+
+.popup-member-write-list-table  tr{
+    display: flex;
+
+}
+
+
+
+.popup-member-comment-no{
+    flex-basis: 10%;
+
+    /* background-color: rebeccapurple; */
+    
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-member-comment-content{
+    flex-basis: 50%;
+
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+} 
+
+.popup-member-comment-date{
+    flex-basis: 29%;
+}
+
+.popup-member-comment-del-YN{
+    flex-basis: 14%;
+}
+
+
+
+
+
+
+.popup-member-write-list-container::-webkit-scrollbar{
+    width: 15px;
+}
+
+.popup-member-write-list-container::-webkit-scrollbar{
+    background: black;
+}
+
+.popup-member-write-list-container::-webkit-scrollbar-thumb{
+    height: 15%;
+    background-color: plum;
+    border-radius: 10px;
+}
+
+
+.toggle-popup{    
+	position: fixed;
+    top: 0;
+    left: 0;
+    bottom : 0;
+    right: 0;
+
+    background-color: rgba(0, 0, 0, 0.616);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

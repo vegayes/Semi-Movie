@@ -43,4 +43,12 @@ public class MemberServiceimpl implements MemberService{
 		return dao.CheckEmail(email);
 	}
 
+	/**
+	 * 임시 로그인 
+	 */
+	@Override
+	public Member login(Member inputMember) {
+		return dao.login(inputMember);
+	}
+
 }

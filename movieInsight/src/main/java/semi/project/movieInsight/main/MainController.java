@@ -67,19 +67,21 @@ public class MainController {
 //		System.out.println("메인 가려고함.");
 
 		
-		return "movie/home-page";
-//		return "redirect:/movie";
+
+//		return "movie/home-page";
+		return "redirect:/movie";
 //		return "redirect:/mypage/member";
 //		return "/manager/event";
+// 
+//		return "cinema/cinema-homepage";
 
-//	return "cinema/cinema-homepage";
 //		return "manager/manager-menu";
 
 	}
 	
 	
 	@GetMapping("/movie")
-	public String movieMain(HttpServletRequest request, Model model) {
+	public String movieMain(Model model) {
 		
 		System.out.println("영화 메인페이지 이동");
 
@@ -88,7 +90,15 @@ public class MainController {
 		return "movie/home-page";
 	}
 	
-	
+	@GetMapping("/cinema")
+	public String cinemaMain(Model model) {
+		
+		System.out.println("영화관 메인페이지 이동");
+		
+		 model.addAttribute("pageType", "cinema");
+		
+		return "cinema/cinema-homepage";
+	}
 	
 	
 	

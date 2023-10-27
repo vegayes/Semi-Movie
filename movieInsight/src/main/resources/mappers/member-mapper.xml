@@ -28,6 +28,17 @@
 				, NULL, DEFAULT, DEFAULT)
 	</insert>
 	
+	<!--  로그인 -->
+  	<select id="login" parameterType="Member" resultMap="member_rm">
+  		SELECT MEMBER_NO, MEMBER_ID , MEMBER_EMAIL , MEMBER_NICKNAME , 
+				MEMEBER_GENDER , MEMBER_PROFILE , TO_CHAR(MEMBER_ENROLL_DATE, 'YYYY"년" MM"월" DD"일"') AS MEMBER_ENROLL_DATE, MEMBER_DEL_YN 
+		FROM MEMBER
+		WHERE MEMBER_DEL_YN = 'N'
+		AND MEMBER_ID = #{memberId}
+	</select>
+	
+	
+	
 	<select id="checkId" parameterType="java.lang.String">
 		SELECT COUNT(*) 
 		FROM MEMBER
@@ -51,12 +62,16 @@
 		WHERE MEMBER_DEL_YN ='N'
 	</select>
 	
+
+	
+
 	<!-- 이메일 중복 검사 -->
 	<select id="checkEmail" resultType="_int">
 		SELECT COUNT(*) FROM "MEMBER"
 		WHERE MEMBER_EMAIL = #{email}
 		AND MEMBER_DEL_YN = 'N'
 	</select>
+
 
 
 </mapper>

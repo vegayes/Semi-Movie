@@ -47,7 +47,7 @@ public class MypageController {
 		List<Cinema> selectLikeCinema = cinemaService.selectLikeCinema();
 		
 		return "mypage/mypage";
-	}
+	}	
 	
 	
 	
