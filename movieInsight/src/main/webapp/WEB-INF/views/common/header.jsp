@@ -31,15 +31,15 @@
             <!-- movie , cinema 확인하고 logo 눌렀을 때 이동 시, 제대로 이동하기. -->
             	<c:choose>
 
-            		<c:when test="true"> <%-- 영화, 마이페이지 페이지인 경우 --%>  
-            		 	<a href="/movieInsight/movie">  <%-- 영화 메인페이지 컨트롤러- --%>              
+            		<c:when test="${pageType eq 'cinema'}"> <%-- 영화, 마이페이지 페이지인 경우 --%>  
+            		 	<a href="/movieInsight/cinema">  <%-- 영화 메인페이지 컨트롤러- --%>              
 		                    <img src="/movieInsight/resources/images/common/logo.png">
 		                </a>            	
 
             		</c:when>
             		
             		<c:otherwise> <%-- 영화관 페이지인 경우 --%>
-		                <a href="/movieInsight/cinema">   <%-- 영화관 메인페이지 컨트롤러- --%>               
+		                <a href="/movieInsight/movie">   <%-- 영화관 메인페이지 컨트롤러- --%>               
 		                    <img src="/movieInsight/resources/images/common/logo.png">
 		                </a>
             		</c:otherwise>
@@ -52,7 +52,7 @@
                		<%--1) 페이지에 따라  --%>
                 	<%-- 1-1) 영화 메인 페이지의 경우 --%>
                 	<c:choose>
-	                    <c:when test="true">
+	                    <c:when test="${pageType eq 'movie'}">
 
 			              	<form action="/movieInsight/movie/search" name="movieSearch"> <!-- ② action 값 변경-->
 
@@ -72,7 +72,7 @@
 			                 </div>
 		                </c:when>
 		                <%-- 1-2)영화관 메인 페이지의 경우 --%>
-		                <c:when test="${currentUrl eq 'cinema'}">
+		                <c:when test="${pageType eq 'cinema'}">
 			              	<form action="/movieInsight/cinema/search" name="cinemaSearch"> <!-- ② action 값 변경-->
 			                  <fieldset>
 			                      <input type="search" id="query" name="cinemaQuery"
@@ -105,8 +105,8 @@
      			<%-- 2) 로그인 유무  --%>
                 <c:choose>
                		<%-- 2-1) 로그인 X 경우 --%>
-                	<c:when test="false">
-		                <a class = "user-login"  href= "#">
+                	<c:when test="true">
+		                <a class = "user-login"  href= "/movieInsight/member/login">
 		                    <i class="fa-solid fa-right-to-bracket"></i>
 		                    <p>LOGIN</p>
 		                    

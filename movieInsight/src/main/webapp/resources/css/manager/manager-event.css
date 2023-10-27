@@ -27,7 +27,6 @@ nav{
 
 
 .admin-menu {
-
     /* display: flex; */
 
     background-color: #ffffff;
@@ -36,7 +35,9 @@ nav{
 }
 
 
-.admin-list :hover {
+
+.admin-list :hover,
+.admin-back :hover, {
    font-size: 25px;
 }
 
@@ -205,7 +206,7 @@ tr > td{
 }
 
 
-tr >td:nth-of-type(1){
+tr >td:nth-of-type(2){
 
     flex-basis: 70%;
    
@@ -222,7 +223,7 @@ tr >td:not(:nth-of-type(1)),
 /*tr >td:not(:nth-of-type(2)),
 tr >td:not(:nth-of-type(3))*/{
 
-    flex-basis: 15%;
+    flex-basis: 10%;
 
     display: flex;
     justify-content: center;

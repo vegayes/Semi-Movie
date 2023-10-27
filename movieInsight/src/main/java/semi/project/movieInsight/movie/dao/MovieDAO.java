@@ -23,6 +23,13 @@ public class MovieDAO {
 		return sqlSession.selectList("movieMapper.selectManagerMovieList");
 
 	}
+
+	/** 영화 즐겨찾기
+	 * @return
+	 */
+	public List<Movie> selectLikeMovie() {
+		return sqlSession.selectList("movieMapper.selectLikeMovie");
+	}
 	
 
 

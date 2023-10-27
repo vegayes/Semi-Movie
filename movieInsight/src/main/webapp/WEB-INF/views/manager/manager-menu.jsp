@@ -20,7 +20,7 @@
                     <li class="admin-list"><a href="/movieInsight/mypage/manager/movie">영화</a></li>                 
                     <li class="admin-list"><a href="#">영화관</a></li>
                     <li class="admin-list"><a href="/movieInsight/mypage/manager/menu">메뉴</a></li>
-                    <li class="admin-list"><a href="#">이벤트</a></li>
+                    <li class="admin-list"><a href="/moviInsight/manager/promotion">이벤트</a></li>
                 </ul>
             </div>
         </nav>
@@ -39,13 +39,13 @@
                             팝콘
                         </div>
                         <div class = "menu-container-search">
-                            <form action="#" name="search-form">
-                                <fieldset>
-                                    <input type="search" id = "search-input" name="search-input"
-                                    autocomplete="off" placeholder="메뉴 검색">
-                                    <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
-                                </fieldset>
-                            </form>
+                            
+                               
+                            <input type="search" id = "search-input" name="search-input"
+                            autocomplete="off" placeholder="메뉴 검색">
+                            <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
+                               
+                            
                         </div>
 
                         <div class = "menu-info-container">
@@ -91,13 +91,11 @@
                         </div>
 
                         <div class = "menu-container-search">
-                            <form action="#" name="search-form">
-                                <fieldset>
-                                    <input type="search" id = "search-input" name="search-input"
-                                    autocomplete="off" placeholder="메뉴 검색">
-                                    <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
-                                </fieldset>
-                            </form>
+                           
+                                <input type="search" id = "search-input" name="search-input"
+                                autocomplete="off" placeholder="메뉴 검색">
+                                <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
+                               
                         </div>
 
                         <div class = "menu-info-container">
@@ -144,13 +142,11 @@
                         </div>
 
                         <div class = "menu-container-search">
-                            <form action="#" name="search-form">
-                                <fieldset>
-                                    <input type="search" id = "search-input" name="search-input"
-                                    autocomplete="off" placeholder="메뉴 검색">
-                                    <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
-                                </fieldset>
-                            </form>
+                            
+                                <input type="search" id = "search-input" name="search-input"
+                                autocomplete="off" placeholder="메뉴 검색">
+                                <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
+                              
                         </div>
 
                         <div class = "menu-info-container">

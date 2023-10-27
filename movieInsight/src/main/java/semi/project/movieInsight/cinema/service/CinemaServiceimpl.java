@@ -24,4 +24,13 @@ public class CinemaServiceimpl implements CinemaService {
 		return dao.searchCinemaList(cinemaQuery);
 	}
 
+
+	/**
+	 * 즐겨찾기 영화관 조회
+	 */
+	@Override
+	public List<Cinema> selectLikeCinema() {
+		return null;
+	}
+
 }
