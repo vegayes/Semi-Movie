@@ -61,7 +61,7 @@ nav section:nth-child(2){
 
 .movie-search-area fieldset{
     width: 900px;
-    border: 2px solid black;
+   border: 2px solid #101322;
 
     height: 40px; /*원래 45px*/
     /*border-radius: 5px; */
