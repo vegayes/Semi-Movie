@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FIND_ID</title>
-	<link rel="stylesheet" href="/movieInsight/resources/css/member/find-id.css">
+	<link rel="stylesheet" href="/movieInsight/resources/css/member/find_id.css">
   </head>
   <body>
     <div class="section">
@@ -26,16 +26,18 @@
                         <h4 class="mb-4 pb-3">Find ID</h4>
 
                         <div class="form-group mt-2">
-                          <input
-                            type="email"
-                            name="logpass"
-                            class="form-style"
-                            placeholder="User Email"
-                            id="logpass"
-                            autocomplete="off"
-                          />
-
-                          <button>인증하기</button>
+                     	 	<form action="/find/id" method="POST">
+	                          <input
+	                            type="email"
+	                            name="logpass"
+	                            class="form-style"
+	                            placeholder="User Email"
+	                            id="logpass"
+	                            autocomplete="off"
+	                          />
+	
+	                          <button id="logpassCheck">인증하기</button>
+	                        </form> 
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
 
