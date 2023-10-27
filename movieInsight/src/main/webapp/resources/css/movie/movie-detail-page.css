@@ -120,6 +120,8 @@ main>div{
     -webkit-box-orient: vertical; /* 플렉스 방향 가로로 설정 */
     overflow: hidden;
     padding: 0 30px;
+    
+    font-weight : bold;
 
 
 }
@@ -137,12 +139,14 @@ main>div{
     display: flex;
     flex-direction: column;
     padding-left: 5%;
+    font-weight : bold;
 }
 
 .movie_description>div>div{
     display: flex;
     flex: 1;
     align-items: center;
+    font-weight : bold;
    
 }
 
@@ -218,6 +222,7 @@ main>div{
     display: none;
     width: 100%;
     height: 100%;
+   	color : #f3de2c;
     
 }
 

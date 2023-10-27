@@ -105,8 +105,8 @@
      			<%-- 2) 로그인 유무  --%>
                 <c:choose>
                		<%-- 2-1) 로그인 X 경우 --%>
-                	<c:when test="false">
-		                <a class = "user-login"  href= "#">
+                	<c:when test="true">
+		                <a class = "user-login"  href= "/movieInsight/member/login">
 		                    <i class="fa-solid fa-right-to-bracket"></i>
 		                    <p>LOGIN</p>
 		                    

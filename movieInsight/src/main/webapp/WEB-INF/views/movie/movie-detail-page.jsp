@@ -149,7 +149,7 @@
 		                        <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">
 		                        	<div class = "cinemaImg-wrapper">
 			                            <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
-			                        	<div class="cinema-hover"><p>영화관</p <p>정보 보러가기</p></div>
+			                        	<div class="cinema-hover"><p>영화관 정보 보러가기</p></div>
 		                        	</div>
 		                        </a>
 		                    </div>

@@ -1,6 +1,5 @@
 package semi.project.movieInsight.mypage.controller;
 
-import java.nio.file.spi.FileSystemProvider;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,6 @@ public class ManagerController {
 	 */
 	@GetMapping("/promotion")
 	public String movePromotion(Model model) {
-		
 		// 1) Map으로 가져오기
 		Map<String,Object> promotionMap = service.selectPromotion();
 		
