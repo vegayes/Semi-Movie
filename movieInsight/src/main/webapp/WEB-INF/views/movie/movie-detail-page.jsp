@@ -149,8 +149,8 @@
 		                        <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">
 		                        	<div class = "cinemaImg-wrapper">
 			                            <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
+			                        	<div class="cinema-hover"><p>영화관 정보 보러가기</p></div>
 		                        	</div>
-		                        	<div class="cinema-hover">영화관 정보 보러가기</div>
 		                        </a>
 		                    </div>
 		                    <div class="cinemaList-info">
@@ -158,7 +158,7 @@
 		                        <div class = "cinemaList-info-content">${cinema.cinemaAddress}</div>
 		                    </div>
 		                    <div class="cinemaList-url">
-	                            <a href="${cinema.cinemaLink}" target="_blank">예매 바로가기</a>
+	                            <a href="${cinema.cinemaLink}" target="_blank"><p>예매 바로가기</p></a>
 		                    </div>
 						</div>
     				</c:forEach>    				
@@ -232,6 +232,7 @@
 	                          <a href="/movieInsight/movie/${recommend.movieNo}">
 	                    		<div class = "recommendImg-wrapper">	                    		
 		                            <img src="/movieInsight/resources/images/movie/${recommend.movieImg}" alt="movieTitle : ${recommend.movieTitle}">
+		                            <div class = "recommendImg-hover">${recommend.movieTitle}</div>
 	                    		</div>
 	                          </a>
 	                        </div>

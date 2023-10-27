@@ -93,7 +93,7 @@ public class MovieDetailController {
 //			List<Object> currentUrl =  Arrays.asList(request.getRequestURI().toString().split("/"));
 //			model.addAttribute("currentUrl" + currentUrl.get(2));
 //			System.out.println("url : " + currentUrl);
-			
+			 model.addAttribute("pageType", "movie");
 			
 			
 		return "movie/movie-detail-page";

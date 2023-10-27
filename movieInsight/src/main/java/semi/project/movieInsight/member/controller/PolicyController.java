@@ -13,7 +13,6 @@ public class PolicyController {
 	public String policy() {
 		
 		return "policy/policy";
-		
 	}
 	
 

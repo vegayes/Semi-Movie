@@ -26,11 +26,7 @@ public class CinemaController {
 		
 		System.out.println("메인페이지 이동");
 		
-		// 현재 주소가져오기
-		List<Object> currentUrl =  Arrays.asList(request.getRequestURI().toString().split("/"));
-		model.addAttribute("currentUrl" + currentUrl.get(2));
-	 	
-		System.out.println("url" + currentUrl.get(2));
+		 model.addAttribute("pageType", "cinema");
 		
 		return "cinema/cinema-homepage";
 	}
@@ -52,10 +48,7 @@ public class CinemaController {
 		model.addAttribute("cinemaList", cinemaList);
 		
 		
-		// 현재 주소가져오기
-//		List<Object> currentUrl =  Arrays.asList(request.getRequestURI().toString().split("/"));
-//		model.addAttribute("currentUrl" + currentUrl.get(2));
-//		System.out.println("url" + currentUrl.get(2));
+		model.addAttribute("pageType", "cinema");
 		
         return "cinema/search-cinema";
     }
