@@ -25,3 +25,10 @@ document.getElementById("event-add").addEventListener("click", function(){
     "특별관 추가",
     "width=900, height=570, top=200, left=540");
 });
+
+
+
+// 4) 검색어에 입력했을 때 
+
+
+

@@ -43,6 +43,10 @@ public class ManagerController {
 		
 		model.addAttribute("memberMap", memberMap);
 		
+		
+		
+		
+		
 		return "/manager/manager-member";
 	}
 	

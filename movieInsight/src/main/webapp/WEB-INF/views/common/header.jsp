@@ -105,8 +105,8 @@
      			<%-- 2) 로그인 유무  --%>
                 <c:choose>
                		<%-- 2-1) 로그인 X 경우 --%>
-                	<c:when test="true">
-		                <a class = "user-login"  href= "/movieInsight/member/login">
+                	<c:when test="${empty sessionScope.loginMember}">
+		                <a class = "user-login"  href= "/movieInsight/member/loginPage">
 		                    <i class="fa-solid fa-right-to-bracket"></i>
 		                    <p>LOGIN</p>
 		                    
@@ -115,7 +115,7 @@
 						    <span></span>
 						    <span></span>
 		                </a>
-		                <a class = "user-mypage"  href= "#">
+		                <a class = "user-mypage"  href= "/movieInsight/manager/promotion">
 		                	<div class = "mypage-wrapper">
 		                	 	<i class="fa-solid fa-user"></i>    
 		                	</div>
@@ -132,7 +132,6 @@
 		               <!-- ⑤ 버튼으로 만들어야 하나? 필터로 만들어버리기 -->
 		                <a class = "user-mypage" href="/movieInsight/manager/promotion">
 		                    <div class = "mypage-wrapper">
-		                    
 		                    	<%-- 3) 프로필 유무 ( 로그인부터 파악해야 하나..? ) --%>
 				                <c:choose>
 					                <%-- 3-2) 프로필이 없는 경우 --%>
@@ -144,8 +143,7 @@
 						               <!-- ⑥이거 나중에 유저 사진으로 변경하기 -->
 						               <img src="resources/images/member/profile1.jpg">                  	
 				                	</c:otherwise>                	
-				                </c:choose>                        
-		                        
+				                </c:choose>  
 		                    </div>
 		                </a>	                	
                 	</c:otherwise>                	
