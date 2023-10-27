@@ -30,7 +30,9 @@ public class MemberDAO {
 	public Member login(Member inputMember) {
 		return sqlSession.selectOne("memberMapper.login",inputMember);
 	}
+
 	
+
 	// 이메일 중복검사
 	public int CheckEmail(String email) {
 	
