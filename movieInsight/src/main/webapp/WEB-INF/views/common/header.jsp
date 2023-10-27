@@ -115,7 +115,7 @@
 						    <span></span>
 						    <span></span>
 		                </a>
-		                <a class = "user-mypage"  href= "#">
+		                <a class = "user-mypage"  href= "/movieInsight/manager/promotion">
 		                	<div class = "mypage-wrapper">
 		                	 	<i class="fa-solid fa-user"></i>    
 		                	</div>

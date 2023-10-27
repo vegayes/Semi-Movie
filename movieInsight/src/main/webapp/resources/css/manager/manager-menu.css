@@ -198,7 +198,7 @@ fieldset{
 }
 
 
-.menu-info-table{
+.popcorn-info-table, .drink-info-table, .snack-info-table{
     flex-basis: 100%;   
 
 }

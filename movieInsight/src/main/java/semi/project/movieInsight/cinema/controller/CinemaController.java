@@ -22,6 +22,7 @@ public class CinemaController {
 	@Autowired
 	private CinemaService service;
 	
+	
 	public String cinemaMain(Model model, HttpServletRequest request) {
 		
 		System.out.println("메인페이지 이동");
