@@ -52,19 +52,19 @@ public class MainController {
 		
 
 
-//	return "member/login_signUp";
+	return "member/login_signUp";
 //		return "member/find_id";
 //		return "movie/home-page";
 //		return "cinema/cinema-detail-page";
 
 
 		
-		System.out.println("메인 가려고함.");
+//		System.out.println("메인 가려고함.");
 
 		
 //		return "movie/home-page";
 //		return "redirect:/movie";
-		return "redirect:/mypage/member";
+//		return "redirect:/mypage/member";
 //		return "/manager/event";
 
 //		return "cinema/cinema-homepage";
