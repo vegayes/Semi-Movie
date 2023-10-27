@@ -157,11 +157,18 @@
 			                            name="memberEmail"
 			                            class="form-style"
 			                            placeholder="Your Email"
-			                            id="logpass"
+			                            id="memberEmail"
 			                            autocomplete="off"
 			                          />
-			                          <button>인증</button>
+			                          <button id="sendAuthKeyBtn" type="button">인증하기</button>
 			                          <i class="input-icon uil uil-lock-alt"></i>
+			                       	   <p id="emailMessage">사용가능한 이메일을 입력해주세요.</p>
+			                       	   <p id="authKeyMessage">05:00</p>
+				                       	   <div class="signUp-input-area">
+							                    <input type="text" name="authKey" id="authKey" s placeholder="인증번호 입력" maxlength="6" autocomplete="off" >
+							                    
+							                    <button id="checkAuthKeyBtn" type="button">인증확인</button>
+					            		   </div>
 			                        </div>
 			                        <div class="form-group mt-2">
 			                          <h5 class="labela">NICKNAME</h5>

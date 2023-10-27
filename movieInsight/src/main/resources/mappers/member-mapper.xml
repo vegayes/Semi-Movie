@@ -50,6 +50,13 @@
 		FROM MEMBER
 		WHERE MEMBER_DEL_YN ='N'
 	</select>
+	
+	<!-- 이메일 중복 검사 -->
+	<select id="checkEmail" resultType="_int">
+		SELECT COUNT(*) FROM "MEMBER"
+		WHERE MEMBER_EMAIL = #{email}
+		AND MEMBER_DEL_YN = 'N'
+	</select>
 
 
 </mapper>
