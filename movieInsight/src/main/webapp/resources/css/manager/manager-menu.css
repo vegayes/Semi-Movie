@@ -141,7 +141,7 @@ fieldset{
 
 
 #search-input{
-    flex-basis: 92%;
+    flex-basis: 40%;
     padding: 5px;
     font-size: 18px;
     font-weight: bold;
@@ -198,7 +198,7 @@ fieldset{
 }
 
 
-.menu-info-table{
+.popcorn-info-table, .drink-info-table, .snack-info-table{
     flex-basis: 100%;   
 
 }

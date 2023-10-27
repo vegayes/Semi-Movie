@@ -7,10 +7,17 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.dao.ManagerDAO;
 
+/**
+ * @author user1
+ *
+ */
 @Service
 public class ManagerServiceImpl implements ManagerService{
 
@@ -64,6 +71,37 @@ public class ManagerServiceImpl implements ManagerService{
 		
 		return memberMap;
 	}
+
+	
+	/**
+	 * 관리자 페이지에서 메뉴 전체조회
+	 */
+	@Override
+	public Map<String, List<Menu>> selectMenu() {
+		
+		return dao.selectMenu();
+	}
+
+	
+	
+	/**
+	 * 관리자 페이지에서 영화관 삭제
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int deleteCinema(int cinemaNo) {
+	    int result = dao.deleteCinema(cinemaNo);
+
+	    if (result == 1) {
+	        return 1;
+	    } else {
+	       
+	        throw new RuntimeException("Cinema deletion failed for cinemaNo: " + cinemaNo);
+	    }
+	}
+
+
+	
 	
 	
 }

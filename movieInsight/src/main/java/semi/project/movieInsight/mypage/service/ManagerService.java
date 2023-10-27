@@ -1,6 +1,10 @@
 package semi.project.movieInsight.mypage.service;
 
+import java.util.List;
 import java.util.Map;
+
+import semi.project.movieInsight.cinema.dto.Menu;
+import semi.project.movieInsight.movie.dto.Movie;
 
 public interface ManagerService {
 	
@@ -13,4 +17,15 @@ public interface ManagerService {
 	 * @return
 	 */
 	Map<String, Object> selectMember();
+
+	
+	/** 모든 메뉴 조회
+	 * @return
+	 */
+	Map<String, List<Menu>> selectMenu();
+
+	int deleteCinema(int cinemaNo);
+	
+	
+	
 }

@@ -22,19 +22,12 @@
         <nav>
             <div class="admin-menu">
                 <ul>
-
-                 
-                    <li class="admin-list"><a href="/movieInsight/mypage/manager/movie">영화</a></li>                
-
-                    <li class="admin-list"><a href="/movieInsight/manager/member">회원 관리</a></li> 
-                                  
-
-                    <li class="admin-list"><a href="#">영화관</a></li>
-                    <li class="admin-list"><a href="/movieInsight/mypage/manager/menu">메뉴</a></li>
-                    <li class="admin-list"><a href="/moviInsight/manager/promotion">이벤트</a></li>
-                    
+                    <li class="admin-list"><a href="#">회원 관리</a></li> 
+                    <li class="admin-list"><a href="/movieInsight/manager/movie">영화</a></li>               
+                    <li class="admin-list"><a href="/movieInsight/manager/cinema">영화관</a></li>
+                    <li class="admin-list"><a href="/movieInsight/manager/menu">메뉴</a></li>
+                    <li class="admin-list"><a href="/movieInsight/manager/promotion">이벤트</a></li>
                 </ul>
-               	 <li class="admin-back"><a href = "/movieInsight/movie" >뒤로가기</a></li>
             </div>
         </nav>
 

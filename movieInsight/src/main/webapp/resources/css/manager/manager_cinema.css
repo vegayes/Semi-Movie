@@ -66,10 +66,12 @@ body {
 
 .cinema-search input {
     
+    
     margin-top: 50px;
     border-radius: 5px;
     width: 40%;
     line-height: 50px;
+    font-size: 25px;
     
 }
 
@@ -79,10 +81,24 @@ body {
     color: rgb(255, 255, 255); 
     font-size: 20px;
     border-radius: 5px;
-    margin-right: 100px;
+    margin-right: 50px;
     
 }
 
+#cinemaAdd {
+
+    border: 2px solid black;
+    background-color: white; 
+    cursor: pointer;
+    border-radius: 7px;
+}
+  
+#cinemaAdd > a {
+
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
 
 
 .cinema-item-list {
@@ -96,7 +112,6 @@ body {
     height: 72vh; 
     overflow: hidden scroll;
     
-
 }
 
 
@@ -117,44 +132,56 @@ body {
 }
 
 
-
+.cinema-item .cinema-title {
+    flex: 1;
+    text-align: center;
+}
 
 
 .cinema-buttons {
 
+    width: 10%;
     display: flex;
     font-weight: bold;
-   
+    justify-content: space-between;
 }
 
 .edit-button {
 
+    flex-basis: 25%;
+    text-decoration: none;
+    color: black;      
     background-color: rgb(87, 87, 238);
     border: 2px solid black;
-    margin-left: 10px;
     cursor: pointer;
     border-radius: 7px;
-    
 }
+
 
 .delete-button {
 
+    flex-basis: 25%;
+    text-decoration: none;
+    color: black;      
     background-color: red;
     border: 2px solid black;
-    margin-left: 10px;
     cursor: pointer;
     border-radius: 7px;
    
 }
 
+
+
 .comment-button {
 
+    flex-basis: 25%;
+    text-decoration: none;
+    color: black;       
     background-color: green;
     border: 2px solid black;
-    margin-left: 10px;
     cursor: pointer;
     border-radius: 7px;
-   
+    
 }
 
 
