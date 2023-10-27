@@ -36,7 +36,8 @@ const checkObj = {
     "memberEmail" : false,
     "memberPw" : false,
     "memberPwConfirm" : false,
-    "memberNickname" : false
+    "memberNickname" : false,
+    "authKey" :false
 };
 
 
@@ -130,36 +131,133 @@ memberPwConfirm.addEventListener('input', ()=>{
         checkObj.memberPwConfirm = false;
     }
 });
+
+const memberEmail = document.getElementById("memberEmail");
+const emailMessage = document.getElementById("emailMessage");
+
+memberEmail.addEventListener("input", () => {
+
+    if(memberEmail.value.trim().length == 0) {
+        memberEmail.value = "";
+
+        emailMessage.innerText = "메일을 받으실 이메일을 입력해주세요.";
+
+        checkObj.memberEmail = false;
+        return;
+    }
+
+    const regEx = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+    if( regEx.test(memberEmail.value) ) {
+        console.log("test?")
+        fetch("/movieInsight/dupCheck/email?email=" + memberEmail.value)
+		.then(res => res.text())
+		.then(count => {
+			
+			//count : 중복되면 1, 중복 아니면 0
+			if(count == 0) {
+			 	emailMessage.innerText = "사용 가능한 이메일입니다.";
+        		emailMessage.classList.add("confirm"); // .confirm 스타일 적용
+        		emailMessage.classList.remove("error"); // .error 스타일 제거
+        		checkObj.memberEmail = true;
+			}else {
+				emailMessage.innerText = "이미 사용중인 이메일입니다.";
+        		emailMessage.classList.add("error"); // .error 스타일 적용
+        		emailMessage.classList.remove("confirm"); // .confirm 스타일 제거
+        		checkObj.memberEmail = false;
+			}	
+			
+		})
+		.catch(err => console.log(err));
+    } else {
+        emailMessage.innerText = "이메일 형식이 유효하지 않습니다.";
+        emailMessage.classList.add("error");
+        emailMessage.classList.remove("confirm");
+
+        checkObj.memberEmail = false;
+    }
+});
+
+// --------------------- 이메일 인증 ---------------------
+
+// 인증번호 발송
+const sendAuthKeyBtn = document.getElementById("sendAuthKeyBtn");
+const authKeyMessage = document.getElementById("authKeyMessage");
+let authTimer;
+let authMin = 4;
+let authSec = 59;
+
+// 인증번호를 발송한 이메일 저장
+let tempEmail;
+
+sendAuthKeyBtn.addEventListener("click", function(){
+
+    authMin = 4;
+    authSec = 59;
+
+    checkObj.authKey = false;
+
+    if(checkObj.memberEmail){ // 중복이 아닌 이메일인 경우
+
+
+        /* fetch() API 방식 ajax */
+        fetch("/movieInsight/superEmail?superEmail="+memberEmail.value)
+        .then(resp => resp.text())
+        .then(result => {
+            if(result > 0){
+                console.log("인증 번호가 발송되었습니다.")
+                tempEmail = memberEmail.value;
+            }else{
+                console.log("인증번호 발송 실패")
+            }
+        })
+        .catch(err => {
+            console.log("이메일 발송 중 에러 발생");
+            console.log(err);
+        });
+        
+
+        alert("인증번호가 발송 되었습니다.");
+
+        
+        authKeyMessage.innerText = "05:00";
+        authKeyMessage.classList.remove("confirm");
+
+        authTimer = window.setInterval(()=>{
+													// 삼항연산자  :  조건 	  ?   	true : false
+            authKeyMessage.innerText = "0" + authMin + ":" + (authSec < 10 ? "0" + authSec : authSec);
+            
+            // 남은 시간이 0분 0초인 경우
+            if(authMin == 0 && authSec == 0){
+                checkObj.authKey = false;
+                clearInterval(authTimer);
+                return;
+            }
+
+            // 0초인 경우
+            if(authSec == 0){
+                authSec = 60;
+                authMin--;
+            }
+
+
+            authSec--; // 1초 감소
+
+        }, 1000)
+
+    } else{
+        alert("중복되지 않은 이메일을 작성해주세요.");
+        memberEmail.focus();
+    }
+
+});
+
+
+
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     

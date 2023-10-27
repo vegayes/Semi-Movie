@@ -23,6 +23,7 @@ public class CinemaController {
 	private CinemaService service;
 	
 
+
 	@GetMapping("/search")
     public String searchCinema(String cinemaQuery, Model model ,HttpServletRequest request) {
 		

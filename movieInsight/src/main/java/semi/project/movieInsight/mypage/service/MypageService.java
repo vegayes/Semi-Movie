@@ -8,6 +8,6 @@ import semi.project.movieInsight.movie.dto.Movie;
 
 public interface MypageService {
 
-	Map<String, List<Menu>> selectMenu();
+	
 
 }

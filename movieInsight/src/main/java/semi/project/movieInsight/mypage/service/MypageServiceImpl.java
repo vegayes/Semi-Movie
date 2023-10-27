@@ -15,19 +15,7 @@ import semi.project.movieInsight.mypage.dao.MypageDAO;
 @Service
 public class MypageServiceImpl implements MypageService{
 	
-	@Autowired
-	private MypageDAO dao;
 	
-	@Autowired
-	private MovieDAO dao2;
 	
-	 
-	 
-	@Override
-	public Map<String, List<Menu>> selectMenu() {
-		
-		return dao.selectMenu();
-	}
-
 
 }

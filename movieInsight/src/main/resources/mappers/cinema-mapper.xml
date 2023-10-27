@@ -18,7 +18,7 @@
 		<result property="cinemaMaxInclude" column="CINEMA_MAX_INCLUDE" />
 		<result property="cinemaDelYN" column="CINEMA_DEL_YN" />
 		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
-		
+		<result property="cinemaGrade" column="CINEMA_GRADE"/>	
 	</resultMap>
 
 
@@ -75,25 +75,54 @@
   	
   	<!-- 영화관에서 상영중인 영화 목록 가져오기 -->
   	<select id="selectMovieList" parameterType="Movie" resultMap="movie_rm">
-  	SELECT * 
-	FROM (
-		SELECT
-			TO_CHAR(M.MOVIE_RELEASE_DATE,'YYYY-MM-DD'),
-		    M.MOVIE_NO,
-		    M.MOVIE_TITLE,
-		    M.MOVIE_IMG,
-		    M.MOVIE_GENRE,
-		    M.MOVIE_AGE,
-		    M.MOVIE_RUNNING_TIME,
-		    LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'A' THEN C.CASTING_NAME ELSE NULL END, ' / ')
-		    WITHIN GROUP (ORDER BY C.CASTING_NAME) AS ACTOR_NAMES
-		FROM MOVIE M
-			JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
-			JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
-			GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, 
-			M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN)
-	WHERE MOVIE_NO = (SELECT MOVIE_NO FROM MOVIE_STATUS WHERE CINEMA_NO = #{cinemaNo})
+	  	SELECT * 
+		FROM (
+			SELECT
+				TO_CHAR(M.MOVIE_RELEASE_DATE,'YYYY-MM-DD'),
+			    M.MOVIE_NO,
+			    M.MOVIE_TITLE,
+			    M.MOVIE_IMG,
+			    M.MOVIE_GENRE,
+			    M.MOVIE_AGE,
+			    M.MOVIE_RUNNING_TIME,
+			    LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'A' THEN C.CASTING_NAME ELSE NULL END, ' / ')
+			    WITHIN GROUP (ORDER BY C.CASTING_NAME) AS ACTOR_NAMES
+			FROM MOVIE M
+				JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+				JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
+				GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, 
+				M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN)
+		WHERE MOVIE_NO = (SELECT MOVIE_NO FROM MOVIE_STATUS WHERE CINEMA_NO = #{cinemaNo})
   	</select>
+  	
+  	
+  	
+  	
+  	<select id="selectManagerCinemaList" parameterType="Cinema" resultMap="cinema_rm" >
+  	
+  		SELECT CINEMA_NO,CINEMA_NAME,CINEMA_ADDRESS,NVL2('NULL',0,CINEMA_GRADE) CINEMA_GRADE,CINEMA_MAX_INCLUDE 
+		FROM CINEMA c 
+		LEFT JOIN CINEMA_EVALUATION ce USING (CINEMA_NO)
+		WHERE CINEMA_DEL_YN = 'N'
+  	
+  	</select>
+  	
+  	
+  	
+  	
+  	<update id="deleteCinema">
+  	
+  		UPDATE CINEMA c  
+		SET CINEMA_DEL_YN  = 'Y'
+		WHERE CINEMA_NO = #{cinemaNo}
+  		
+  	</update>
+  	
+  	
+  	
+  	
+  	
+  	
   	
 
 </mapper>

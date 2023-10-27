@@ -188,3 +188,24 @@ text-align: left;
     background: teal;
    
 }
+
+
+aside{
+    display: table;
+	flex: 1;
+    height: 90px;
+    width: 150px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    background: black;
+    position:sticky;
+    top: 90%;
+    float: right;
+
+}
+
+
+aside > a{
+    color: white;
+}

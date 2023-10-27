@@ -12,20 +12,24 @@ public class EmailDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession ;
 	
-	public int updateAuthKey1(Map<String, String> map) {
-		return sqlSession.update("emaillMapper.updateAuthKey",map);
+
+	public int updateAuthKey(Map<String, String> map) {
+	
+//		return sqlSession.update("emailMapper.updateAuthKey", map);
+		return 0;
+	}
+
+
+	public int insertAuthKey(Map<String, String> map) {
 		
+		System.out.println(map);
+		
+	
+		return sqlSession.selectOne("emailMapper.insertAuthKey");
 	}
 	
-	public int updateAuthKey2(Map<String, String> map) {
-		return sqlSession.insert("emaillMapper.updateAuthKey",map);
-		
-	}
 	
-	public int updateAuthKey3(Map<String, String> map) {
-		return sqlSession.selectOne("emaillMapper.updateAuthKey",map);
-		
-	}
+	
 	
 	
 }

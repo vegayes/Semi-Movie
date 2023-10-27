@@ -330,7 +330,11 @@
 	    
 	    
 
+
 	    
 		<script src="/movieInsight/resources/js/manager/manager-member.js"></script> 
 	</body>
+
+
+
 </html>
