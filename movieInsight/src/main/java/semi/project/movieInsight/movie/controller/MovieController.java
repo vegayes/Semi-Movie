@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.service.CinemaService;
@@ -19,6 +20,7 @@ import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieService;
 
 @Controller
+@RequestMapping("/movie")
 public class MovieController {
 	
 	@Autowired
@@ -27,24 +29,11 @@ public class MovieController {
 	@Autowired
 	private CinemaService service2;
 	
-	
-	@GetMapping("/movie")
-	public String movieMain(HttpServletRequest request, Model model) {
-		
-		System.out.println("영화 메인페이지 이동");
-		// 해당 위치 넘기기
-		List<Object> currentUrl =  Arrays.asList(request.getRequestURI().toString().split("/"));
-		model.addAttribute("currentUrl" + currentUrl.get(2));
-		
-		return "movie/home-page";
-	}
-	
-
 	/** 1) 영화 관련 페이지에서 검색한 내용 가져오기 
 	 * @param movieQuery
 	 * @return movie/search-movie
 	 */
-	@GetMapping("/movie/search")
+	@GetMapping("/search")
     public String searchMovie(String movieQuery, Model model,HttpServletRequest request) {
 		
 		System.out.println("search 페이지 들어옴");
@@ -64,32 +53,24 @@ public class MovieController {
 //		model.addAttribute("currentUrl" + currentUrl.get(2));
 //		System.out.println("currentUrl" + currentUrl);
 		
+		// 해당 페이지 넘기기
+		 model.addAttribute("pageType", "movie");
+		
         return "movie/search-movie";
     }
-	
-	/*
-	  @RequestMapping("/Reservation")
-	    public String showMovieReservation(Model model) {
-	        List<MovieReservation> reservations = movieService.getAllReservations(); // 데이터베이스에서 정보 가져오기
-	        model.addAttribute("reservations", reservations); // 모델에 정보 추가
-	        return "reservationPage";
-	    }
-		*/
+
+/*
+  @RequestMapping("/Reservation")
+    public String showMovieReservation(Model model) {
+        List<MovieReservation> reservations = movieService.getAllReservations(); // 데이터베이스에서 정보 가져오기
+        model.addAttribute("reservations", reservations); // 모델에 정보 추가
+        return "reservationPage";
+    }
+	*/
     
     
 	
-//@GetMapping("/movie/이동할 상세페이지의 movieNo")
-//	@GetMapping("/movie/move")
-//	public String movieMove() {
-//		
-////		int movieNo = 1;
-////		String path = "redirect:";
-//		
-////		path += "/movie/" + movieNo;
-//		
-//		return "movie/movieT";
-//	}
-	
+
 	
 	
 	

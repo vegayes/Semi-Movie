@@ -2,22 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace = "memberMapper">
 
-<insert id="signUp" parameterType="Member">
-		INSERT INTO "MEMBER"
-		VALUES(SEQ_MEMBER_NO.NEXTVAL
-			, #{memberId}
-			, #{memberPw}
-			, #{memberEmail}
-			, #{memberNickname}
-			, #{memberGender}
-			, NULL, DEFAULT, DEFAULT)
-</insert>
 
-<select id="checkId" parameterType="java.lang.String">
-	SELECT COUNT(*) 
-	FROM MEMBER
-	WHERE MEMBER_ID = #{id_check}
-</select>
+	<resultMap type="Member" id="member_rm">
+		<id property="memberNo" column="MEMBER_NO" />
+
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="memberPw" column="MEMBER_PW" />
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberNickname" column="MEMBER_NICKNAME" />
+		<result property="memberGender" column="MEMEBER_GENDER" />
+		<result property="memberProfile" column="MEMBER_PROFILE" />
+		<result property="memberEnrollDate" column="MEMBER_ENROLL_DATE" />
+		<result property="memberDelYN" column="MEMBER_DEL_YN" />
+	</resultMap>
+	
+
+	<insert id="signUp" parameterType="Member">
+			INSERT INTO "MEMBER"
+			VALUES(SEQ_MEMBER_NO.NEXTVAL
+				, #{memberId}
+				, #{memberPw}
+				, #{memberEmail}
+				, #{memberNickname}
+				, #{memberGender}
+				, NULL, DEFAULT, DEFAULT)
+	</insert>
+	
+	<select id="checkId" parameterType="java.lang.String">
+		SELECT COUNT(*) 
+		FROM MEMBER
+		WHERE MEMBER_ID = #{id_check}
+	</select>
+	
+	<!--  비밀번호 찾기에서 ==> 초기화 시키거나 랜덤 수로 다시 지정한 후 알려주기  -->
+	
+	
+	<!-- 관리자 회원정보 찾기 -->
+	<select id = "selectMemberList" resultMap = "member_rm">
+		SELECT MEMBER_NO, MEMBER_ID , MEMBER_EMAIL , MEMBER_NICKNAME , 
+				MEMEBER_GENDER , MEMBER_PROFILE , TO_CHAR(MEMBER_ENROLL_DATE, 'YYYY"년" MM"월" DD"일"') AS MEMBER_ENROLL_DATE, MEMBER_DEL_YN 
+		FROM MEMBER
+	</select>
+	
+	<!-- 관리자- 회원정보 수 찾기 -->
+	<select id = "selectMemberCount" resultType = "_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_DEL_YN ='N'
+	</select>
 
 
 </mapper>

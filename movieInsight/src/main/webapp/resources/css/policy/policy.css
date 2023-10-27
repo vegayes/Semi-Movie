@@ -5,6 +5,8 @@ body{
 
     height: 2000px;
     font-family: '맑은고딕';
+    
+    background-color : #101322;
 
 }
 
@@ -93,7 +95,7 @@ body{
 height: 80%;
 overflow: hidden scroll;
 background-color: #E6E6FA;
-padding: 0;
+padding: 0 30px;
 margin: 0 5% 0 5%;
 
 font-size: 1rem;
@@ -159,6 +161,8 @@ text-align: left;
     border: 1px #e6e6fac7 solid;
     text-align: center;
     cursor: pointer;
+    
+    background-color : white;
 
 
 }

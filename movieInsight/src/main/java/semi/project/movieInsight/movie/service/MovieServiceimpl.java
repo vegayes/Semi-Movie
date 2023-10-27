@@ -34,6 +34,16 @@ public class MovieServiceimpl implements MovieService{
 		
 		return dao.selectManagerMovieList();
 	}
+
+
+
+	/**
+	 * 영화 즐겨찾기 목록 조회 
+	 */
+	@Override
+	public List<Movie> selectLikeMovie() {
+		return dao.selectLikeMovie();
+	}
 	
 
 

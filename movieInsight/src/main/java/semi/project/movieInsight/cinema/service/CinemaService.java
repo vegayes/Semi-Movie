@@ -12,5 +12,10 @@ public interface CinemaService {
 	 */
 	List<Cinema> searchCinemaList(String cinemaQuery);
 
+	/** 즐겨찾기 영화관 
+	 * @return
+	 */
+	List<Cinema> selectLikeCinema();
+
 
 }
