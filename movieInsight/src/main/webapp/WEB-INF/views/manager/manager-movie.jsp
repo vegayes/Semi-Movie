@@ -15,7 +15,7 @@
         <nav>
             <div class="admin-menu">
                 <ul>
-                    <li class="admin-list"><a href="#">회원 관리</a></li> 
+                    <li class="admin-list"><a href="/movieInsight/manager/member">회원 관리</a></li> 
                     <li class="admin-list"><a href="/movieInsight/manager/movie">영화</a></li>               
                     <li class="admin-list"><a href="/movieInsight/manager/cinema">영화관</a></li>
                     <li class="admin-list"><a href="/movieInsight/manager/menu">메뉴</a></li>
@@ -45,7 +45,7 @@
                             <a href="/movieInsight/movie/${movieList.movieNo}"  class="comment-button">댓글</a>
                             <!-- 이거 출연진 없는 영화는 조회 안됨 -->
                             <a href="#" class="edit-button">수정</a>
-                            <a href="#" class="delete-button">삭제</a>
+                            <a href="/movieInsight/managerDetail/deleteMovie/${movieList.movieNo}" class="delete-button">삭제</a>
                         </div>
                     </div>
                 </c:forEach>
@@ -85,7 +85,15 @@
             </script>
             
     
+            <c:if test="${not empty message}">
+         
+                <script>
+                    // EL/JSTL 구문이 먼저 해석
+                    // 문자열의 경우 따옴표가 없는 상태이니 옆에 붙여줘야함.
+                    alert('${message}') // ${message}
+                </script>
 
+            </c:if>
    
 
 

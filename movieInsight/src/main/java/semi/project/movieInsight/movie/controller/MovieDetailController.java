@@ -57,14 +57,14 @@ public class MovieDetailController {
 		model.addAttribute("directorInfoList", directorInfoList);
 		model.addAttribute("actorInfoList", actorInfoList);
 		
-		System.out.println("movieInfo : " + movieInfo);
+		//System.out.println("movieInfo : " + movieInfo);
 		
 		// 2) 영화를 상영중인 영화관 찾기
 		List<Cinema> selectCinemaList = service.selectCinemaList(movieNo);
 		
 		model.addAttribute("selectCinemaList", selectCinemaList);
 		
-		System.out.println("장르 : " + movieInfo.getMovieGenre());
+		//System.out.println("장르 : " + movieInfo.getMovieGenre());
 		
 		// 3) 해당 영화와 비슷한 장르 추천
 		List<String>  genreList = Arrays.asList(movieInfo.getMovieGenre().split("/"));
@@ -83,7 +83,7 @@ public class MovieDetailController {
 			genreMap.put("genreList", genreList);
 			genreMap.put("movieNo", movieNo);
 			
-			System.out.println(genreMap);
+			//System.out.println(genreMap);
 			
 			List<Movie> recommendMovie = service.recommendMovie(genreMap);
 			model.addAttribute("recommendMovie", recommendMovie);

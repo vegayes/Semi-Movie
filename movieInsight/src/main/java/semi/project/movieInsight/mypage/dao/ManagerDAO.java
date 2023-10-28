@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
 
@@ -47,7 +48,10 @@ public class ManagerDAO {
 
 	
 	
-	// 관리자 페이지에서 메뉴를 카테고리별로 조회 
+
+	/** 관리자 페이지에서 메뉴를 카테고리별로 조회해서 map 에 넣어서 반환
+	 * @return
+	 */
 	public Map<String, List<Menu>> selectMenu() {
 		
 		 Map<String, List<Menu>> menuMap = new HashMap<String, List<Menu>>();
@@ -74,11 +78,28 @@ public class ManagerDAO {
 		return menuMap;
 	}
 
+	
+	
 	public int deleteCinema(int cinemaNo) {
 		
 		return sqlSession.update("cinemaMapper.deleteCinema", cinemaNo);
 	}
+
 	
 	
+	
+	public int deleteMovie(int movieNo) {
+		
+		return sqlSession.update("movieMapper.deleteMovie", movieNo);
+	}
+	
+	
+
+	public int updateCinema(Cinema cinemaInfo) {
+		
+		return sqlSession.update("cinemaMapper.updateCinema", cinemaInfo);
+	}
+	
+
 	
 }
