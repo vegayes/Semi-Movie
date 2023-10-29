@@ -322,9 +322,9 @@
 				                      <div class="galleryCinema">
 				                      	<c:forEach items = "${cinemaList}" var = "cinema">
 					                        <div class="recommend-container-cinema">
-					                          <a href="/movieInsight/movie/${cinema.cinemaName}">
+					                          <a href="/movieInsight/cinema/${cinema.cinemaName}">
 					                    		<div class = "recommendImg-wrapper-cinema">	                    		
-						                            <img src="/movieInsight/resources/images/movie/${cinema.cinemaImg}" alt="movieTitle : ${cinema.cinemaName}">
+						                            <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}" alt="movieTitle : ${cinema.cinemaName}">
 						                            <div class = "recommendImg-hover">${cinema.cinemaName}</div>
 					                    		</div>
 					                          </a>

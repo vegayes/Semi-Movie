@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
-import semi.project.movieInsight.common.CookieClass;
+import semi.project.movieInsight.common.CookieUrlClass;
 import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieDetailService;
@@ -108,7 +108,7 @@ public class MovieDetailController {
 //			System.out.println("url : " + currentUrl);
 			 model.addAttribute("pageType", "movie");
 			 
-			 CookieClass.setCookieUrl(request, response, loginMember.getMemberId(), Integer.toString(movieNo));
+			 CookieUrlClass.setCookieUrl(request, response, loginMember.getMemberId(), Integer.toString(movieNo));
 
 		return "movie/movie-detail-page";
 	}

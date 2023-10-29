@@ -62,6 +62,14 @@ public interface MypageService {
 
 
 
+	/** 4-3) 회원정보 수정
+	 * @param updateMember
+	 * @return
+	 */
+	int updateInfo(Member updateMember);
+
+
+
 
 
 

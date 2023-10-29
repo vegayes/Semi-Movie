@@ -268,33 +268,15 @@ prevButton.addEventListener('click', () => {
 
 // 영화관 Swiper
 
-const galleryCinema = document.querySelector('.galleryCinema');
-const prevButtonCinema = document.querySelector('.cinema-prev-button');
-const nextButtonCinema = document.querySelector('.cinema-next-button');
 
-nextButtonCinema.addEventListener('click', () => {
-  scrollPosition += galleryCinema.clientWidth;
-  if (scrollPosition > galleryCinema.scrollWidth - galleryCinema.clientWidth) {
-    scrollPosition = galleryCinema.scrollWidth - galleryCinema.clientWidth;
-  }
-  galleryCinema.style.transform = `translateX(-${scrollPosition}px)`;
-});
 
-prevButtonCinema.addEventListener('click', () => {
-  scrollPosition -= galleryCinema.clientWidth;
-  if (scrollPosition < 0) {
-    scrollPosition = 0;
-  }
-  galleryCinema.style.transform = `translateX(-${scrollPosition}px)`;
-});
-
-/*
 const galleryCinema = document.querySelector('.galleryCinema');
 const prevButtonCinema = document.querySelector('.cinema-prev-button');
 const nextButtonCinema = document.querySelector('.cinema-next-button');
 
 //let scrollPosition = 0;
 
+
 nextButtonCinema.addEventListener('click', () => {
   scrollPosition += galleryCinema.clientWidth;
   if (scrollPosition > galleryCinema.scrollWidth - galleryCinema.clientWidth) {
@@ -310,7 +292,7 @@ prevButtonCinema.addEventListener('click', () => {
   }
   galleryCinema.style.transform = `translateX(-${scrollPosition}px)`;
 });
-*/
+
 
 
 

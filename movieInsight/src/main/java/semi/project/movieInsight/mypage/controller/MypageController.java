@@ -30,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.service.CinemaService;
+import semi.project.movieInsight.common.CookieUrlClass;
 import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.service.MypageService;
@@ -70,14 +71,49 @@ public class MypageController {
 		model.addAttribute("cinemaList", selectLikeCinema);
 		
 		// 3)방문기록 목록 조회
-		
 		Cookie[] cookies = request.getCookies();
 
 		if (cookies != null) {
 		    for (Cookie cookie : cookies) {
-		        if (cookie.getName().startsWith("uniqueCookie_")) {
+		        if (cookie.getName().startsWith("urlCookie_")) {
 		            String value = cookie.getValue();
-		            // 이제 userId와 value를 사용하여 작업을 수행할 수 있습니다.
+		            
+		            System.out.println("쿠키 이름 : " + cookie.getName());
+		            
+		            System.out.println("cookies value : " + value );
+		            
+		            String[] visitInfo = value.split("_");
+		            
+		            System.out.println("visitInfo" + visitInfo);
+		            
+		            if(cookie.getName().split("_")[1].equals(loginMember.getMemberId())) {
+		            	
+		            	System.out.println("===== 로그인한 번호와 쿠키의 번호가 일치한 경우 =====");
+		            	
+		            	
+		            	
+		            }
+		            
+		            
+		            
+		            if(visitInfo[0].equals(loginMember.getMemberId())) {
+		            	
+//		            	
+//		            	int visitMovie = Integer.parseInt(visitInfo[1]);
+//		            	
+//		            	System.out.println("visitMovie : " + visitMovie);
+		            	//======================================= [ 방법 ] =========================================
+		            	/* 
+		            	 * 쿠키 이름 -> urlCookie_(사용자id) 
+		            	 * 쿠키 값 -> 최신 순서대로 저장 가능 ex) 2_3_4 경우 (2가 가장 예전에 방문한 페이지, 4가 가장 최근에 방문한 페이지)
+		            	 */
+		            	//==========================================================================================
+		            	
+		            	
+		            	
+		            }
+		            
+		            
 		        }
 		    }
 		}
@@ -170,38 +206,77 @@ public class MypageController {
 		// 로그인한 회원의 번호를 updateMember에 세팅
 		updateMember.setMemberNo( loginMember.getMemberNo() );
 		
-		
-		// 입력하지 않은 경우
-		
-		
-		// 비밀번호를 입력한 경우
-		
-		System.out.println("입력한 비밀번호 " + updateMember.getMemberId());
-		System.out.println("입력한 닉네임 " + updateMember.getMemberNickname());
-		System.out.println("입력한 성별 " + updateMember.getMemberGender());
-		
-		// DB 회원 정보 수정 (update) 서비스 호출
-//		int result = service.updateInfo(updateMember);
-		
-		int result = 0;
-		
-		String message = null;
-		
-		// 결과값으로 성공
-		if(result > 0) {
-			// -> 성공 시 Session에 로그인된 회원 정보도 수정(동기화)
-			loginMember.setMemberNickname( updateMember.getMemberNickname() );
-			loginMember.setMemberGender( updateMember.getMemberGender() );
-
+		int result = 0;	
+		String message = null;		
+		// 비밀번호 입력하지 않은 경우
+		if(updateMember.getMemberPw().equals(null)) {
 			
-			message = "회원 정보 수정 성공";
+			System.out.println("입력 안함 ");
 			
-		} else {
-			// 실패에 따른 처리 
+			System.out.println("입력한 닉네임 " + updateMember.getMemberNickname());
+			System.out.println("입력한 성별 " + updateMember.getMemberGender());
+			
+			if(updateMember.getMemberNickname().equals(loginMember.getMemberNickname()) || updateMember.getMemberGender().equals(loginMember.getMemberGender())) {
+				
+				result = 0;
+				
+				message = "기존과 일치하는 정보 입력 불가";
+				System.out.println("기존과 일치하는 정보 입력 불가");
+				
+			}
+			
+			
+			result = service.updateInfo(updateMember);
+			
+			if(result > 0) {
+				loginMember.setMemberNickname( updateMember.getMemberNickname() );
+				loginMember.setMemberGender( updateMember.getMemberGender() );
+				
+				message = "회원 정보 수정 성공";
+				
+			} else {
+				// 실패에 따른 처리 
 
-			message = "회원 정보 수정 실패";
+				message = "회원 정보 수정 실패";
+				
+			}
+			
+			
+		}else { // 비밀번호를 입력한 경우
+			
+			System.out.println("입력한 비밀번호 " + updateMember.getMemberPw());
+			System.out.println("입력한 닉네임 " + updateMember.getMemberNickname());
+			System.out.println("입력한 성별 " + updateMember.getMemberGender());			
+			
+			
+			String newPw = bcrypt.encode(updateMember.getMemberPw());	
+			
+			System.out.println("newPw : " + newPw);
+			
+			updateMember.setMemberPw(newPw);
+			
+			result = service.updateInfo(updateMember);
+			
+			if(result > 0) {
+				// -> 성공 시 Session에 로그인된 회원 정보도 수정(동기화)
+				loginMember.setMemberPw(newPw);
+				loginMember.setMemberNickname( updateMember.getMemberNickname() );
+				loginMember.setMemberGender( updateMember.getMemberGender() );
+				message = "회원 정보 수정 성공";
+				
+			} else {
+				// 실패에 따른 처리 
+
+				message = "회원 정보 수정 실패";
+				
+			}
 			
 		}
+
+		// 결과값으로 성공
+
+		System.out.println("변경된 닉네임 : " +loginMember.getMemberNickname());
+
 		
 		ra.addFlashAttribute("message", message);
 		

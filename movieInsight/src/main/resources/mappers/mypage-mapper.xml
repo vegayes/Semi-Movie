@@ -56,6 +56,20 @@
 	</resultMap>
 	
 	
+	<resultMap type="Member" id="member_rm">
+		<id property="memberNo" column="MEMBER_NO" />
+
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="memberPw" column="MEMBER_PW" />
+		<result property="memberEmail" column="MEMBER_EMAIL" />
+		<result property="memberNickname" column="MEMBER_NICKNAME" />
+		<result property="memberGender" column="MEMBER_GENDER" />
+		<result property="memberProfile" column="MEMBER_PROFILE" />
+		<result property="memberEnrollDate" column="MEMBER_ENROLL_DATE" />
+		<result property="memberDelYN" column="MEMBER_DEL_YN" />
+	</resultMap>
+	
+	
 	<!-- 마이페이지 즐겨찾기 영화 목록 조회  -->
 	<select id="selectLikeMovie" resultMap = "movie_rm">
 		SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_IMG , TO_CHAR(MOVIE_LIKE_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') MOVIE_LIKE_ENROLL_DATE
@@ -104,7 +118,14 @@
 		WHERE MEMBER_NO = #{memberNo}
   	</update>
   	
-  	
+  	<!-- 회원 정보 수정 -->
+	<update id="updateInfo" parameterType="Member">
+		UPDATE "MEMBER" SET
+		MEMBER_NICKNAME = #{memberNickname},
+		MEMEBER_GENDER  = #{memberGender}
+		<if test="memberPw != null">,MEMBER_PW = #{memberPw}</if>
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
   	
   	
   	

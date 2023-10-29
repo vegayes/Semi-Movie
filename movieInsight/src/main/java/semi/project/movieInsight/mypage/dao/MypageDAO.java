@@ -72,13 +72,14 @@ public class MypageDAO {
 	}
 	
 	
-	/** 회원 비밀번호 수정
-	 * @param loginMember
+
+
+	/**회원 정보 수정
+	 * @param updateMember
 	 * @return
 	 */
-	public int updatePw(Member loginMember) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateInfo(Member updateMember) {
+		return sqlSession.update("mypageMapper.updateInfo", updateMember);
 	}
 
 

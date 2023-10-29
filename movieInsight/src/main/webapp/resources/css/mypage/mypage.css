@@ -306,6 +306,7 @@ aside > a{
     justify-content: center;
     align-items: center;
     
+    
     position: relative;
 }
 
@@ -331,6 +332,11 @@ aside > a{
     margin-top: 0;
 }
 
+.recommendImg-wrapper-cinema{
+	width : 100%;
+	
+}
+
 
 .recommendImg-wrapper:hover .recommendImg-hover{
 	display : flex;
@@ -346,6 +352,19 @@ aside > a{
     border : 5px solid #ffc2d1;
 }
 
+.recommendImg-wrapper-cinema:hover .recommendImg-hover{
+	display : flex;
+    font-size : 25px;
+    font-weight : bold;
+	justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.recommendImg-wrapper-cinema:hover{
+
+    border : 5px solid #ffc2d1;
+}
 
 .prev-button,
 .next-button,
