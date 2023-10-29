@@ -9,7 +9,7 @@
         <property name="port" value="587" />
 
         <property name="username" value="movieinsightsemiproject@gmail.com"/>
-        <property name="password" value="lfxknlercwccpdcg" /> <!-- 구글 2단계인증 앱비밀번호 -->
+        <property name="password" value="movieinsight" /> <!-- 구글 2단계인증 앱비밀번호 -->
 
         <property name="javaMailProperties">
             <props>

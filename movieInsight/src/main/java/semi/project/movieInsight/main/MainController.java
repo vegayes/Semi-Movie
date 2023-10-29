@@ -67,7 +67,7 @@ public class MainController {
 //		System.out.println("메인 가려고함.");
 
 		
-		return "movie/home-page";
+//		return "movie/home-page";
 //		return "redirect:/movie";
 //		return "redirect:/mypage/member";
 //		return "/manager/event";
