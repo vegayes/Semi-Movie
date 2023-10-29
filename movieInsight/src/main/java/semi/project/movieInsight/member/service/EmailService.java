@@ -6,5 +6,9 @@ public interface EmailService {
 
 
 
+//	
+//	public int findIdCheck(String memberEmail)throws Exception;
+//	
+
   
 }

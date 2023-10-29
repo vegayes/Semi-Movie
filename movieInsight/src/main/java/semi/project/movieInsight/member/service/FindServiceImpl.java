@@ -74,4 +74,18 @@
 //		return result;
 //	}
 //
+
+
+//@Override
+//	public List<MemberVO> findId(String memberEmail)throws Exception{
+//		return memberDAO.findId(memberEmail);
+//	}
+//	
+//	@Override
+//	public int findIdCheck(String memberEmail)throws Exception{
+//		return memberDAO.findIdCheck(memberEmail);
+//	}
+//
+
+
 //}
