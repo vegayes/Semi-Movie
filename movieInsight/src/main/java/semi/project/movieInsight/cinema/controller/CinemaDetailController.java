@@ -46,10 +46,10 @@ public class CinemaDetailController {
 			Model model
 			){
 		
-			System.out.println("영화관 이름 : " + cinemaName);
+			//System.out.println("영화관 이름 : " + cinemaName);
 		
 			Cinema  cinemaInfo =  service.selectCinemaInfo(cinemaName);
-		 	System.out.println("cinemaNo : " + cinemaInfo.getCinemaNo());
+		 	//System.out.println("cinemaNo : " + cinemaInfo.getCinemaNo());
 		 	
 		 	model.addAttribute("cinemaInfo", cinemaInfo);
 		 	

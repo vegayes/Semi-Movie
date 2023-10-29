@@ -41,7 +41,7 @@
                         <span class="cinema-title">수용인원 : ${cinema.cinemaMaxInclude}명</span>
                     
                         <div class="cinema-buttons">
-                            <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}" class="comment-button">댓글</a>
+                            <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}#cinemaScroll" class="comment-button">댓글</a>
                             <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}" class="edit-button">수정</a>
                             <a href="/movieInsight/managerDetail/deleteCinema/${cinema.cinemaNo}" class="delete-button">삭제</a>
                         </div>

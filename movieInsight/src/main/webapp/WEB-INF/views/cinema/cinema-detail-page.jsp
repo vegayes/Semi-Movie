@@ -25,7 +25,7 @@
 
                     <img src="/movieInsight/resources/images/cinema/${cinemaInfo.cinemaImg}" id="cinemaImg">
                     <c:if test="true">
-                        <input type="file" name="cinemaImage"  accept="image/*"> 
+                        <input type="file" name="cinemaImage"  id="fileInput" accept="image/*"> 
                     </c:if>
                             
                         
@@ -175,7 +175,7 @@
     </section>
     
 
-        <section class="facility">
+        <section class="facility" id="cinemaScroll">
             <section class="block">
                 <section class="block_name">                    
                       시설만족도
@@ -409,5 +409,5 @@
 
 
 </body>
-    <script src="/resources/js/cinema/cinema-detail-page.js"></script>
+    <script src="/movieInsight/resources/js/cinema/cinema-detail-page.js"></script>
 </html>

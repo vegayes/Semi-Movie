@@ -57,7 +57,7 @@ public class MovieDetailController {
 		model.addAttribute("directorInfoList", directorInfoList);
 		model.addAttribute("actorInfoList", actorInfoList);
 		
-		//System.out.println("movieInfo : " + movieInfo);
+		System.out.println("movieInfo : " + movieInfo);
 		
 		// 2) 영화를 상영중인 영화관 찾기
 		List<Cinema> selectCinemaList = service.selectCinemaList(movieNo);

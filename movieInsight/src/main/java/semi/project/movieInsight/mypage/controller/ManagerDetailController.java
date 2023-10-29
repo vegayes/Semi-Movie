@@ -59,8 +59,8 @@ public class ManagerDetailController {
 			@RequestParam(value = "cinemaImage", required = false) MultipartFile cinemaImage, HttpSession session
 			) throws Exception {
 		
-		System.out.println("수정된 cinemaInfo : " + cinemaInfo);
-		System.out.println("cinemaImage : " + cinemaImage);
+		//System.out.println("수정된 cinemaInfo : " + cinemaInfo);
+		//System.out.println("cinemaImage : " + cinemaImage);
 		String cinemaName = cinemaInfo.getCinemaName();
 		// 웹 접근경로(webapp 기준, 경로는 webapp의 하위 폴더부터 시작) 
 		String webPath = "/resources/images/cinema/";
@@ -77,7 +77,7 @@ public class ManagerDetailController {
 		
 		String encodedCinemaName = URLEncoder.encode(cinemaName, StandardCharsets.UTF_8.toString()).replace("+", " ");
 		
-		System.out.println("encodedCinemaName : " + encodedCinemaName);
+		//System.out.println("encodedCinemaName : " + encodedCinemaName);
 		
 		return "redirect:/cinemaDetail/" + encodedCinemaName;
 	}

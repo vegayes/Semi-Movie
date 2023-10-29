@@ -42,7 +42,7 @@
                         <span class="movie-title">${movieList.movieRunningTime}분</span>
                     
                         <div class="movie-buttons">
-                            <a href="/movieInsight/movie/${movieList.movieNo}"  class="comment-button">댓글</a>
+                            <a href="/movieInsight/movie/${movieList.movieNo}#commentScroll"  class="comment-button">댓글</a>
                             <!-- 이거 출연진 없는 영화는 조회 안됨 -->
                             <a href="#" class="edit-button">수정</a>
                             <a href="/movieInsight/managerDetail/deleteMovie/${movieList.movieNo}" class="delete-button">삭제</a>

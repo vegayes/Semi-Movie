@@ -94,10 +94,24 @@ public class ManagerDAO {
 	}
 	
 	
+	
 
+	/** 이미지를 넣었는지 유무에 따라 다르게 설정
+	 * @param cinemaInfo
+	 * @return
+	 */
 	public int updateCinema(Cinema cinemaInfo) {
 		
-		return sqlSession.update("cinemaMapper.updateCinema", cinemaInfo);
+		System.out.println("DAO에서 cinemaInfo : " + cinemaInfo);
+		
+		if(cinemaInfo.getCinemaImg().equals("")) {
+			System.out.println("updateCinema 실행");
+			return sqlSession.update("cinemaMapper.updateCinema", cinemaInfo);
+		}else {
+			System.out.println("updateCinemaImg 실행");
+			return sqlSession.update("cinemaMapper.updateCinemaImg", cinemaInfo);
+		}
+		
 	}
 	
 

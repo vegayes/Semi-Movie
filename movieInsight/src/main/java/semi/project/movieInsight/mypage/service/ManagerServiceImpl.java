@@ -131,18 +131,17 @@ public class ManagerServiceImpl implements ManagerService{
 	public int updateCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) 
 		throws Exception{
 		
-		
-		System.out.println("영화관 사진이름 : " + cinemaImage.getOriginalFilename());
+		//System.out.println("영화관 사진이름 : " + cinemaImage.getOriginalFilename());
 		cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
 		int result = dao.updateCinema(cinemaInfo);
 		
 		if(result > 0) { 
 			
+			if(cinemaImage.getSize() != 0) {
+				cinemaImage.transferTo(new File(filePath + cinemaImage.getOriginalFilename()));
+			}		
 			
-			cinemaImage.transferTo(new File(filePath + cinemaImage.getOriginalFilename()));
-			
-			
-		}else { // 업데이트 실패 시 이전 이미지로 다시 세팅
+		}else {
 			
 			 throw new RuntimeException("Cinema update failed ");
 		}
