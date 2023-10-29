@@ -45,7 +45,7 @@ public class LoginFilter implements Filter {
 		*/
 		
 		if( session.getAttribute("loginMember") == null ) {
-			resp.sendRedirect("/");
+			resp.sendRedirect("/movieInsight/movie");
 		}
 		
 		// 4) 로그인 상태인 경우 다음 필터 또는 DispatcherServlet으로 전달

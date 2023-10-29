@@ -196,8 +196,6 @@ aside > a{
 	font-family : "KBO-Dia-Gothic_bold";
 }
 
-
-
 /* -----  swiper 다른 방법 ---- */
 
 .favorite-list{
@@ -209,9 +207,8 @@ aside > a{
 }
 
 .likeContainer{
-    width: 1600px;
+    width: 1400px;
     height: 400px;
-    border: 3px solid ;
 }
 
 
@@ -226,14 +223,14 @@ aside > a{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid red;
 }
 
 .ftmain::-webkit-scrollbar-thumb {
     background-color: gray; /* 원하는 색상으로 변경 */
 }
 
-.gallery > div {
+.gallery > div,
+.galleryCinema > div {
     margin-right: 4%; /* 이미지 간격 설정 */
 }
 
@@ -245,29 +242,38 @@ aside > a{
     width: 100%;
 }
 
-.gallery {
+.gallery,
+.galleryCinema {
     display: flex;
     height: 100%;
     padding: 0;
     width: 100%;
     transition: transform 0.3s ease-in-out;
-    border: 2px solid saddlebrown;
 
     align-items: center;
 }
 
 
+
+
 .recommend-container {
- 	height: 200px;
+ 	height: 350px;
+ 	
+ 	margin-left : 25px;
+
+	display : flex;
+    justify-content: center;
+    align-items: center;
+ 	
 }
 
 .recommendImg-wrapper{
-	height: 200px;
-    width: 330px;
+	height: 300px;
+    width: 300px;
     overflow : hidden;	
     
-    border : 2px solid white;
-    border-radius: 15%;
+    border : 5px solid white;
+    border-radius: 50%;
 
 	display : flex;
     justify-content: center;
@@ -277,9 +283,35 @@ aside > a{
 }
 
 
+.recommend-container-cinema {
+ 	height: 350px;
+ 	
+ 	margin-left : 25px;
+
+	display : flex;
+    justify-content: center;
+    align-items: center;
+ 	
+}
+
+.recommendImg-wrapper-cinema{
+	height: 250px;
+    width: 330px;
+    overflow : hidden;	
+    
+    border : 5px solid white;
+    border-radius: 10px;
+
+	display : flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: relative;
+}
+
 
 .recommendImg-hover{
-	    position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     background-color: rgba(255, 207, 220, 0.3);
@@ -309,26 +341,37 @@ aside > a{
     text-align: center;
 }
 
+.recommendImg-wrapper:hover{
+
+    border : 5px solid #ffc2d1;
+}
+
+
 .prev-button,
-.next-button {
+.next-button,
+.cinema-prev-button,
+.cinema-next-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
-  font-size: 50px;
+  font-size: 60px;
   cursor: pointer;
-  color: skyblue;
+  color: #ffd6ff;
   border-radius: 50%;
-  border: 2px solid red;
 }
 
-.prev-button {
+.prev-button,
+.cinema-prev-button {
+  margin-right : 5px;
   left: 0;
 }
 
-.next-button {
-  right: 0;
+.next-button,
+.cinema-next-button {
+  margin-left : 15px;
+  right: 0; 
 }
 
 /*====================================================================================================*/
@@ -386,6 +429,7 @@ aside > a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 
     
     /* overflow: auto; */
@@ -507,6 +551,17 @@ aside > a{
 /* ======================================================================= */
 
 /* 마이페이지-내가 작성한 댓글 */
+.comment-not-content{
+    width:1300px;
+    height:400px;
+	
+	display : flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size : 40px;
+	font-family : "KBO-Dia-Gothic_bold";
+}
 
 .comment-list-content-container{
     flex-basis: 80%;
@@ -644,8 +699,8 @@ aside > a{
 .comment-list-col{
 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     padding: 10px;
 }
 
@@ -655,10 +710,32 @@ aside > a{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding : 5px 0px
 }
 
+.comment-list-col td{
+	display : flex;
+	
+	    justify-content: center;
+    align-items: center;
+}
+
+.comment-list-content-no {
+	flex-basis : 5%;
+}
+
+.comment-list-all-content- {
+	flex-basis : 10%;
+}
+
+.comment-list-board {
+	flex-basis : 20%;
+}
+
+
 .comment-list-content{
-    flex-basis: 50%;
+    flex-basis: 30%;
+    overflow : hidden;
 }
 
 .comment-list-date{
@@ -669,7 +746,7 @@ aside > a{
 }
 
 .comment-list-edit{
-    flex-basis: 10%;
+    flex-basis: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -702,6 +779,104 @@ aside > a{
 	opacity: 0.9;
 }
 
+.comment-setting{    
+    flex-basis:3%;
+    width: 1100px;
+    /* width: 360px; */
+    /* height: 60px; */
+    /* background-color: rebeccapurple; */
+    /* align-self: flex-start; */
+    
+    padding :10px 0px; 
+    
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    
+    
+   
+}
+
+.comment-setting > a:nth-of-type(1),
+.comment-setting > .dropdown > a:nth-of-type(1){
+    background-color: #e2dbff;
+    color: black;
+    border: 2px solid black;
+    border-radius: 10px;
+
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.movie-comment-btn{
+    margin : 0px 30px;
+}
+
+/* 영화관 버튼 (비활성화일 때)  */
+.cinema-comment-btn {
+    background-color: white;
+    opacity: 0.5;
+    color : white;
+    margin : 0px;
+    padding: 10px 0px;
+}
+
+
+/* 영화관 버튼 누르면 드롭 다운 파일 */
+
+.dropdown {
+  display: flex; /* 블록 요소로 변경 */
+  /* position: relative; */
+
+}
+
+.dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -5px; /* 화살표가 뾰족하게 나오도록 왼쪽에 배치 */
+  transform: translateY(-50%);
+  border-width: 6px 10px 6px 0; /* 뾰족한 화살표 모양을 만들기 위해 크기 조정 */
+  border-style: solid;
+  border-color: transparent #e2dbff transparent transparent;
+  z-index: 2; /* 화살표를 다른 내용 위로 띄웁니다. */
+}
+
+/* .dropdown-content 스타일을 수정합니다. */
+.dropdown-content {
+  display: none; /* display를 block으로 변경 */
+  position: relative; /* 포지션을 상대 포지션으로 변경 */
+  background-color: #e2dbff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  padding-left: 6px; /* 화살표와 내용 사이에 간격을 줍니다. */
+}
+
+
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  display: block;
+  
+  font-weight : bold;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+.dropdown:hover .cinema-comment-btn {
+  background-color: #3e8e41;
+}
+
+
 /*-----------------------------------------------------------------------------------*/
 
 
@@ -718,6 +893,7 @@ aside > a{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    
 
 }
 
@@ -726,6 +902,7 @@ aside > a{
 
 
 .modify-member-info-content{
+	
     flex-basis: 100%;
     width: 1159px;
     /* height: 1500px; */
@@ -763,17 +940,59 @@ aside > a{
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    
+    display : flex;
+    justify-content: center;
+    align-items: center;
 } 
 
 .member-profile-wrapper>img{
-    width: 100%;
+    height: 100%;
+}
+
+.member-info-profile-container{position: relative;}
+
+#deleteImage{
+  position: absolute;
+  top: 30px;
+  right: 40%;
+
+  transform: translate(50%, -50%);
+
+  cursor: pointer;
+  color : yellow;
+ 	z-index : 100;
+	
+}
+
+#deleteImage:hover{
+
+
+	color : red;
+
+}
+
+.member-change-btn-container{
+	
+	display : flex;
+	
+}
+
+.member-profile-wrapper>i{
+	width : 100%;
+	font-size : 100px;
+	
+    display : flex;
+    justify-content: center;
+    align-items: center;
+	
 }
 
 
 .member-profile-modify-btn{
     background-color: #DCEFF3;;
     border-radius: 10px;
-    width: 400px;
+    width: 350px;
     height: 40px;
 
     color: #8B8B8B;
@@ -785,9 +1004,18 @@ aside > a{
     font-size: 20px;
     cursor: pointer; 
     
+    margin-left : 20px;
+    
     transition: background-color 0.3s ease, color 0.3s ease;
 
 }
+
+
+.changeBtn{
+	border : none;
+}
+
+
 
 .fa-camera-retro{
     margin-right: 4px;
@@ -803,17 +1031,36 @@ input[type="file"] {
 .member-profile-modify-btn:hover{
     background-color: #7A80FF;
     color: white;
+    font-weight : bold;
+}
+
+.changeBtn:hover{
+    background-color: #ffc057;
+    color: white;
+    font-weight : bold;
 }
 
 
 
 /*변경 내용*/
+.info-container{
+	width : 100%;
+	height : 55%;
+	
+	display : flex;	
+	 	justify-content: center;
+	
+	
+	padding : 20px 0px;
+}
+
 .member-info-container{
-    flex-basis: 50%;
+    height : 100%;
+    width : 100%;
 
     display: flex;
     flex-direction: column;
-
+    
 }
 
 .modify-content-container{
@@ -823,7 +1070,7 @@ input[type="file"] {
 }
 
 .modify-title{
-    flex-basis: 30%;
+    flex-basis: 35%;
 
     display: flex;
     justify-content: center;
@@ -834,7 +1081,7 @@ input[type="file"] {
 }
 
 .modify-content{
-    flex-basis: 50%;
+    flex-basis: 30%;
 
     display: flex;
     align-items: center;
@@ -844,7 +1091,7 @@ input[type="file"] {
     flex-basis: 100%;
 
     font-size: 30px;
-    width: 526px;
+    width: 450px;
     height: 50px;   
     background: #D9D9D9;
     border-radius: 10px;
@@ -862,28 +1109,33 @@ input[type="file"] {
     color: black;
     font-size:30px;
     text-align: center;
+    padding : 10px;
 }
 
 .modify-content-input >input{
-    flex-basis: 50%;
+    flex-basis: 40%;
     color: #8B8B8B;
     font-size: 30px;
     font-weight: bold;
     border: none;
     outline : none;
     background-color: transparent;
-    padding: 15px;
+    padding: 10px 15px;
 
     font-size: 25px;
 }
 
+.modify-content-input >input:nth-of-type(2){
+    padding: 10px 10px;
+
+}
 .validation-content{
-    flex-basis: 25%;
+    flex-basis: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    font-size: 15px;
+    font-size: 13px;
     font-weight: bold;
 }
 
@@ -1060,7 +1312,9 @@ footer>img{
 }
 
 
-
+/* 메세지 색상 지정 */
+.confirm{ color : #affc41; }
+.error{ color : #f42c04; }
 
 
 

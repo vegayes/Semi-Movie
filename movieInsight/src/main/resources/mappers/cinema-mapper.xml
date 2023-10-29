@@ -18,7 +18,8 @@
 		<result property="cinemaMaxInclude" column="CINEMA_MAX_INCLUDE" />
 		<result property="cinemaDelYN" column="CINEMA_DEL_YN" />
 		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
-		<result property="cinemaGrade" column="CINEMA_GRADE"/>	
+		<result property="cinemaGrade" column="CINEMA_GRADE"/>
+		
 	</resultMap>
 
 
@@ -37,6 +38,7 @@
 		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
 		<result property="actorNames" column="ACTOR_NAMES"/>
 		<result property="directorNames" column="DIRECTOR_NAMES"/>
+		
 	</resultMap>
 
 
@@ -119,7 +121,7 @@
   	</update>
   	
   	
-  	
+
   	
   	
   	

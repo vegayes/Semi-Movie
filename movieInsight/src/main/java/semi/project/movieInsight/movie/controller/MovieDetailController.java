@@ -1,12 +1,15 @@
 package semi.project.movieInsight.movie.controller;
 
+import java.io.IOException;
 import java.nio.file.spi.FileSystemProvider;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +20,19 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.common.CookieClass;
+import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieDetailService;
 
 
 @Controller
 @RequestMapping("/movie")
+@SessionAttributes("{loginMember}")
 public class MovieDetailController {
 	
 	@Autowired
@@ -34,15 +42,20 @@ public class MovieDetailController {
 	/** 영화 검색 후 이동 ( movieNo를 가지고 주소 설정 ) 
 	 * @param movieNo
 	 * @return
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
 
 
 //	@GetMapping("/movie/{movieNo}")
 	@GetMapping("{movieNo:^[^0]\\d*}") // 정수 숫자만
 
-	public String selectMovie(@PathVariable("movieNo") int movieNo,
+	public String selectMovie(
+			@SessionAttribute(value = "loginMember", required =false) Member loginMember,
+			@PathVariable("movieNo") int movieNo,
 								Model model,
-								HttpServletRequest request) {
+								HttpServletRequest request, 
+								HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("검색 후 이동");
 		System.out.println(movieNo);
@@ -94,8 +107,9 @@ public class MovieDetailController {
 //			model.addAttribute("currentUrl" + currentUrl.get(2));
 //			System.out.println("url : " + currentUrl);
 			 model.addAttribute("pageType", "movie");
-			
-			
+			 
+			 CookieClass.setCookieUrl(request, response, loginMember.getMemberId(), Integer.toString(movieNo));
+
 		return "movie/movie-detail-page";
 	}
 	
