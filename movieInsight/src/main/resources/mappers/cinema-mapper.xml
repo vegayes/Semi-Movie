@@ -156,6 +156,16 @@
   	
   	</update>
   	
+  	<insert id="insertCinema">
+  	
+	  	INSERT INTO CINEMA c 
+		VALUES(SEQ_CINEMA_NO.NEXTVAL,#{cinemaName},#{cinemaAddress}, #{cinemaContact}, 
+		#{cinemaImg}, #{cinemaLink}, #{cinemaMaxInclude},DEFAULT, #{cinemaSpecialHall})
+  	
+  	</insert>
+  	
+  	
+  	
   	
 
 </mapper>
