@@ -43,7 +43,7 @@ public class MovieController {
 		// 검색한 영화 목록 조회 서비스 호출
 		List<Movie> movieList = service.searchMovieList(movieQuery);
 
-		System.out.println("movieList : " + movieList);
+		//System.out.println("movieList : " + movieList);
 		
 		model.addAttribute("movieQuery", movieQuery);
 		model.addAttribute("movieList", movieList);

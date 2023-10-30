@@ -55,3 +55,19 @@ document.addEventListener("DOMContentLoaded", function () {
           star.style.color = 'white'; // 마우스를 내렸을 때 다시 하얀색으로 변경
       }
   });
+
+  
+  // 파일 입력란의 이벤트 리스너 추가
+  document.getElementById("fileInput").addEventListener("change", function(event) {
+    // 선택한 파일 가져오기
+    const selectedFile = event.target.files[0];
+
+    // 이미지 요소에 미리보기 이미지 표시
+    if (selectedFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById("cinemaImg").src = e.target.result;
+        };
+        reader.readAsDataURL(selectedFile);
+    }
+});

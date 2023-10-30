@@ -18,7 +18,8 @@
 		<result property="cinemaMaxInclude" column="CINEMA_MAX_INCLUDE" />
 		<result property="cinemaDelYN" column="CINEMA_DEL_YN" />
 		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
-		<result property="cinemaGrade" column="CINEMA_GRADE"/>	
+		<result property="cinemaGrade" column="CINEMA_GRADE"/>
+		
 	</resultMap>
 
 
@@ -37,6 +38,7 @@
 		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
 		<result property="actorNames" column="ACTOR_NAMES"/>
 		<result property="directorNames" column="DIRECTOR_NAMES"/>
+		
 	</resultMap>
 
 
@@ -56,10 +58,10 @@
   	<!--  특별관, 평점 아직 못 가져옴 -->
   	<select id = "searchCinemaList" resultMap="cinema_rm">
   		SELECT CINEMA_NO, CINEMA_NAME, CINEMA_ADDRESS, CINEMA_CONTACT,
-			CINEMA_IMG, CINEMA_LINK, CINEMA_MAX_INCLUDE, 
+			CINEMA_IMG, CINEMA_LINK, CINEMA_MAX_INCLUDE 
 		FROM "CINEMA"
 		WHERE CINEMA_DEL_YN = 'N'
-		AND (CINEMA_NAME LIKE '%' || #{movieQuery} || '%'  OR CINEMA_ADDRESS LIKE '%' || #{movieQuery} || '% ' ) 
+		AND (CINEMA_NAME LIKE '%' || #{cinemaQuery} || '%'  OR CINEMA_ADDRESS LIKE '%' || #{cinemaQuery} || '% ' ) 
   	</select>
 
   	<!--  
@@ -100,7 +102,7 @@
   	
   	<select id="selectManagerCinemaList" parameterType="Cinema" resultMap="cinema_rm" >
   	
-  		SELECT CINEMA_NO,CINEMA_NAME,CINEMA_ADDRESS,NVL2('NULL',0,CINEMA_GRADE) CINEMA_GRADE,CINEMA_MAX_INCLUDE 
+  		SELECT CINEMA_NO,CINEMA_NAME,CINEMA_ADDRESS,NVL2('NULL',0,CINEMA_GRADE) CINEMA_GRADE,CINEMA_MAX_INCLUDE
 		FROM CINEMA c 
 		LEFT JOIN CINEMA_EVALUATION ce USING (CINEMA_NO)
 		WHERE CINEMA_DEL_YN = 'N'
@@ -118,10 +120,32 @@
   		
   	</update>
   	
+
+  	<update id="updateCinema">
   	
+  		UPDATE CINEMA SET 
+			 CINEMA_NAME = #{cinemaName},
+			 CINEMA_ADDRESS = #{cinemaAddress},
+			 CINEMA_CONTACT = #{cinemaContact},
+			 CINEMA_LINK = #{cinemaLink},
+			 CINEMA_MAX_INCLUDE = #{cinemaMaxInclude}
+		WHERE CINEMA_NO = #{cinemaNo}
+
   	
+  	</update>
+  
+  	<update id="updateCinemaImg">
   	
+  		UPDATE CINEMA SET 
+			 CINEMA_NAME = #{cinemaName},
+			 CINEMA_ADDRESS = #{cinemaAddress},
+			 CINEMA_CONTACT = #{cinemaContact},
+			 CINEMA_IMG = #{cinemaImg},
+			 CINEMA_LINK = #{cinemaLink},
+			 CINEMA_MAX_INCLUDE = #{cinemaMaxInclude}
+		WHERE CINEMA_NO = #{cinemaNo}
   	
+  	</update>
   	
   	
 

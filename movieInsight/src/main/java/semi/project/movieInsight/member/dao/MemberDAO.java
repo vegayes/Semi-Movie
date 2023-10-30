@@ -22,10 +22,22 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.checkId",id_check);
 	}
 
+
+	/** 로그인
+	 * @param inputMember
+	 * @return
+	 */
+	public Member login(Member inputMember) {
+		return sqlSession.selectOne("memberMapper.login",inputMember);
+	}
+
+	
+
 	// 이메일 중복검사
 	public int CheckEmail(String email) {
 	
 		return sqlSession.selectOne("memberMapper.checkEmail", email);
+
 	}
 
 	

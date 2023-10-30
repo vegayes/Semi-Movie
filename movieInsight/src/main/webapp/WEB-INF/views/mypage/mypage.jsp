@@ -44,7 +44,7 @@
 
                        	<p>My Page</p>
                        
-                        <p>${sessionScope.loginMember.memberNickname}User님, 환영합니다.</p>
+                        <p>${loginMember.memberNickname}님, 환영합니다.</p>
 <%-- ①User는 로그인한 사람 JSP에서 변경해야함  --%>
                     </div>
 
@@ -80,6 +80,7 @@
                      <div id = "favorite-list-modal-box" style="display : none;">
                          <div id = "favorite-list-modal-content">
                              <div id = "fv-modal-close" >&times;</div>
+                             
                              <div class = "popup-title">
                                  MovieInSight
                              </div>
@@ -101,8 +102,43 @@
                                              <th class = "favorite-list-check">check</th>
                                          </tr>
                                      </thead>
+                                     
+                                     
+                                     <c:forEach items = "${movieList}" var="movie">
+	                                     <tr class = "favorite-list" style = "border : 2px solid blue">
+	                                         <td class = "favorite-list-img">
+	                                             <div class = "favorite-list-img-wrapper">
+	                                                 <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
+	                                             </div>  
+	                 
+	                                         </td>
+	                                         <td class = "favorite-list-title">${movie.movieTitle}</td>
+	                                         <td class = "favorite-list-date">${movie.movieLikeEnrollDate}</td>
+	                                         <td class = "favorite-list-check">
+	                                             <input type="checkbox" name ="favorite-check" id="check_btn"/>
+	                                             <label for="check_btn"></label>
+	                                         </td>
+	                                     </tr> 
+                                     </c:forEach>
+                                     
+                                     <c:forEach items = "${cinemaList}" var="cinema">
+	                                     <tr class = "favorite-list" style = "border : 2px solid red">
+	                                         <td class = "favorite-list-img">
+	                                             <div class = "favorite-list-img-wrapper">
+	                                                 <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
+	                                             </div>  
+	                 
+	                                         </td>
+	                                         <td class = "favorite-list-title">${cinema.cinemaName}</td>
+	                                         <td class = "favorite-list-date">${cinema.cinemaLikeEnrollDate}</td>
+	                                         <td class = "favorite-list-check">
+	                                             <input type="checkbox" name ="favorite-check" id="check_btn"/>
+	                                             <label for="check_btn"></label>
+	                                         </td>
+	                                     </tr> 
+                                     </c:forEach>
                  
-                 
+                 <!--  
                                      <tr class = "favorite-list">
                                          <td class = "favorite-list-img">
                                              <div class = "favorite-list-img-wrapper">
@@ -131,7 +167,6 @@
                                          <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
                                          <td class = "favorite-list-check">
                                              <input type="checkbox" name = "favorite-check" />
-                                             <!-- <label for="check_btn"></label> -->
                                          </td>
                                      </tr>
                  
@@ -147,7 +182,6 @@
                                          <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
                                          <td class = "favorite-list-check">
                                              <input type="checkbox" name = "favorite-check"/>
-                                             <!-- <label for="check_btn"></label> -->
                                          </td>
                                      </tr>
                  
@@ -163,7 +197,6 @@
                                          <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
                                          <td class = "favorite-list-check">
                                              <input type="checkbox" name = "favorite-check" />
-                                             <!-- <label for="check_btn"></label> -->
                                          </td>
                                      </tr>
                  
@@ -179,7 +212,6 @@
                                          <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
                                          <td class = "favorite-list-check">
                                              <input type="checkbox" name = "favorite-check" />
-                                             <!-- <label for="check_btn"></label> -->
                                          </td>
                                      </tr>
                  
@@ -194,7 +226,6 @@
                                          <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
                                          <td class = "favorite-list-check">
                                              <input type="checkbox" name = "favorite-check" />
-                                             <!-- <label for="check_btn"></label> -->
                                          </td>
                                      </tr>
                  
@@ -209,9 +240,9 @@
                                          <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
                                          <td class = "favorite-list-check">
                                              <input type="checkbox" name = "favorite-check" id = ""/>
-                                             <!-- <label for="check_btn"></label> -->
                                          </td>
                                      </tr>
+                                     -->
                                  </table>
                                  
                                 
@@ -235,7 +266,7 @@
 					<%--<c:if test="${empty }">--%>
 					<div class = "favorite-list" id = "movie-favorite-container"  >
 						<%--1) 즐겨찾기 리스트가 없는 경우  --%>
-						<c:if test = "false">
+						<c:if test = "${empty movieList}">
 							
 							<div class = "favorite-not-content">
 								 현재 저장된 즐겨찾기가 없습니다. 
@@ -243,20 +274,18 @@
 							</div>
 						
 						</c:if>
-					
-						
+			
 						<%-- 1-1) 즐겨 찾기 리스트가 있는 경우 --%>
-                    	<c:if test = "false">
+                    	<c:if test = "${not empty movieList}">
 				            <div class="likeContainer">
 				                <div class="likeSwiper">
 				                    <div class="gallery-container">
 				                      <div class="gallery">
-				                      
-				                      	<c:forEach items = "${likeMovie}" var = "movie">
+				                      	<c:forEach items = "${movieList}" var = "movie">
 					                        <div class="recommend-container">
 					                          <a href="/movieInsight/movie/${movie.movieNo}">
 					                    		<div class = "recommendImg-wrapper">	                    		
-						                            <img src="/movieInsight/resources/images/movie/${movie.movieNo}" alt="movieTitle : ${movie.movieTitle}">
+						                            <img src="/movieInsight/resources/images/movie/${movie.movieImg}" alt="movieTitle : ${movie.movieTitle}">
 						                            <div class = "recommendImg-hover">${movie.movieTitle}</div>
 					                    		</div>
 					                          </a>
@@ -269,73 +298,48 @@
 				                    <button class="next-button">&gt;</button>
 				                  </div>
 				            </div>
-                    	</c:if>							
+                    	</c:if>	
+                    	
+                    </div>
+                    
+                    
+					<div class = "favorite-list" id = "cinema-favorite-container" style = "display: none;">
+						<%--1) 즐겨찾기 리스트가 없는 경우  --%>
+						<c:if test = "${empty cinemaList}">
 							
-							<!-- 
-	                        <div class="swiper-wrapper">
-	                            <div class = "swiper-slide">
-	                                <div class = "favorite-list-wrapper">
-	                                    <img src = "">
-	                                </div>
-	                            </div>
-	                           
-	                            <div class = "swiper-slide">
-	                                <div class = "favorite-list-wrapper ">
-	                                    <img src = "">
-	                                </div>
-	                            </div>
-	
-	                            <div class = "swiper-slide">
-	                                <div class = "favorite-list-wrapper">
-	                                    <img src = "">
-	                                </div>
-	                            </div>
-	
-	
-	                            <div class = "swiper-slide">
-	                                <div class = "favorite-list-wrapper ">
-	                                    <img src = "">
-	                                </div>
-	                            </div>
-	
-	                            <div class = "swiper-slide">
-	                                <div class = "favorite-list-wrapper ">
-	                                    <img src = "">
-	                                </div>
-	                            </div>
-	
-	                        </div>
-	                        -->
-
-                    </div>
-
-<!-- 
-                    <div class = "ftMain" style="display: none;"> 
-                        <div class="ftmain">
-                            <div class="gallery-container">
-                                <div class="gallery">
-                                    <div class="favorite-list-wrapper">
-                                        <img src="  " alt="Image 1">
-                                    </div>
-                                    <div class="favorite-list-wrapper">
-                                        <img src="" alt="Image 2">
-                                    </div>
-                                    <div class="favorite-list-wrapper">
-                                        <img src="" alt="Image 3">
-                                    </div>
-                                    <div class="favorite-list-wrapper">
-                                        <img src="" alt="Image 4">
-                                    </div>
-                                    
-                                
-                                </div>
-                            </div>
-                            <button class="prev-button">&lt;</button>
-                            <button class="next-button">&gt;</button>
-                        </div>
-                    </div>
--->
-
+							<div class = "favorite-not-content">
+								 현재 저장된 즐겨찾기가 없습니다. 
+								 <!-- ★★★★★★★★★★★★★★★★★★★★★★★★ 추가하러 가기 ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★  -->
+							</div>
+						
+						</c:if>
+			
+						<%-- 1-1) 즐겨 찾기 리스트가 있는 경우 --%>
+                    	<c:if test = "${not empty cinemaList}">
+				            <div class="likeContainer">
+				                <div class="likeSwiper">
+				                    <div class="gallery-container">
+				                      <div class="galleryCinema">
+				                      	<c:forEach items = "${cinemaList}" var = "cinema">
+					                        <div class="recommend-container-cinema">
+					                          <a href="/movieInsight/cinema/${cinema.cinemaName}">
+					                    		<div class = "recommendImg-wrapper-cinema">	                    		
+						                            <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}" alt="movieTitle : ${cinema.cinemaName}">
+						                            <div class = "recommendImg-hover">${cinema.cinemaName}</div>
+					                    		</div>
+					                          </a>
+					                        </div>
+				                      	</c:forEach>
+				                      	
+				                      </div>
+				                    </div>
+				                    <button class="cinema-prev-button">&lt;</button>
+				                    <button class="cinema-next-button">&gt;</button>
+				                  </div>
+				            </div>
+                    	</c:if>	
+                    	
+                    </div>                    
                 </section>
 
 
@@ -495,266 +499,88 @@
                             내가 작성한 댓글
                         </div>
                     </div>
+                    
+                    <div class = "comment-setting" >
+					
+                        <a class = "movie-comment-btn" id = "movie-comment-btn">
+                            <i class="fa-solid fa-star"></i>
+                            영화 
+                        </a>
+						<div class="dropdown">
+	                        <a class = "cinema-comment-btn" id = "cinema-comment-btn">
+	                            <i class="fa-solid fa-star"></i>
+	                            영화관 
+	                        </a>
+						  <div class="dropdown-content">
+							  <a class = "dropdownBtn">시설 만족도</a>
+							  <a class = "dropdownBtn">직원 친절도</a>
+						  </div>
+					   </div>
+
+
+                    </div>
 
                     <div class = "comment-list-content-container">
-                        <table class = "comment-list-table">
- 
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check" id = "check">
+                        <table class = "comment-list-table" id = "movie-comment-container">
 
-                                    <label for="check"></label> 
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit" id = "cmPopup">
-                                    <button>
-                                        수정 팝업 테스트
+							<c:if test= "${empty commentMovie}">
+								<tr class = "comment-not-content">
+								 	현재 작성된 영화 댓글이 없습니다. 
+								 <!-- ★★★★★★★★★★★★★★★★★★★★★★★★ 추가하러 가기 ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★  -->
+								</tr>
+							</c:if>
+		 					
+		 					<c:if test= "${not empty commentMovie}">
+	 							<c:forEach items = "${commentMovie}" var = "commentMovie" varStatus="status">
+		                             <tr class = "comment-list-col" >
+		                                <td class = "comment-list-check">
+		                                    <input type="checkbox" name = "comment-check" id = "check">
+		
+		                                    <label for="check"></label> 
+		                                </td>
+		                                <td class = "comment-list-content-no">${status.count}</td>
+		                                <td class = "comment-list-board">${commentMovie.movieTitle}</td>
+		                                <td class = "comment-list-content">${commentMovie.movieCommentContent}</td>
+		                                <td class = "comment-list-date"> ${commentMovie.movieCommentDate}</td>
+		                                <td class = "comment-list-edit" id = "cmPopup">
+		                                    <button>
+		                                        수정 팝업 테스트
+		                                    </button>
+		                                </td>
+		                               
+		                            </tr>	
+ 								</c:forEach>
+		 					</c:if>
+		 				</table>		
 
-                                    </button>
-                                </td>
-                            </tr>
-
-
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-
-
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class = "comment-list-col">
-                                <td class = "comment-list-check">
-                                    <input type="checkbox" name = "comment-check">
-                                </td>
-                                <td class = "comment-list-content">댓글1 내용</td>
-                                <td class = "comment-list-date"> 작성 날짜</td>
-                                <td class = "comment-list-edit">
-                                    <button>
-                                        수정
-                                    </button>
-                                </td>
-                            </tr>
+ 						<table class = "comment-list-table" id = "cinema-comment-container" style = "display : none">
+ 							
+ 							<c:if test= "${empty commentCinema}">
+								<tr class = "comment-not-content">
+								 	현재 작성된 영화관 댓글이 없습니다. 
+								 <!-- ★★★★★★★★★★★★★★★★★★★★★★★★ 추가하러 가기 ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★  -->
+								</tr>
+							</c:if>
+ 							<c:if test= "${not empty commentCinema}">	
+	 							<c:forEach items = "${commentCinema}" var = "commentCinema" varStatus="status">
+		                             <tr class = "comment-list-col">
+		                                <td class = "comment-list-check">
+		                                    <input type="checkbox" name = "comment-check" id = "check">
+		                                    <label for="check"></label> 
+		                                </td>
+		                                <td class = "comment-list-content-no">${status.count}</td>
+		                                <td class = "comment-list-board">${commentCinema.cinemaName}</td>
+		                                <td class = "comment-list-content">${commentCinema.cinemaCommentContent}</td>
+		                                <td class = "comment-list-date"> ${commentCinema.cinemaCommentDate}</td>
+		                                 <td class = "comment-list-type" style="display:none">${commentCinema.cinemaCommentType}</td>
+		                                <td class = "comment-list-edit" id = "cmPopup">
+		                                    <button>
+		                                        수정 
+		                                    </button>
+		                                </td>
+		                            </tr>	
+	 							</c:forEach>
+	 						</c:if>
                         </table>
                     </div>
                     <div class ="comment-list-del-container">
@@ -763,24 +589,18 @@
                                 <td class = "comment-list-check">
                                     <input type="checkbox" name = "comment-All" id = "comment-del-All">
                                 </td>
-                                <td class = "comment-list-content">전체선택
-
-                                    <button class = "comment-list-del-btn">
+                   		        <td class = "comment-list-all-content-">전체선택</td>
+                                <td class = "comment-list-board">
+                                   <button class = "comment-list-del-btn">
                                         삭제
                                     </button>
+                                </td>
 
-                                </td>
-                                <td class = "comment-list-date"> 
-                                </td>
-                                <td class = "comment-list-edit"></td>
                             </tr>
                         </table>
                     </div>
                 </section>
 
-                
-                
-                
                 <%--  ===========================================  댓글 수정 팝업  시작  ==================================== --%>
                 <div id = "comment-update-modal-box">
                     <div id = "comment-update-content">
@@ -845,7 +665,7 @@
                     <label  id = "cm-modal-back"></label>
                 </div>   
 
-				<%-- ========================================   댓글 수정 팝업 종료 =========================================--%>
+<%-- ========================================   댓글 수정 팝업 종료 =========================================--%>
 
 
 
@@ -858,130 +678,145 @@
                     </div>
 
                     <div class = "modify-member-info-container">
-                        
+	                        
+						<div class = "modify-member-info-content">
+	                       <form action ="/movieInsight/mypage/profile" method="POST" name ="info-update" id = "profileUpdate" enctype="multipart/form-data">
+	                         <!--  name 아직 안넣음 -->
+		                         
+		                         <!-- 프로필 -->
+		                         <div class = "member-info-profile-container">
+		
+									<div class = "member-profile-wrapper">
+										<%-- 프로필 이미지가 없으면  --%>
+										<c:if test = "${empty loginMember.memberProfile}">
+											<img src="/movieInsight/resources/images/member/기본이미지.png" id = "profileImage">
+										</c:if>
+										
+										<c:if test = "${not empty loginMember.memberProfile}">
+											<img src="/movieInsight/resources/images/member/${loginMember.memberProfile}" id = "profileImage">
+										</c:if>
+	                                </div>
+	                                
+	 								<span id="deleteImage">x</span>
+									
+									<div class = "member-change-btn-container">
+			                             <input type="file" id="file-input" name="profileImage" accept="image/*"/>
+			                             <label for="file-input" class="member-profile-modify-btn">
+			                                 <i class="fa-solid fa-camera-retro"></i>
+			                                 <span>프로필 사진 변경</span>
+			                             </label>
+			
+			                             <button class = "member-profile-modify-btn changeBtn">변경하기</button>
+	                               </div>	
+		                         </div>
+	                       </form>
+	                       
+	                       <div class = "info-container">
 
-                        <form action ="#" name ="info-update" class = "modify-member-info-content">
-                            <!--  name 아직 안넣음 -->
-                            
-                            <!-- 프로필 -->
-                            <div class = "member-info-profile-container">
+		                       <form action ="/movieInsight/mypage/update" name ="info-update" method = "POST">
+		                            <!-- 변경 -->
+		                            <div class = "member-info-container">
+		                                <div class = "modify-content-container" id = "change-pw">
+		                                    <div class = "modify-title">
+		                                        비밀번호 변경
+		                                    </div>
+		
+		                                    <div class = "modify-content">
+		                                        <div class = "modify-content-input">
+		                                            <i class="fa-solid fa-lock"></i>
+		
+		                                            <input type="password" placeholder="User Pw" name = "memberPw" id = "newPw">
+		                                        </div>
+		                                    </div>
+		
+		                                    <!-- 유효성 검사에서 사용할 것 -->
+		                                     <div class = "validation-content" id = "pwMessage">
+		                                    </div>
+		                                </div>
+		
+		                                <div class = "modify-content-container" id = "confirm-pw">
+		                                    <div class = "modify-title">
+		                                        비밀번호 재입력
+		                                    </div>
+		
+		                                    <div class = "modify-content">
+		                                        <div class = "modify-content-input">
+		                                            <i class="fa-solid fa-user-lock"></i>
+		
+		                                            <input type="password" placeholder="Confirm Pw" name = "newCheckPw" id = "newCheckPw">
+		                                        </div>
+		                                    </div>
+		
+		                                    <!-- 유효성 검사에서 사용할 것 -->
+		                                    <div class = "validation-content" id = "pwCheckMessage">
+		                                    </div>
+		                                </div>
+		
+		
+		                                <div class = "modify-content-container" id = "ninck-pw">
+		                                    <div class = "modify-title">
+		                                        닉네임 변경
+		                                    </div>
+		
+		                                    <div class = "modify-content">
+		                                        <div class = "modify-content-input">
+		                                            <i class="fa-regular fa-circle-user"></i>
+		
+		                                             <input type="text" placeholder="NickName" name = "memberNickname" id = "newNickName" value= "${loginMember.memberNickname}">
+		                                        </div>
+		                                    </div>
+		
+		                                    <!-- 유효성 검사에서 사용할 것 -->
+		                                    <div class = "validation-content" id = "nickNameMessage">
+		                                    </div>
+		                                </div>
+		
+		
+		                                <div class = "modify-content-container" id = "change-pw">
+		                                    <div class = "modify-title">
+		                                        성별 변경
+		                                    </div>
+		
+		                                    <div class = "modify-content">
+		                                        <div class = "modify-content-btn">
+		                                            <div class = "modify-gender" id="man" >
+		                                                <label>
+		                                                    <input type="checkbox"  name='memberGender' value='M'>
+		                                                    남자
+		                                                </label>
+		                                            </div>
+		                                            <div class = "modify-gender" id = "woman">
+		                                                <label>
+		                                                    <input type="checkbox"   name='memberGender' value='F'>
+		                                                    여자
+		                                                </label>
+		                                            </div>
+		
+		                                        </div>
+		                                    </div>
+		
+		                                    <div class = "validation-content">
+		                                    </div>
+		                                </div>
+		                            </div>						
+									                            <!-- 버튼 -->
+		                            <div class = "member-info-option-container">
+		                                <button class = "member-info-option-btn ">
+		                                    수정하기
+		                                </button>
+		
+		                                <button class = "member-info-option-btn red">
+		                                    회원탈퇴
+		                                </button>
+		                            </div>
+	                            
+							   </form>
+		                   </div>    
+	                       
+						
 
-                                <div class = "member-profile-wrapper">
-                                    <img src="">
-                                </div>
-
-                                <input type="file" id="file-input" />
-                                <label for="file-input" class="member-profile-modify-btn">
-                                    <i class="fa-solid fa-camera-retro"></i>
-                                    <span>프로필 사진 변경</span>
-                                </label>
-                                  
-                            </div>
-
-
-
-                            <!-- 변경 -->
-                            <div class = "member-info-container">
-                                <div class = "modify-content-container" id = "change-pw">
-                                    <div class = "modify-title">
-                                        비밀번호 변경
-                                    </div>
-
-                                    <div class = "modify-content">
-                                        <div class = "modify-content-input">
-                                            <i class="fa-solid fa-lock"></i>
-
-                                            <input type="password" placeholder="User Pw">
-                                        </div>
-                                    </div>
-
-                                    <!-- 유효성 검사에서 사용할 것 -->
-                                    <div class = "validation-content">
-                                    </div>
-                                </div>
-
-                                <div class = "modify-content-container" id = "confirm-pw">
-                                    <div class = "modify-title">
-                                        비밀번호 재입력
-                                    </div>
-
-                                    <div class = "modify-content">
-                                        <div class = "modify-content-input">
-                                            <i class="fa-solid fa-user-lock"></i>
-
-                                            <input type="password" placeholder="Confirm Pw">
-                                        </div>
-                                    </div>
-
-                                    <!-- 유효성 검사에서 사용할 것 -->
-                                    <div class = "validation-content">
-                                        비밀번호가 일치하지 않습니다.
-                                    </div>
-                                </div>
-
-
-                                <div class = "modify-content-container" id = "ninck-pw">
-                                    <div class = "modify-title">
-                                        닉네임 변경
-                                    </div>
-
-                                    <div class = "modify-content">
-                                        <div class = "modify-content-input">
-                                            <i class="fa-regular fa-circle-user"></i>
-
-                                            <input type="text" placeholder="NickName">
-                                        </div>
-                                    </div>
-
-                                    <!-- 유효성 검사에서 사용할 것 -->
-                                    <div class = "validation-content">
-                                    </div>
-                                </div>
-
-
-                                <div class = "modify-content-container" id = "change-pw">
-                                    <div class = "modify-title">
-                                        성별 변경
-                                    </div>
-
-                                    <div class = "modify-content">
-                                        <div class = "modify-content-btn">
-                                            <div class = "modify-gender" id="man" >
-                                                <label>
-                                                    <input type="checkbox"  name='gender' value='M'>
-                                                    남자
-                                                </label>
-                                            </div>
-                                            <div class = "modify-gender" id = "woman">
-                                                <label>
-                                                    <input type="checkbox"   name='gender' value='F'>
-                                                    여자
-                                                </label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class = "validation-content">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 버튼 -->
-                            <div class = "member-info-option-container">
-                                <a class = "member-info-option-btn ">
-                                    수정하기
-                                </a>
-
-                                <a class = "member-info-option-btn red">
-                                    회원탈퇴
-                                </a>
-                            </div>
-                            
-
-
-                        </form>
-
+						
+						</div>
                     </div>
                 </section>
 
@@ -993,6 +828,10 @@
 
         <!-- Swiper 스크립트 추가 -->
         <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+      	<script>
+			// 로그인한 회원의 성별
+			const loginMemberGender = "${loginMember.memberGender}";
+		</script>
 
         <script src = "/movieInsight/resources/js/mypage/mypage.js"></script>		
 		

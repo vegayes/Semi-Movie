@@ -22,28 +22,19 @@ public class CinemaController {
 	@Autowired
 	private CinemaService service;
 	
-	
-	public String cinemaMain(Model model, HttpServletRequest request) {
-		
-		System.out.println("메인페이지 이동");
-		
-		 model.addAttribute("pageType", "cinema");
-		
-		return "cinema/cinema-homepage";
-	}
-	
+
 
 	@GetMapping("/search")
     public String searchCinema(String cinemaQuery, Model model ,HttpServletRequest request) {
 		
 		System.out.println("search 페이지 들어옴");
 		
-		System.out.println("검색 내용 : " + cinemaQuery);
+		//System.out.println("검색 내용 : " + cinemaQuery);
 		
 		// 검색한 영화 목록 조회 서비스 호출
 		List<Cinema> cinemaList = service.searchCinemaList(cinemaQuery);
 
-		System.out.println("cinemaList : " + cinemaList);
+		//System.out.println("cinemaList : " + cinemaList);
 		
 		model.addAttribute("cinemaQuery", cinemaQuery);
 		model.addAttribute("cinemaList", cinemaList);

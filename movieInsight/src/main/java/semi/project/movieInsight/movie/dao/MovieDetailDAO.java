@@ -67,7 +67,7 @@ public class MovieDetailDAO {
 
 	public List<Movie> recommendMovie(Map<String, Object> genreMap) {
 		
-		System.out.println("DAO에서의 Map  : " + genreMap);
+		//System.out.println("DAO에서의 Map  : " + genreMap);
 		
 		return sqlSession.selectList("movieMapper.recommendMovie", genreMap);
 	}
