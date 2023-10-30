@@ -201,7 +201,7 @@ sendAuthKeyBtn.addEventListener("click", function(){
 
 
         /* fetch() API 방식 ajax */
-        fetch("/movieInsight/superEmail?superEmail="+memberEmail.value)
+        fetch("/movieInsight/sendEmail/superEmail?memberEmail="+memberEmail.value)
         .then(resp => resp.text())
         .then(result => {
             if(result > 0){

@@ -18,9 +18,6 @@ public class EmailServiceImpl implements EmailService{
 	@Autowired
     private JavaMailSender mailSender;
 	
-	private String fromEmail = "movieinsightsemiproject@gmail.com";
-	private String fromUsername = "세미프로젝트";
-	
 	
 	
 
@@ -34,7 +31,6 @@ public class EmailServiceImpl implements EmailService{
             helper.setSubject("이메일 인증"); // 이메일 제목
             helper.setText("인증 코드: " + verificationCode, true); // 이메일 본문
             
-            mimeMessage.setFrom(new InternetAddress(fromEmail, fromUsername));
             
             
             

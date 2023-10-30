@@ -50,7 +50,7 @@ public class MainController {
 //		case 8 : return "admin/admin-event";  
 //		
 //		default : return "common/main";
-//		}
+		
 		
 		
 		
@@ -64,14 +64,14 @@ public class MainController {
 		
 //		System.out.println("메인 가려고함.");
 
-		
-
+		return "member/login_signUp";
+	}
 //		return "movie/home-page";
 //		return "redirect:/movie";
 
 
 //		return "movie/home-page";
-		return "redirect:/movie";
+//		return "redirect:/movie";
 
 //		return "redirect:/mypage/member";
 //		return "/manager/event";
@@ -80,29 +80,29 @@ public class MainController {
 
 //		return "manager/manager-menu";
 
-	}
 	
-	
-	@GetMapping("/movie")
-	public String movieMain(Model model) {
-		
-		System.out.println("영화 메인페이지 이동");
 
-		model.addAttribute("pageType","movie");
-		
-		return "movie/home-page";
+	
+//	@GetMapping("/movie")
+//	public String movieMain(Model model) {
+//		
+//		System.out.println("영화 메인페이지 이동");
+//
+//		model.addAttribute("pageType","movie");
+//		
+//		return "movie/home-page";
+//	}
+//	
+//	@GetMapping("/cinema")
+//	public String cinemaMain(Model model) {
+//		
+//		System.out.println("영화관 메인페이지 이동");
+//		
+//		 model.addAttribute("pageType", "cinema");
+//		
+//		return "cinema/cinema-homepage";
+//	}
+//	
+//	
 	}
-	
-	@GetMapping("/cinema")
-	public String cinemaMain(Model model) {
-		
-		System.out.println("영화관 메인페이지 이동");
-		
-		 model.addAttribute("pageType", "cinema");
-		
-		return "cinema/cinema-homepage";
-	}
-	
-	
-	
-}
+
