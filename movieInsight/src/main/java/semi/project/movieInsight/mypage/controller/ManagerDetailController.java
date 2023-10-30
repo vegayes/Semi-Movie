@@ -67,6 +67,7 @@ public class ManagerDetailController {
 		//실제로 이미지 파일이 저장되어야 하는 서버컴퓨터 경로
 		String filePath = session.getServletContext().getRealPath(webPath);
 		
+		
 		int result = service.updateCinema(cinemaImage,webPath,filePath,cinemaInfo);
 		
 		if(result > 0) {
@@ -80,8 +81,7 @@ public class ManagerDetailController {
 		//System.out.println("encodedCinemaName : " + encodedCinemaName);
 		
 		return "redirect:/cinemaDetail/" + encodedCinemaName;
-	}
-	
+	}	
 	
 	
 	

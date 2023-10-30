@@ -134,11 +134,13 @@ public class ManagerServiceImpl implements ManagerService{
 		//System.out.println("영화관 사진이름 : " + cinemaImage.getOriginalFilename());
 		cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
 		int result = dao.updateCinema(cinemaInfo);
+		//System.out.println("filePath : " + filePath);
 		
 		if(result > 0) { 
 			
 			if(cinemaImage.getSize() != 0) {
 				cinemaImage.transferTo(new File(filePath + cinemaImage.getOriginalFilename()));
+				
 			}		
 			
 		}else {
