@@ -15,6 +15,7 @@
 //@Controller
 //public class FindController {
 //	
+//	
 //	@Autowired
 //	private FindService service;
 //	
@@ -39,25 +40,24 @@
 //	@PostMapping("/findId")
 //	public int findId(String email) {
 //		
-//		
-//		return service.findId(email,"아이디찾기");
+//		return service.findId(email);
 //		
 //	}
-//	
-////		@RequestMapping(value="/findId", method=RequestMethod.POST)
-//	public String findId(MemberVO memberVO,Model model) throws Exception{
-//		logger.info("memberEmail"+memberVO.getMemberEmail());
-//				
-//		if(memberService.findIdCheck(memberVO.getMemberEmail())==0) {
-//		model.addAttribute("msg", "이메일을 확인해주세요");
-//		return "/member/findIdView";
-//		}else {
-//		model.addAttribute("member", memberService.findId(memberVO.getMemberEmail()));
-//		return
-//				"/member/findId";
-//		}
-//	
-//	
+////	
+//////		@RequestMapping(value="/findId", method=RequestMethod.POST)
+////	public String findId(MemberVO memberVO,Model model) throws Exception{
+////		logger.info("memberEmail"+memberVO.getMemberEmail());
+////				
+////		if(memberService.findIdCheck(memberVO.getMemberEmail())==0) {
+////		model.addAttribute("msg", "이메일을 확인해주세요");
+////		return "/member/findIdView";
+////		}else {
+////		model.addAttribute("member", memberService.findId(memberVO.getMemberEmail()));
+////		return
+////				"/member/findId";
+////		}
+////	
+////	
 //
 //	
 //}

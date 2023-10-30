@@ -56,7 +56,7 @@ public class MainController {
 		
 		
 
-//		return "member/find_id";
+		return "member/find_id";
 //	return "movie/home-page";
 //		return "cinema/cinema-detail-page";
 
@@ -67,7 +67,7 @@ public class MainController {
 		
 
 //		return "movie/home-page";
-		return "redirect:/movie";
+//		return "redirect:/movie";
 //		return "redirect:/mypage/member";
 //		return "/manager/event";
 // 
