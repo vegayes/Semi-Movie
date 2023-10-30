@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "promotionMapper">
+	
+	<resultMap type="Promotion" id="promotion_rm">
+		<id property="promotionNo" column="PROMOTION_NO"/>
+		
+		<result property="promotionType" column="PROMOTION_TYPE"/>
+		<result property="promotionImg" column="PROMOTION_IMG"/>
+		<result property="promotionURL" column="PROMOTION_URL"/>
+		<result property="promotionContent" column="PROMOTION_CONTENT"/>
+		<result property="promotionDelYN" column="PROMOTION_DEL_YN"/>
+		<result property="cinemaNo" column="CINEMA_NO"/>
+	</resultMap>
+  	
+  	<resultMap type="EVENT" id="event_rm">
+		<id property="eventPRNo" column="EVENT_PR_NO"/>
+		
+		<result property="cinemaNo" column="CINEMA_NO"/>
+		<result property="eventTitle" column="EVENT_TITLE"/>
+		<result property="eventContent" column="EVENT_CONTENT"/>
+		<result property="eventImg" column="EVENT_IMG"/>
+		<result property="eventURL" column="EVENT_URL"/>
+		<result property="eventEnrollDate" column="EVENT_ENROLL_DATE"/>
+		<result property="eventDelYN" column="EVENT_DEL_YN"/>
+	</resultMap>
+  	
+  	
+  	<select id = "selectPromotionList" resultMap = "promotion_rm">
+  		SELECT * 
+  		FROM CINEMA_PROMOTION
+  	</select>
+  	
+  	<select id = "selectEventPromotionList" resultMap = "event_rm">
+  		SELECT * 
+  		FROM EVENT_PROMOTION 	
+  	</select>
+  	
+  	
+  	
+  	
+
+</mapper>

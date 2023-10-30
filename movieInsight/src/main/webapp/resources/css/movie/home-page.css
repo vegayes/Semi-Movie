@@ -1,47 +1,18 @@
-body {
+   span {
+          font-family: 'Roboto', sans-serif;
+             }
+      body {
         width: 100%;
         margin: 0;
         padding: 0;
         font-family: Pretendard;
-        background-color: rgb(11, 0, 25);
+        background-color: #101322;
         display: grid;
         justify-content: center;
         gap: 32px;
       }
-/*
-      header {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        padding: 12px 0;
 
-        align-items: center;
-      }
-
-      header > .right-menu {
-        display: flex;
-
-        align-items: center;
-        gap: 12px;
-      }
-
-      header > .right-menu > .login {
-        padding: 8px 24px;
-        color: black;
-        font-weight: 600;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        border-radius: 30px;
-        cursor: pointer;
-      }
-
-      header > .right-menu > .user {
-        aspect-ratio: 1 / 1;
-        height: 100%;
-        border-radius: 50%;
-      }
+    
 
       .logo {
         color: white;
@@ -61,7 +32,7 @@ body {
         padding: 12px 36px;
         outline: none;
       }
-*/
+
       main {
         display: flex;
         justify-content: center;
@@ -69,8 +40,8 @@ body {
       }
 
       aside {
-        min-width: 350px;
-        max-width: 350px;
+        min-width: 200px;
+        max-width: 300px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -103,11 +74,12 @@ body {
         margin-bottom: 24px;
       }
 
-      section:not(:nth-child(3)) {
+      section:not(:nth-of-type(3)){
         display: flex;
         flex-direction: column;
         gap: 16px;
       }
+
 
       .section_title {
         color: white;
@@ -328,3 +300,4 @@ body {
   position: sticky;
   top: 0;
 }
+

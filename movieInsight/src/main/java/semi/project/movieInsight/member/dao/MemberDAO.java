@@ -12,13 +12,34 @@ public class MemberDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	/** 회원가입 DAO
+	public int signUp(Member inputMember) {
+	
+		return sqlSession.insert("memberMapper.signUp", inputMember);
+	}
+
+	public int idCheck(String id_check) {
+	
+		return sqlSession.selectOne("memberMapper.checkId",id_check);
+	}
+
+
+	/** 로그인
 	 * @param inputMember
 	 * @return
 	 */
-	public int signUp(Member inputMember) {
-
-		return sqlSession.insert("memberMapper.signUp", inputMember);
+	public Member login(Member inputMember) {
+		return sqlSession.selectOne("memberMapper.login",inputMember);
 	}
+
+	
+
+	// 이메일 중복검사
+	public int CheckEmail(String email) {
+	
+		return sqlSession.selectOne("memberMapper.checkEmail", email);
+
+	}
+
+	
 
 }

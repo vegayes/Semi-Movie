@@ -22,6 +22,28 @@ public class MovieServiceimpl implements MovieService{
 	
 		return dao.searchMovieList(movieQuery);
 	}
+
+	
+	
+	/**
+	 * 관리자 페이지에서 영화목록 전체 조회시 사용
+	 */
+	@Override
+	public List<Movie> selectManagerMovieList() {
+		
+		
+		return dao.selectManagerMovieList();
+	}
+
+
+
+	/**
+	 * 영화 즐겨찾기 목록 조회 
+	 */
+	@Override
+	public List<Movie> selectLikeMovie() {
+		return dao.selectLikeMovie();
+	}
 	
 
 

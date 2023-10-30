@@ -335,3 +335,24 @@
         color: black;
         text-decoration: none;
       }
+      
+      .confirm {
+      	color: green;
+      	font-weight: bold;
+      }
+      
+      .error {
+      	color: red;
+      	font-weight: bold;
+      }
+      
+       #messageDiv_1 {
+      	color: blue;
+      	font-weight: bold;
+      }
+      
+      #messageDiv_2 {
+      	color: blue;
+      	font-weight: bold;
+      }
+      

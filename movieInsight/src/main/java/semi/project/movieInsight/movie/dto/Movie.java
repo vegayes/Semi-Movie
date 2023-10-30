@@ -23,7 +23,7 @@ public class Movie {
     private int movieRunningTime;		// 영화 상영시간
     private String movieEnrollDate; 	// 동영상 등록날짜
     private String movieDelYN;			// 영화 삭제 여부
-    
+    private int movieGrade;				// 영화 평점
 
 //  배우 이름 검색 구분자 조회 
     private String actorNames;

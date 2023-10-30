@@ -7,10 +7,10 @@
 	<title>Main 페이지</title>
 	
     <link rel="stylesheet" href="/movieInsight/resources/css/movie/home-page.css">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-	
 	</head>
 <body>
    
@@ -39,13 +39,13 @@
           <span class="section_title">영화관 추천</span>
           <ul class="movie_list swiper-wrapper">
             <li class="movie_recommand_item swiper-slide">
-              <img src="바탕화면/2.png" />
+              <img src= "/movieInsight/resources/images/movie/home-page/홈페이지로고/2.png" />
             </li>
             <li class="movie_recommand_item swiper-slide">
-              <img src="바탕화면/2.png" />
+              <img src="/movieInsight/resources/images/movie/home-page/홈페이지로고/2.png"/>
             </li>
             <li class="movie_recommand_item swiper-slide">
-              <img src="바탕화면/2.png" />
+              <img src="/movieInsight/resources/images/movie/home-page/홈페이지로고/2.png"/>
             </li>
           </ul>
 
@@ -219,16 +219,17 @@
           </div>
         </section>
         <section class="movie_list swiper swiper-ls-3">
-          <span class="section_title">메뉴 추천</span>
+         
+          <span class="section_title">메뉴 추천</span> 
           <ul class="movie_list swiper-wrapper">
             <li class="movie_recommand_item swiper-slide">
-              <img src="바탕화면/3.png" width="100%" />
+             <img src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png" width="100%" />
             </li>
             <li class="movie_recommand_item swiper-slide">
-              <img src="바탕화면/3.png" width="100%" />
+              <img src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png"" width="100%" />
             </li>
             <li class="movie_recommand_item swiper-slide">
-              <img src="바탕화면/3.png" width="100%" />
+              <img src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png" width="100%" />
             </li>
           </ul>
 
@@ -247,7 +248,7 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <img
-                src="바탕화면/5.png"
+                src="/movieInsight/resources/images/movie/home-page/홈페이지로고/5.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover";
@@ -255,7 +256,7 @@
             </div>
             <div class="swiper-slide">
               <img
-                src="바탕화면/5.png"
+                src="/movieInsight/resources/images/movie/home-page/홈페이지로고/5.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -263,7 +264,7 @@
             </div>
             <div class="swiper-slide">
               <img
-                src="바탕화면/5.png"
+                src="/movieInsight/resources/images/movie/home-page/홈페이지로고/5.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -280,7 +281,7 @@
           <ul class="movie_list swiper-wrapper">
             <li class="movie_item swiper-slide">
               <img
-                src="3.png"
+                src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -288,7 +289,7 @@
             </li>
             <li class="movie_item swiper-slide">
               <img
-                src="3.png"
+                src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -296,7 +297,7 @@
             </li>
             <li class="movie_item swiper-slide">
               <img
-                src="3.png"
+                src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -304,7 +305,7 @@
             </li>
             <li class="movie_item swiper-slide">
               <img
-                src="3.png"
+                src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -312,7 +313,7 @@
             </li>
             <li class="movie_item swiper-slide">
               <img
-                src="3.png"
+                src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -405,10 +406,14 @@
        
           <ul class="movie_list swiper-wrapper">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              
-              <img
-                src="image/액션/화면 캡처 2023-10-12 153831.png"
+            
+            
+            <a href="/movieInsight/movie/{movieNo}"> 
+            <span
+			    class="detail_text">상세보기</span>
+					</a> 
+				
+               	<img src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154859.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -417,7 +422,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/액션/화면 캡처 2023-10-12 153908.png"
+                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 153908.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -426,7 +431,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/액션/화면 캡처 2023-10-12 154859.png"
+                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154859.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -435,7 +440,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/액션/화면 캡처 2023-10-12 154918.png"
+                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154918.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -444,7 +449,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/액션/화면 캡처 2023-10-12 154930.png"
+                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154930.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -453,7 +458,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/액션/화면 캡처 2023-10-12 154940.png"
+                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154940.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -462,7 +467,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/액션/화면 캡처 2023-10-12 160217.png"
+                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 160217.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -480,7 +485,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/범죄/화면 캡처 2023-10-12 152433.png"
+                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152433.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -489,7 +494,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/범죄/화면 캡처 2023-10-12 152641.png"
+                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152641.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -498,7 +503,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/범죄/화면 캡처 2023-10-12 152651.png"
+                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152651.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -507,7 +512,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/범죄/화면 캡처 2023-10-12 152708.png"
+                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152708.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -516,7 +521,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/범죄/화면 캡처 2023-10-12 153004.png"
+                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 153004.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -525,7 +530,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/범죄/화면 캡처 2023-10-12 153024.png"
+                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 153024.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -534,7 +539,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/범죄/화면 캡처 2023-10-12 153036.png"
+                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 153036.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -552,7 +557,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/SF/화면 캡처 2023-10-12 170819.png"
+                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170819.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -561,7 +566,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/SF/화면 캡처 2023-10-12 170853.png"
+                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170853.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -570,7 +575,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/SF/화면 캡처 2023-10-12 171259.png"
+                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 171259.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -579,7 +584,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/SF/화면 캡처 2023-10-12 170915.png"
+                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170915.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -588,7 +593,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/SF/화면 캡처 2023-10-12 170929.png"
+                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170929.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -597,7 +602,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/SF/화면 캡처 2023-10-12 170950.png"
+                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170950.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -606,7 +611,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/SF/화면 캡처 2023-10-12 171040.png"
+                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 171040.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -624,7 +629,36 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/코미디/화면 캡처 2023-10-12 170300.png"
+                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170300.png"
+                width="100%"
+                height="100%"
+                style="object-fit: cover"
+              />
+              
+              
+            </li>
+           
+           
+            <li class="movie_item swiper-slide">
+            
+              <a href="/movieInsight/movie/{movieNo}"> 
+            <span
+			    class="detail_text">상세보기</span>
+					</a> 
+             	
+              <img
+                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170320.png"
+                width="100%"
+                height="100%"
+                style="object-fit: cover"
+              />
+            </li>
+            
+            
+            <li class="movie_item swiper-slide">
+              <span class="detail_text">상세보기</span>
+              <img
+                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170343.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -633,7 +667,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/코미디/화면 캡처 2023-10-12 170320.png"
+                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170355.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -642,7 +676,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/코미디/화면 캡처 2023-10-12 170343.png"
+                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170415.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -651,7 +685,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/코미디/화면 캡처 2023-10-12 170355.png"
+                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170430.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -660,25 +694,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/코미디/화면 캡처 2023-10-12 170415.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-            </li>
-            <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="image/코미디/화면 캡처 2023-10-12 170430.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-            </li>
-            <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="image/코미디/화면 캡처 2023-10-12 170456.png"
+                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170456.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -696,7 +712,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/로맨스/화면 캡처 2023-10-12 163648.png"
+                src="/movieInsight/resources/images/movie/home-page/로맨스/화면 캡처 2023-10-12 163648.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -705,7 +721,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/로맨스/화면 캡처 2023-10-12 163700.png"
+                src="/movieInsight/resources/images/movie/home-page/로맨스/화면 캡처 2023-10-12 163700.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -714,7 +730,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/로맨스/화면 캡처 2023-10-12 164142.png"
+                src="/movieInsight/resources/images/movie/home-page/로맨스/화면 캡처 2023-10-12 164142.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -723,7 +739,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/로맨스/화면 캡처 2023-10-12 164312.png"
+                src="/movieInsight/resources/images/movie/home-page/로맨스/화면 캡처 2023-10-12 164312.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -732,7 +748,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/로맨스/화면 캡처 2023-10-12 164503.png"
+                src="/movieInsight/resources/images/movie/home-page/로맨스/화면 캡처 2023-10-12 164503.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -741,7 +757,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/로맨스/화면 캡처 2023-10-12 164610.png"
+                src="/movieInsight/resources/images/movie/home-page/로맨스/화면 캡처 2023-10-12 164610.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -750,7 +766,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/로맨스/화면 캡처 2023-10-12 164633.png"
+                src="/movieInsight/resources/images/movie/home-page/로맨스/화면 캡처 2023-10-12 164633.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -768,7 +784,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/애니메이션/화면 캡처 2023-10-12 162219.png"
+                src="/movieInsight/resources/images/movie/home-page/애니메이션/화면 캡처 2023-10-12 162219.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -777,7 +793,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/애니메이션/화면 캡처 2023-10-12 162513.png"
+                src="/movieInsight/resources/images/movie/home-page/애니메이션/화면 캡처 2023-10-12 162513.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -786,7 +802,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/애니메이션/화면 캡처 2023-10-12 162622.png"
+                src="/movieInsight/resources/images/movie/home-page/애니메이션/화면 캡처 2023-10-12 162622.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -795,7 +811,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/애니메이션/화면 캡처 2023-10-12 162735.png"
+                src="/movieInsight/resources/images/movie/home-page/애니메이션/화면 캡처 2023-10-12 162735.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -804,7 +820,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-                src="image/애니메이션/화면 캡처 2023-10-12 162756.png"
+                src="/movieInsight/resources/images/movie/home-page/애니메이션/화면 캡처 2023-10-12 162756.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -813,7 +829,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-              src="image/애니메이션/화면 캡처 2023-10-12 163248.png"
+              src="/movieInsight/resources/images/movie/home-page/애니메이션/화면 캡처 2023-10-12 163248.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -822,7 +838,7 @@
             <li class="movie_item swiper-slide">
               <span class="detail_text">상세보기</span>
               <img
-              src="image/애니메이션/화면 캡처 2023-10-12 163511.png"
+              src="/movieInsight/resources/images/movie/home-page/애니메이션/화면 캡처 2023-10-12 163511.png"
                 width="100%"
                 height="100%"
                 style="object-fit: cover"
@@ -837,14 +853,15 @@
       </div>
       <aside>
         <div class="side-banner">
-          <img src="바탕화면/4.png" width="100%" />
+          <img src="/movieInsight/resources/images/movie/home-page/홈페이지로고/4.png" width="100%" />
         </div>
       </aside>
     </main>
+    
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	
 	
-	<script src="/resources/js/movie/home-page.js"></script>
+	<script src="/movieInsight/resources/js/movie/home-page.js"></script>
 	
 </body>
 </html>

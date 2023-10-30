@@ -1,8 +1,12 @@
 package semi.project.movieInsight.cinema.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +22,10 @@ public class CinemaController {
 	@Autowired
 	private CinemaService service;
 	
-	public String cinemaMain() {
-		
-		System.out.println("메인페이지 이동");
-		
-		return "cinema/cinema-homepage";
-	}
-	
+
 
 	@GetMapping("/search")
-    public String searchCinema(String cinemaQuery, Model model) {
+    public String searchCinema(String cinemaQuery, Model model ,HttpServletRequest request) {
 		
 		System.out.println("search 페이지 들어옴");
 		
@@ -40,6 +38,9 @@ public class CinemaController {
 		
 		model.addAttribute("cinemaQuery", cinemaQuery);
 		model.addAttribute("cinemaList", cinemaList);
+		
+		
+		model.addAttribute("pageType", "cinema");
 		
         return "cinema/search-cinema";
     }

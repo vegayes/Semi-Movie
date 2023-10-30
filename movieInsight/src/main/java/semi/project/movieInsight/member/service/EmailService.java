@@ -2,11 +2,13 @@ package semi.project.movieInsight.member.service;
 
 public interface EmailService {
 
-   int SignUp(String email, String string);
-   
-   int checkAuthKey(String inputKey, String email);
+	int signUp(String superEmail, String string);
 
-    int signUp(String email, String title);
+
+
+//	
+//	public int findIdCheck(String memberEmail)throws Exception;
+//	
 
   
 }

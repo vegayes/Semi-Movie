@@ -40,7 +40,7 @@
 
                 		<c:forEach items = "${movieList}" var="movie" >
 
-                			<a href="/movieInsight/movie/${movie.movieNo}">
+                			<a href="${movie.movieNo}">
 				                 <div class = "movie-search-list-container" onclick="movieInfo('${movie.movieNo}')"> <%-- value 값으로 전달가능? --%>
 				                    <div class = "movie-search-img-wrapper">
 				                        <img src = "/movieInsight/resources/images/movie/${movie.movieImg}" class = "movie-image"> <%-- ???????????? --%>
@@ -104,8 +104,10 @@
 
         </main>
         
+		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
 		<script src="/movieInsight/resources/js/movie/search-movie.js"></script>
-	
+		
         
 	</body>
 </html>

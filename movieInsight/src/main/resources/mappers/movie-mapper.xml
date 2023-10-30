@@ -18,6 +18,8 @@
 		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
 		<result property="actorNames" column="ACTOR_NAMES"/>
 		<result property="directorNames" column="DIRECTOR_NAMES"/>	
+		<result property="movieGrade" column="MOVIE_GRADE"/>	
+		
 	</resultMap>
 	
 	
@@ -116,6 +118,7 @@
 	
 	
 	<!-- 5) 해당 영화와 비슷한 (장르기준) 추천  -->
+	<!-- 
 	<select id ="recommendMovie" resultMap = "movie_rm">
 	SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_IMG
 	FROM (SELECT *
@@ -124,8 +127,53 @@
 			ORDER BY DBMS_RANDOM.VALUE)
 	<![CDATA[WHERE ROWNUM <= 10]]>
 	</select>
+	 -->
+	 <!--  
+	 <select id = "recommendMovie" resultMap = "movie_rm">
+	 	SELECT DISTINCT MOVIE_NO, MOVIE_TITLE, MOVIE_IMG
+		FROM (<foreach  collection="list"  item = "genre" separator = "UNION ">
+				SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_IMG, MOVIE_GENRE 
+				FROM MOVIE 
+				WHERE MOVIE_DEL_YN ='N'AND MOVIE_GENRE LIKE '%' || #{genre} || '%' 
+   			 </foreach >)
+   		ORDER BY DBMS_RANDOM.VALUE
+		FETCH FIRST 10 ROWS ONLY   	
+	 </select>
+-->
 	
-
+	 <select id = "recommendMovie" resultMap = "movie_rm">
+	 	SELECT DISTINCT *
+		FROM (
+			<foreach  collection="genreList"  item = "value" separator = "UNION ">
+				SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_IMG, MOVIE_GENRE 
+				FROM MOVIE 
+				WHERE MOVIE_DEL_YN ='N'
+				AND MOVIE_GENRE LIKE '%' || #{value} || '%' 
+   			 </foreach >
+   			 )
+   		WHERE MOVIE_NO != ${movieNo}
+   		ORDER BY DBMS_RANDOM.VALUE
+		FETCH FIRST 10 ROWS ONLY   	
+	 </select>
+	
+	
+	<!-- 관리자-영화 페이지에서 영화 목록 조회 -->
+	<select id="selectManagerMovieList" resultMap = "movie_rm">
+	
+		SELECT MOVIE_NO,MOVIE_TITLE,MOVIE_GENRE,NVL2('NULL',0,MOVIE_GRADE) MOVIE_GRADE,MOVIE_RUNNING_TIME  
+		FROM MOVIE m 
+		LEFT JOIN MOVIE_EVALUATION me USING (MOVIE_NO)
+		WHERE MOVIE_DEL_YN = 'N'
+	</select>
+	
+	
+	<!-- 마이페이지 즐겨찾기 영화 목록 조회  -->
+	<select id="selectLikeMovie" resultMap = "movie_rm">
+		SELECT * 
+		FROM MOVIE
+		WHERE MOVIE_GENRE LIKE '%SF%'
+	</select>
+	
 </mapper>
 
 

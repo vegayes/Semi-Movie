@@ -17,6 +17,8 @@ public class MemberServiceimpl implements MemberService{
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
+
+	
 	@Transactional
 	@Override
 	public int signUp(Member inputMember) {
@@ -25,6 +27,28 @@ public class MemberServiceimpl implements MemberService{
 		inputMember.setMemberPw(encPw);
 		
 		return dao.signUp(inputMember);
+	}
+
+	// 아이디 중복검사
+	@Override
+	public int idCheck(String id_check) {
+
+		return dao.idCheck(id_check);
+	}
+	
+	// 이메일 중복검사
+	@Override
+	public int checkEmail(String email) {
+	
+		return dao.CheckEmail(email);
+	}
+
+	/**
+	 * 임시 로그인 
+	 */
+	@Override
+	public Member login(Member inputMember) {
+		return dao.login(inputMember);
 	}
 
 }

@@ -1,5 +1,6 @@
 package semi.project.movieInsight.cinema.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,6 +61,12 @@ public class CinemaDetailController {
 		 	model.addAttribute("movieList", movieList);
 		 	
 		 	
+			// 해당 위치 넘기기
+//			List<Object> currentUrl =  Arrays.asList(req.getRequestURI().toString().split("/"));
+//			model.addAttribute("cureentUrl" + currentUrl.get(2));
+		 	
+			model.addAttribute("pageType","cinema");
+			
 			return "cinema/cinema-detail-page";
 	}
 	

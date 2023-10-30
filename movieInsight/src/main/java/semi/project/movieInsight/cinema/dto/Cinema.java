@@ -20,5 +20,6 @@ public class Cinema {
 	private int cinemaMaxInclude;
 	private String cinemaDelYN;
 	private String cinemaSpecialHall;
+	private int cinemaGrade;
 	
 }

@@ -3,6 +3,17 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 
+<%-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+	1) CSS 변경 ( hove 시 디자인 ) 
+	2) 마이페이지 눌렀을 때 로그인이 되어있지 않으면 로그인 창으로 넘어가거나 경고창으로 알려주기 
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ --%>
+
+<%-- ◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+	1) 로고 누르면 영화 메인 페이지로 보내기
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎ --%>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,7 +53,7 @@
                         <h4 class="mb-4 pb-3">Log In</h4>
                         <div class="form-group">
                           <p class="mb-0 mt-4 text-center">
-                            <a href="ooo_find_id.html" class="link"
+                            <a href="/movieInsight/find/id" class="link"
                               >Forgot ID?</a
                             >
                           </p>
@@ -58,7 +69,7 @@
                         </div>
                         <div class="form-group mt-2">
                           <p class="mb-0 mt-4 text-center">
-                            <a href="ooo_find_pw.html" class="link"
+                            <a href="/movieInsight/find/pw" class="link"
                               >Forgot PW?</a
                             >
                           </p>
@@ -103,10 +114,11 @@
 			                            name="memberId"
 			                            class="form-style"
 			                            placeholder="your Id"
-			                            id="logname"
+			                            id="member_Id"
 			                            autocomplete="off"
 			                          />
 			                          <button onclick="return false;" type="button" id="idCheck">중복확인</button>
+			                          <p id="messageDiv_1"></p>
 			                          <i class="input-icon uil uil-user"></i>
 			                        </div>
 			                        <div class="form-group mt-2">
@@ -117,7 +129,7 @@
 			                            name="memberPw"
 			                            class="form-style"
 			                            placeholder="Your Password"
-			                            id="asdasd"
+			                            id="member_Pw"
 			                            autocomplete="off"
 			                          />
 			                          <i class="input-icon uil uil-lock-alt"></i>
@@ -127,13 +139,13 @@
 			
 			                          <input
 			                            type="password"
-			                            name="memberPw"
+			                            name="memberPwCheck"
 			                            class="form-style"
 			                            placeholder="Your Password"
-			                            id="fff"
-			                            onblur="document.getElementById('ggg').textContent = (document.getElementById('asdasd').textContent === document.getElementById('fff').textContent) ? '패스워드가 일치합니다' : '패스워드가 일치하지 않습니다d'"
+			                            id="member_PwConfirm"
 			                            autocomplete="off"
 			                          />
+			                          <p id="messageDiv_2"></p>
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
 			                        <span id="ggg"></span>
@@ -144,12 +156,19 @@
 			                            type="email"
 			                            name="memberEmail"
 			                            class="form-style"
-			                            placeholder="Your Password"
-			                            id="logpass"
+			                            placeholder="Your Email"
+			                            id="memberEmail"
 			                            autocomplete="off"
 			                          />
-			                          <button>인증</button>
+			                          <button id="sendAuthKeyBtn" type="button">인증하기</button>
 			                          <i class="input-icon uil uil-lock-alt"></i>
+			                       	   <p id="emailMessage">사용가능한 이메일을 입력해주세요.</p>
+			                       	   <p id="authKeyMessage">05:00</p>
+				                       	   <div class="signUp-input-area">
+							                    <input type="text" name="authKey" id="authKey" s placeholder="인증번호 입력" maxlength="6" autocomplete="off" >
+							                    
+							                    <button id="checkAuthKeyBtn" type="button">인증확인</button>
+					            		   </div>
 			                        </div>
 			                        <div class="form-group mt-2">
 			                          <h5 class="labela">NICKNAME</h5>
@@ -158,7 +177,7 @@
 			                            type="text"
 			                            name="memberNickname"
 			                            class="form-style"
-			                            placeholder="Your Password"
+			                            placeholder="Your Nickname"
 			                            id="logpass"
 			                            autocomplete="off"
 			                          />

@@ -13,4 +13,13 @@ public interface MovieService {
 	 */
 	List<Movie> searchMovieList(String movieQuery);
 
+	List<Movie> selectManagerMovieList();
+
+
+	/** 영화 즐겨찾기 목록 조회 
+	 * @return
+	 */
+	List<Movie> selectLikeMovie();
+
+
 }
