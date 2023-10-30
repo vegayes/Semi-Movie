@@ -167,8 +167,8 @@
 			   <!-- </form> -->
           </div>
 
-
-        <div class="comment">
+       
+        <div class="comment" id="commentScroll">
             <div class="comhead"><h1 id="comment">comment</h1></div>
                 <div class="combody">
                         <div class="comb1">
