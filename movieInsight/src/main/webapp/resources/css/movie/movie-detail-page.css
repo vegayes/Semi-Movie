@@ -62,15 +62,23 @@ main>div{
     height: 20%;
 }
 
-#star {
-    color: white; 
-    transition: color 0.3s; 
-    font-size: 50px;
-    margin-top: 43%;
-    margin-left: 25%;
+star{
+	display:flex;
+	justify-content: center;
+    align-items: center;
 }
 
-#star:hover {
+#favoriteStar {
+    color: white; 
+    transition: color 0.3s; 
+    font-size: 60px;
+   	display:flex;
+	justify-content: center;
+    align-items: center;
+    margin-top: 43%;
+}
+
+#favoriteStar:hover {
     color: blue;
 }
 

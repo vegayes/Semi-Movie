@@ -104,6 +104,40 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 	public int delete(int movieCommentNo) {
 		return dao.commentDelete(movieCommentNo);
 	}
+
+	/**
+	 * 즐겨찾기 체크
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updatefavorite(Map<String, Integer> paramMap) {
+		
+		int check = (int)paramMap.get("check"); 
+		
+		System.out.println("check :" + check);
+		
+		int result = 0;
+		
+		if(check == 0) {
+			result = dao.addFavorite(paramMap);
+
+		}else {
+			result = dao.delFavorite(paramMap);
+		}
+		
+		if(result == 0) return -1;
+		
+		
+		return result;
+	}
+
+	/**
+	 * 즐겨찾기 조회 
+ 	 */
+	@Override
+	public int favoriteCheck(Map<String, Object> favoriteCheck) {
+		return dao.favoriteCheck(favoriteCheck);
+	}
 	
 	
 	

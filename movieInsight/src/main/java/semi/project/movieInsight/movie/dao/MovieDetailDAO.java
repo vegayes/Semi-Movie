@@ -96,6 +96,38 @@ public class MovieDetailDAO {
 		return sqlSession.update("movieMapper.commentDelete", movieCommentNo);
 	}
 
+
+
+
+
+	/** 즐겨찾기 추가
+	 * @param paramMap
+	 * @return
+	 */
+	public int addFavorite(Map<String, Integer> paramMap) {
+		return sqlSession.insert("movieMapper.addFavorite", paramMap);
+	}
+
+
+	/** 즐겨찾기 제거 
+	 * @param paramMap
+	 * @return
+	 */
+	public int delFavorite(Map<String, Integer> paramMap) {
+		return sqlSession.delete("movieMapper.delFavorite", paramMap);
+	}
+
+
+	/** 즐겨찾기 조회 
+	 * @param favoriteCheck
+	 * @return
+	 */
+	public int favoriteCheck(Map<String, Object> favoriteCheck) {
+		return sqlSession.selectOne("movieMapper.favoriteCheck", favoriteCheck);
+	}
+
+
+
 	
 	
 	

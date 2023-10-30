@@ -168,7 +168,7 @@ public class MypageServiceImpl implements MypageService{
 
 
 	/**
-	 *3-5) 영화관 댓글 팝업  조회 
+	 *3-5) 영화관 댓글 팝업 조회 
 	 */
 	@Override
 	public Cinema selectCinemaComment(int cinemaCommentNo) {

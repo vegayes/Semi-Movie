@@ -63,8 +63,20 @@ public interface MovieDetailService {
 	 */
 	int delete(int movieCommentNo);
 
+	/** 즐겨찾기
+	 * @param paramMap
+	 * @return
+	 */
+	int updatefavorite(Map<String, Integer> paramMap);
+
+	/** 즐겨찾기 조회 
+	 * @param favoriteCheck
+	 * @return
+	 */
+	int favoriteCheck(Map<String, Object> favoriteCheck);
 
 
+	
 
 	
 	

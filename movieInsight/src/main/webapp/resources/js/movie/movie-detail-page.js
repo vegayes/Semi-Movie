@@ -126,6 +126,57 @@ function updateComment(commentNo, btn){
 }
 
 
+// 즐겨찾기 버튼이 클릭 되었을 때
+const favoriteStar = document.getElementById("favoriteStar");
+
+favoriteStar.addEventListener("click", e => {
+
+    // 로그인 여부 검사  빈문자열은 "" 임.
+    if(memberNo == ""){
+        alert("로그인 후 이용해주세요")
+        return;
+    }
+
+    let check; // 버튼  X(빈 별) : 0  
+               //      O(꽉찬 별) : 1
+
+    // contains("클래스명") : 클래스가 있으면 true, 없으면 false
+    if(e.target.classList.contains("fa-regular")){ // 빈 별
+        check = 0;
+    }else{ // 꽉찬 별
+        check = 1;
+    }
+
+    const data =   {"movieNo" : movieNo , 
+                    "memberNo" : memberNo,
+                    "check" : check };
+
+    fetch("/movieInsight/movie/favorite", {
+        method : "POST",
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify(data)
+    })
+    .then(response => response.text()) 
+
+    .then(count => { 
+
+        if(count == -1){ // INSERT, DELETE 실패 시
+            console.log("즐겨찾기 추가 오류");
+            return;
+        }
+
+        e.target.classList.toggle("fa-regular");
+        e.target.classList.toggle("fa-solid");
+
+    }) 
+
+    .catch(err => {
+        console.log("예외 발생");
+        console.log(err);
+    }) 
+
+
+});
 
 
 
@@ -155,6 +206,7 @@ star.addEventListener("mouseleave", function () {
         star.style.color = 'white'; // 마우스를 내렸을 때 다시 하얀색으로 변경
     }
 });
+
 
 const gallery = document.querySelector('.gallery');
 const prevButton = document.querySelector('.prev-button');
