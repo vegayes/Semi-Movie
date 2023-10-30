@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.movie.dao.MovieDetailDAO;
@@ -68,10 +69,32 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 //	public List<Movie> recommendMovie(List<String> genreList) {
 //		return dao.recommendMovie(genreList);
 //	}
-
 	@Override
 	public List<Movie> recommendMovie(Map<String, Object> genreMap) {
 		return dao.recommendMovie(genreMap);
+	}
+
+	
+	
+	
+	/**
+	 * 영화에 대한 댓글 조회 
+	 */
+	@Override
+	public List<Movie> commentMovieList(int movieNo) {
+		return dao.commentMovieList(movieNo);
+	}
+	
+//	================================================================= 댓글 ========================================
+
+	/**
+	 * 댓글 삽입 
+	 */
+//	@Transactional(rollbackFor = Exception.class)
+	@Transactional
+	@Override
+	public int insert(Movie movie) {
+		return dao.commentInsert(movie);
 	}
 	
 	
