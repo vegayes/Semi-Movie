@@ -183,7 +183,7 @@
 			                          />
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
-			                        <div class="form-group mt-2">
+			                        <div class="form-group mt-2" id="nickMessage">
 			                          <h5 class="labela">GENDER</h5>
 			
 			                          <button class="gender">남자</button>
