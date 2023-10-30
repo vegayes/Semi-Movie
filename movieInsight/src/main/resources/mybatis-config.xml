@@ -28,7 +28,7 @@
 		<mapper resource="/mappers/menu-mapper.xml"/>
 		<mapper resource="/mappers/promotion-mapper.xml"/>
 		<mapper resource="/mappers/mypage-mapper.xml"/>
-		<!-- <mapper resource="/mappers/email-mapper.xml"/> -->
+		<mapper resource="/mappers/email-mapper.xml"/>
 
 	</mappers>
 

@@ -1,5 +1,7 @@
 package semi.project.movieInsight.member.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,31 +18,23 @@ import semi.project.movieInsight.member.service.EmailService;
 public class EmailVerificationController {
 
 	@Autowired
-	private EmailService emailService;
-	
-	
+	private EmailService service;
 
 	@GetMapping("/superEmail")
 	@ResponseBody
 	public int sendVerificationEmail(@RequestParam("memberEmail") String memberEmail) {
-	    // 인증번호 생성
-	    String verificationCode = generateVerificationCode();
+		return service.signUp(memberEmail);
+		}
 
-	    // 이메일 전송
-	    boolean emailSent = emailService.sendVerificationEmail(memberEmail, verificationCode);
+    @GetMapping("/checkAuthKey")
+    @ResponseBody
+    public int checkAuthKey(@RequestParam Map<String, Object> paramMap){
 
-	    if (emailSent) {
-	        return 1; // 인증번호 발송 성공
-	    } else {
-	        return 0; // 이메일 전송 실패
-	    }
-	}
-
-	/** 인증번호 생성 메소드
-	 * @return
-	 */
-	private String generateVerificationCode() {
+    	System.out.println(paramMap); // {inputKey=wc3rxG, email=knbdh@nate.com}
+        
+        return service.checkAuthKey(paramMap);
+    }
+    
 	
-		return String.valueOf((int) (Math.random() * 10000));
-	}
+	
 }

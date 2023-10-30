@@ -161,6 +161,14 @@ public class MemberController {
 		return result;
 	}
 	
+//	@ResponseBody
+//	@PostMapping("/dupCheck/nickname")
+//	public int nickCheck(String nick_check) {
+//		
+//		
+//		
+//	}
+//	
 
 
 	

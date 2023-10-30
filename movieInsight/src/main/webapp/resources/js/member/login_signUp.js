@@ -252,8 +252,135 @@ sendAuthKeyBtn.addEventListener("click", function(){
 
 });
 
+// 인증 확인
+const authKey = document.getElementById("authKey");
+const checkAuthKeyBtn = document.getElementById("checkAuthKeyBtn");
+
+checkAuthKeyBtn.addEventListener("click", function(){
+
+    if(authMin > 0 || authSec > 0){ // 시간 제한이 지나지 않은 경우에만 인증번호 검사 진행
+        /* fetch API */
+        const obj = {"inputKey":authKey.value, "email":tempEmail}
+        const query = new URLSearchParams(obj).toString()
+        // inputKey=123456&email=user01
+
+        fetch("/movieInsight/sendEmail/checkAuthKey?" + query)
+        .then(resp => resp.text())
+        .then(result => {
+            if(result > 0){
+                clearInterval(authTimer);
+                alert("인증번호가 일치합니다.")
+                authKeyMessage.classList.add("confirm");
+                checkObj.authKey = true;
+
+            } else{
+                alert("인증번호가 일치하지 않습니다.")
+                checkObj.authKey = false;
+            }
+        })
+        .catch(err => console.log(err));
 
 
+    } else{
+        alert("인증 시간이 만료되었습니다. 다시 시도해주세요.")
+    }
+
+});
+
+// 회원 가입 form태그가 제출 되었을 때
+document.getElementById("inputMember").addEventListener("submit", e=>{
+
+    // checkObj에 모든 value가 true인지 검사
+
+    // (배열용 for문)
+    // for ... of : 향상된 for문
+	// -> iterator(반복자) 속성을 지닌 배열, 유사 배열 사용 가능
+    
+    // (객체용 for문)
+    // ** for ... in 구문 ***
+    // -> JS 객체가 가지고 있는 key를 순서대로 하나씩 꺼내는 반복문
+
+    for(let key in checkObj){
+
+        if(!checkObj[key]){ // 각 key에 대한 value(true/false)를 얻어와
+                            // false인 경우 == 유효하지 않다!
+
+            switch(key){
+            case "memberEmail": 
+                alert("이메일이 유효하지 않습니다"); break;
+
+            case "memberPw": 
+                alert("비밀번호가 유효하지 않습니다"); break;
+
+            case "memberPwConfirm":
+                alert("비밀번호가 확인되지 않았습니다"); break;
+            
+            case "memberNickname" : 
+                alert("닉네임이 유효하지 않습니다"); break;
+            }
+
+            // 유효하지 않은 input 태그로 focus 이동
+            // - key를 input의 id와 똑같이 설정했음!
+            document.getElementById(key).focus();
+
+            e.preventDefault(); // form 태그 기본 이벤트 제거
+            return; // 함수 종료
+        }
+    }
+});
+
+
+// 닉네임 유효성 검사
+const memberNickname = document.getElementById("memberNickname");
+const nickMessage = document.getElementById('nickMessage');
+
+// 닉네임이 입력이 되었을 때
+memberNickname.addEventListener("input", ()=>{
+
+    // 닉네임 입력이 되지 않은 경우
+    if(memberNickname.value.trim() == ''){
+        nickMessage.innerText = "한글,영어,숫자로만 2~10글자";
+        nickMessage.classList.remove("confirm", "error");
+        checkObj.memberNickname = false;
+        memberNickname.value = ""; 
+        return;
+    }
+
+    // 정규표현식으로 유효성 검사
+    const regEx = /^[가-힣\w\d]{2,10}$/;
+
+    if(regEx.test(memberNickname.value)){// 유효
+
+        fetch("/dupCheck/nickname?nickname="+memberNickname.value)
+        .then(resp => resp.text()) // 응답 객체를 text로 파싱(변환)
+        .then(count => {
+
+            if(count == 0){ // 중복 아닌 경우
+                nickMessage.innerText = "사용 가능한 닉네임 입니다";
+                nickMessage.classList.add("confirm");
+                nickMessage.classList.remove("error");
+                checkObj.memberNickname = true;
+                
+            }else{ // 중복인 경우
+                nickMessage.innerText = "이미 사용중인 닉네임 입니다";
+                nickMessage.classList.add("error");
+                nickMessage.classList.remove("confirm");
+                checkObj.memberNickname = false;
+            }
+        })
+        .catch(err => console.log(err));
+
+        
+
+
+    } else{ // 무효
+        nickMessage.innerText = "닉네임 형식이 유효하지 않습니다";
+        nickMessage.classList.add("error");
+        nickMessage.classList.remove("confirm");
+        checkObj.memberNickname = false;
+    }
+
+});
     
     
     

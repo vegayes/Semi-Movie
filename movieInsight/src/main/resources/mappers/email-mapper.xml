@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="emailMapper">
+
+	<update id="updateAuthKey">
+		UPDATE "EMAIL_CHECK" SET
+		CHECK_KEY = #{authKey},
+		CHECK_DATE = SYSDATE
+		WHERE CHECK_EMAIL = #{email}
+	</update>
+	
+
+	<insert id="insertAuthKey">
+		INSERT INTO "EMAIL_CHECK" VALUES(SEQ_CHECK_NO.NEXTVAL, #{authKey}, #{email}, DEFAULT)
+	</insert>
+
+	<select id="checkAuthKey" resultType="_int">
+		SELECT COUNT(*) FROM "EMAIL_CHECK"
+		WHERE CHECK_EMAIL = #{email}
+		AND CHECK_KEY = #{inputKey}
+	</select>
+</mapper>
