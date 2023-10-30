@@ -18,9 +18,6 @@ public class EmailController {
 	@Autowired
 	private MemberService service;
 	
-//	@Autowired
-//	private EmailService Eservice;
-   
 	
 	@ResponseBody
 	@GetMapping("/dupCheck/email")
@@ -31,19 +28,4 @@ public class EmailController {
 		return service.checkEmail(email);
 	}
 }
-//	
-//	@GetMapping("/superEmail")
-//	@ResponseBody
-//	public int signUp(String superEmail) {
-//		System.out.println("회원가입 Controller");
-//		
-//		int check = Eservice.signUp(superEmail, "회원가입");
-//		
-//		System.out.println("check:" + check);
-//		
-//		return 0; 
-//	}
-//
-//	
-//   
-//}
+
