@@ -57,17 +57,44 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   
-  // 파일 입력란의 이벤트 리스너 추가
-  document.getElementById("fileInput").addEventListener("change", function(event) {
-    // 선택한 파일 가져오기
-    const selectedFile = event.target.files[0];
 
-    // 이미지 요소에 미리보기 이미지 표시
-    if (selectedFile) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById("cinemaImg").src = e.target.result;
-        };
-        reader.readAsDataURL(selectedFile);
-    }
-});
+
+if (document.getElementById("fileChange")) {
+    // 파일 입력란의 이벤트 리스너 추가
+    document.getElementById("fileChange").addEventListener("change", function(event) {
+        // 선택한 파일 가져오기
+        const selectedFile = event.target.files[0];
+
+        // 이미지 요소에 미리보기 이미지 표시
+        if (selectedFile) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("cinemaImg").src = e.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+    });
+}
+
+if (document.getElementById("fileInput")) {
+    // 파일 입력란의 이벤트 리스너 추가
+    document.getElementById("fileInput").addEventListener("input", function(event) {
+        // 선택한 파일 가져오기
+        const selectedFile = event.target.files[0];
+
+        // 이미지 요소에 미리보기 이미지 표시
+        if (selectedFile) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("cinemaImg").src = e.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+    });
+}
+
+
+
+
+
+

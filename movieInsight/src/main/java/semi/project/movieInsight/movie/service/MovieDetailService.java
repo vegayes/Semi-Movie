@@ -39,6 +39,24 @@ public interface MovieDetailService {
 //	List<Movie> recommendMovie(List<String> genreList);
 	List<Movie> recommendMovie(Map<String, Object> genreMap);
 
+	/** 6) 영화에 대한 댓글 조회 
+	 * @param movieNo
+	 * @return
+	 */
+	List<Movie> commentMovieList(int movieNo);
+
+	
+	
+	
+//	================================ 댓글 ===============================================
+	
+
+	/** 1) 댓글 삽입 
+	 * @param movie
+	 * @return
+	 */
+	int insert(Movie movie);
+
 
 
 

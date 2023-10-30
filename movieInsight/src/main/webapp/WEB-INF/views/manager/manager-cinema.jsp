@@ -26,7 +26,7 @@
             <div class="cinema-search">
                 <input type="text" placeholder="영화관 검색" id="searchInput"><br><br>
                 <span>총 영화관 : ${cinemaList.size()}개</span> 
-                <span id="cinemaAdd"><a href="">추가</a></span>
+                <span id="cinemaAdd"><a href="/movieInsight/cinemaDetail/insert">추가</a></span>
             </div>
             
 

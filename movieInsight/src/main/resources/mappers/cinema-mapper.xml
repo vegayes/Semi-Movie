@@ -20,6 +20,8 @@
 		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
 		<result property="cinemaGrade" column="CINEMA_GRADE"/>
 		
+		<result property="cinemaType" column="CINEMA_TYPE" />
+		
 	</resultMap>
 
 
@@ -38,7 +40,13 @@
 		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
 		<result property="actorNames" column="ACTOR_NAMES"/>
 		<result property="directorNames" column="DIRECTOR_NAMES"/>
-		
+
+		<result property="movieCommentNo" column="MOVIE_EV_NO"/>
+		<result property="movieCommentContent" column="EVALUATION_CONTENT"/>
+		<result property="movieCommentDate" column="MOVIE_EV_ENROLL_DATE"/>
+		<result property="movieGrade" column="MOVIE_GRADE"/>
+
+		<result property="commentMovieWriter" column="COMMENT_MOVIE_WRITER"/>
 	</resultMap>
 
 
@@ -60,7 +68,8 @@
   		SELECT CINEMA_NO, CINEMA_NAME, CINEMA_ADDRESS, CINEMA_CONTACT,
 			CINEMA_IMG, CINEMA_LINK, CINEMA_MAX_INCLUDE 
 		FROM "CINEMA"
-		WHERE CINEMA_DEL_YN = 'N'
+		JOIN MOVIE_STATUS USING(CINEMA_NO)
+		WHERE CINEMA_DEL_YN = 'N' AND CINEMA_TYPE ='C'
 		AND (CINEMA_NAME LIKE '%' || #{cinemaQuery} || '%'  OR CINEMA_ADDRESS LIKE '%' || #{cinemaQuery} || '% ' ) 
   	</select>
 
@@ -146,6 +155,16 @@
 		WHERE CINEMA_NO = #{cinemaNo}
   	
   	</update>
+  	
+  	<insert id="insertCinema">
+  	
+	  	INSERT INTO CINEMA c 
+		VALUES(SEQ_CINEMA_NO.NEXTVAL,#{cinemaName},#{cinemaAddress}, #{cinemaContact}, 
+		#{cinemaImg}, #{cinemaLink}, #{cinemaMaxInclude},DEFAULT, #{cinemaSpecialHall})
+  	
+  	</insert>
+  	
+  	
   	
   	
 
