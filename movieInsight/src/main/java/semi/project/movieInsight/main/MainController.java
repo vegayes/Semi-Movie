@@ -71,7 +71,7 @@ public class MainController {
 
 
 //		return "movie/home-page";
-		return "redirect:/movie";
+		return "redirect:/manager/cinema";
 
 //		return "redirect:/mypage/member";
 //		return "/manager/event";

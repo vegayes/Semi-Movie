@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.service.ManagerService;
 
 @Controller
@@ -53,32 +54,64 @@ public class ManagerDetailController {
 	}
 
 	
+	
+	
+	
+	/** 관리자 페이지에서 영화관 정보를 업데이트하거나 새로 등록할 때 사용
+	 * 
+	 * @param cinemaInfo
+	 * @param ra
+	 * @param cinemaNo
+	 * @param model
+	 * @param cinemaImage
+	 * @param session
+	 * @param updateButton  버튼이 update인지, new 인지에 따라 다르게 작동
+	 * @param newButton
+	 * @return
+	 * @throws Exception
+	 */
 	@PostMapping("updateCinema/{cinemaNo}")
 	public String updateCinema(Cinema cinemaInfo,RedirectAttributes ra,
 			@PathVariable("cinemaNo") int cinemaNo, Model model,
-			@RequestParam(value = "cinemaImage", required = false) MultipartFile cinemaImage, HttpSession session
+			@RequestParam(value = "cinemaImage", required = false) MultipartFile cinemaImage, HttpSession session,
+			@RequestParam(name = "update", required = false) String updateButton,
+            @RequestParam(name = "new", required = false) String  newButton
 			) throws Exception {
 		
-		//System.out.println("수정된 cinemaInfo : " + cinemaInfo);
-		//System.out.println("cinemaImage : " + cinemaImage);
+		System.out.println("뉴버튼 : " + newButton);
+		System.out.println("업데이트버튼 : " + updateButton);
+		
 		String cinemaName = cinemaInfo.getCinemaName();
-		// 웹 접근경로(webapp 기준, 경로는 webapp의 하위 폴더부터 시작) 
+		
 		String webPath = "/resources/images/cinema/";
-		//실제로 이미지 파일이 저장되어야 하는 서버컴퓨터 경로
+		
 		String filePath = session.getServletContext().getRealPath(webPath);
 		
-		
-		int result = service.updateCinema(cinemaImage,webPath,filePath,cinemaInfo);
-		
-		if(result > 0) {
-			ra.addFlashAttribute("message","업데이트 성공");
-		}else {
-			ra.addFlashAttribute("message","업데이트 실패");
+		if(updateButton != null) {
+			System.out.println("영화관업데이트 실행");
+			int result = service.updateCinema(cinemaImage,webPath,filePath,cinemaInfo);
+			
+			if(result > 0) {
+				ra.addFlashAttribute("message","업데이트 성공");
+			}else {
+				ra.addFlashAttribute("message","업데이트 실패");
+			}
+			
+		}else if(newButton != null){
+			System.out.println("영화관등록 실행");
+			int result = service.insertCinema(cinemaImage,webPath,filePath,cinemaInfo);
+			
+			if(result > 0) {
+				ra.addFlashAttribute("message","등록 성공");
+			}else {
+				ra.addFlashAttribute("message","등록 실패");
+			}
 		}
+		
 		
 		String encodedCinemaName = URLEncoder.encode(cinemaName, StandardCharsets.UTF_8.toString()).replace("+", " ");
 		
-		//System.out.println("encodedCinemaName : " + encodedCinemaName);
+		System.out.println("encodedCinemaName : " + encodedCinemaName);
 		
 		return "redirect:/cinemaDetail/" + encodedCinemaName;
 	}	
@@ -110,6 +143,42 @@ public class ManagerDetailController {
 		
 		return "redirect:/manager/movie";
 	}
+	
+	
+	
+	/** 영화 새로 등록하는 매서드
+	 * @param movieInfo
+	 * @param ra
+	 * @param cinemaImage
+	 * @param session
+	 * @return
+	 */
+	@PostMapping("insertMovie")
+	public String insertMovie(Movie movieInfo,RedirectAttributes ra,
+			@RequestParam(value = "cinemaImage", required = false) MultipartFile cinemaImage, HttpSession session
+			){
+		
+		
+		
+		return null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
