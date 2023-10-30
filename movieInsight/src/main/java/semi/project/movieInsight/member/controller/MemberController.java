@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import semi.project.movieInsight.member.dto.Member;
@@ -21,6 +23,7 @@ import semi.project.movieInsight.member.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
+@SessionAttributes({"loginMember"}) // Model의 이름(key)를 적으면 session으로 추가
 public class MemberController {
 	
 	@Autowired
@@ -71,6 +74,8 @@ public class MemberController {
 			
 			// 1) model에 로그인한 회원 정보 추가
 			model.addAttribute("loginMember", loginMember);
+			
+			System.out.println("로그인 진행 : " +  loginMember);
 
 			
 			// 쿠키 생성(해당 쿠키에 담을 데이터를 k:v 로 지정)
@@ -79,13 +84,14 @@ public class MemberController {
 			if(saveId != null) { 
 				cookie.setMaxAge(60*60*24*30); // 초단위 지정
 				
-				
 			} else { 
 				cookie.setMaxAge(0);
 			}
 			
 			
-			cookie.setPath("/"); // localhost:/ 이하 모든 주소
+			cookie.setPath("/movieInsight"); // localhost:/ 이하 모든 주소????
+			
+			System.out.println("loginMember" + loginMember.getMemberId());
 
 			resp.addCookie(cookie);
 			
@@ -101,6 +107,14 @@ public class MemberController {
 		return path;
 	}
 	
+	
+	@GetMapping("/logout")
+	public String logout(SessionStatus status) {
+
+		status.setComplete();
+		
+		return "redirect:/movie";
+	}
 	
 	@PostMapping("/login_signUp")
 	public String signUp(Member inputMember,

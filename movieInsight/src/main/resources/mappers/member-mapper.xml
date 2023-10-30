@@ -10,7 +10,7 @@
 		<result property="memberPw" column="MEMBER_PW" />
 		<result property="memberEmail" column="MEMBER_EMAIL" />
 		<result property="memberNickname" column="MEMBER_NICKNAME" />
-		<result property="memberGender" column="MEMEBER_GENDER" />
+		<result property="memberGender" column="MEMBER_GENDER" />
 		<result property="memberProfile" column="MEMBER_PROFILE" />
 		<result property="memberEnrollDate" column="MEMBER_ENROLL_DATE" />
 		<result property="memberDelYN" column="MEMBER_DEL_YN" />

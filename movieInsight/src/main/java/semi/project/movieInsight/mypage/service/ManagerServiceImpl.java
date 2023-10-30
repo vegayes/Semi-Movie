@@ -1,5 +1,6 @@
 package semi.project.movieInsight.mypage.service;
 
+import java.io.File;
 import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +9,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.movie.dto.Movie;
@@ -98,6 +101,55 @@ public class ManagerServiceImpl implements ManagerService{
 	       
 	        throw new RuntimeException("Cinema deletion failed for cinemaNo: " + cinemaNo);
 	    }
+	}
+
+	
+	
+	
+	/**
+	 * 관리자 페이지에서 영화 삭제
+	 */
+	@Override
+	public int deleteMovie(int movieNo) {
+		
+		 int result = dao.deleteMovie(movieNo);
+
+		    if (result == 1) {
+		        return 1;
+		    } else {
+		       
+		        throw new RuntimeException("Movie deletion failed for movieNo: " + movieNo);
+		    }
+	}
+	
+
+	/**
+	 * 영화관 정보 업데이트
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) 
+		throws Exception{
+		
+		//System.out.println("영화관 사진이름 : " + cinemaImage.getOriginalFilename());
+		cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
+		int result = dao.updateCinema(cinemaInfo);
+		//System.out.println("filePath : " + filePath);
+		
+		if(result > 0) { 
+			
+			if(cinemaImage.getSize() != 0) {
+				cinemaImage.transferTo(new File(filePath + cinemaImage.getOriginalFilename()));
+				
+			}		
+			
+		}else {
+			
+			 throw new RuntimeException("Cinema update failed ");
+		}
+		
+		return result;
+		
 	}
 
 

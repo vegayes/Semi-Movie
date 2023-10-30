@@ -25,7 +25,8 @@
         
             <div class="cinema-search">
                 <input type="text" placeholder="영화관 검색" id="searchInput"><br><br>
-                <span>총 영화관 : ${cinemaList.size()}개</span> <span id="cinemaAdd"><a href="#">추가</a></span>
+                <span>총 영화관 : ${cinemaList.size()}개</span> 
+                <span id="cinemaAdd"><a href="">추가</a></span>
             </div>
             
 
@@ -40,9 +41,9 @@
                         <span class="cinema-title">수용인원 : ${cinema.cinemaMaxInclude}명</span>
                     
                         <div class="cinema-buttons">
-                            <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}" class="comment-button">댓글</a>
-                            <a href="#" class="edit-button">수정</a>
-                            <a href="/movieInsight/managerDetail/delete/${cinema.cinemaNo}" class="delete-button">삭제</a>
+                            <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}#cinemaScroll" class="comment-button">댓글</a>
+                            <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}" class="edit-button">수정</a>
+                            <a href="/movieInsight/managerDetail/deleteCinema/${cinema.cinemaNo}" class="delete-button">삭제</a>
                         </div>
                     </div>
 
@@ -89,24 +90,13 @@
             </script>
 
             <c:if test="${not empty message}">
-                        
-            <script>
-                // EL/JSTL 구문이 먼저 해석
-                // 문자열의 경우 따옴표가 없는 상태이니 옆에 붙여줘야함.
-                alert('${message}') // ${message}
-            </script>
+         
+                <script>
+                    // EL/JSTL 구문이 먼저 해석
+                    // 문자열의 경우 따옴표가 없는 상태이니 옆에 붙여줘야함.
+                    alert('${message}') // ${message}
+                </script>
 
-            <%--
-                session에 message를 추가하면
-                브라우저 종료 또는 만료 전까지 계속 메시지가 출력된다
-                
-                -> 1회 출력 후 session에서 message 삭제 
-
-            
-            <c:remove var="message" scope="session"/>
-            
-            --%>
-            
             </c:if>
 
 

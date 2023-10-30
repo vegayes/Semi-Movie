@@ -853,7 +853,7 @@
       </div>
       <aside>
         <div class="side-banner">
-          <img src="/movieInsight/resources/images/movie/home-page/홈페이지로고/4.png" width="100%" />
+          <a href="/movieInsight/cinema"><img src="/movieInsight/resources/images/movie/home-page/홈페이지로고/4.png" width="100%" /></a>
         </div>
       </aside>
     </main>

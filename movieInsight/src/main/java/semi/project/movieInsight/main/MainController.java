@@ -56,11 +56,11 @@ public class MainController {
 		
 		
 
-		return "member/find_id";
+//		return "member/find_id";
 //	return "movie/home-page";
 //		return "cinema/cinema-detail-page";
 
-
+	return "member/login_signUp";
 		
 //		System.out.println("메인 가려고함.");
 
@@ -68,6 +68,11 @@ public class MainController {
 
 //		return "movie/home-page";
 //		return "redirect:/movie";
+
+
+//		return "movie/home-page";
+//		return "redirect:/movie";
+
 //		return "redirect:/mypage/member";
 //		return "/manager/event";
 // 

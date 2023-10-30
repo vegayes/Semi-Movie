@@ -18,7 +18,8 @@
 		<result property="movieDelYN" column="MOVIE_DEL_YN"/>
 		<result property="actorNames" column="ACTOR_NAMES"/>
 		<result property="directorNames" column="DIRECTOR_NAMES"/>	
-		<result property="movieGrade" column="MOVIE_GRADE"/>	
+		<result property="movieGrade" column="MOVIE_GRADE"/>
+		
 		
 	</resultMap>
 	
@@ -166,13 +167,21 @@
 		WHERE MOVIE_DEL_YN = 'N'
 	</select>
 	
+
 	
-	<!-- 마이페이지 즐겨찾기 영화 목록 조회  -->
-	<select id="selectLikeMovie" resultMap = "movie_rm">
-		SELECT * 
-		FROM MOVIE
-		WHERE MOVIE_GENRE LIKE '%SF%'
-	</select>
+	
+	<update id="deleteMovie">
+  		UPDATE MOVIE m  
+		SET MOVIE_DEL_YN  = 'Y'
+		WHERE MOVIE_NO = #{movieNo}
+  	</update>
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>
 
