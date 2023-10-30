@@ -169,6 +169,20 @@
 	
 
 	
+	
+	<update id="deleteMovie">
+  		UPDATE MOVIE m  
+		SET MOVIE_DEL_YN  = 'Y'
+		WHERE MOVIE_NO = #{movieNo}
+  	</update>
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
 
 
