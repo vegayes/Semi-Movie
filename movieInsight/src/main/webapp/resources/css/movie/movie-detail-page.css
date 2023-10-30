@@ -26,11 +26,7 @@ main{
     align-items: center;
 }
 
-main>div{
 
-    margin: 50px 0px;
-    width: 1650px;
-}
 
 
 .movie{
@@ -47,11 +43,11 @@ main>div{
 
 .movie_img img{
    	width: 100%;
-   	height: 100%;
+   	height: 80%;
 }
 
 
-.movie>div:nth-child(2){
+#movie-content{
     width: 70%;
     margin-left: 3%;
     background-color: #383B3E;

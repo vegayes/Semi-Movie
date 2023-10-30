@@ -128,13 +128,13 @@ public class ManagerServiceImpl implements ManagerService{
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int updateCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) 
+	public int updateCinema(MultipartFile cinemaImage, String filePath, Cinema cinemaInfo) 
 		throws Exception{
 		
 		//System.out.println("영화관 사진이름 : " + cinemaImage.getOriginalFilename());
 		cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
 		int result = dao.updateCinema(cinemaInfo);
-		//System.out.println("filePath : " + filePath);
+		
 		
 		if(result > 0) { 
 			
@@ -153,9 +153,12 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 
+	/**
+	 * 영화관 새로 등록
+	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int insertCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) throws Exception{
+	public int insertCinema(MultipartFile cinemaImage,String filePath, Cinema cinemaInfo) throws Exception{
 		
 				cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
 				int result = dao.insertCinema(cinemaInfo);
@@ -176,6 +179,39 @@ public class ManagerServiceImpl implements ManagerService{
 				return result;
 				
 	}
+
+	/**
+	 * 영화 새로 등록
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath) throws Exception {
+		
+		movieInfo.setMovieImg(movieImage.getOriginalFilename());
+		int result = dao.insertMovie(movieInfo);
+		
+		if(result > 0) { 
+			
+			if(movieImage.getSize() != 0) {
+				movieImage.transferTo(new File(filePath + movieImage.getOriginalFilename()));
+				
+			}		
+			
+		}else {
+			
+			 throw new RuntimeException("Cinema insert failed ");
+		}
+		
+		return result;
+	}
+
+	
+	@Override
+	public int selectMovieNo(String movieTitle) {
+		return dao.selectMovieNo(movieTitle);
+	}
+
+	
 
 
 

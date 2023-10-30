@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.movie.dto.Movie;
 
 @Repository
 public class ManagerDAO {
@@ -114,9 +115,37 @@ public class ManagerDAO {
 	}
 
 
+	
+	/** 영화관 새로 등록 DAO
+	 * @param cinemaInfo
+	 * @return
+	 */
 	public int insertCinema(Cinema cinemaInfo) {
 		
-		return sqlSession.insert("cinemaMapper.insertCinema", cinemaInfo);
+		return sqlSession.insert("cinemaMapper.insertMovie", cinemaInfo);
+	}
+
+	
+	
+	
+	/** 영화 새로 등록 DAO
+	 * @param movieInfo
+	 * @return
+	 */
+	public int insertMovie(Movie movieInfo) {
+		
+		return sqlSession.insert("movieMapper.insertMovie",movieInfo);
+	}
+
+	
+	
+   /** 영화관 새로 만들고 영화관 번호 얻어옴
+	 * @param movieTitle
+	 * @return
+	 */
+	public int selectMovieNo(String movieTitle) {
+		
+		return sqlSession.selectOne("movieMapper.selectMovieNo", movieTitle);
 	}
 
 	

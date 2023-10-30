@@ -188,6 +188,18 @@
 		WHERE MOVIE_NO = #{movieNo}
   	</update>
 	
+	
+	<insert id="insertMovie">
+		INSERT INTO MOVIE m 
+		VALUES(SEQ_MOVIE_NO.NEXTVAL,#{movieTitle},#{movieImg},#{movieSummary},#{movieGenre}
+		,#{movieReleaseDate},#{movieAge},#{movieRunningTime},DEFAULT,DEFAULT)
+	</insert>
+	
+	<select id="selectMovieNo" resultMap = "movie_rm">
+		SELECT MOVIE_NO FROM MOVIE
+		WHERE MOVIE_TITLE = #{movieTitle}
+	</select>
+	
 	<!-- ============================ 댓글 =========================================== -->
 	
 	<!-- 영화 댓글 조회  -->
@@ -202,14 +214,14 @@
 
 	
 	<insert id = "commentInsert">
-	INSERT INTO "MOVIE_EVALUATION"
-	VALUES(SEQ_MOVIE_EV_NO.NEXTVAL, 
-			#{movieCommentContent},
-			SYSDATE,
-			#{movieGrade},
-			DEFAULT,
-			#{memberNo},
-			#{movieNo})
+		INSERT INTO "MOVIE_EVALUATION"
+		VALUES(SEQ_MOVIE_EV_NO.NEXTVAL, 
+				#{movieCommentContent},
+				SYSDATE,
+				#{movieGrade},
+				DEFAULT,
+				#{memberNo},
+				#{movieNo})
 	</insert>
 	
 	
