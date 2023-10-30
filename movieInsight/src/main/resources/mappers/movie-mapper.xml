@@ -200,18 +200,33 @@
 		ORDER BY MOVIE_EV_ENROLL_DATE DESC
 	</select>
 
-	
+	<!--  댓글 삽입 -->
 	<insert id = "commentInsert">
-	INSERT INTO "MOVIE_EVALUATION"
-	VALUES(SEQ_MOVIE_EV_NO.NEXTVAL, 
-			#{movieCommentContent},
-			SYSDATE,
-			#{movieGrade},
-			DEFAULT,
-			#{memberNo},
-			#{movieNo})
+		INSERT INTO "MOVIE_EVALUATION"
+		VALUES(SEQ_MOVIE_EV_NO.NEXTVAL, 
+				#{movieCommentContent},
+				SYSDATE,
+				#{movieGrade},
+				DEFAULT,
+				#{memberNo},
+				#{movieNo})
 	</insert>
 	
+	<!--  댓글 삭제 -->
+	<update id ="commentDelete">
+		UPDATE MOVIE_EVALUATION 
+		SET MOVIE_EV_DEL_YN = 'Y'
+		WHERE MOVIE_EV_NO = #{movieCommentNo}
+	</update>
+	
+	
+	<!--  댓글 수정 -->
+	<update id="updateComment">
+		UPDATE MOVIE_EVALUATION 
+		SET EVALUATION_CONTENT = #{movieCommentContent},
+			MOVIE_EV_ENROLL_DATE = SYSDATE				
+		WHERE MOVIE_EV_NO = #{movieCommentNo}
+	</update>
 	
 </mapper>
 

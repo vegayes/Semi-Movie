@@ -90,11 +90,19 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 	/**
 	 * 댓글 삽입 
 	 */
-//	@Transactional(rollbackFor = Exception.class)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int insert(Movie movie) {
 		return dao.commentInsert(movie);
+	}
+
+	/**
+	 * 댓글 삭제
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int delete(int movieCommentNo) {
+		return dao.commentDelete(movieCommentNo);
 	}
 	
 	

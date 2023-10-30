@@ -57,6 +57,12 @@ public interface MovieDetailService {
 	 */
 	int insert(Movie movie);
 
+	/** 2) 댓글 삭제
+	 * @param movieCommentNo
+	 * @return
+	 */
+	int delete(int movieCommentNo);
+
 
 
 

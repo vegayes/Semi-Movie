@@ -86,6 +86,16 @@ public class MovieDetailDAO {
 		return sqlSession.insert("movieMapper.commentInsert", movie	);
 	}
 
+
+	/** 댓글 삭제
+	 * @param movieCommentNo
+	 * @return
+	 */
+	public int commentDelete(int movieCommentNo) {
+
+		return sqlSession.update("movieMapper.commentDelete", movieCommentNo);
+	}
+
 	
 	
 	

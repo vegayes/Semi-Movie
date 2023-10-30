@@ -132,6 +132,14 @@ public class MovieDetailController {
 		return "movie/movie-detail-page";
 	}
 	
+	/** 댓글 삽입
+	 * @param commentContent
+	 * @param movieNo
+	 * @param movieGrade
+	 * @param movie
+	 * @param loginMember
+	 * @return
+	 */
 	@GetMapping(value = "/comment/insert", produces = "application/json; charset=UTF-8" )	
 	@ResponseBody
 	public int insert(String commentContent, int movieNo, float movieGrade,
@@ -153,5 +161,16 @@ public class MovieDetailController {
 		
 		return service.insert(movie);
 	} 
+	
+	
+	/** 댓글 삭제
+	 * @param commentNo
+	 * @return
+	 */
+	@GetMapping(value = "/comment/delete", produces = "application/json; charset=UTF-8" )
+	@ResponseBody
+	public int delete(int movieCommentNo) {
+		return service.delete(movieCommentNo);
+	}
 	
 }

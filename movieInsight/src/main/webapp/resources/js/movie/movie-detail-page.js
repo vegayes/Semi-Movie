@@ -80,8 +80,50 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
 });
 
 
+// 댓글 삭제
+function deleteComment(movieCommentNo){
+                    
+    console.log("삭제 버튼 누름 " + movieCommentNo);
+
+    if( confirm("정말로 삭제 하시겠습니까?") ){
+
+        console.log("정말로 삭제 응답")
+        fetch("/movieInsight/movie/comment/delete?movieCommentNo="+ movieCommentNo)
+        .then(resp => resp.text())
+        .then(result => {
+            if(result > 0){
+                alert("삭제되었습니다");
+                // selectCommentList(); // 목록을 다시 조회해서 삭제된 글을 제거
+            }else{
+                alert("삭제 실패");
+            }
+        })
+        .catch(err => console.log(err));
+
+    }
+}
 
 
+// 댓글 수정
+function updateComment(commentNo, btn){
+
+    // 새로 작성된 댓글 내용 얻어오기
+    const commentContent = btn.parentElement.previousElementSibling.value;
+
+
+    fetch("/commnet/update?commentContent="+commentContent + "&commentNo="+commentNo)
+    .then(resp => resp.text())
+    .then(result => {
+        if(result > 0){
+            alert("댓글이 수정되었습니다.");
+            selectCommentList();
+        }else{
+            alert("댓글 수정 실패");
+        }
+    })
+    .catch(err => console.log(err));
+
+}
 
 
 

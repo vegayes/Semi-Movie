@@ -389,8 +389,8 @@
                                   <td class = "comment-list-date">${comment.movieCommentDate}</td>
                                   <td class = "comment-list-edit">
                                   	<c:if test = "${comment.commentMovieWriter eq sessionScope.loginMember.memberId}">
-    	                            	<button class="editBtn">수정</button>
-		                            	<button class="deletBtn">삭제</button>                              	
+    	                            	<button class="editBtn" >수정</button>
+		                            	<button class="deletBtn" onclick="deleteComment(${comment.movieCommentNo})">삭제</button>                              	
                                   	</c:if>
                                   </td>
 	                		</tr>
