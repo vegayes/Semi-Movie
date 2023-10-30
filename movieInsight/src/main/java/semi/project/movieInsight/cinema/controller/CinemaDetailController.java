@@ -46,6 +46,9 @@ public class CinemaDetailController {
 			Model model
 			){
 		
+
+		
+
 			if(cinemaName.equals("insert")) {
 				
 				return "cinema/cinema-detail-page";

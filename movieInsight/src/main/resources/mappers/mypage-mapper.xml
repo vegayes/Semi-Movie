@@ -25,7 +25,7 @@
 		<result property="movieCommentContent" column="EVALUATION_CONTENT"/>
 		<result property="movieCommentDate" column="MOVIE_EV_ENROLL_DATE"/>
 		<result property="movieGrade" column="MOVIE_GRADE"/>
-		
+
 		<result property="commentMovieWriter" column="COMMENT_MOVIE_WRITER"/>
 
 	</resultMap>
@@ -53,8 +53,9 @@
 		<result property="cinemaCommentDate" column="CINEMA_EV_ENROLL_DATE"/>
 		<result property="cinemaCommentType" column="EVALUATION_TYPE"/>	
 		<result property="cinemaGrade" column="CINEMA_GRADE"/>	
-		
+
 		<result property="cinemaType" column="CINEMA_TYPE" />
+
 	</resultMap>
 	
 	

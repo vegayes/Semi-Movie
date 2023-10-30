@@ -2,9 +2,7 @@ package semi.project.movieInsight.mypage.controller;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.service.ManagerService;
@@ -53,7 +50,6 @@ public class ManagerDetailController {
 		return "redirect:/manager/cinema";
 	}
 
-	
 	
 	
 	
@@ -112,6 +108,7 @@ public class ManagerDetailController {
 		String encodedCinemaName = URLEncoder.encode(cinemaName, StandardCharsets.UTF_8.toString()).replace("+", " ");
 		
 		System.out.println("encodedCinemaName : " + encodedCinemaName);
+
 		
 		return "redirect:/cinemaDetail/" + encodedCinemaName;
 	}	
@@ -142,6 +139,7 @@ public class ManagerDetailController {
 		
 		
 		return "redirect:/manager/movie";
+
 	}
 	
 	
@@ -161,6 +159,7 @@ public class ManagerDetailController {
 		
 		
 		return null;
+
 	}
 	
 	

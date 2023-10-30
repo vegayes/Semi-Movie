@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
 
 
+
 if (document.getElementById("fileChange")) {
     // 파일 입력란의 이벤트 리스너 추가
     document.getElementById("fileChange").addEventListener("change", function(event) {
@@ -92,9 +93,5 @@ if (document.getElementById("fileInput")) {
         }
     });
 }
-
-
-
-
 
 

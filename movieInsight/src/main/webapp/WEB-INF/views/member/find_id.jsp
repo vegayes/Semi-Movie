@@ -26,7 +26,7 @@
                         <h4 class="mb-4 pb-3">Find ID</h4>
 
                         <div class="form-group mt-2">
-                     	 	<form action="/find/id" method="POST">
+                     	 	<form action="/movieInsight/find/findID" method="POST">
 	                          <input
 	                            type="email"
 	                            name="logpass"
@@ -35,7 +35,6 @@
 	                            id="logpass"
 	                            autocomplete="off"
 	                          />
-	
 	                          <button id="logpassCheck">인증하기</button>
 	                        </form> 
                           <i class="input-icon uil uil-lock-alt"></i>

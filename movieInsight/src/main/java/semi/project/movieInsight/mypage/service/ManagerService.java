@@ -53,7 +53,9 @@ public interface ManagerService {
 	 */
 	int updateCinema(MultipartFile cinemaImg, String webPath, String filePath, Cinema cinemaInfo) throws Exception;
 
+
 	int insertCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) throws Exception;
+
 	
 	
 	

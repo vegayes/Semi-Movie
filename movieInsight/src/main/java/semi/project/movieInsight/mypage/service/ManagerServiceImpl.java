@@ -152,6 +152,7 @@ public class ManagerServiceImpl implements ManagerService{
 		
 	}
 
+
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int insertCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) throws Exception{
@@ -175,6 +176,7 @@ public class ManagerServiceImpl implements ManagerService{
 				return result;
 				
 	}
+
 
 
 	

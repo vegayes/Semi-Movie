@@ -28,7 +28,7 @@
 		<result property="commentMovieWriter" column="COMMENT_MOVIE_WRITER"/>
 		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="writerProfile" column="COMMENT_MEMBER_PROFILE"/>
-		
+
 		
 	</resultMap>
 	
@@ -182,7 +182,6 @@
 	
 
 	
-	
 	<update id="deleteMovie">
   		UPDATE MOVIE m  
 		SET MOVIE_DEL_YN  = 'Y'
@@ -200,6 +199,7 @@
 		WHERE MOVIE_DEL_YN ='N' AND MOVIE_EV_DEL_YN = 'N' AND MOVIE_NO = #{movieNo}
 		ORDER BY MOVIE_EV_ENROLL_DATE DESC
 	</select>
+
 	
 	<insert id = "commentInsert">
 	INSERT INTO "MOVIE_EVALUATION"

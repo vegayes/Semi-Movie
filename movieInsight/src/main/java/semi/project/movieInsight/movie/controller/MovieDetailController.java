@@ -1,6 +1,9 @@
 package semi.project.movieInsight.movie.controller;
 
 import java.io.IOException;
+
+import java.nio.file.spi.FileSystemProvider;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +12,10 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import javax.servlet.http.HttpSession;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +51,7 @@ public class MovieDetailController {
 
 
 //	@GetMapping("/movie/{movieNo}")
+
 	@GetMapping("{movieNo:\\d+}")
 	public String selectMovie(
 			@SessionAttribute(value = "loginMember", required =false) Member loginMember,
@@ -113,7 +121,9 @@ public class MovieDetailController {
 //			System.out.println("url : " + currentUrl);
 			 model.addAttribute("pageType", "movie");
 			 
+
 //			 CookieUrlClass.setCookieUrl(request, response, loginMember.getMemberId(), Integer.toString(movieNo));
+
 
 			 
 			 

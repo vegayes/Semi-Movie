@@ -20,8 +20,10 @@
 		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
 		<result property="cinemaGrade" column="CINEMA_GRADE"/>
 		
+
 		<result property="cinemaType" column="CINEMA_TYPE" />
 		
+
 	</resultMap>
 
 
@@ -41,12 +43,14 @@
 		<result property="actorNames" column="ACTOR_NAMES"/>
 		<result property="directorNames" column="DIRECTOR_NAMES"/>
 
+
 		<result property="movieCommentNo" column="MOVIE_EV_NO"/>
 		<result property="movieCommentContent" column="EVALUATION_CONTENT"/>
 		<result property="movieCommentDate" column="MOVIE_EV_ENROLL_DATE"/>
 		<result property="movieGrade" column="MOVIE_GRADE"/>
 
 		<result property="commentMovieWriter" column="COMMENT_MOVIE_WRITER"/>
+
 	</resultMap>
 
 
@@ -140,7 +144,6 @@
 			 CINEMA_MAX_INCLUDE = #{cinemaMaxInclude}
 		WHERE CINEMA_NO = #{cinemaNo}
 
-  	
   	</update>
   
   	<update id="updateCinemaImg">
@@ -163,8 +166,7 @@
 		#{cinemaImg}, #{cinemaLink}, #{cinemaMaxInclude},DEFAULT, #{cinemaSpecialHall})
   	
   	</insert>
-  	
-  	
+
   	
   	
 
