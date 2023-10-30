@@ -27,8 +27,8 @@ public class EmailVerificationController {
 //	private EmailService service;
 
 
-	@PostMapping("/superEmail")
 	@ResponseBody
+	@PostMapping("/superEmail")
 	public String sendVerificationEmail(@RequestParam("memberEmail") String memberEmail) {
 		
 		// 인증번호 생성
@@ -46,11 +46,12 @@ public class EmailVerificationController {
 		
 		
     
-  @GetMapping("/superEmail")
 	@ResponseBody
-	public int sendVerificationEmail(@RequestParam("memberEmail") String memberEmail) {
-		return service.signUp(memberEmail);
-		}
+	@GetMapping("/superEmail")
+	public int sendVerificationEmail1(@RequestParam("memberEmail") String memberEmail) {
+		return emailService.signUp(memberEmail);
+	}
+	
 
   @GetMapping("/checkAuthKey")
   @ResponseBody
@@ -58,7 +59,7 @@ public class EmailVerificationController {
 
     System.out.println(paramMap); // {inputKey=wc3rxG, email=knbdh@nate.com}
 
-      return service.checkAuthKey(paramMap);
+      return emailService.checkAuthKey(paramMap);
     }
     
     
