@@ -48,8 +48,7 @@ public class MovieDetailController {
 
 
 //	@GetMapping("/movie/{movieNo}")
-	@GetMapping("{movieNo:^[^0]\\d*}") // 정수 숫자만
-
+	@GetMapping("{movieNo:\\d+}")
 	public String selectMovie(
 			@SessionAttribute(value = "loginMember", required =false) Member loginMember,
 			@PathVariable("movieNo") int movieNo,
@@ -59,6 +58,10 @@ public class MovieDetailController {
 		
 		System.out.println("검색 후 이동");
 		System.out.println(movieNo);
+		if(movieNo == 0) {
+			return "movie/movie-detail-page";
+		}
+		
 		
 		// 1) movieNo를 가지고 movie에 대한 정보 가져오기
 		Movie movieInfo = service.selectMovie(movieNo);
@@ -108,7 +111,7 @@ public class MovieDetailController {
 //			System.out.println("url : " + currentUrl);
 			 model.addAttribute("pageType", "movie");
 			 
-			 CookieUrlClass.setCookieUrl(request, response, loginMember.getMemberId(), Integer.toString(movieNo));
+//			 CookieUrlClass.setCookieUrl(request, response, loginMember.getMemberId(), Integer.toString(movieNo));
 
 			 
 			 
