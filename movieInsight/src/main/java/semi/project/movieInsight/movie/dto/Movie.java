@@ -23,7 +23,10 @@ public class Movie {
     private int movieRunningTime;		// 영화 상영시간
     private String movieEnrollDate; 	// 동영상 등록날짜
     private String movieDelYN;			// 영화 삭제 여부
-    private int movieGrade;				// 영화 평점
+
+
+    private float sumMovieGrade;			// 영화 평점 계산 
+
 
 //  배우 이름 검색 구분자 조회 
     private String actorNames;
@@ -37,4 +40,20 @@ public class Movie {
     private String castingURL;
     
     */
+    
+	// 즐겨찾기 MOVIE 등록일
+	private String movieLikeEnrollDate;
+	
+	
+	
+	// 댓글
+	private int movieCommentNo; 
+    private String movieCommentContent;			
+    private String movieCommentDate;
+
+    private float movieGrade; // 각 평점 
+    private String commentMovieWriter; // 댓글 작성자 	
+    private int memberNo; // 댓글 작성자 No
+    private String writerProfile;// 댓글 작성자 프로필
+
 }

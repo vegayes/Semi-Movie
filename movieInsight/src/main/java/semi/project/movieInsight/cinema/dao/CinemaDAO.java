@@ -35,4 +35,9 @@ public class CinemaDAO {
 		return sqlSession.selectList("cinemaMapper.selectManagerCinemaList");
 	}
 
+	
+	
+
+
+
 }

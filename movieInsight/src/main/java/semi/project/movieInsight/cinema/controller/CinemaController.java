@@ -29,12 +29,12 @@ public class CinemaController {
 		
 		System.out.println("search 페이지 들어옴");
 		
-		System.out.println("검색 내용 : " + cinemaQuery);
+		//System.out.println("검색 내용 : " + cinemaQuery);
 		
 		// 검색한 영화 목록 조회 서비스 호출
 		List<Cinema> cinemaList = service.searchCinemaList(cinemaQuery);
 
-		System.out.println("cinemaList : " + cinemaList);
+		//System.out.println("cinemaList : " + cinemaList);
 		
 		model.addAttribute("cinemaQuery", cinemaQuery);
 		model.addAttribute("cinemaList", cinemaList);

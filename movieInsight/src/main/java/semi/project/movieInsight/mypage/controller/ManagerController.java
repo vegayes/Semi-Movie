@@ -58,12 +58,7 @@ public class ManagerController {
 		Map<String,Object> memberMap = service.selectMember();
 		
 		model.addAttribute("memberMap", memberMap);
-		
-
-		
-		
-		
-		
+	
 		return "/manager/manager-member";
 
 	}

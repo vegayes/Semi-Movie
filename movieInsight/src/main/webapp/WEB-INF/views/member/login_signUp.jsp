@@ -53,7 +53,7 @@
                         <h4 class="mb-4 pb-3">Log In</h4>
                         <div class="form-group">
                           <p class="mb-0 mt-4 text-center">
-                            <a href="/movieInsight/find/id" class="link"
+                            <a href="/movieInsight/find/findID" class="link"
                               >Forgot ID?</a
                             >
                           </p>
@@ -183,7 +183,7 @@
 			                          />
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
-			                        <div class="form-group mt-2">
+			                        <div class="form-group mt-2" id="nickMessage">
 			                          <h5 class="labela">GENDER</h5>
 			
 			                          <button class="gender">남자</button>

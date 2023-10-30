@@ -26,14 +26,14 @@ main{
 }
 
 
-main>section{
+#cinema-form{
   
-
-   
+   width: 90%;
+   height: 11.5%;
    margin: 3% 0;
    background-color: #383B3E;
    border-radius: 20px;
-
+   display: flex;
 
 }
 
@@ -44,9 +44,8 @@ main>section{
 
 .cinema{
 
-
-
-    height: 11.5%;
+    height: 99%;
+    width: 100%;
     display: flex;
     background-color: #6A5A56;
     
@@ -70,7 +69,7 @@ main>section{
 
 }
 
-#cgv_yongsan{
+#cinemaImg{
 
     width: 85%;
     height: 80%;
@@ -139,6 +138,7 @@ main>section{
     font-size: 3rem;
     font-weight: bold;
 }
+
 
 
 .cinema_title>div:nth-child(3){

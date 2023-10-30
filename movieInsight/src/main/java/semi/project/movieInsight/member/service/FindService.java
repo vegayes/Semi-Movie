@@ -4,6 +4,4 @@ public interface FindService {
 
 	int findId(String email);
 
-	
-
 }

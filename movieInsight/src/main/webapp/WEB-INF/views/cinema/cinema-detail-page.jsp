@@ -16,60 +16,186 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		
 	<main>
-        <section class="cinema">
-            <div>
-                <img src="/movieInsight/resources/images/cinema/${cinemaInfo.cinemaImg}" id="cgv_yongsan">
-            </div>
-            
-            <div>
-                <div class="cinema_title">
-                    <div class="star">
-                        <a href="#">
-                            <i class="fa-solid fa-star" id="star"></i>            
-                        </a> 
-                    </div>                 
-                    <div>
-                       ${cinemaInfo.cinemaName}  
-                    </div>
-                    <div>
-                        <div>
-                            <img src="/movieInsight/resources/images/cinema/popcon.png">
-                        </div>
-                        <div>
-                            <img src="/movieInsight/resources/images/cinema/popcon.png">
-                        </div>
-                        <div>
-                            <img src="/movieInsight/resources/images/cinema/popcon.png">
-                        </div>
-                        <div>
-                            <img src="/movieInsight/resources/images/cinema/popcon.png">
-                        </div>
-                        <div>
-                            <img src="/movieInsight/resources/images/cinema/popcon.png">
-                        </div>
-                    </div>
-                </div>
-                <div class="cinema_description">
-                    <div>
-                        <div>
-                            주소 : ${cinemaInfo.cinemaAddress}                       </div>
-                        <div>    
-                            연락처 : ${cinemaInfo.cinemaContact} 
-                        </div>
-                        <div>
-                            수용인원 : ${cinemaInfo.cinemaMaxInclude} 명 
-                        </div>
-                              <div>   
-                            특별관 : ${cinemaInfo.cinemaSpecialHall}
-                        </div>
-                        <div>
-                           <a href=${cinemaInfo.cinemaLink} target="_blank">바로가기</a> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
+       
+        <form action="/movieInsight/cinemaDetail/${cinemaInfo.cinemaNo}" method="POST" encType="multipart/form-data" id="cinema-form">
+            <section class="cinema">
+
+                <div>       
+                    <c:choose>
+                        <c:when test="${false}">
+                            <img src="/movieInsight/resources/images/cinema/${cinemaInfo.cinemaImg}" id="cinemaImg">
+                            <input type="file" name="cinemaImage"  id="fileChange" accept="image/*"> 
+                        </c:when>
+                        <c:when test="${empty cinemaInfo}">
+                            <img src="" id="cinemaImg">
+                            <input type="file" name="cinemaImage"  id="fileInput" accept="image/*">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="/movieInsight/resources/images/cinema/${cinemaInfo.cinemaImg}" id="cinemaImg">
+                        </c:otherwise>
+                    </c:choose>
+
+                </div>
+                
+                <div>
+                    <div class="cinema_title">
+                        <div class="star">
+                            <a href="#">
+                                <i class="fa-solid fa-star" id="star"></i>            
+                            </a> 
+                        </div>                 
+                        <div>
+                            <c:choose>
+
+                                <c:when test="${empty cinemaInfo}">
+                                    <input type="text" name="cinemaName" style="font-size: 30px;">
+                                </c:when>
+                                <c:when test="false">
+
+                                    <input type="text" name="cinemaName" style="font-size: 30px;" value="${cinemaInfo.cinemaName}">
+                                </c:when>
+                                <c:otherwise>
+                                    ${cinemaInfo.cinemaName}  
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div>
+                            <div>
+                                <img src="/movieInsight/resources/images/cinema/popcon.png">
+                            </div>
+                            <div>
+                                <img src="/movieInsight/resources/images/cinema/popcon.png">
+                            </div>
+                            <div>
+                                <img src="/movieInsight/resources/images/cinema/popcon.png">
+                            </div>
+                            <div>
+                                <img src="/movieInsight/resources/images/cinema/popcon.png">
+                            </div>
+                            <div>
+                                <img src="/movieInsight/resources/images/cinema/popcon.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cinema_description">
+                        <div>
+                            <div>
+                                <c:choose>
+
+                                    <c:when test="${empty cinemaInfo}">
+                                        <input type="text" name="cinemaAddress" style="font-size: 22px; width: 500px">
+                                    </c:when>
+                                    <c:when test="false">
+
+                                        <input type="text" name="cinemaAddress" style="font-size: 22px; width: 500px" value="${cinemaInfo.cinemaAddress}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        주소 : ${cinemaInfo.cinemaAddress}  
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div>    
+                                <c:choose>
+
+                                    <c:when test="${empty cinemaInfo}">
+                                        <input type="text" name="cinemaContact" style="font-size: 22px; width: 500px">
+                                    </c:when>
+                                    <c:when test="false">
+
+                                        <input type="text" name="cinemaContact" style="font-size: 22px; width: 500px" value="${cinemaInfo.cinemaContact}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        연락처 : ${cinemaInfo.cinemaContact} 
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                            <div>
+                                <c:choose>
+
+                                    <c:when test="${empty cinemaInfo}">
+                                        <input type="text" name="cinemaMaxInclude" style="font-size: 22px; width: 500px">
+                                    </c:when>
+                                    <c:when test="false">
+
+                                        <input type="text" name="cinemaMaxInclude" style="font-size: 22px; width: 500px" value="${cinemaInfo.cinemaMaxInclude}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        수용인원 : ${cinemaInfo.cinemaMaxInclude} 명 
+                                    </c:otherwise>
+                                </c:choose>   
+                            </div>
+                            <div>   
+                                <c:choose>
+
+                                    <c:when test="${empty cinemaInfo}">
+                                        <input type="text" name="cinemaSpecialHall" style="font-size: 22px; width: 500px">
+                                    </c:when>
+                                    <c:when test="${empty cinemaInfo}">
+                                        <input type="text" name="cinemaSpecialHall" style="font-size: 22px; width: 500px">
+                                    </c:when>
+                                    <c:when test="false">
+
+                                        <input type="text" name="cinemaSpecialHall" style="font-size: 22px ; width: 500px" value="${cinemaInfo.cinemaSpecialHall}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        특별관 : ${cinemaInfo.cinemaSpecialHall} 
+                                    </c:otherwise>
+                                </c:choose>   
+                            </div>
+                            <div>
+                                <c:choose>
+
+                                    <c:when test="${empty cinemaInfo}">
+                                        <input type="text" name="cinemaLink" style="font-size: 17px; width: 500px">
+                                    </c:when>
+                                    <c:when test="false">
+
+                                        <input type="text" name="cinemaLink" style="font-size: 17px; width: 500px;" value="${cinemaInfo.cinemaLink}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href=${cinemaInfo.cinemaLink} target="_blank">바로가기</a> 
+                                    </c:otherwise>
+                                </c:choose>   
+                            </div>
+
+                            <c:if test="false">
+                                <div>
+                                    <button type="submit" id="updateButton" name="update" style="color: black;">수정하기</button>
+                                </div>
+                            </c:if>
+                            <c:if test="${empty cinemaInfo}">
+                                <div>
+                                    <button type="submit"  id="newButton"  name="new" style="color: black;">등록하기</button>
+                                </div>
+                            </c:if>
+                            <script>
+
+                                if(document.getElementById("updateButton")) {
+                                    document.getElementById("updateButton").addEventListener("click", function() {
+                                        // "수정하기" 버튼 클릭 시 "등록하기" 폼의 action 속성 설정
+                                        console.log("수정버튼 눌림");
+                                        document.getElementById("cinema-form").action = "/movieInsight/managerDetail/updateCinema/${cinemaInfo.cinemaNo}";
+                                        document.getElementById("cinema-form").submit();
+                                    });
+                                }   
+                                if( document.getElementById("newButton")) {
+                                    document.getElementById("newButton").addEventListener("click", function() {
+                                        // "등록하기" 버튼 클릭 시 "수정하기" 폼의 action 속성 설정
+                                        console.log("등록버튼 눌림");
+                                        document.getElementById("cinema-form").action = "/movieInsight/managerDetail/updateCinema/0";
+                                        document.getElementById("cinema-form").submit();
+                                    });
+                                }
+                            
+                            </script>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
 
     <section class="screening_movie">
             <div>상영중인 영화</div>
@@ -117,7 +243,7 @@
     </section>
     
 
-        <section class="facility">
+        <section class="facility" id="cinemaScroll">
             <section class="block">
                 <section class="block_name">                    
                       시설만족도
@@ -351,5 +477,7 @@
 
 
 </body>
-    <script src="/resources/js/cinema/cinema-detail-page.js"></script>
+
+    <script src="/movieInsight/resources/js/cinema/cinema-detail-page.js"></script>
+    
 </html>

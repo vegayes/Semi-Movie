@@ -347,9 +347,11 @@ main>div{
 
 
 .comb1 {
-    height: 90.5px;
+    height: 100px;
     width: auto;
     display: flex;
+    
+    border : 2px solid yellow;
 }
 
 .comb1 img {
@@ -400,7 +402,7 @@ main>div{
 }
 
 .comb2 {
-    height: 72.5px;
+    height: 80px;
     width: auto;
     padding: 0;
     display: flex;
@@ -412,12 +414,17 @@ main>div{
 }
 
 .cb1-1 {
-    flex-basis: 55%;
+    flex-basis: 30%;
     padding: 0;
 }
 
 .cb1-2 {
-    flex-basis: 40%;
+    flex-basis: 30%;
+    padding: 0;
+}
+
+.cb1-3{
+    flex-basis: 35%;
     padding: 0;
 }
 
@@ -476,30 +483,6 @@ main>div{
     padding: 0;
 }
 
-.editBtn {
-    margin-left: 58%;
-    margin-top: 2%;
-    background-color: #383B3E;
-    color: rgb(195, 195, 250);
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    margin-right: 10px;
-}
-
-.deletBtn {
-    margin-top: 2%;
-    background-color: #383B3E;
-    color: rgb(170, 170, 248);
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    margin-right: 10px;
-}
 
 .comb5 img {
     width: 33px;
@@ -520,9 +503,44 @@ main>div{
     color: black;
     height: 15%;
     border: none;
+    
+    border : 2px solid red;
 
 }
-   
+
+.commnetForm-white{
+   	margin-left: 3%;
+    height: 80%;
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;	
+} 
+
+.commnetForm-white > div:nth-child(1){
+	    flex-basis: 55%;
+	    display : flex;
+	    padding : 10px;
+}  
+#commentContent{
+	width : 500px;
+    height: 95%;
+    padding : 0px 10px;
+	font-size : 15px;
+    margin-right: 10px;
+	resize: none;
+	border :none;
+	    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commnetForm-white > div:nth-child(2){
+    flex-basis: 10%;
+    font-size: 0.9rem;
+}  
 
 #facilityForm{
    	margin-left: 3%;
@@ -546,19 +564,29 @@ main>div{
     font-size: 0.9rem;
 }
 
-#submit{
+#commentSubmit{
     background-repeat: no-repeat;/* 배경 이미지 1개 */
     background-position: center;
     background-color: #383B3E;
     width: 100px;
     height: 100px;
     border: 0px;
+    
+    display : flex;
+        justify-content: center;
+    align-items: center;
+    
+    margin-left : 10px;
+}
+
+.comment-content{
+	white-space : pre-wrap;
 }
 
 
-.CF2 {
 
-    flex-basis: 45%;
+.CF2 {
+    flex-basis: 40%;
     display: flex;
     margin: 0;
     padding: 0;
@@ -1278,13 +1306,14 @@ main>div{
 }
 
 #submit{
-    background-image: url(img/list.png);
+    background-image: url(img/list.png)	
     background-repeat: no-repeat;/* 배경 이미지 1개 */
     background-position: center;
     background-color: #383B3E;
     width: 100px;
     height: 100px;
     border: 0px;
+    margin-left : 10px;
 }
 
 
@@ -1460,5 +1489,122 @@ main>div{
 	justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+
+/* -====================================== 댓글 테이블  =======================================*/
+.comment-list-table{
+    width: 1000px;
+    border-spacing: 0;
+    width: 100%;
+    
+}
+
+
+.comment-list-table tr{
+    flex-basis: 100%;
+
+
+    display: flex;
+
+    padding: 5px 0px;
+}
+
+
+
+.comment-img{
+    flex-basis: 5%;
+
+    /* background-color: rebeccapurple; */
+    
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-writer-img-wrapper{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border : 2px solid white;
+    
+    display : flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+
+.comment-writer-img-wrapper > img{
+    height: 100%;
+    width: 100%;
+  
+}
+
+
+.comment-list-id{
+    flex-basis: 5%;
+
+   
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 20px;
+    font-weight : bold;
+}
+
+.comment-list-content{
+    flex-basis: 40%;
+
+    /* background-color: green; */
+
+    padding : 0px 5px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+        font-weight : bold;
+}
+
+.comment-list-date{
+    flex-basis: 30%;
+
+    /* background-color: gray; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.comment-list-edit{
+	flex-basis : 20%;
+	
+    display: flex;	
+	justify-content: center;
+    align-items: center;
+}
+
+
+.editBtn {
+    background-color: #383B3E;
+    color: rgb(195, 195, 250);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+	margin: 0px;
+    margin-right: 30px;
+}
+
+.deletBtn { 
+    background-color: #383B3E;
+    color: rgb(170, 170, 248);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin: 0px;
+    margin-right: 10px;
 }
 
