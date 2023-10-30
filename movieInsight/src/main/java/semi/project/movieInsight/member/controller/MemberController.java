@@ -56,8 +56,8 @@ public class MemberController {
 		
 		Member inputMember = new Member();
 		// ------- 임시 로그인 설정 ------------
-		inputMember.setMemberId("id");
-		inputMember.setMemberPw("pw");
+		inputMember.setMemberId("id2");
+		inputMember.setMemberPw("pw2");
 		// ------------------------------------------
 		
 		
@@ -161,6 +161,14 @@ public class MemberController {
 		return result;
 	}
 	
+//	@ResponseBody
+//	@PostMapping("/dupCheck/nickname")
+//	public int nickCheck(String nick_check) {
+//		
+//		
+//		
+//	}
+//	
 
 
 	

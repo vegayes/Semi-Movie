@@ -101,9 +101,8 @@ public class ManagerDAO {
 	 * @return
 	 */
 	public int updateCinema(Cinema cinemaInfo) {
-		
 		System.out.println("DAO에서 cinemaInfo : " + cinemaInfo);
-		
+
 		if(cinemaInfo.getCinemaImg().equals("")) {
 			System.out.println("updateCinema 실행");
 			return sqlSession.update("cinemaMapper.updateCinema", cinemaInfo);
@@ -113,6 +112,13 @@ public class ManagerDAO {
 		}
 		
 	}
+
+
+	public int insertCinema(Cinema cinemaInfo) {
+		
+		return sqlSession.insert("cinemaMapper.insertCinema", cinemaInfo);
+	}
+
 	
 
 	

@@ -153,6 +153,32 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) throws Exception{
+		
+				cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
+				int result = dao.insertCinema(cinemaInfo);
+				
+				
+				if(result > 0) { 
+					
+					if(cinemaImage.getSize() != 0) {
+						cinemaImage.transferTo(new File(filePath + cinemaImage.getOriginalFilename()));
+						
+					}		
+					
+				}else {
+					
+					 throw new RuntimeException("Cinema insert failed ");
+				}
+				
+				return result;
+				
+	}
+
+
+
 	
 	
 	

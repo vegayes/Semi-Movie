@@ -15,8 +15,8 @@ public class EmailDAO {
 
 	public int updateAuthKey(Map<String, String> map) {
 	
-//		return sqlSession.update("emailMapper.updateAuthKey", map);
-		return 0;
+	return sqlSession.update("emailMapper.updateAuthKey", map);
+
 	}
 
 
@@ -25,7 +25,13 @@ public class EmailDAO {
 		System.out.println(map);
 		
 	
-		return sqlSession.selectOne("emailMapper.insertAuthKey");
+		return sqlSession.insert("emailMapper.insertAuthKey", map);
+	}
+
+
+	public int checkAuthKey(Map<String, Object> paramMap) {
+		
+		return sqlSession.selectOne("emailMapper.checkAuthKey", paramMap);
 	}
 	
 	
