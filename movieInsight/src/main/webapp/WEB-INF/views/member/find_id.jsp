@@ -29,10 +29,9 @@
                      	 	<form action="/movieInsight/find/findID" method="POST">
 	                          <input
 	                            type="email"
-	                            name="logpass"
 	                            class="form-style"
 	                            placeholder="User Email"
-	                            id="logpass"
+	                     		id="email" name="email"
 	                            autocomplete="off"
 	                          />
 	                          <button id="logpassCheck">인증하기</button>

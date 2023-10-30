@@ -26,54 +26,13 @@ public class FindServiceImpl implements FindService {
 	
 	@Transactional
 	@Override
-	public int findId(String email) {
+	public String findId(String email) {
 		
 	 
-		int result = dao.selectFindId(email);
+		return dao.selectFindId(email);
 		
 		
-		try {
-			
-			
-			   MimeMessage mail = mailSender.createMimeMessage();
-			   
-		       String subject = "[MovieInsight]"+"아이디찾기";
-		       
-		         // 문자 인코딩
-	            String charset = "UTF-8";
-	            
-	            // 메일 내용
-	            String mailContent 
-	                = "<p>MovieInsight "+" 아이디 입니다.</p>"
-	                + "<h3 style='color:blue'>" +result  + "</h3>";
-         
-	            
-	            // 송신자(보내는 사람) 지정
-	            mail.setFrom(new InternetAddress(fromEmail, fromUsername));
-	            // 수신자(받는사람) 지정
-	            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-	            
-	            
-	            // 이메일 제목 세팅
-	            mail.setSubject(subject, charset);
-	            
-	            // 내용 세팅
-	            mail.setText(mailContent, charset, "html"); //"html" 추가 시 HTML 태그가 해석됨
-	            
-	            mailSender.send(mail);
-
-	          
-		       
-		}catch (Exception e) {
-            e.printStackTrace();
-        
-		}
-		
-
-		  System.out.println(email);
-		
-		
-		return result;
+	
 	}
 
 

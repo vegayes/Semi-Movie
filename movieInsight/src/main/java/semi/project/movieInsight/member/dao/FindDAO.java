@@ -10,7 +10,7 @@ public class FindDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public int selectFindId(String email) {
+	public String selectFindId(String email) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("findMapper.findId", email);
 	}
