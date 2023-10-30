@@ -91,8 +91,7 @@ public class MypageController {
 		            	System.out.println("===== 로그인한 번호와 쿠키의 번호가 일치한 경우 =====");
 		            	
 			            System.out.println("리스트 저장 : " + visitInfoList);
-			            
-			            System.out.println("visitInfo" + visitInfoList.get(1));          	
+			                    	
 		            	
 		            	
 		            }

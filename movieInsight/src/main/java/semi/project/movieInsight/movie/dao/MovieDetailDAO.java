@@ -72,6 +72,20 @@ public class MovieDetailDAO {
 		return sqlSession.selectList("movieMapper.recommendMovie", genreMap);
 	}
 
+
+	public List<Movie> commentMovieList(int movieNo) {
+		return sqlSession.selectList("movieMapper.commentMovieList", movieNo);
+	}
+
+
+	/** 댓글 삽입
+	 * @param movie
+	 * @return
+	 */
+	public int commentInsert(Movie movie) {
+		return sqlSession.insert("movieMapper.commentInsert", movie	);
+	}
+
 	
 	
 	

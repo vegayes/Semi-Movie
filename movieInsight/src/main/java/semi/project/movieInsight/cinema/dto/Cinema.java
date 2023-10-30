@@ -31,5 +31,8 @@ public class Cinema {
     private String cinemaCommentDate;
     private String cinemaCommentType;
     private int cinemaGrade; // 각 평점 
-	
+    
+   
+    // 영화관 구분
+    private String 	cinemaType;  // 영화관이면 C , OTT 면 O	
 }
