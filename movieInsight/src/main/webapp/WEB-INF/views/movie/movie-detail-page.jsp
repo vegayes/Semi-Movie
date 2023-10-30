@@ -40,9 +40,10 @@
     <main>
 
         <c:choose>
-            <form action="">
+           
                 <%-- *************** 관리자 페이지에서 등록 버튼 눌렀을 때 ************************ --%>
                 <c:when test="${empty movieInfo}">
+                    <form action="#">
                     <div class="movie">
                         <div class="movie_img">
                             <img src="" id="movieImg">
@@ -92,8 +93,9 @@
                         </div>
                         <button type="submit" style="color: black;" id="insertButton" name="insert">등록하기</button>
                     </div>
+                    </form>
                 </c:when>
-            </form>
+            
             <%-- *************** 관리자 페이지에서 수정 버튼 눌렀을 때 ************************--%>
             <c:when test="false">
                 <div class="movie">
