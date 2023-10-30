@@ -114,8 +114,7 @@
 		                	<div class = "mypage-wrapper">
 		                	 	<i class="fa-solid fa-user"></i>    
 		                	</div>
-		                </a>
-		                                	
+		                </a>      	
                 	</c:when>
                 	<%-- 2-2) 로그인  O 경우 --%>
                 	<c:otherwise>				

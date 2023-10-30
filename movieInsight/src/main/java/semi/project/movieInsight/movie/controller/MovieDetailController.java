@@ -110,6 +110,10 @@ public class MovieDetailController {
 			 
 			 CookieUrlClass.setCookieUrl(request, response, loginMember.getMemberId(), Integer.toString(movieNo));
 
+			 
+			 
+			 
+			 
 		return "movie/movie-detail-page";
 	}
 	

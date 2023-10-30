@@ -2,6 +2,8 @@ package semi.project.movieInsight.mypage.controller;
 
 
 
+import java.nio.file.spi.FileSystemProvider;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -82,21 +84,22 @@ public class MypageController {
 		            
 		            System.out.println("cookies value : " + value );
 		            
-		            String[] visitInfo = value.split("_");
-		            
-		            System.out.println("visitInfo" + visitInfo);
+		            List<String> visitInfoList = Arrays.asList(value.split("_"));
 		            
 		            if(cookie.getName().split("_")[1].equals(loginMember.getMemberId())) {
 		            	
 		            	System.out.println("===== 로그인한 번호와 쿠키의 번호가 일치한 경우 =====");
 		            	
+			            System.out.println("리스트 저장 : " + visitInfoList);
+			            
+			            System.out.println("visitInfo" + visitInfoList.get(1));          	
 		            	
 		            	
 		            }
 		            
 		            
 		            
-		            if(visitInfo[0].equals(loginMember.getMemberId())) {
+//		            if(visitInfo[0].equals(loginMember.getMemberId())) {
 		            	
 //		            	
 //		            	int visitMovie = Integer.parseInt(visitInfo[1]);
@@ -111,7 +114,6 @@ public class MypageController {
 		            	
 		            	
 		            	
-		            }
 		            
 		            
 		        }
@@ -173,6 +175,7 @@ public class MypageController {
 		String webPath = "/resources/images/member/";
 		
 		String filePath = session.getServletContext().getRealPath(webPath);
+			
 		
 		System.out.println("filePath" + filePath);
 		
@@ -284,6 +287,7 @@ public class MypageController {
 	}
 	
 	
+	// 탈퇴 
 	
 		
 	
