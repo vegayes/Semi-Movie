@@ -16,6 +16,7 @@ public class EmailVerificationController {
 	@Autowired
 	private EmailService emailService;
 	
+
 	@PostMapping("/superEmail")
 	@ResponseBody
 	public String sendVerificationEmail(@RequestParam("memberEmail") String memberEmail) {
