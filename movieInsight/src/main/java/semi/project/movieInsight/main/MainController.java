@@ -26,8 +26,7 @@ public class MainController {
 	public String test1() {
 
 
-//		return "redirect:/movie";
-		return "redirect:/cinema";
+		return "redirect:/movie";
 
 	}
 

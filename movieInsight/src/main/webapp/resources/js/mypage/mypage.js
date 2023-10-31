@@ -119,22 +119,123 @@ document.getElementsByName("favorite-check").forEach(function(v) {
 
 
 // 2-3) 선택이 된 값들 출력
+/*
 document.querySelector(".favorite-delet-btn").addEventListener("click", function() {
+
   var checkedItems = document.querySelectorAll('input[name="favorite-check"]:checked');
-  var selectedValues = Array.from(checkedItems).map(function(checkbox) {
-      return checkbox.value; // 체크된 항목들의 값 가져오기 (예를 들어, 영화 또는 시네마의 고유 식별자)
+  console.log(checkedItems);
+  var a = Array.from(checkedItems);
+  console.log("a : "+ a);
+  console.log("a[0] " + a[0]);
+  var selectedMovieNos = a.map(function(checkbox) {
+      console.log(checkbox);
+      return checkbox.getAttribute('data-movieno');
   });
 
-  if (selectedValues.length > 0) {
+  if (selectedMovieNos.length > 0) {
       var confirmed = confirm("선택된 항목을 삭제하시겠습니까?");
       if (confirmed) {
-          // AJAX를 사용하여 선택된 항목을 서버에 전송하고 삭제 작업을 수행
-          // 서버에 선택된 항목들의 값들을 전송하는 로직을 추가해야 합니다.
+          // TODO: AJAX 요청을 보내서 서버에서 삭제 작업 수행
+          console.log(selectedMovieNos); // 선택된 movieNo 확인용 로그
+
+
+
+
+
       }
   } else {
-      alert("삭제할 항목을 선택해주세요.");
+      alert("삭제할 항목을 선택해주세요."); 
   }
 });
+*/
+
+document.querySelector(".favorite-delet-btn").addEventListener("click", function() {
+
+  var checkedItems = document.querySelectorAll('input[name="favorite-check"]:checked');
+  var a = Array.from(checkedItems);
+  var selectedDelMovie = a.map(function(checkbox) {
+      return checkbox.getAttribute('data-movieno');
+  });
+
+  if (selectedDelMovie.length > 0) {
+      var confirmed = confirm("선택된 항목을 삭제하시겠습니까?");
+      if (confirmed) {
+
+          console.log(selectedDelMovie);
+
+          fetch("/movieinsight/mypage/like/del", {
+            method : "POST",
+            headers : {"Content-Type" : "application/json"},
+            body : JSON.stringify(selectedDelMovie)
+          })
+        .then(response => response.text()) // 응답 객체를 필요한 형태로 파싱하여 리턴
+    
+        .then(count => { 
+    
+            console.log("count : " + count);
+    
+            if(count == -1){ // INSERT, DELETE 실패 시
+                console.log("즐겨찾기 제거 처리 실패");
+                return;
+            }
+    
+            // toggle() : 클래스가 있으면 없애고, 없으면 추가하고
+            e.target.classList.toggle("fa-regular");
+            e.target.classList.toggle("fa-solid");
+    
+            // 현재 게시글의 좋아요 수를 화면에 출력
+            e.target.nextElementSibling.innerText = count;
+    
+    
+        }) // 파싱된 데이터를 받아서 처리하는 코드 작성
+
+
+          /*
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'your_server_endpoint_url_here', true);
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 400) {
+                    // 성공적으로 서버에서 응답을 받았을 때 수행할 코드
+                    console.log(xhr.responseText);
+                } else {
+                    // 서버에서 오류 응답을 받았을 때 수행할 코드
+                    console.error(xhr.statusText);
+                }
+            };
+            xhr.onerror = function () {
+                // 네트워크 오류 등으로 인해 요청이 실패했을 때 수행할 코드
+                console.error('네트워크 오류');
+            };
+            xhr.send(JSON.stringify(selectedMovieNos));
+          */
+
+
+      }
+  } else {
+      alert("삭제할 항목을 선택해주세요."); 
+  }
+});
+
+
+
+/*
+    document.addEventListener("DOMContentLoaded", function() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="favorite-check"]');
+        
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    var movieNo = this.parentElement.querySelector('p').textContent;
+                    console.log('선택된 영화의 movieNo:', movieNo);
+                    // 여기에서 movieNo를 활용하여 원하는 작업을 수행할 수 있습니다.
+                }
+            });
+        });
+    });
+
+*/
+
 
 
 
