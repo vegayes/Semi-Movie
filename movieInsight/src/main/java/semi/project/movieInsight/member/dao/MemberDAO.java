@@ -13,6 +13,8 @@ public class MemberDAO {
 	private SqlSessionTemplate sqlSession;
 
 	public int signUp(Member inputMember) {
+		
+		System.out.println(inputMember);
 	
 		return sqlSession.insert("memberMapper.signUp", inputMember);
 	}
@@ -38,6 +40,11 @@ public class MemberDAO {
 	
 		return sqlSession.selectOne("memberMapper.checkEmail", email);
 
+	}
+
+	public int nickCheck(String nick_check) {
+		
+		return sqlSession.selectOne("memberMapper.checkEmail", nick_check);
 	}
 
 	

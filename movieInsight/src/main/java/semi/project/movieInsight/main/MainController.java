@@ -25,23 +25,8 @@ public class MainController {
 	@RequestMapping("/")
 	public String test1() {
 
-//		return "movie/home-page";
-//		return "redirect:/movie";
 
-
-//		return "movie/home-page";
-
-//		return "redirect:/manager/cinema";
-
-//		return "redirect:/mypage/member";
-//		return "/manager/event";
-// 
-//		return "cinema/cinema-homepage";
-
-//		return "manager/manager-menu";
-		
-		return "member/login_signUp";		
-		
+		return "redirect:/movie";
 
 	}
 
@@ -55,7 +40,10 @@ public class MainController {
 		
 		return "movie/home-page";
 	}
-	
+
+
+
+
 	@GetMapping("/cinema")
 	public String cinemaMain(Model model) {
 		
@@ -69,4 +57,5 @@ public class MainController {
 	
 	
 }
+
 

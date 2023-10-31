@@ -104,11 +104,10 @@
                   <div class="card-back">
                     <div class="center-wrap">
                       <div class="section text-center">
-                        <h4 class="mb-4 pb-3">Sign Up</h4>
                         <div class="form-group">
                           <h5 class="labela">USER ID</h5>
                           
-                          		<form action="/member/login_signUp" method="POST" name="inputMember">
+                          		<form action="/movieInsight/member/signUp" method="POST" name="inputMember" id="signUpFrm">
 			                          <input
 			                            type="text"
 			                            name="memberId"
@@ -178,19 +177,23 @@
 			                            name="memberNickname"
 			                            class="form-style"
 			                            placeholder="Your Nickname"
-			                            id="logpass"
+			                            id="memberNickname"
 			                            autocomplete="off"
 			                          />
+                                <P id="nickMessage">메세지</P>
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
-			                        <div class="form-group mt-2" id="nickMessage">
+			                        <div class="form-group mt-2">
 			                          <h5 class="labela">GENDER</h5>
 			
-			                          <button class="gender">남자</button>
-			                          <button class="gender">여자</button>
+			                          <!-- <button class="gender" id="genderM" type="button" name="memberGender" value="M">남자</button>
+			                          <button class="gender" id="genderF" type="button" name="memberGender" value="F">여자</button> -->
+
+                                <input type="radio" class="gender" id="gender" type="button" name="memberGender" value="M">남자
+                                <input type="radio" class="gender" id="gender" type="button" name="memberGender" value="F">여자
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
-			                        <a href="#" class="btn mt-4 blut">SIGN UP</a>
+                              <button id="signUpBut" class="btn mt-4 blue">SIGN UP</button>
 			                    </form>    
                         
                         

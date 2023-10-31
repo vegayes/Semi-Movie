@@ -51,4 +51,10 @@ public class MemberServiceimpl implements MemberService{
 		return dao.login(inputMember);
 	}
 
+	@Override
+	public int nickCheck(String nick_check) {
+		
+		return dao.nickCheck(nick_check);
+	}
+
 }
