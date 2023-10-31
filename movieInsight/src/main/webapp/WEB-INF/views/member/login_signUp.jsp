@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group mt-2">
                           <p class="mb-0 mt-4 text-center">
-                            <a href="/movieInsight/find/pw" class="link"
+                            <a href="/movieInsight/find/findPW" class="link"
                               >Forgot PW?</a
                             >
                           </p>
