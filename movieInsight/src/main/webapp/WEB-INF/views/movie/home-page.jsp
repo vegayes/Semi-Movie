@@ -279,69 +279,70 @@
         <section class="movie_list swiper main-1">
           <span class="section_title">User 맞춤 영상</span>
           <ul class="movie_list swiper-wrapper">
-           <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152651.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-            </li>
-           <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152651.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-            </li>
-           <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152651.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-            </li>
+          <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152651.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+                     <c:if test="${movie.movieNo == 2}">
             </li>
-          <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152651.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
-          <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152651.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
-          <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152651.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+         <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+            </li>
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+            </li>
+        </c:forEach>
+         <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+            </li>
+        </c:forEach>
           </ul>
 
           <!-- If we need navigation buttons -->
@@ -351,83 +352,69 @@
         <section class="movie_list swiper main-2">
           <span class="section_title">최신순</span>
           <ul class="movie_list swiper-wrapper">
+            <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170300.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-              
-              
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
-             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170300.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-              
-              
-            </li>
-             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170300.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-              
-              
-            </li>
+        </c:forEach>
+             <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170300.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-              
-              
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
-              <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170300.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-              
-              
+        </c:forEach>
+             <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
-              <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170300.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-              
-              
+        </c:forEach>
+            <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
-              <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/코미디/화면 캡처 2023-10-12 170300.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-              
-              
+        </c:forEach>
+             <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+             <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+            </li>
+        </c:forEach>
+            <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+            </li>
+        </c:forEach>
           </ul>
 
           <!-- If we need navigation buttons -->
@@ -437,69 +424,69 @@
         <section class="movie_list swiper main-3">
           <span class="section_title">인기순</span>
           <ul class="movie_list swiper-wrapper">
-          <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152641.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-            </li>
+          <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152641.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
-               <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152641.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-            </li>
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152641.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
-             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152641.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-            </li>
-              <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152641.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
-            </li>
+        </c:forEach>
+              <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152641.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+            </li>
+        </c:forEach>
+            <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+            </li>
+        </c:forEach>
+            <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+            </li>
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
+            <li class="movie_item swiper-slide">
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
+            </li>
+        </c:forEach>
           </ul>
 
           <!-- If we need navigation buttons -->
@@ -510,74 +497,69 @@
           <span class="section_title">액션</span>
        
           <ul class="movie_list swiper-wrapper">
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-            
-            
-            <a href="/movieInsight/movie/{movieNo}"> 
-            <span
-			    class="detail_text">상세보기</span>
-					</a> 
-				
-               	<img src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154859.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 153908.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154859.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154918.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154930.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 154940.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/액션/화면 캡처 2023-10-12 160217.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
           </ul>
 
           <!-- If we need navigation buttons -->
@@ -587,69 +569,69 @@
         <section class="movie_list swiper main-5">
           <span class="section_title">범죄</span>
           <ul class="movie_list swiper-wrapper">
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152433.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152641.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152651.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 152708.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+          <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 153004.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 153024.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/범죄/화면 캡처 2023-10-12 153036.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
           </ul>
 
           <!-- If we need navigation buttons -->
@@ -659,69 +641,69 @@
         <section class="movie_list swiper main-6">
           <span class="section_title">SF</span>
           <ul class="movie_list swiper-wrapper">
+            <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170819.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+            <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170853.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 171259.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+            <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170915.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+         <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170929.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 170950.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
+           <c:forEach var="movie" items="${movieList}">
             <li class="movie_item swiper-slide">
-              <span class="detail_text">상세보기</span>
-              <img
-                src="/movieInsight/resources/images/movie/home-page/SF/화면 캡처 2023-10-12 171040.png"
-                width="100%"
-                height="100%"
-                style="object-fit: cover"
-              />
+                <a href="/movieInsight/movie/${movie.movieNo}">
+                    <span class="detail_text">상세보기</span>
+                </a>
+                <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+                     width="100%" height="100%" style="object-fit: cover"/>
             </li>
+        </c:forEach>
           </ul>
 
           <!-- If we need navigation buttons -->
