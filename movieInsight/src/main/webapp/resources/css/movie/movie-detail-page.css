@@ -26,40 +26,52 @@ main{
     align-items: center;
 }
 
-main>div{
 
-    margin: 50px 0px;
-    width: 1650px;
-}
 
 
 .movie{
     height: 25%;
+    width: 80%;
     display: flex;
+    margin-bottom: 50px;
 }
 
 
-
 .movie_img{
-    width: 40%;
+    flex-basis: 45%;
     background-size: 100% 100%;
 }
 
 .movie_img img{
    	width: 100%;
-   	height: 100%;
+   	height: 80%;
 }
 
 
-.movie>div:nth-child(2){
-    width: 70%;
+#movie-content{
     margin-left: 3%;
     background-color: #383B3E;
+    
 }
+
+#movie-content > textarea {
+    width: 80%;
+    height: 35%;
+    font-size: 15px;
+    margin-left: 10%;
+}
+
 
 .movie_title{
     display: flex;
     height: 20%;
+}
+
+.movie_title > input {
+    margin-top: 3%;
+    margin-left: 10%; 
+    height: 50%;
+    flex-basis: 70%;
 }
 
 #star {
@@ -127,27 +139,37 @@ main>div{
 }
 
 .movie_description{
-    height: 40%;
+    flex-basis: 30%;
     display: flex;
-    font-size: 20px;
-
-}
-
-
-.movie_description>div{
-    flex: 1;
-    display: flex;
+    font-size: 15px;
     flex-direction: column;
-    padding-left: 5%;
-    font-weight : bold;
+
 }
 
-.movie_description>div>div{
+
+
+
+.movie_description > div{
     display: flex;
     flex: 1;
-    align-items: center;
     font-weight : bold;
-   
+    margin: 15px;
+}
+
+.movie_description > span {
+    display: flex;
+    height: 20%;
+    justify-content: space-around;
+}
+
+.movie_description > span > input{
+    flex-basis: 40%;
+    margin: 10px;
+}
+
+.movie_description>div>input{
+    height: 15%;
+    margin: 1%;
 }
 
 .movie_description>div>div{
@@ -867,6 +889,7 @@ main>div{
 .movie_summary_title{
 	height : 5%;
     padding: 0 30px;
+    margin-left: 10%;
 }
 
 .movie_summary{
@@ -1306,7 +1329,7 @@ main>div{
 }
 
 #submit{
-    background-image: url(img/list.png)	
+    background-image: url(img/list.png);
     background-repeat: no-repeat;/* 배경 이미지 1개 */
     background-position: center;
     background-color: #383B3E;
@@ -1475,7 +1498,7 @@ main>div{
 
 .recommendImg-wrapper img {
 	
-	heigth : 100%;
+	height : 100%;
 	width : 100%;
 
     margin-top: 0;

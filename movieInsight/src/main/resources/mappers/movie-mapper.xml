@@ -188,6 +188,46 @@
 		WHERE MOVIE_NO = #{movieNo}
   	</update>
 	
+	
+	<insert id="insertMovie">
+		INSERT INTO MOVIE m 
+		VALUES(SEQ_MOVIE_NO.NEXTVAL,#{movieTitle},#{movieImg},#{movieSummary},#{movieGenre}
+		,#{movieReleaseDate},#{movieAge},#{movieRunningTime},DEFAULT,DEFAULT)
+	</insert>
+	
+	<select id="selectMovieNo"  resultType = "_integer">
+		SELECT MOVIE_NO 
+		FROM MOVIE
+		WHERE MOVIE_TITLE = #{movieTitle}
+	</select>
+	
+	
+	<select id="selectCastingNo"  resultType = "list">
+		SELECT CASTING_NO
+		FROM (
+			<foreach  collection="castingList"  item = "value" separator = ",">
+				SELECT CASTING_NO 
+				FROM CASTING
+				WHERE CASTING_NAME = #{value}
+			</foreach>
+		)
+	</select>
+	
+	<!-- 감독 INSERT -->
+	<insert id="insertDirectors"  parameterType="java.util.List">
+		INSERT INTO CASTING (CASTING_NO,CASTING_NAME,CASTING_URL,CASTING_CATEGORY)
+		VALUES
+		<foreach collection="list" separator="," item="directorNamesList">
+			(SEQ_CASTING_NO.NEXTVAL,#{directorNamesList},'https://namu.wiki/w/' || #{directorNamesList},'D')
+		</foreach>
+		
+	</insert>
+	
+	
+	
+	
+	
+	
 	<!-- ============================ 댓글 =========================================== -->
 	
 	<!-- 영화 댓글 조회  -->
@@ -202,14 +242,14 @@
 
 	
 	<insert id = "commentInsert">
-	INSERT INTO "MOVIE_EVALUATION"
-	VALUES(SEQ_MOVIE_EV_NO.NEXTVAL, 
-			#{movieCommentContent},
-			SYSDATE,
-			#{movieGrade},
-			DEFAULT,
-			#{memberNo},
-			#{movieNo})
+		INSERT INTO "MOVIE_EVALUATION"
+		VALUES(SEQ_MOVIE_EV_NO.NEXTVAL, 
+				#{movieCommentContent},
+				SYSDATE,
+				#{movieGrade},
+				DEFAULT,
+				#{memberNo},
+				#{movieNo})
 	</insert>
 	
 	

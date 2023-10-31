@@ -18,7 +18,7 @@
 	<main>
 
        
-        <form action="/movieInsight/cinemaDetail/${cinemaInfo.cinemaNo}" method="POST" encType="multipart/form-data" id="cinema-form">
+        <form method="POST" encType="multipart/form-data" id="cinema-form">
             <section class="cinema">
 
                 <div>       

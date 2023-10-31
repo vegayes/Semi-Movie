@@ -2,6 +2,10 @@ package semi.project.movieInsight.mypage.controller;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,8 +78,7 @@ public class ManagerDetailController {
             @RequestParam(name = "new", required = false) String  newButton
 			) throws Exception {
 		
-		System.out.println("뉴버튼 : " + newButton);
-		System.out.println("업데이트버튼 : " + updateButton);
+		
 		
 		String cinemaName = cinemaInfo.getCinemaName();
 		
@@ -84,8 +87,8 @@ public class ManagerDetailController {
 		String filePath = session.getServletContext().getRealPath(webPath);
 		
 		if(updateButton != null) {
-			System.out.println("영화관업데이트 실행");
-			int result = service.updateCinema(cinemaImage,webPath,filePath,cinemaInfo);
+			
+			int result = service.updateCinema(cinemaImage,filePath,cinemaInfo);
 			
 			if(result > 0) {
 				ra.addFlashAttribute("message","업데이트 성공");
@@ -95,7 +98,7 @@ public class ManagerDetailController {
 			
 		}else if(newButton != null){
 			System.out.println("영화관등록 실행");
-			int result = service.insertCinema(cinemaImage,webPath,filePath,cinemaInfo);
+			int result = service.insertCinema(cinemaImage,filePath,cinemaInfo);
 			
 			if(result > 0) {
 				ra.addFlashAttribute("message","등록 성공");
@@ -129,17 +132,13 @@ public class ManagerDetailController {
 	public String deleteMovie(@PathVariable("movieNo") int movieNo, Model model,
 			RedirectAttributes ra
 	) {
-		
 		int result = service.deleteMovie(movieNo);
-		
 		if(result == 1) {
 			
 			ra.addFlashAttribute("message","삭제에 성공했습니다");
 		}
 		
-		
 		return "redirect:/manager/movie";
-
 	}
 	
 	
@@ -153,13 +152,31 @@ public class ManagerDetailController {
 	 */
 	@PostMapping("insertMovie")
 	public String insertMovie(Movie movieInfo,RedirectAttributes ra,
-			@RequestParam(value = "cinemaImage", required = false) MultipartFile cinemaImage, HttpSession session
-			){
+			@RequestParam(value = "movieImage", required = false) MultipartFile movieImage, HttpSession session
+			) throws Exception{
 		
+		System.out.println("insert 컨트롤러로 전달된 movieInfo : " + movieInfo);
+		String[] actorNamesArray = movieInfo.getActorNames().split("/");
+		String[] directorNamesArray = movieInfo.getDirectorNames().split("/");
+		List<String> actorNamesList = new ArrayList<>(Arrays.asList(actorNamesArray));
+		List<String> directorNamesList = new ArrayList<>(Arrays.asList(directorNamesArray));
 		
+		int movieNo = 0;
+		String webPath = "/resources/images/cinema/";
+		String filePath = session.getServletContext().getRealPath(webPath);
 		
-		return null;
-
+		int result = service.insertMovie(movieInfo,movieImage,filePath,actorNamesList,directorNamesList);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message","등록 성공");
+			movieNo = service.selectMovieNo(movieInfo.getMovieTitle());
+			return "redirect:/movie/"+movieNo;
+		}else {
+			ra.addFlashAttribute("message","등록 실패");
+			return "redirect:/movie/0";
+		}
+	
+	
 	}
 	
 	
