@@ -15,11 +15,11 @@
         <nav>
             <div class="admin-menu">
                 <ul>
-                    <li class="admin-list"><a href="#">회원 관리</a></li> 
-                    <li class="admin-list"><a href="/movieInsight/mypage/manager/movie">영화</a></li>               
-                    <li class="admin-list"><a href="#">영화관</a></li>
-                    <li class="admin-list"><a href="/movieInsight/mypage/manager/menu">메뉴</a></li>
-                    <li class="admin-list"><a href="/moviInsight/manager/promotion">이벤트</a></li>
+                    <li class="admin-list"><a href="/movieInsight/manager/member">회원 관리</a></li> 
+                    <li class="admin-list"><a href="/movieInsight/manager/movie">영화</a></li>               
+                    <li class="admin-list"><a href="/movieInsight/manager/cinema">영화관</a></li>
+                    <li class="admin-list"><a href="/movieInsight/manager/menu">메뉴</a></li>
+                    <li class="admin-list"><a href="/movieInsight/manager/promotion">이벤트</a></li>
                 </ul>
             </div>
         </nav>
@@ -27,7 +27,8 @@
         
             <div class="movie-search">
                 <input type="text" placeholder="영화 검색" id="searchInput">  <br><br>
-                <span>총 영화 : ${movieList.size()}편</span>
+                <span>총 영화 : ${movieList.size()}편</span> <span id="movieAdd"><a href="/movieInsight/movie/0">추가</a></span>
+                
             </div>
             
 
@@ -37,13 +38,16 @@
                     <div class="movie-item">
                         <span class="movie-title">${movieList.movieTitle}</span>
                         <span class="movie-title">${movieList.movieGenre}</span>
-                        <span class="movie-title">${movieList.movieGrade}</span>
+                        <span class="movie-title">평점 : ${movieList.movieGrade}</span>
                         <span class="movie-title">${movieList.movieRunningTime}분</span>
                     
                         <div class="movie-buttons">
-                            <a href="/movieInsight/movie/${movieList.movieNo}"  class="comment-button">댓글</a>
-                            <a href="#" class="edit-button">수정</a>
-                            <a href="#" class="delete-button">삭제</a>
+                            <a href="/movieInsight/movie/${movieList.movieNo}#commentScroll"  class="comment-button">댓글</a>
+                            <!-- 이거 출연진 없는 영화는 조회 안됨 -->
+
+                            <a href="/movieInsight/movie/0" class="edit-button">수정</a>
+
+                            <a href="/movieInsight/managerDetail/deleteMovie/${movieList.movieNo}" class="delete-button">삭제</a>
                         </div>
                     </div>
                 </c:forEach>
@@ -66,7 +70,8 @@
                     
                     // 모든 영화 항목 가져오기
                     var movieItems = document.querySelectorAll(".movie-item");
-            
+                    
+
                     for (var i = 0; i < movieItems.length; i++) {
                         // 각 영화 항목의 제목 가져오기
                         var movieTitle = movieItems[i].querySelector(".movie-title").textContent;
@@ -82,7 +87,15 @@
             </script>
             
     
+            <c:if test="${not empty message}">
+         
+                <script>
+                    // EL/JSTL 구문이 먼저 해석
+                    // 문자열의 경우 따옴표가 없는 상태이니 옆에 붙여줘야함.
+                    alert('${message}') // ${message}
+                </script>
 
+            </c:if>
    
 
 

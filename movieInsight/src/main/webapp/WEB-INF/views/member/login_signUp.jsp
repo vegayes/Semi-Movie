@@ -53,7 +53,7 @@
                         <h4 class="mb-4 pb-3">Log In</h4>
                         <div class="form-group">
                           <p class="mb-0 mt-4 text-center">
-                            <a href="ooo_find_id.html" class="link"
+                            <a href="/movieInsight/find/findID" class="link"
                               >Forgot ID?</a
                             >
                           </p>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group mt-2">
                           <p class="mb-0 mt-4 text-center">
-                            <a href="ooo_find_pw.html" class="link"
+                            <a href="/movieInsight/find/findPW" class="link"
                               >Forgot PW?</a
                             >
                           </p>
@@ -104,11 +104,10 @@
                   <div class="card-back">
                     <div class="center-wrap">
                       <div class="section text-center">
-                        <h4 class="mb-4 pb-3">Sign Up</h4>
                         <div class="form-group">
                           <h5 class="labela">USER ID</h5>
                           
-                          		<form action="/member/login_signUp" method="POST" name="inputMember">
+                          		<form action="/movieInsight/member/signUp" method="POST" name="inputMember" id="signUpFrm">
 			                          <input
 			                            type="text"
 			                            name="memberId"
@@ -157,11 +156,18 @@
 			                            name="memberEmail"
 			                            class="form-style"
 			                            placeholder="Your Email"
-			                            id="logpass"
+			                            id="memberEmail"
 			                            autocomplete="off"
 			                          />
-			                          <button>인증</button>
+			                          <button id="sendAuthKeyBtn" type="button">인증하기</button>
 			                          <i class="input-icon uil uil-lock-alt"></i>
+			                       	   <p id="emailMessage">사용가능한 이메일을 입력해주세요.</p>
+			                       	   <p id="authKeyMessage">05:00</p>
+				                       	   <div class="signUp-input-area">
+							                    <input type="text" name="authKey" id="authKey" s placeholder="인증번호 입력" maxlength="6" autocomplete="off" >
+							                    
+							                    <button id="checkAuthKeyBtn" type="button">인증확인</button>
+					            		   </div>
 			                        </div>
 			                        <div class="form-group mt-2">
 			                          <h5 class="labela">NICKNAME</h5>
@@ -171,19 +177,23 @@
 			                            name="memberNickname"
 			                            class="form-style"
 			                            placeholder="Your Nickname"
-			                            id="logpass"
+			                            id="memberNickname"
 			                            autocomplete="off"
 			                          />
+                                <P id="nickMessage">메세지</P>
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
 			                        <div class="form-group mt-2">
 			                          <h5 class="labela">GENDER</h5>
 			
-			                          <button class="gender">남자</button>
-			                          <button class="gender">여자</button>
+			                          <!-- <button class="gender" id="genderM" type="button" name="memberGender" value="M">남자</button>
+			                          <button class="gender" id="genderF" type="button" name="memberGender" value="F">여자</button> -->
+
+                                <input type="radio" class="gender" id="gender" type="button" name="memberGender" value="M">남자
+                                <input type="radio" class="gender" id="gender" type="button" name="memberGender" value="F">여자
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
-			                        <a href="#" class="btn mt-4 blut">SIGN UP</a>
+                              <button id="signUpBut" class="btn mt-4 blue">SIGN UP</button>
 			                    </form>    
                         
                         

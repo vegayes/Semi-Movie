@@ -1,8 +1,13 @@
+var movieGrade = 0;
+
 document.addEventListener("DOMContentLoaded", function () {
   const thumbs = document.querySelectorAll('.fa-thumbs-up');
 
   thumbs.forEach((thumb, index) => {
       thumb.addEventListener('click', () => {
+        console.log("인덱스: " + index);
+        movieGrade = index+1;
+
           if (thumb.classList.contains('far')) {
               thumb.classList.remove('far');
               thumb.classList.add('fas');
@@ -18,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
               thumb.classList.remove('fas');
               thumb.classList.add('far');
               thumb.style.color = ''; // 따봉 색 제거
-
               // 오른쪽 따봉을 클릭하면, 해당 따봉 위치부터 끝까지 리셋
               for (let i = index + 1; i < thumbs.length; i++) {
                   thumbs[i].classList.remove('fas');
@@ -29,6 +33,153 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
+
+const addComment = document.getElementById("commentSubmit");
+const commentContent = document.getElementById("commentContent");
+
+addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이 되었을 때
+
+
+    console.log("영화 No : " + movieNo);
+    console.log("회원 No : " + memberNo);
+    console.log("movieGrade : " + movieGrade);
+
+
+    // 1) 로그인이 되어있나? -> 전역변수 memberNo 이용
+    if(memberNo == ""){ // 로그인 X
+        alert("로그인 후 이용해주세요~");
+        return;
+    }
+
+    // 2) 댓글 내용이 작성되어있나?
+    if(commentContent.value.trim().length == 0){ // 미작성인 경우
+        alert("댓글을 작성한 후 버튼을 클릭해주세요.");
+
+        commentContent.value = ""; // 띄어쓰기, 개행문자 제거
+        commentContent.focus();
+        return;
+    }
+
+    // 3) AJAX를 이용해서 댓글 내용 DB에 저장(INSERT)
+    fetch("/movieInsight/movie/comment/insert?commentContent="+commentContent.value + "&movieNo="+movieNo + "&movieGrade=" + movieGrade)
+    .then(resp => resp.text())
+    .then(result => {
+        if(result > 0){ // 등록 성공
+            alert("댓글이 등록되었습니다.");
+
+            commentContent.value = ""; // 작성했던 댓글 삭제
+
+            // selectCommentList(); // 비동기 댓글 목록 조회 함수 호출
+
+        } else { // 실패
+            alert("댓글 등록에 실패했습니다...");
+        }
+    })
+    .catch(err => console.log(err));
+});
+
+
+// 댓글 삭제
+function deleteComment(movieCommentNo){
+                    
+    console.log("삭제 버튼 누름 " + movieCommentNo);
+
+    if( confirm("정말로 삭제 하시겠습니까?") ){
+
+        console.log("정말로 삭제 응답")
+        fetch("/movieInsight/movie/comment/delete?movieCommentNo="+ movieCommentNo)
+        .then(resp => resp.text())
+        .then(result => {
+            if(result > 0){
+                alert("삭제되었습니다");
+                // selectCommentList(); // 목록을 다시 조회해서 삭제된 글을 제거
+            }else{
+                alert("삭제 실패");
+            }
+        })
+        .catch(err => console.log(err));
+
+    }
+}
+
+
+// 댓글 수정
+function updateComment(commentNo, btn){
+
+    // 새로 작성된 댓글 내용 얻어오기
+    const commentContent = btn.parentElement.previousElementSibling.value;
+
+
+    fetch("/commnet/update?commentContent="+commentContent + "&commentNo="+commentNo)
+    .then(resp => resp.text())
+    .then(result => {
+        if(result > 0){
+            alert("댓글이 수정되었습니다.");
+            selectCommentList();
+        }else{
+            alert("댓글 수정 실패");
+        }
+    })
+    .catch(err => console.log(err));
+
+}
+
+
+// 즐겨찾기 버튼이 클릭 되었을 때
+const favoriteStar = document.getElementById("favoriteStar");
+
+favoriteStar.addEventListener("click", e => {
+
+    // 로그인 여부 검사  빈문자열은 "" 임.
+    if(memberNo == ""){
+        alert("로그인 후 이용해주세요")
+        return;
+    }
+
+    let check; // 버튼  X(빈 별) : 0  
+               //      O(꽉찬 별) : 1
+
+    // contains("클래스명") : 클래스가 있으면 true, 없으면 false
+    if(e.target.classList.contains("fa-regular")){ // 빈 별
+        check = 0;
+    }else{ // 꽉찬 별
+        check = 1;
+    }
+
+    const data =   {"movieNo" : movieNo , 
+                    "memberNo" : memberNo,
+                    "check" : check };
+
+    fetch("/movieInsight/movie/favorite", {
+        method : "POST",
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify(data)
+    })
+    .then(response => response.text()) 
+
+    .then(count => { 
+
+        if(count == -1){ // INSERT, DELETE 실패 시
+            console.log("즐겨찾기 추가 오류");
+            return;
+        }
+
+        e.target.classList.toggle("fa-regular");
+        e.target.classList.toggle("fa-solid");
+
+    }) 
+
+    .catch(err => {
+        console.log("예외 발생");
+        console.log(err);
+    }) 
+
+
+});
+
+
+
 
 const star = document.getElementById("star");
 let clicked = false;
@@ -56,6 +207,7 @@ star.addEventListener("mouseleave", function () {
     }
 });
 
+
 const gallery = document.querySelector('.gallery');
 const prevButton = document.querySelector('.prev-button');
 const nextButton = document.querySelector('.next-button');
@@ -77,3 +229,24 @@ prevButton.addEventListener('click', () => {
   }
   gallery.style.transform = `translateX(-${scrollPosition}px)`;
 });
+
+
+
+
+// 수정할 때 이미지 변경하면 미리보기 출력되게
+if (document.getElementById("fileInput")) {
+    // 파일 입력란의 이벤트 리스너 추가
+    document.getElementById("fileInput").addEventListener("input", function(event) {
+        // 선택한 파일 가져오기
+        const selectedFile = event.target.files[0];
+
+        // 이미지 요소에 미리보기 이미지 표시
+        if (selectedFile) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("movieImg").src = e.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+    });
+}

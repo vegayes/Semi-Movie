@@ -20,5 +20,19 @@ public class Cinema {
 	private int cinemaMaxInclude;
 	private String cinemaDelYN;
 	private String cinemaSpecialHall;
+	private float sumCinemaGrade;			// 영화관 평점 계산 
 	
+	// 즐겨찾기 CINEMA 등록일
+	private String cinemaLikeEnrollDate;
+	
+	// 영화관 즐겨찾기
+	private int cinemaCommentNo; 
+    private String cinemaCommentContent;			
+    private String cinemaCommentDate;
+    private String cinemaCommentType;
+    private float cinemaGrade; // 각 평점 
+    
+   
+    // 영화관 구분
+    private String 	cinemaType;  // 영화관이면 C , OTT 면 O	
 }

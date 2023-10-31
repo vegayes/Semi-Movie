@@ -956,6 +956,7 @@
           <div class="swiper-button-next main-9-n"></div>
         </section>
       </div>
+
 		<aside>
 			<div class="side-banner">
 				<a href="/movieInsight/resources/css/cinema/cinema-homepage.jsp/">
@@ -966,6 +967,7 @@
 			</div>
 		</aside>
 	</main>
+
     
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	

@@ -13,6 +13,8 @@ public class MemberDAO {
 	private SqlSessionTemplate sqlSession;
 
 	public int signUp(Member inputMember) {
+		
+		System.out.println(inputMember);
 	
 		return sqlSession.insert("memberMapper.signUp", inputMember);
 	}
@@ -20,6 +22,29 @@ public class MemberDAO {
 	public int idCheck(String id_check) {
 	
 		return sqlSession.selectOne("memberMapper.checkId",id_check);
+	}
+
+
+	/** 로그인
+	 * @param inputMember
+	 * @return
+	 */
+	public Member login(Member inputMember) {
+		return sqlSession.selectOne("memberMapper.login",inputMember);
+	}
+
+	
+
+	// 이메일 중복검사
+	public int CheckEmail(String email) {
+	
+		return sqlSession.selectOne("memberMapper.checkEmail", email);
+
+	}
+
+	public int nickCheck(String nick_check) {
+		
+		return sqlSession.selectOne("memberMapper.checkEmail", nick_check);
 	}
 
 	
