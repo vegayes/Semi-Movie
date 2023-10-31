@@ -70,6 +70,7 @@ public class MovieDetailController {
 		
 		
 		// 1) movieNo를 가지고 movie에 대한 정보 가져오기
+		System.out.println("movieNo : " + movieNo);
 		Movie movieInfo = service.selectMovie(movieNo);
 		
 		List<Map<String,Object>> directorInfoList = service.directorInfoList(movieNo);

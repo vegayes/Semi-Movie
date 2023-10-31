@@ -51,10 +51,14 @@ public interface ManagerService {
 	 * @return
 	 * @throws Exception 
 	 */
-	int updateCinema(MultipartFile cinemaImg, String webPath, String filePath, Cinema cinemaInfo) throws Exception;
+	int updateCinema(MultipartFile cinemaImg, String filePath, Cinema cinemaInfo) throws Exception;
 
 
-	int insertCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) throws Exception;
+	int insertCinema(MultipartFile cinemaImage, String filePath, Cinema cinemaInfo) throws Exception;
+
+	int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath, List<String> actorNamesList, List<String> directorNamesList) throws Exception ;
+
+	int selectMovieNo(String movieTitle);
 
 	
 	
