@@ -105,47 +105,41 @@
      			<%-- 2) 로그인 유무  --%>
                 <c:choose>
                		<%-- 2-1) 로그인 X 경우 --%>
-                	<c:when test="true">
-		                <a class = "user-login"  href= "/movieInsight/member/login">
+                	<c:when test="${empty sessionScope.loginMember}">
+		                <a class = "user-login"  href= "/movieInsight/member/loginPage">
 		                    <i class="fa-solid fa-right-to-bracket"></i>
 		                    <p>LOGIN</p>
-		                    
-	                        <span></span>
-						    <span></span>
-						    <span></span>
-						    <span></span>
 		                </a>
-		                <a class = "user-mypage"  href= "#">
+
+		                <a class = "user-mypage"  href= "/movieInsight/member/loginPage"> <%-- 일단 로그인 필터 적용안되기 때문에..  --%>
+
 		                	<div class = "mypage-wrapper">
 		                	 	<i class="fa-solid fa-user"></i>    
 		                	</div>
-		                </a>
-		                                	
+		                </a>      	
                 	</c:when>
                 	<%-- 2-2) 로그인  O 경우 --%>
                 	<c:otherwise>				
-		               <a class = "user-logout"  href="/">
+		               <a class = "user-logout"  href="/movieInsight/member/logout">
 		                   <i class="fa-solid fa-right-from-bracket"></i>
 		                   <span>LOGOUT</span>
 		               </a>
 		               
 		               <!-- ⑤ 버튼으로 만들어야 하나? 필터로 만들어버리기 -->
-		                <a class = "user-mypage" href="/movieInsight/manager/promotion">
+		                <a class = "user-mypage" href="/movieInsight/mypage/member">
 		                    <div class = "mypage-wrapper">
-		                    
 		                    	<%-- 3) 프로필 유무 ( 로그인부터 파악해야 하나..? ) --%>
 				                <c:choose>
 					                <%-- 3-2) 프로필이 없는 경우 --%>
-				                	<c:when test="true">
+				                	<c:when test="${empty sessionScope.loginMember.memberProfile}">
 						                 <i class="fa-solid fa-user"></i>          		
 				                	</c:when>
 				               		<%-- 3-1) 프로필이 있는 경우 --%>			                	
 				                	<c:otherwise>				
 						               <!-- ⑥이거 나중에 유저 사진으로 변경하기 -->
-						               <img src="resources/images/member/profile1.jpg">                  	
+						               <img src="/movieInsight/resources/images/member/${sessionScope.loginMember.memberProfile}">                  	
 				                	</c:otherwise>                	
-				                </c:choose>                        
-		                        
+				                </c:choose>  
 		                    </div>
 		                </a>	                	
                 	</c:otherwise>                	

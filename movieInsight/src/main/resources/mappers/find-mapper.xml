@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "findMapper">
+	
+	
+	<resultMap type="Member" id="member">
+
+		<id property="memberNo" column="MEMBER_NO" />
+		
+		<result property="memberId" column="MEMBER_ID" />
+		
+		<result property="memebrEmail" column="MEMBER_EMAIL" />
+		
+		<result property="memberPw" column="MEMBER_PW" />
+		
+	</resultMap>
+	
+	<select id="findId" resultMap="member">
+		SELECT MEMBER_ID FROM "MEMBER" WHERE MEMBER_EMAIL = '${memberEmail}'
+	</select>
+  	
+
+	<select id="findPw" resultMap="member">
+		SELECT MEMBER_PW FROM "MEMBER" WHERE MEMBER_EMAIL = 'id@naver.com' AND MEMBER_ID='id'
+	</select>
+  	
+
+</mapper>

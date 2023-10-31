@@ -1,0 +1,301 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+body{
+    display: flex;
+}
+
+nav{
+    flex-basis: 10%;
+    background-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items:center;
+
+}
+
+
+.admin-menu {
+
+    /* display: flex; */
+
+    background-color: #ffffff;
+ 
+    padding : 50px 0px;
+}
+
+
+.admin-list :hover {
+   font-size: 25px;
+}
+
+
+.admin-menu li {
+
+    padding: 40px 0px;  
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.admin-menu a {
+
+    color: rgb(0, 0, 0);
+    display: block;
+}
+
+
+main{
+
+    flex-basis: 90%;
+
+    background-color: black;
+    color: white;
+
+    min-height: 931px;
+    /* height: 900px; */
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.title-container{
+    flex-basis: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 50px;
+}
+
+.title-container > div{
+    /* background-color: wheat; */
+    width: 300px;
+    height: 60px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.menu-list-container{
+    flex-basis: 80%;
+
+    display: flex;
+}
+
+
+.menu-container{
+    flex : 1;
+    
+    padding: 30px;
+
+    display: flex;;
+}
+
+.menu-list{
+    flex:1;
+    background-color: rgb(71, 54, 146);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-container-title{
+    flex-basis: 8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.menu-container-search{
+    flex-basis: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+fieldset{
+    border: none;
+
+    height: 35px; 
+    border-radius: 5px;
+    margin: 0;
+    padding: 2px;
+    display: flex;
+}
+
+
+#search-input{
+    flex-basis: 92%;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px 0px 0px 5px  ;
+    outline: none;  
+    background-color: white;
+}
+
+#search-btn{
+    flex-basis: 8%;
+    line-height: 32px;
+    font-size: 1.2em;
+    border-radius: 0px 5px 5px 0px   ;
+    border: none;
+    padding: 0px 5px;
+    background-color: white; /* transparent : 투명 */
+    color: black;
+}
+
+
+
+
+
+
+.menu-info-container{
+    /* flex-basis: 70%; */
+
+    height: 580px;
+
+    display: flex;
+
+    overflow: hidden scroll;
+
+
+    padding: 10px;
+    
+    background-color: white;
+
+}
+
+.menu-info-container::-webkit-scrollbar{
+    width: 15px;
+}
+
+.menu-info-container::-webkit-scrollbar{
+    background:rgb(71, 54, 146);
+}
+
+.menu-info-container::-webkit-scrollbar-thumb{
+    height: 15%;
+    background-color:#9695fc;
+    border-radius: 10px;
+}
+
+
+.menu-info-table{
+    flex-basis: 100%;   
+
+}
+
+tr{
+    width: 100%;
+    display: flex;
+
+    margin: 10px 0px;
+
+    border: 2px solid black;
+    border-radius: 5px;
+
+    background-color: antiquewhite;
+}
+
+tr:nth-child(1){
+    margin: 0px;
+}
+
+tr > td{
+    padding: 15px;
+
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+
+    color: black;
+}
+
+
+.menu-title{
+    flex-basis: 40%;
+
+}
+
+.menu-price{
+    flex-basis: 30%;
+}
+
+
+.menu-update,
+.menu-del{
+
+    flex-basis: 15%;
+
+}
+
+
+.menu-update >div,
+.menu-del > div{
+    padding: 7px 2px;
+    width: 60px;
+
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(56, 77, 172);
+    color: white;
+    border-radius: 10px;
+    border: 2px solid black;
+
+    cursor: pointer;
+}
+
+
+.menu-del > div{
+    background-color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

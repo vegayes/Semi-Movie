@@ -67,10 +67,66 @@ public class MovieDetailDAO {
 
 	public List<Movie> recommendMovie(Map<String, Object> genreMap) {
 		
-		System.out.println("DAO에서의 Map  : " + genreMap);
+		//System.out.println("DAO에서의 Map  : " + genreMap);
 		
 		return sqlSession.selectList("movieMapper.recommendMovie", genreMap);
 	}
+
+
+	public List<Movie> commentMovieList(int movieNo) {
+		return sqlSession.selectList("movieMapper.commentMovieList", movieNo);
+	}
+
+
+	/** 댓글 삽입
+	 * @param movie
+	 * @return
+	 */
+	public int commentInsert(Movie movie) {
+		return sqlSession.insert("movieMapper.commentInsert", movie	);
+	}
+
+
+	/** 댓글 삭제
+	 * @param movieCommentNo
+	 * @return
+	 */
+	public int commentDelete(int movieCommentNo) {
+
+		return sqlSession.update("movieMapper.commentDelete", movieCommentNo);
+	}
+
+
+
+
+
+	/** 즐겨찾기 추가
+	 * @param paramMap
+	 * @return
+	 */
+	public int addFavorite(Map<String, Integer> paramMap) {
+		return sqlSession.insert("movieMapper.addFavorite", paramMap);
+	}
+
+
+	/** 즐겨찾기 제거 
+	 * @param paramMap
+	 * @return
+	 */
+	public int delFavorite(Map<String, Integer> paramMap) {
+		return sqlSession.delete("movieMapper.delFavorite", paramMap);
+	}
+
+
+	/** 즐겨찾기 조회 
+	 * @param favoriteCheck
+	 * @return
+	 */
+	public int favoriteCheck(Map<String, Object> favoriteCheck) {
+		return sqlSession.selectOne("movieMapper.favoriteCheck", favoriteCheck);
+	}
+
+
 
 	
 	

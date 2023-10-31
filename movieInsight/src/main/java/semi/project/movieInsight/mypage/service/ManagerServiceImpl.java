@@ -1,5 +1,6 @@
 package semi.project.movieInsight.mypage.service;
 
+import java.io.File;
 import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
@@ -7,10 +8,19 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.dao.ManagerDAO;
 
+/**
+ * @author user1
+ *
+ */
 @Service
 public class ManagerServiceImpl implements ManagerService{
 
@@ -64,6 +74,148 @@ public class ManagerServiceImpl implements ManagerService{
 		
 		return memberMap;
 	}
+
+	
+	/**
+	 * 관리자 페이지에서 메뉴 전체조회
+	 */
+	@Override
+	public Map<String, List<Menu>> selectMenu() {
+		
+		return dao.selectMenu();
+	}
+
+	
+	
+	/**
+	 * 관리자 페이지에서 영화관 삭제
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int deleteCinema(int cinemaNo) {
+	    int result = dao.deleteCinema(cinemaNo);
+
+	    if (result == 1) {
+	        return 1;
+	    } else {
+	       
+	        throw new RuntimeException("Cinema deletion failed for cinemaNo: " + cinemaNo);
+	    }
+	}
+
+	
+	
+	
+	/**
+	 * 관리자 페이지에서 영화 삭제
+	 */
+	@Override
+	public int deleteMovie(int movieNo) {
+		
+		 int result = dao.deleteMovie(movieNo);
+
+		    if (result == 1) {
+		        return 1;
+		    } else {
+		       
+		        throw new RuntimeException("Movie deletion failed for movieNo: " + movieNo);
+		    }
+	}
+	
+
+	/**
+	 * 영화관 정보 업데이트
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateCinema(MultipartFile cinemaImage, String filePath, Cinema cinemaInfo) 
+		throws Exception{
+		
+		//System.out.println("영화관 사진이름 : " + cinemaImage.getOriginalFilename());
+		cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
+		int result = dao.updateCinema(cinemaInfo);
+		
+		
+		if(result > 0) { 
+			
+			if(cinemaImage.getSize() != 0) {
+				cinemaImage.transferTo(new File(filePath + cinemaImage.getOriginalFilename()));
+				
+			}		
+			
+		}else {
+			
+			 throw new RuntimeException("Cinema update failed ");
+		}
+		
+		return result;
+		
+	}
+
+
+	/**
+	 * 영화관 새로 등록
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertCinema(MultipartFile cinemaImage,String filePath, Cinema cinemaInfo) throws Exception{
+		
+				cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
+				int result = dao.insertCinema(cinemaInfo);
+				
+				
+				if(result > 0) { 
+					
+					if(cinemaImage.getSize() != 0) {
+						cinemaImage.transferTo(new File(filePath + cinemaImage.getOriginalFilename()));
+						
+					}		
+					
+				}else {
+					
+					 throw new RuntimeException("Cinema insert failed ");
+				}
+				
+				return result;
+				
+	}
+
+	/**
+	 * 영화 새로 등록
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath, List<String> actorNamesList, List<String> directorNamesList) throws Exception {
+		
+		movieInfo.setMovieImg(movieImage.getOriginalFilename());
+		int result = dao.insertMovie(movieInfo,actorNamesList,directorNamesList);
+		
+		if(result > 0) { 
+			
+			if(movieImage.getSize() != 0) {
+				movieImage.transferTo(new File(filePath + movieImage.getOriginalFilename()));
+				
+			}		
+			
+		}else {
+			
+			 throw new RuntimeException("Cinema insert failed ");
+		}
+		
+		return result;
+	}
+
+	
+	@Override
+	public int selectMovieNo(String movieTitle) {
+		return dao.selectMovieNo(movieTitle);
+	}
+
+	
+
+
+
+	
 	
 	
 }

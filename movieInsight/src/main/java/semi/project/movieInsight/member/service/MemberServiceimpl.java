@@ -29,10 +29,32 @@ public class MemberServiceimpl implements MemberService{
 		return dao.signUp(inputMember);
 	}
 
+	// 아이디 중복검사
 	@Override
 	public int idCheck(String id_check) {
 
 		return dao.idCheck(id_check);
+	}
+	
+	// 이메일 중복검사
+	@Override
+	public int checkEmail(String email) {
+	
+		return dao.CheckEmail(email);
+	}
+
+	/**
+	 * 임시 로그인 
+	 */
+	@Override
+	public Member login(Member inputMember) {
+		return dao.login(inputMember);
+	}
+
+	@Override
+	public int nickCheck(String nick_check) {
+		
+		return dao.nickCheck(nick_check);
 	}
 
 }
