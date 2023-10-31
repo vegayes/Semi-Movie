@@ -16,8 +16,9 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		
 	<main>
+
        
-        <form action="/movieInsight/cinemaDetail/${cinemaInfo.cinemaNo}" method="POST" encType="multipart/form-data" id="cinema-form">
+        <form method="POST" encType="multipart/form-data" id="cinema-form">
             <section class="cinema">
 
                 <div>       
@@ -34,6 +35,7 @@
                             <img src="/movieInsight/resources/images/cinema/${cinemaInfo.cinemaImg}" id="cinemaImg">
                         </c:otherwise>
                     </c:choose>
+
                 </div>
                 
                 <div>
@@ -45,10 +47,12 @@
                         </div>                 
                         <div>
                             <c:choose>
+
                                 <c:when test="${empty cinemaInfo}">
                                     <input type="text" name="cinemaName" style="font-size: 30px;">
                                 </c:when>
                                 <c:when test="false">
+
                                     <input type="text" name="cinemaName" style="font-size: 30px;" value="${cinemaInfo.cinemaName}">
                                 </c:when>
                                 <c:otherwise>
@@ -78,10 +82,12 @@
                         <div>
                             <div>
                                 <c:choose>
+
                                     <c:when test="${empty cinemaInfo}">
                                         <input type="text" name="cinemaAddress" style="font-size: 22px; width: 500px">
                                     </c:when>
                                     <c:when test="false">
+
                                         <input type="text" name="cinemaAddress" style="font-size: 22px; width: 500px" value="${cinemaInfo.cinemaAddress}">
                                     </c:when>
                                     <c:otherwise>
@@ -91,10 +97,12 @@
                             </div>
                             <div>    
                                 <c:choose>
+
                                     <c:when test="${empty cinemaInfo}">
                                         <input type="text" name="cinemaContact" style="font-size: 22px; width: 500px">
                                     </c:when>
                                     <c:when test="false">
+
                                         <input type="text" name="cinemaContact" style="font-size: 22px; width: 500px" value="${cinemaInfo.cinemaContact}">
                                     </c:when>
                                     <c:otherwise>
@@ -104,10 +112,12 @@
                             </div>
                             <div>
                                 <c:choose>
+
                                     <c:when test="${empty cinemaInfo}">
                                         <input type="text" name="cinemaMaxInclude" style="font-size: 22px; width: 500px">
                                     </c:when>
                                     <c:when test="false">
+
                                         <input type="text" name="cinemaMaxInclude" style="font-size: 22px; width: 500px" value="${cinemaInfo.cinemaMaxInclude}">
                                     </c:when>
                                     <c:otherwise>
@@ -117,6 +127,7 @@
                             </div>
                             <div>   
                                 <c:choose>
+
                                     <c:when test="${empty cinemaInfo}">
                                         <input type="text" name="cinemaSpecialHall" style="font-size: 22px; width: 500px">
                                     </c:when>
@@ -124,6 +135,7 @@
                                         <input type="text" name="cinemaSpecialHall" style="font-size: 22px; width: 500px">
                                     </c:when>
                                     <c:when test="false">
+
                                         <input type="text" name="cinemaSpecialHall" style="font-size: 22px ; width: 500px" value="${cinemaInfo.cinemaSpecialHall}">
                                     </c:when>
                                     <c:otherwise>
@@ -133,10 +145,12 @@
                             </div>
                             <div>
                                 <c:choose>
+
                                     <c:when test="${empty cinemaInfo}">
                                         <input type="text" name="cinemaLink" style="font-size: 17px; width: 500px">
                                     </c:when>
                                     <c:when test="false">
+
                                         <input type="text" name="cinemaLink" style="font-size: 17px; width: 500px;" value="${cinemaInfo.cinemaLink}">
                                     </c:when>
                                     <c:otherwise>
@@ -144,6 +158,7 @@
                                     </c:otherwise>
                                 </c:choose>   
                             </div>
+
                             <c:if test="false">
                                 <div>
                                     <button type="submit" id="updateButton" name="update" style="color: black;">수정하기</button>
@@ -175,6 +190,7 @@
                             
                             </script>
                             
+
                         </div>
                     </div>
                 </div>
@@ -461,7 +477,6 @@
 
 
 </body>
-   
 
     <script src="/movieInsight/resources/js/cinema/cinema-detail-page.js"></script>
     

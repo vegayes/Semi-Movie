@@ -14,7 +14,7 @@
 
         <div class="admin-menu">
             <ul>
-                <li class="admin-list"><a href="#">회원 관리</a></li> 
+                <li class="admin-list"><a href="/movieInsight/manager/member">회원 관리</a></li> 
                 <li class="admin-list"><a href="/movieInsight/manager/movie">영화</a></li>               
                 <li class="admin-list"><a href="/movieInsight/manager/cinema">영화관</a></li>
                 <li class="admin-list"><a href="/movieInsight/manager/menu">메뉴</a></li>
@@ -26,7 +26,9 @@
             <div class="cinema-search">
                 <input type="text" placeholder="영화관 검색" id="searchInput"><br><br>
                 <span>총 영화관 : ${cinemaList.size()}개</span> 
+
                 <span id="cinemaAdd"><a href="/movieInsight/cinemaDetail/insert">추가</a></span>
+
             </div>
             
 

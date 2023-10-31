@@ -91,12 +91,9 @@ public class MypageController {
 		            	System.out.println("===== 로그인한 번호와 쿠키의 번호가 일치한 경우 =====");
 		            	
 			            System.out.println("리스트 저장 : " + visitInfoList);
-			                    	
-		            	
+	            		
 		            	
 		            }
-		            
-		            
 		            
 //		            if(visitInfo[0].equals(loginMember.getMemberId())) {
 		            	
@@ -218,6 +215,8 @@ public class MypageController {
 			System.out.println("입력한 닉네임 " + updateMember.getMemberNickname());
 			System.out.println("입력한 성별 " + updateMember.getMemberGender());
 			
+			System.out.println("일치 확인" + updateMember.getMemberNickname().equals(loginMember.getMemberNickname()));
+			
 			if(updateMember.getMemberNickname().equals(loginMember.getMemberNickname()) || updateMember.getMemberGender().equals(loginMember.getMemberGender())) {
 				
 				result = 0;
@@ -288,6 +287,64 @@ public class MypageController {
 	
 	// 탈퇴 
 	
+	
+	
+	
+	// 댓글 수정 팝업 내용 조회하기 (영화)
+	@ResponseBody
+	@GetMapping(value = "/comment", produces = "application/json; charset=UTF-8")
+	public Movie selectMovieComment(int commentNo) {
+		System.out.println("댓글 조회 비동기 :" +  commentNo);
+		
+		return service.selectMovieComment(commentNo);
+	}
+	
+	
+	// 댓글 수정 팝업 내용 조회하기 (영화관)
+	@ResponseBody
+	@GetMapping(value = "/comment2", produces = "application/json; charset=UTF-8")
+	public Cinema selectCinemaComment(int cinemaCommentNo) {
+		System.out.println("댓글 조회 비동기 :" +  cinemaCommentNo);
+		
+		return service.selectCinemaComment(cinemaCommentNo);
+	}
+	
+	
+	// 댓글 수정 팝업에서 진행하기
+	@ResponseBody
+	@GetMapping(value ="/comment/update", produces = "application/json; charset=UTF-8")
+	public int updateMovieComment(String movieCommentContent, float movieGrade , int movieCommentNo , Movie movie) {
+		
+		System.out.println("머야");
+		 
+		System.out.println("댓글 NO 수정 조회 비동기 :" +  movieCommentNo);
+		System.out.println("댓글 내용 수정 조회 비동기 :" +  movieCommentContent);
+		System.out.println("댓글 평점 수정 조회 비동기 :" +  movieGrade);
+		
+		movie.setMovieCommentNo(movieCommentNo);
+		movie.setMovieGrade(movieGrade);
+		movie.setMovieCommentContent(movieCommentContent);
+		
+		return service.updateMovieComment(movie);
+	}
+	
+	// 댓글 수정 팝업에서 진행하기
+	@ResponseBody
+	@GetMapping(value ="/comment2/update", produces = "application/json; charset=UTF-8")
+	public int updateCinemaComment(String cinemaCommentContent, float cinemaGrade , int cinemaCommentNo , Cinema cinema) {
+		
+		System.out.println("머야");
+		 
+		System.out.println("댓글 NO 수정 조회 비동기 :" +  cinemaCommentNo);
+		System.out.println("댓글 내용 수정 조회 비동기 :" +  cinemaCommentContent);
+		System.out.println("댓글 평점 수정 조회 비동기 :" +  cinemaGrade);
+		
+		cinema.setCinemaCommentNo(cinemaCommentNo);
+		cinema.setCinemaGrade(cinemaGrade);
+		cinema.setCinemaCommentContent(cinemaCommentContent);
+		
+		return service.updateCinemaComment(cinema);
+	}
 		
 	
 

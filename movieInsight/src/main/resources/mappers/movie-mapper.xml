@@ -28,7 +28,7 @@
 		<result property="commentMovieWriter" column="COMMENT_MOVIE_WRITER"/>
 		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="writerProfile" column="COMMENT_MEMBER_PROFILE"/>
-		
+
 		
 	</resultMap>
 	
@@ -122,10 +122,10 @@
 	
 	<!-- 4) 영화를 상영하는 상영관 리스트 가져오기 -->
 	<select id ="selectCinemaList" resultMap = "cinema_rm">
-	SELECT CINEMA_NO, CINEMA_NAME, CINEMA_ADDRESS, CINEMA_IMG, CINEMA_LINK, CINEMA_TYPE
+	SELECT DISTINCT CINEMA_NO, CINEMA_NAME, CINEMA_ADDRESS, CINEMA_IMG, CINEMA_LINK, CINEMA_TYPE
 	FROM CINEMA 
 	JOIN MOVIE_STATUS USING(CINEMA_NO) 
-	WHERE CINEMA_NO = (	SELECT CINEMA_NO
+	WHERE CINEMA_NO IN (SELECT CINEMA_NO
 						FROM MOVIE_STATUS ms
 						WHERE MOVIE_NO = #{movieNo})	
 	</select>
@@ -182,12 +182,51 @@
 	
 
 	
-	
 	<update id="deleteMovie">
   		UPDATE MOVIE m  
 		SET MOVIE_DEL_YN  = 'Y'
 		WHERE MOVIE_NO = #{movieNo}
   	</update>
+	
+	
+	<insert id="insertMovie">
+		INSERT INTO MOVIE m 
+		VALUES(SEQ_MOVIE_NO.NEXTVAL,#{movieTitle},#{movieImg},#{movieSummary},#{movieGenre}
+		,#{movieReleaseDate},#{movieAge},#{movieRunningTime},DEFAULT,DEFAULT)
+	</insert>
+	
+	<select id="selectMovieNo"  resultType = "_integer">
+		SELECT MOVIE_NO 
+		FROM MOVIE
+		WHERE MOVIE_TITLE = #{movieTitle}
+	</select>
+	
+	
+	<select id="selectCastingNo"  resultType = "list">
+		SELECT CASTING_NO
+		FROM (
+			<foreach  collection="castingList"  item = "value" separator = ",">
+				SELECT CASTING_NO 
+				FROM CASTING
+				WHERE CASTING_NAME = #{value}
+			</foreach>
+		)
+	</select>
+	
+	<!-- 감독 INSERT -->
+	<insert id="insertDirectors"  parameterType="java.util.List">
+		INSERT INTO CASTING (CASTING_NO,CASTING_NAME,CASTING_URL,CASTING_CATEGORY)
+		VALUES
+		<foreach collection="list" separator="," item="directorNamesList">
+			(SEQ_CASTING_NO.NEXTVAL,#{directorNamesList},'https://namu.wiki/w/' || #{directorNamesList},'D')
+		</foreach>
+		
+	</insert>
+	
+	
+	
+	
+	
 	
 	<!-- ============================ 댓글 =========================================== -->
 	
@@ -200,18 +239,57 @@
 		WHERE MOVIE_DEL_YN ='N' AND MOVIE_EV_DEL_YN = 'N' AND MOVIE_NO = #{movieNo}
 		ORDER BY MOVIE_EV_ENROLL_DATE DESC
 	</select>
-	
+
+	<!--  댓글 삽입 -->
 	<insert id = "commentInsert">
-	INSERT INTO "MOVIE_EVALUATION"
-	VALUES(SEQ_MOVIE_EV_NO.NEXTVAL, 
-			#{movieCommentContent},
-			SYSDATE,
-			#{movieGrade},
-			DEFAULT,
-			#{memberNo},
-			#{movieNo})
+		INSERT INTO "MOVIE_EVALUATION"
+		VALUES(SEQ_MOVIE_EV_NO.NEXTVAL, 
+				#{movieCommentContent},
+				SYSDATE,
+				#{movieGrade},
+				DEFAULT,
+				#{memberNo},
+				#{movieNo})
 	</insert>
 	
+	<!--  댓글 삭제 -->
+	<update id ="commentDelete">
+		UPDATE MOVIE_EVALUATION 
+		SET MOVIE_EV_DEL_YN = 'Y'
+		WHERE MOVIE_EV_NO = #{movieCommentNo}
+	</update>
+	
+	
+	<!--  댓글 수정 -->
+	<update id="updateComment">
+		UPDATE MOVIE_EVALUATION 
+		SET EVALUATION_CONTENT = #{movieCommentContent},
+			MOVIE_EV_ENROLL_DATE = SYSDATE				
+		WHERE MOVIE_EV_NO = #{movieCommentNo}
+	</update>
+	
+	
+	
+	
+	<!-- 즐겨찾기 ON -->
+	<insert id = "addFavorite">
+		INSERT INTO MOVIE_LIKE 
+		VALUES(SEQ_MOVIE_LIKE_NO.NEXTVAL, DEFAULT, #{memberNo}, #{movieNo}, SYSDATE)	
+	</insert>
+
+	<!-- 즐겨찾기 OFF -->
+	<delete id = "delFavorite">
+		DELETE FROM MOVIE_LIKE
+		WHERE MOVIE_NO = #{movieNo} 
+		AND  MEMBER_NO = #{memberNo}
+	</delete>
+	
+	<!-- 즐겨찾기 조회 -->
+	<select id = "favoriteCheck" resultType = "_int">
+	SELECT COUNT(*)
+	FROM MOVIE_LIKE 
+	WHERE MOVIE_NO = #{movieNo}  AND MEMBER_NO = #{memberNo}
+	</select>
 	
 </mapper>
 

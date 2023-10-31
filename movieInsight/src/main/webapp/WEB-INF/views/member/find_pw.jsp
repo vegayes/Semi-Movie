@@ -16,7 +16,7 @@
       <div class="container">
         <div class="row full-height justify-content-center">
           <div class="col-12 text-center align-self-center py-5">
-            <img src="./로고.png" style="margin: 24px auto; display: flex" />
+            <img src="" style="margin: 24px auto; display: flex" />
             <div class="section pb-5 pt-5 pt-sm-2 text-center">
               <div class="card-3d-wrap mx-auto">
                 <div class="card-3d-wrapper">
@@ -24,30 +24,32 @@
                     <div class="center-wrap">
                       <div class="section text-center">
                         <h4 class="mb-4 pb-3">Forgot Password</h4>
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            name="logemail"
-                            class="form-style"
-                            placeholder="UserId"
-                            id="logemail"
-                            autocomplete="off"
-                          />
-                          <i class="input-icon uil uil-at"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <input
-                            type="email"
-                            name="logpass"
-                            class="form-style"
-                            placeholder="User Email"
-                            id="logpass"
-                            autocomplete="off"
-                          />
-
-                          <button>인증하기</button>
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
+                       <form action="/movieInsight/find/findPW" method="POST">
+	                        <div class="form-group">
+	                          <input
+	                            type="text"
+	                            name="email"
+	                            class="form-style"
+	                            placeholder="UserId"
+	                            id="email"
+	                            autocomplete="off"
+	                          />
+	                          <i class="input-icon uil uil-at"></i>
+	                        </div>
+	                        <div class="form-group mt-2">
+	                          <input
+	                            type="email"
+	                            name="pass"
+	                            class="form-style"
+	                            placeholder="User Email"
+	                            id="pass"
+	                            autocomplete="off"
+	                          />
+	
+	                          <button>인증하기</button>
+	                          <i class="input-icon uil uil-lock-alt"></i>
+	                        </div>
+                      	</form>  
 
                         <a href="#" class="btn mt-4">OK</a>
                       </div>

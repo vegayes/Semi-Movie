@@ -537,10 +537,10 @@
 		                                <td class = "comment-list-content-no">${status.count}</td>
 		                                <td class = "comment-list-board">${commentMovie.movieTitle}</td>
 		                                <td class = "comment-list-content">${commentMovie.movieCommentContent}</td>
-		                                <td class = "comment-list-date"> ${commentMovie.movieCommentDate}</td>
+		                                <td class = "comment-list-date"> ${commentMovie.movieCommentDate} ${commentMovie.movieCommentNo}</td>
 		                                <td class = "comment-list-edit" id = "cmPopup">
-		                                    <button>
-		                                        수정 팝업 테스트
+		                                    <button onclick="updateCommentModal(${commentMovie.movieCommentNo})">
+		                                        수정 
 		                                    </button>
 		                                </td>
 		                               
@@ -570,7 +570,7 @@
 		                                <td class = "comment-list-date"> ${commentCinema.cinemaCommentDate}</td>
 		                                 <td class = "comment-list-type" style="display:none">${commentCinema.cinemaCommentType}</td>
 		                                <td class = "comment-list-edit" id = "cmPopup">
-		                                    <button>
+		                                    <button onclick="updateCommentModalCinema(${commentCinema.cinemaCommentNo})">
 		                                        수정 
 		                                    </button>
 		                                </td>
@@ -597,7 +597,7 @@
                     </div>
                 </section>
 
-                <%--  ===========================================  댓글 수정 팝업  시작  ==================================== --%>
+ <%--  ===========================================  댓글 수정 팝업  시작  ==================================== --%>
                 <div id = "comment-update-modal-box">
                     <div id = "comment-update-content">
 
@@ -614,15 +614,18 @@
                                     <tr>
                                         <th> 게시물 명 </th>
                                         <td>
+                                        	<%-- 
                                             <input type="text" readonly id = "cm-update-input-title">
+                                            --%>
                                             <!-- readonly :: 글 수정 불가하게 하기  -->
+                                             <p id = "comment-title"></p>
                                         </td>
                                     </tr>
             
                                     <tr>
                                         <th> 댓글 내용</th>
                                         <td>
-                                            <textarea type="text" autocomplete="off"  id = "cm-update-input-comment">
+                                            <textarea type="text"  autocomplete="off"  id = "cm-update-input-comment">
                                             </textarea>
                                         </td>
                                     </tr>
@@ -631,14 +634,17 @@
                                         <th> 영화평점 </th>
                                         <!-- 별점으로 표시하면 좋을 거 같음. -->
                                         <td>
-                                            <input type="number" >
+                                            <input type="number" step="0.1"  max=5 min = 0 id= "cm-update-grade" >
                                         </td>
                                     </tr>
             
                                     <tr>
                                         <th> 작성 및 수정일 </th>
                                         <td>
-                                            <input type="text" readonly > 
+                                        <%-- 
+                                        <input type="text" readonly> 
+                                        --%>
+                                           <p id = "comment-enroll-date"></p>
                                         </td>
                                     </tr>
             
@@ -649,16 +655,16 @@
                         </section>
             
                         <section class = "update-btn-container">
-                            <div class ="btn">
+                            <div class ="btn" id= "comment-update-btn">
                                 수정하기
                             </div>
-                            <div class ="btn">
+                            <div class ="btn" id = "comment-del-btn">
                                 취소하기
                             </div>
                         </section>
 
                     </div>
-                    <label  id = "cm-modal-back"></label>
+                    <label  id = "cm-modal-back" style = "background-color: red;"></label>
                 </div>   
 
 <%-- ========================================   댓글 수정 팝업 종료 =========================================--%>

@@ -20,7 +20,7 @@ public class Cinema {
 	private int cinemaMaxInclude;
 	private String cinemaDelYN;
 	private String cinemaSpecialHall;
-    private int sumCinemaGrade;			// 영화관 평점 계산 
+	private float sumCinemaGrade;			// 영화관 평점 계산 
 	
 	// 즐겨찾기 CINEMA 등록일
 	private String cinemaLikeEnrollDate;
@@ -30,7 +30,7 @@ public class Cinema {
     private String cinemaCommentContent;			
     private String cinemaCommentDate;
     private String cinemaCommentType;
-    private int cinemaGrade; // 각 평점 
+    private float cinemaGrade; // 각 평점 
     
    
     // 영화관 구분

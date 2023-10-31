@@ -1,6 +1,8 @@
 package semi.project.movieInsight.mypage.dao;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.movie.dto.Movie;
 
 @Repository
 public class ManagerDAO {
@@ -101,7 +104,8 @@ public class ManagerDAO {
 	 * @return
 	 */
 	public int updateCinema(Cinema cinemaInfo) {
-				
+		System.out.println("DAO에서 cinemaInfo : " + cinemaInfo);
+
 		if(cinemaInfo.getCinemaImg().equals("")) {
 			System.out.println("updateCinema 실행");
 			return sqlSession.update("cinemaMapper.updateCinema", cinemaInfo);
@@ -112,11 +116,96 @@ public class ManagerDAO {
 		
 	}
 
+
+	
+	/** 영화관 새로 등록 DAO
+	 * @param cinemaInfo
+	 * @return
+	 */
 	public int insertCinema(Cinema cinemaInfo) {
 		
-		return sqlSession.insert("cinemaMapper.insertCinema", cinemaInfo);
+		return sqlSession.insert("cinemaMapper.insertMovie", cinemaInfo);
+	}
+
+	
+	
+	
+	/** 영화 새로 등록 DAO : 
+	 * @param movieInfo
+	 * @param directorNamesList 
+	 * @param actorNamesList 
+	 * @return
+	 */
+	public int insertMovie(Movie movieInfo, List<String> actorNamesList, List<String> directorNamesList) {
+		
+		int insertMovie = sqlSession.insert("movieMapper.insertMovie",movieInfo);
+		List<String> castingList = new ArrayList<>(actorNamesList);
+		castingList.addAll(directorNamesList);
+		
+		System.out.println("결합된 리스트 : " + castingList);
+		
+		if(insertMovie > 0) {
+			
+			int insertDirectors = sqlSession.insert("movieMapper.insertDirectors", directorNamesList);
+			
+			if(insertDirectors > 0) {
+				
+				System.out.println("insertDirectors 성공");
+				int insertActors = sqlSession.insert("movieMapper.insertActors", actorNamesList);
+				
+				if(insertActors > 0) {
+					
+					 System.out.println("insertActors 성공");
+					 int movieNo = selectMovieNo(movieInfo.getMovieTitle());
+					 List<Integer> castingNo= selectCastingNo(castingList);
+					 
+					 Map<String, Object> movieCastingMap = new HashMap<String, Object>();
+					 movieCastingMap.put("movieNo", movieNo);
+					 movieCastingMap.put("castingNo",castingNo);
+					 int movieCasting  = sqlSession.insert("movieMapper.insertMovieCasting", movieCastingMap);
+					 
+					 if(movieCasting > 0) {
+						 
+						 System.out.println("movieCasting 성공");
+						 return movieCasting;
+						 
+					 }else {
+						 return 0;
+					 }
+				}else{
+					return 0; }
+			}else 
+				return 0;
+		}else {
+			return 0;
+		}
+		
 	}
 	
+// 영화, 출연진 정보 입력
+//  영화에 대한 입력값을 dB에 저장, 제대로 들어가면(result >0)
+//	출연진 정보 : jsp : 가/나/다/라/마.. -> 컨트롤러 :  구분자로 리스트로 변환 [가,나,다]... 이걸 dB에 넣음
+// movie_casting 테이블에 insert : movieNo, castingNo 얻어와야됨
+	
+	
+   /** 영화관 새로 만들고 영화관 번호 얻어옴
+	 * @param movieTitle
+	 * @return
+	 */
+	public int selectMovieNo(String movieTitle) {
+		
+		return sqlSession.selectOne("movieMapper.selectMovieNo", movieTitle);
+	}
+
+	
+	/** 출연castingNo
+	 * @param directorNamesList
+	 * @return
+	 */
+	public List<Integer> selectCastingNo(List<String> castingList) {
+		
+		return sqlSession.selectList("movieMapper.selectCastingNo", castingList);
+	}
 
 	
 }
