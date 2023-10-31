@@ -74,7 +74,7 @@ star{
     align-items: center;
 }
 
-#favoriteStar {
+#favoriteStar { }
 
 .movie_title > input {
     margin-top: 3%;
@@ -1618,7 +1618,7 @@ main>div{
 }
 
 
-.editBtn {
+    .editBtn {
     background-color: #383B3E;
     color: rgb(195, 195, 250);
     border: none;
@@ -1628,17 +1628,16 @@ main>div{
     font-size: 16px; 
 	margin: 0px;
     margin-right: 30px;
-}
+    }
 
-.deletBtn { 
-    background-color: #383B3E;
-    color: rgb(170, 170, 248);
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    margin: 0px;
-    margin-right: 10px;
-}
-
+    .deletBtn { 
+        background-color: #383B3E;
+        color: rgb(170, 170, 248);
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px; 
+        cursor: pointer; 
+        font-size: 16px; 
+        margin: 0px;
+        margin-right: 10px;
+    }
