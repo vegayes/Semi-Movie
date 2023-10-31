@@ -137,119 +137,13 @@
 	                                         </td>
 	                                     </tr> 
                                      </c:forEach>
-                 
-                 <!--  
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name ="favorite-check" id="check_btn"/>
-                                             <label for="check_btn"></label>
-                                         </td>
-                                     </tr>
-                 
-                 
-                                     
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" />
-                                         </td>
-                                     </tr>
-                 
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check"/>
-                                         </td>
-                                     </tr>
-                 
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" />
-                                         </td>
-                                     </tr>
-                 
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" />
-                                         </td>
-                                     </tr>
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" />
-                                         </td>
-                                     </tr>
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" id = ""/>
-                                         </td>
-                                     </tr>
-                                     -->
                                  </table>
                                  
                                 
                              </div>
                              
                              <a class = "favorite-delet-btn-container">
-                                <div class = "red">삭제</div>
+                                <div class = "red favorite-delet-btn">삭제</div>
                              </a>                               
 
                          </div>
@@ -318,7 +212,7 @@
 				                      <div class="galleryCinema">
 				                      	<c:forEach items = "${cinemaList}" var = "cinema">
 					                        <div class="recommend-container-cinema">
-					                          <a href="/movieInsight/cinema/${cinema.cinemaName}">
+					                          <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">
 					                    		<div class = "recommendImg-wrapper-cinema">	                    		
 						                            <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}" alt="movieTitle : ${cinema.cinemaName}">
 						                            <div class = "recommendImg-hover">${cinema.cinemaName}</div>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.common.utility.Util;
 import semi.project.movieInsight.movie.dao.MovieDetailDAO;
 import semi.project.movieInsight.movie.dto.Movie;
 
@@ -93,6 +94,10 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int insert(Movie movie) {
+		
+		// 0. XSS 방지 처리 
+		movie.setMovieCommentContent(Util.XSSHandling(movie.getMovieCommentContent()));
+		
 		return dao.commentInsert(movie);
 	}
 

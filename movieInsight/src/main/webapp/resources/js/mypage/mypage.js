@@ -118,6 +118,47 @@ document.getElementsByName("favorite-check").forEach(function(v) {
 
 
 
+// 2-3) 선택이 된 값들 출력
+document.querySelector(".favorite-delet-btn").addEventListener("click", function() {
+  var checkedItems = document.querySelectorAll('input[name="favorite-check"]:checked');
+  var selectedValues = Array.from(checkedItems).map(function(checkbox) {
+      return checkbox.value; // 체크된 항목들의 값 가져오기 (예를 들어, 영화 또는 시네마의 고유 식별자)
+  });
+
+  if (selectedValues.length > 0) {
+      var confirmed = confirm("선택된 항목을 삭제하시겠습니까?");
+      if (confirmed) {
+          // AJAX를 사용하여 선택된 항목을 서버에 전송하고 삭제 작업을 수행
+          // 서버에 선택된 항목들의 값들을 전송하는 로직을 추가해야 합니다.
+      }
+  } else {
+      alert("삭제할 항목을 선택해주세요.");
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 3) 즐겨찾기 -> 영화관, 영화 구분하기
 const movieBtn = document.getElementById("movie-favorite-btn");
 const cinemaBtn = document.getElementById("cinema-favorite-btn");
@@ -196,40 +237,6 @@ commentCinemaBtn.addEventListener("click" ,function(){
 
 
 
-// 5) 체크박스 하나만 선택하게하기 ( 성별 )
-// const divCheckboxes = document.querySelectorAll('.modify-gender');
-
-// // 클릭 이벤트를 처리하는 함수
-// function handleCheckboxInteraction() {
-//   const checkbox = this.querySelector('input[type="checkbox"]');
-//   const label = this.querySelector('label');
-
-//   // 모든 체크박스의 배경색과 레이블 색상을 초기화
-//   divCheckboxes.forEach((otherDiv) => {
-//     otherDiv.style.backgroundColor = '';
-//     otherDiv.querySelector('label').style.color = ''; 
-//   });
-
-//   // 선택된 체크박스의 배경색과 레이블 색상을 변경
-//   this.style.backgroundColor = 'blue';
-//   label.style.color = 'white';
-//   checkbox.checked = !checkbox.checked; // 체크박스 상태 변경
-// }
-
-// // 각 div 요소에 클릭 이벤트 리스너를 추가합니다.
-// divCheckboxes.forEach((divCheckbox) => {
-//   divCheckbox.addEventListener('click', handleCheckboxInteraction);
-// });
-// 4) 파일 열기
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   const fileTrigger = document.getElementById("file-trigger");
-//   const fileInput = document.getElementById("file-input");
-
-//   fileTrigger.addEventListener("click", function() {
-//       fileInput.click(); // 파일 업로드 input 열기
-//   });
-// });
 
 
 
