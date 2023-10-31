@@ -64,12 +64,13 @@ public class MainController {
 		
 //		System.out.println("메인 가려고함.");
 
-		return "member/login_signUp";
-	}
-//		return "movie/home-page";
+//		return "member/login_signUp";
+	
+		return "movie/home-page";
 //		return "redirect:/movie";
 
-
+	}
+}
 //		return "movie/home-page";
 //		return "redirect:/movie";
 
@@ -103,6 +104,5 @@ public class MainController {
 //		return "cinema/cinema-homepage";
 //	}
 //	
-//	
-	}
+
 

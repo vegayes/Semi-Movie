@@ -116,24 +116,29 @@ public class MemberController {
 		return "redirect:/movie";
 	}
 	
-	@PostMapping("/login_signUp")
+	@PostMapping("/signUp")
 	public String signUp(Member inputMember,
 						RedirectAttributes ra) {
 		
 		
+		System.out.println(inputMember);
 		
 		int result = service.signUp(inputMember);
+		
+		
+		System.out.println(result);
+		
 		
 		String path = "redirect:";
 		
 		String message = null;
 		
 		if(result > 0) {
-			path += "/";
+			path += "movie/home-page";
 			
 			message = inputMember.getMemberNickname() + "님 가입성공!";
 		} else {
-			path += "signUp";
+			path += "login_signUp";
 			message = "회원가입 실패";
 		}
 		
@@ -161,14 +166,16 @@ public class MemberController {
 		return result;
 	}
 	
-//	@ResponseBody
-//	@PostMapping("/dupCheck/nickname")
-//	public int nickCheck(String nick_check) {
-//		
-//		
-//		
-//	}
-//	
+	@ResponseBody
+	@GetMapping("/dupCheck/nickname")
+	public int nickCheck(String nick_check) {
+		
+		int result = service.nickCheck(nick_check);
+		
+		return result;
+		
+	}
+	
 
 
 	
