@@ -1,5 +1,7 @@
 package semi.project.movieInsight.member.service;
 
+import java.util.Map;
+
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -17,63 +19,74 @@ public class FindServiceImpl implements FindService {
 	@Autowired
 	private FindDAO dao;
 	
+	
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	private String fromEmail = "eee595398@gmail.com";
+	
+	private String fromEmail = "movieinsightsemiproject@gmail.com";
 	private String fromUsername = "아이디또는 비밀번호 찾기";
 	
 	
 	@Transactional
 	@Override
-	public int findId(String email) {
+	public String findId(String email) {
 		
 	 
-		int result = dao.selectFindId(email);
+		return dao.selectFindId(email);
 		
+		
+	
+	}
+
+
+	@Override
+	public void sendEmail(String result, String email) {
 		
 		try {
-			
-			
-			   MimeMessage mail = mailSender.createMimeMessage();
-			   
-		       String subject = "[MovieInsight]"+"아이디찾기";
-		       
-		         // 문자 인코딩
-	            String charset = "UTF-8";
-	            
-	            // 메일 내용
-	            String mailContent 
-	                = "<p>MovieInsight "+" 아이디 입니다.</p>"
-	                + "<h3 style='color:blue'>" +result  + "</h3>";
-         
-	            
-	            // 송신자(보내는 사람) 지정
-	            mail.setFrom(new InternetAddress(fromEmail, fromUsername));
-	            // 수신자(받는사람) 지정
-	            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-	            
-	            
-	            // 이메일 제목 세팅
-	            mail.setSubject(subject, charset);
-	            
-	            // 내용 세팅
-	            mail.setText(mailContent, charset, "html"); //"html" 추가 시 HTML 태그가 해석됨
-	            
-	            mailSender.send(mail);
-
-	          
-		       
-		}catch (Exception e) {
-            e.printStackTrace();
-        
-		}
 		
 
-		  System.out.println(email);
+	  MimeMessage mail = mailSender.createMimeMessage();
+	   
+       String subject = "[MovieInsight]"+"아이디찾기";
+       
+         // 문자 인코딩
+       String charset = "UTF-8";
+       
+       // 메일 내용
+       String mailContent 
+           = "<p>MovieInsight "+" 아이디 입니다.</p>"
+           + "<h3 style='color:blue'>" +result  + "</h3>";
+
+       
+       // 송신자(보내는 사람) 지정
+       mail.setFrom(new InternetAddress(fromEmail, fromUsername));
+       // 수신자(받는사람) 지정
+       mail.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+       
+       
+       // 이메일 제목 세팅
+       mail.setSubject(subject, charset);
+       
+       // 내용 세팅
+       mail.setText(mailContent, charset, "html"); //"html" 추가 시 HTML 태그가 해석됨
+       
+       mailSender.send(mail);
+       
+	} catch (Exception e) {
+        e.printStackTrace();
+   
+    }
 		
 		
-		return result;
+		
+	}
+
+	// 비밀번호 찾기 
+	@Override
+	public int findPW(Map<String, Object> map) {
+		
+		return dao.findPW(map);
 	}
 
 

@@ -26,7 +26,7 @@ public class MainController {
 	public String test1() {
 
 //		return "movie/home-page";
-		return "redirect:/movie";
+//		return "redirect:/movie";
 
 
 //		return "movie/home-page";
@@ -39,6 +39,9 @@ public class MainController {
 //		return "cinema/cinema-homepage";
 
 //		return "manager/manager-menu";
+		
+		return "member/login_signUp";		
+		
 
 	}
 
