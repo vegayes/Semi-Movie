@@ -185,10 +185,10 @@ public class ManagerServiceImpl implements ManagerService{
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath) throws Exception {
+	public int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath, List<String> actorNamesList, List<String> directorNamesList) throws Exception {
 		
 		movieInfo.setMovieImg(movieImage.getOriginalFilename());
-		int result = dao.insertMovie(movieInfo);
+		int result = dao.insertMovie(movieInfo,actorNamesList,directorNamesList);
 		
 		if(result > 0) { 
 			

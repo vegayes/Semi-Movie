@@ -42,63 +42,57 @@
         <c:choose>
                 <%-- *************** 관리자 페이지에서 등록 버튼 눌렀을 때 ************************ --%>
                 <c:when test="${empty movieInfo}">
-                    <form action="/movieInsight/managerDetail/insertMovie" method="POST" 
-                        encType="multipart/form-data" class="movie">
-                        <div>
+                    <form action="/movieInsight/managerDetail/insertMovie" method="POST" encType="multipart/form-data" class="movie">
+                        
                             <div class="movie_img">
                                 <img src="" id="movieImg">
                                 <input type="file" name="movieImage"  id="fileInput" accept="image/*">
                             </div>
                             <div id="movie-content">
-                                <div>
-                                    <div class="movie_title">
-                                        <div class="star">
-                                            <a href="#">
-                                                <i class="fa-solid fa-star" id="star"></i>         
-                                            </a>
-                                        </div>
-                                       <input type="text" name="movieTitle" style="font-size: 30px;" placeholder="제목">
-                                        <div> <%-- 평점 --%>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                        </div>
+                            
+                                <div class="movie_title">
+                                    <div class="star">
+                                        <a href="#">
+                                            <i class="fa-solid fa-star" id="star"></i>         
+                                        </a>
+                                    </div>
+                                    <input type="text" name="movieTitle" style="font-size: 30px;" placeholder="제목">
+                                    <div> <%-- 평점 --%>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </div>
                                 <h2 class = "movie_summary_title">줄거리</h2>  
-                                <textarea style="width: 80%; height: 40%;" name="movieSummary">
-                                    
-                                    
-                                </textarea>
-                                <div class="movie_description">
-                                    <div>
-                                        <div>
-                                            <input type="text" name="movieGenre" placeholder="장르">
-                                            <input type="text" name="movieReleaseDate" placeholder="출시일(2020-01-01)">
-                                        </div>
-                                        <div>
-                                            <input type="text" name="directorNames" placeholder="감독">
-                                        </div>
-                                        <input type="text" name="actorNames" placeholder="출연진">
-                                        
-                                    </div>
-                                    
-                                    <input type="text" name="movieAge" placeholder="관람나이(세)">
-                                    <input type="text" name="movieRunningTime" placeholder="상영시간(숫자만)">
-                                    
-                                </div>
-                            </div>
-                        </div>
+                                <textarea  name="movieSummary" ></textarea>
 
-                        <button type="submit" style="color: black;" id="insertButton" name="insert">등록하기</button>
+                                <div class="movie_description">
+                                    
+                                    <span>
+                                        <input type="text" name="movieGenre" placeholder="장르">
+                                        <input type="text" name="movieReleaseDate" placeholder="출시일(2020-01-01)">
+                                    </span>
+                                    <div>
+
+                                        <input type="text" name="directorNames" placeholder="감독(/구분)">
+                                        <input type="text" name="actorNames" placeholder="출연진(/구분)">
+                                        <input type="text" name="movieAge" placeholder="관람나이(세)">
+                                        <input type="text" name="movieRunningTime" placeholder="상영시간(숫자만)">
+
+                                    </div>
+                                    <button type="submit" style="color: black;" id="insertButton" name="insert">등록하기</button>
+                                </div>
+                               
+                            </div>
                     </div>
                 </form>
             </c:when>
             
             <%-- *************** 관리자 페이지에서 수정 버튼 눌렀을 때 ************************--%>
-            <c:when test="false">
-                <div class="movie">
+            <c:when test="trun">
+                <form action="/movieInsight/managerDetail/updateMovie" method="POST" encType="multipart/form-data" class="movie">
                     <div class="movie_img">
                             <img src="/movieInsight/resources/images/movie/${movieInfo.movieImg}">
                     </div>
@@ -186,7 +180,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </c:when>
             <%-- *************** 일반 회원이 영화 조회할 때 ************************--%>
             <c:otherwise>

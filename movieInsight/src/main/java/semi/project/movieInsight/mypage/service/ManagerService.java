@@ -56,7 +56,7 @@ public interface ManagerService {
 
 	int insertCinema(MultipartFile cinemaImage, String filePath, Cinema cinemaInfo) throws Exception;
 
-	int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath) throws Exception ;
+	int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath, List<String> actorNamesList, List<String> directorNamesList) throws Exception ;
 
 	int selectMovieNo(String movieTitle);
 

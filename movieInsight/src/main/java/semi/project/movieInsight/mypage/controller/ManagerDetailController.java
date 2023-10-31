@@ -2,6 +2,10 @@ package semi.project.movieInsight.mypage.controller;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -148,14 +152,20 @@ public class ManagerDetailController {
 	 */
 	@PostMapping("insertMovie")
 	public String insertMovie(Movie movieInfo,RedirectAttributes ra,
-			@RequestParam(value = "cinemaImage", required = false) MultipartFile movieImage, HttpSession session
+			@RequestParam(value = "movieImage", required = false) MultipartFile movieImage, HttpSession session
 			) throws Exception{
+		
+		System.out.println("insert 컨트롤러로 전달된 movieInfo : " + movieInfo);
+		String[] actorNamesArray = movieInfo.getActorNames().split("/");
+		String[] directorNamesArray = movieInfo.getDirectorNames().split("/");
+		List<String> actorNamesList = new ArrayList<>(Arrays.asList(actorNamesArray));
+		List<String> directorNamesList = new ArrayList<>(Arrays.asList(directorNamesArray));
 		
 		int movieNo = 0;
 		String webPath = "/resources/images/cinema/";
 		String filePath = session.getServletContext().getRealPath(webPath);
 		
-		int result = service.insertMovie(movieInfo,movieImage,filePath);
+		int result = service.insertMovie(movieInfo,movieImage,filePath,actorNamesList,directorNamesList);
 		
 		if(result > 0) {
 			ra.addFlashAttribute("message","등록 성공");
@@ -163,8 +173,9 @@ public class ManagerDetailController {
 			return "redirect:/movie/"+movieNo;
 		}else {
 			ra.addFlashAttribute("message","등록 실패");
+			return "redirect:/movie/0";
 		}
-		return "redirect:/movie/0";
+	
 	
 	}
 	

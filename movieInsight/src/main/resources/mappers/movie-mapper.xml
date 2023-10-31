@@ -195,10 +195,38 @@
 		,#{movieReleaseDate},#{movieAge},#{movieRunningTime},DEFAULT,DEFAULT)
 	</insert>
 	
-	<select id="selectMovieNo" resultMap = "movie_rm">
-		SELECT MOVIE_NO FROM MOVIE
+	<select id="selectMovieNo"  resultType = "_integer">
+		SELECT MOVIE_NO 
+		FROM MOVIE
 		WHERE MOVIE_TITLE = #{movieTitle}
 	</select>
+	
+	
+	<select id="selectCastingNo"  resultType = "list">
+		SELECT CASTING_NO
+		FROM (
+			<foreach  collection="castingList"  item = "value" separator = ",">
+				SELECT CASTING_NO 
+				FROM CASTING
+				WHERE CASTING_NAME = #{value}
+			</foreach>
+		)
+	</select>
+	
+	<!-- 감독 INSERT -->
+	<insert id="insertDirectors"  parameterType="java.util.List">
+		INSERT INTO CASTING (CASTING_NO,CASTING_NAME,CASTING_URL,CASTING_CATEGORY)
+		VALUES
+		<foreach collection="list" separator="," item="directorNamesList">
+			(SEQ_CASTING_NO.NEXTVAL,#{directorNamesList},'https://namu.wiki/w/' || #{directorNamesList},'D')
+		</foreach>
+		
+	</insert>
+	
+	
+	
+	
+	
 	
 	<!-- ============================ 댓글 =========================================== -->
 	
