@@ -32,7 +32,7 @@
 				                            type="email"
 				                            class="form-style"
 				                            placeholder="User Email"
-				                     		id="email" name="email"
+				                     		id="memberEmail" name="memberEmail"
 				                            autocomplete="off"
 				                          />
 				                          <button id="logpassCheck">인증하기</button>

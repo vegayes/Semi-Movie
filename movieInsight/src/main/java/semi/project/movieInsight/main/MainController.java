@@ -26,7 +26,7 @@ public class MainController {
 	public String test1() {
 
 
-		return "redirect:/movie";
+		return "/member/login_signUp";
 
 	}
 
