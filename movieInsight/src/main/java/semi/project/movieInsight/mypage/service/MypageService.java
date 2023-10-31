@@ -36,11 +36,17 @@ public interface MypageService {
 	 */
 	List<Movie> selectCommentMovie(int memberNo);
 
-	/** 3-2) 영호관 댓글 조회 
+	/** 3-2) 영화관 댓글 조회 
 	 * @param memberNo
 	 * @return
 	 */
 	List<Cinema> selectCommentCinema(int memberNo);	
+	
+	/** 3-3) 팝업에 내용 조회 하기 ( 영화 )
+	 * @param commentNo
+	 * @return
+	 */
+	Movie selectMovieComment(int commentNo);
 	
 // 4) 정보 수정
 	
@@ -67,6 +73,38 @@ public interface MypageService {
 	 * @return
 	 */
 	int updateInfo(Member updateMember);
+
+	/** 3-4) 팝업에 내용 수정하기 ( 영화 ) 
+	 * @param movie
+	 * @return
+	 */
+	int updateMovieComment(Movie movie);
+
+	/** 3-5) 팝업에 내용 조회하기 ( 영화관) 
+	 * @param cinemaCommentNo
+	 * @return
+	 */
+	Cinema selectCinemaComment(int cinemaCommentNo);
+
+	/** 3-6) 팝업에 내용 수정하기 ( 영화관 ) 
+	 * @param cinema
+	 * @return
+	 */
+	int updateCinemaComment(Cinema cinema);
+
+	
+	// 댓글 삭제
+	
+	// 방묹기록 조회
+	
+	// 방문기록 삭제 
+	
+	
+	
+	
+	
+	// + 원래 설정된 성별 체크된 상태 유지
+
 
 
 

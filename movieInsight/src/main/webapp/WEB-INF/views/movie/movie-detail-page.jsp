@@ -191,9 +191,16 @@
                     <div>
                         <div class="movie_title">
                             <div class="star">
-                                <a href="#">
-                                    <i class="fa-solid fa-star" id="star"></i>         
-                                </a>
+                                   
+		                    	<c:if test="${empty favorite}">             
+			                        <i class="fa-regular fa-star" id = "favoriteStar"></i>
+		                    	</c:if>
+								                       
+		                    	<%-- 누르적이 있는 경우 --%>
+		                    	<c:if test="${not empty favorite}">             
+			                        <i class="fa-solid fa-star" id="favoriteStar"></i>  
+		                    	</c:if>
+                                     
                             </div>
                             <div>${movieInfo.movieTitle}</div>
                             <div> <%-- 평점 --%>
@@ -361,8 +368,8 @@
                                   <td class = "comment-list-date">${comment.movieCommentDate}</td>
                                   <td class = "comment-list-edit">
                                   	<c:if test = "${comment.commentMovieWriter eq sessionScope.loginMember.memberId}">
-    	                            	<button class="editBtn">수정</button>
-		                            	<button class="deletBtn">삭제</button>                              	
+    	                            	<button class="editBtn" >수정</button>
+		                            	<button class="deletBtn" onclick="deleteComment(${comment.movieCommentNo})">삭제</button>                              	
                                   	</c:if>
                                   </td>
 	                		</tr>

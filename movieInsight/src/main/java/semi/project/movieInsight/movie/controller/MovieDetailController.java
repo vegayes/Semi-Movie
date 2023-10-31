@@ -21,6 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -80,6 +82,23 @@ public class MovieDetailController {
 		
 		System.out.println("movieInfo : " + movieInfo);
 		
+		// 1-2) 즐겨찾기 여부 확인
+		if(loginMember != null) {
+			Map<String, Object> favoriteCheck = new HashMap<String , Object>();
+			favoriteCheck.put("memberNo", loginMember.getMemberNo());
+			favoriteCheck.put("movieNo", movieNo);
+			
+			
+			// 좋아요 여부 확인 서비스 호출
+			int result = service.favoriteCheck(favoriteCheck);
+			
+			System.out.println("즐겨찾기 Controller result : " + result);
+
+			if(result > 0) model.addAttribute("favorite", "on");
+			
+		}
+		
+		
 		// 2) 영화를 상영중인 영화관 찾기
 		List<Cinema> selectCinemaList = service.selectCinemaList(movieNo);
 		model.addAttribute("selectCinemaList", selectCinemaList);
@@ -133,6 +152,14 @@ public class MovieDetailController {
 		return "movie/movie-detail-page";
 	}
 	
+	/** 댓글 삽입
+	 * @param commentContent
+	 * @param movieNo
+	 * @param movieGrade
+	 * @param movie
+	 * @param loginMember
+	 * @return
+	 */
 	@GetMapping(value = "/comment/insert", produces = "application/json; charset=UTF-8" )	
 	@ResponseBody
 	public int insert(String commentContent, int movieNo, float movieGrade,
@@ -154,5 +181,29 @@ public class MovieDetailController {
 		
 		return service.insert(movie);
 	} 
+	
+	
+	/** 댓글 삭제
+	 * @param commentNo
+	 * @return
+	 */
+	@GetMapping(value = "/comment/delete", produces = "application/json; charset=UTF-8" )
+	@ResponseBody
+	public int delete(int movieCommentNo) {
+		return service.delete(movieCommentNo);
+	}
+	
+	
+	// 즐겨찾기 
+	@PostMapping("/favorite")
+	@ResponseBody
+	public int updatefavorite(@RequestBody Map<String, Integer> paramMap) {
+	
+		System.out.println(" 확인 : " + paramMap);
+		
+		return service.updatefavorite(paramMap);
+	}
+	
+	
 	
 }

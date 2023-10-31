@@ -80,10 +80,103 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
 });
 
 
+// 댓글 삭제
+function deleteComment(movieCommentNo){
+                    
+    console.log("삭제 버튼 누름 " + movieCommentNo);
+
+    if( confirm("정말로 삭제 하시겠습니까?") ){
+
+        console.log("정말로 삭제 응답")
+        fetch("/movieInsight/movie/comment/delete?movieCommentNo="+ movieCommentNo)
+        .then(resp => resp.text())
+        .then(result => {
+            if(result > 0){
+                alert("삭제되었습니다");
+                // selectCommentList(); // 목록을 다시 조회해서 삭제된 글을 제거
+            }else{
+                alert("삭제 실패");
+            }
+        })
+        .catch(err => console.log(err));
+
+    }
+}
 
 
+// 댓글 수정
+function updateComment(commentNo, btn){
+
+    // 새로 작성된 댓글 내용 얻어오기
+    const commentContent = btn.parentElement.previousElementSibling.value;
 
 
+    fetch("/commnet/update?commentContent="+commentContent + "&commentNo="+commentNo)
+    .then(resp => resp.text())
+    .then(result => {
+        if(result > 0){
+            alert("댓글이 수정되었습니다.");
+            selectCommentList();
+        }else{
+            alert("댓글 수정 실패");
+        }
+    })
+    .catch(err => console.log(err));
+
+}
+
+
+// 즐겨찾기 버튼이 클릭 되었을 때
+const favoriteStar = document.getElementById("favoriteStar");
+
+favoriteStar.addEventListener("click", e => {
+
+    // 로그인 여부 검사  빈문자열은 "" 임.
+    if(memberNo == ""){
+        alert("로그인 후 이용해주세요")
+        return;
+    }
+
+    let check; // 버튼  X(빈 별) : 0  
+               //      O(꽉찬 별) : 1
+
+    // contains("클래스명") : 클래스가 있으면 true, 없으면 false
+    if(e.target.classList.contains("fa-regular")){ // 빈 별
+        check = 0;
+    }else{ // 꽉찬 별
+        check = 1;
+    }
+
+    const data =   {"movieNo" : movieNo , 
+                    "memberNo" : memberNo,
+                    "check" : check };
+
+    fetch("/movieInsight/movie/favorite", {
+        method : "POST",
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify(data)
+    })
+    .then(response => response.text()) 
+
+    .then(count => { 
+
+        if(count == -1){ // INSERT, DELETE 실패 시
+            console.log("즐겨찾기 추가 오류");
+            return;
+        }
+
+        e.target.classList.toggle("fa-regular");
+        e.target.classList.toggle("fa-solid");
+
+    }) 
+
+    .catch(err => {
+        console.log("예외 발생");
+        console.log(err);
+    }) 
+
+
+});
 
 
 
@@ -113,6 +206,7 @@ star.addEventListener("mouseleave", function () {
         star.style.color = 'white'; // 마우스를 내렸을 때 다시 하얀색으로 변경
     }
 });
+
 
 const gallery = document.querySelector('.gallery');
 const prevButton = document.querySelector('.prev-button');
