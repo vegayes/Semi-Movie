@@ -201,30 +201,6 @@ document.querySelector(".favorite-delet-btn").addEventListener("click", function
 
 */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 3) 즐겨찾기 -> 영화관, 영화 구분하기
 const movieBtn = document.getElementById("movie-favorite-btn");
 const cinemaBtn = document.getElementById("cinema-favorite-btn");
@@ -232,7 +208,7 @@ const cinemaBtn = document.getElementById("cinema-favorite-btn");
 const favoriteMovieContainer =document.getElementById("movie-favorite-container");
 const favoriteCinemaContainer =document.getElementById("cinema-favorite-container");
 
-
+var favoriteFlag = "true";
 
 cinemaBtn.addEventListener("click" ,function(){
     
@@ -245,6 +221,8 @@ cinemaBtn.addEventListener("click" ,function(){
 
   favoriteMovieContainer.style.display = "none";
   favoriteCinemaContainer.style.display = "";
+
+  favoriteFlag = "true";
 });
 
 
@@ -260,9 +238,45 @@ movieBtn.addEventListener("click" ,function(){
 
   favoriteMovieContainer.style.display = "";
   favoriteCinemaContainer.style.display = "none";
+
+  favoriteFlag = "false";
 });
 
+const fvMovie = document.querySelectorAll("#fvMovie");
+const fvCinema = document.querySelectorAll("#fvCinema");
 
+if(favoriteFlag == "true"){
+  console.log("나는 영화 누름");
+
+  fvCinema.style.display="none";
+  fvMovie.style.display="";
+
+
+}else{
+  console.log("나는 영화관 누름");
+
+  fvMovie.style.display="none";
+  fvCinema.style.display="";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 4) 댓글 -><영화 영화관 구분하기
 const commentMovieBtn = document.getElementById("movie-comment-btn");
 const commentCinemaBtn = document.getElementById("cinema-comment-btn");
 
@@ -299,21 +313,37 @@ commentCinemaBtn.addEventListener("click" ,function(){
 
 
 
+// 드롭다운 값 가져오기
 
+var dropdownName = document.getElementsByClassName("dropdownBtn");
 
+for (var i = 0; i < dropdownName.length; i++) {
+  dropdownName[i].addEventListener("click", function(event){
+    viewCinema(event.target.textContent);
+  });
+}
 
+function viewCinema(type) {
+  var cinemaList = document.querySelectorAll(".comment-list-col");
 
+  console.log("가져온 값 " + type);
 
+  for (var i = 0; i < cinemaList.length; i++) {
+    var cinemaTypeElement = cinemaList[i].querySelector(".comment-list-type");
 
-
-
-
-
-
-
-
-
-
+    if (cinemaTypeElement) { // 요소가 존재하는지 확인
+      var cinemaType = cinemaTypeElement.textContent.trim().toLowerCase();
+      console.log("현재 리스트의 값 :" + cinemaType);
+      if (cinemaType.toLowerCase().includes(type.toLowerCase())) {
+        console.log("일치함");
+        cinemaList[i].style.display = "flex";
+      } else {
+        console.log("불일치함");
+        cinemaList[i].style.display = "none";
+      }
+    }
+  }
+}
 
 
 
@@ -469,37 +499,7 @@ if(imageInput != null){ // 화면에 imageInput이 있을 경우 ( if 굳이 안
 }
 
 
-// 드롭다운 값 가져오기
 
-var dropdownName = document.getElementsByClassName("dropdownBtn");
-
-for (var i = 0; i < dropdownName.length; i++) {
-  dropdownName[i].addEventListener("click", function(event){
-    viewCinema(event.target.textContent);
-  });
-}
-
-function viewCinema(type) {
-  var cinemaList = document.querySelectorAll(".comment-list-col");
-
-  console.log("가져온 값 " + type);
-
-  for (var i = 0; i < cinemaList.length; i++) {
-    var cinemaTypeElement = cinemaList[i].querySelector(".comment-list-type");
-
-    if (cinemaTypeElement) { // 요소가 존재하는지 확인
-      var cinemaType = cinemaTypeElement.textContent.trim().toLowerCase();
-      console.log("현재 리스트의 값 :" + cinemaType);
-      if (cinemaType.toLowerCase().includes(type.toLowerCase())) {
-        console.log("일치함");
-        cinemaList[i].style.display = "flex";
-      } else {
-        console.log("불일치함");
-        cinemaList[i].style.display = "none";
-      }
-    }
-  }
-}
 
 
 
@@ -854,77 +854,32 @@ function updateCommentModalCinema(cinemaCommentNo) {
 
 //6) 
 // 영화 Swiper
-/*
-const gallery = document.querySelector('.gallery');
-const prevButton = document.querySelector('.prev-button');
-const nextButton = document.querySelector('.next-button');
-
-let scrollPosition = 0;
-
-nextButton.addEventListener('click', () => {
-  scrollPosition += gallery.clientWidth;
-  if (scrollPosition > gallery.scrollWidth - gallery.clientWidth) {
-    scrollPosition = gallery.scrollWidth - gallery.clientWidth;
-  }
-  gallery.style.transform = `translateX(-${scrollPosition}px)`;
-});
-
-prevButton.addEventListener('click', () => {
-  scrollPosition -= gallery.clientWidth;
-  if (scrollPosition < 0) {
-    scrollPosition = 0;
-  }
-  gallery.style.transform = `translateX(-${scrollPosition}px)`;
-});
-*/
-// 영화관 Swiper
-/*
-const galleryCinema = document.querySelector('.galleryCinema');
-const prevButtonCinema = document.querySelector('.cinema-prev-button');
-const nextButtonCinema = document.querySelector('.cinema-next-button');
-
-//let scrollPosition = 0;
-
-
-nextButtonCinema.addEventListener('click', () => {
-  scrollPosition += galleryCinema.clientWidth;
-  if (scrollPosition > galleryCinema.scrollWidth - galleryCinema.clientWidth) {
-    scrollPosition = galleryCinema.scrollWidth - galleryCinema.clientWidth;
-  }
-  galleryCinema.style.transform = `translateX(-${scrollPosition}px)`;
-});
-
-prevButtonCinema.addEventListener('click', () => {
-  scrollPosition -= galleryCinema.clientWidth;
-  if (scrollPosition < 0) {
-    scrollPosition = 0;
-  }
-  galleryCinema.style.transform = `translateX(-${scrollPosition}px)`;
-});
-*/
 
 const gallery = document.querySelector('.gallery');
 const prevButton = document.querySelector('.prev-button');
 const nextButton = document.querySelector('.next-button');
 
 let scrollPosition = 0;
+if(gallery && prevButton && nextButton){
+  nextButton.addEventListener('click', () => {
+    console.log("클릭됨");
+    scrollPosition += gallery.clientWidth;
+    if (scrollPosition > gallery.scrollWidth - gallery.clientWidth) {
+      scrollPosition = gallery.scrollWidth - gallery.clientWidth;
+    }
+    gallery.style.transform = `translateX(-${scrollPosition}px)`;
+  });
+  
+  prevButton.addEventListener('click', () => {
+    scrollPosition -= gallery.clientWidth;
+    if (scrollPosition < 0) {
+      scrollPosition = 0;
+    }
+    gallery.style.transform = `translateX(-${scrollPosition}px)`;
+  });
 
-nextButton.addEventListener('click', () => {
-  console.log("클릭됨");
-  scrollPosition += gallery.clientWidth;
-  if (scrollPosition > gallery.scrollWidth - gallery.clientWidth) {
-    scrollPosition = gallery.scrollWidth - gallery.clientWidth;
-  }
-  gallery.style.transform = `translateX(-${scrollPosition}px)`;
-});
+}
 
-prevButton.addEventListener('click', () => {
-  scrollPosition -= gallery.clientWidth;
-  if (scrollPosition < 0) {
-    scrollPosition = 0;
-  }
-  gallery.style.transform = `translateX(-${scrollPosition}px)`;
-});
 
 const galleryCinema = document.querySelector('.galleryCinema');
 const prevButtonCinema = document.querySelector('.cinema-prev-button');

@@ -18,11 +18,22 @@
 		<result property="cinemaMaxInclude" column="CINEMA_MAX_INCLUDE" />
 		<result property="cinemaDelYN" column="CINEMA_DEL_YN" />
 		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
+		<result property="sumCinemaGrade" column="SUM_CINEMA_GRADE"/>
+		
+		<result property="cinemaCommentNo" column="MOVIE_EV_NO"/>
+		<result property="cinemaCommentContent" column="EVALUATION_CONTENT"/>
+		<result property="cinemaCommentDate" column="MOVIE_EV_ENROLL_DATE"/>
 		<result property="cinemaGrade" column="CINEMA_GRADE"/>
+		<result property="cinemaCommentType" column="CINEMA_COMMENT_TYPE"/>
+		
 		
 
 		<result property="cinemaType" column="CINEMA_TYPE" />
 		
+
+		<result property="commentCinemaWriter" column="COMMENT_CINEMA_WRITER"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="writerProfile" column="COMMENT_MEMBER_PROFILE"/>
 
 	</resultMap>
 
@@ -167,7 +178,31 @@
   	
   	</insert>
 
+	<!-- ============================ 댓글 =========================================== -->
+	<!-- 영화관 댓글 조회 -->
+	<select id = "commentCinemaList" resultMap = "cinema_rm">
+	SELECT CINEMA_EV_NO, CINEMA_NO, MEMBER_ID AS "COMMENT_CINEMA_WRITER", EVALUATION_TYPE AS CINEMA_COMMENT_TYPE , CINEMA_COMMENT, CINEMA_NAME,
+		TO_CHAR(CINEMA_EV_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') CINEMA_EV_ENROLL_DATE, CINEMA_GRADE, MEMBER_PROFILE AS COMMENT_MEMBER_PROFILE 
+	FROM CINEMA_EVALUATION 
+	JOIN CINEMA USING(CINEMA_NO)
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE CINEMA_DEL_YN  = 'N'
+	AND CINEMA_EV_DEL_YN = 'N' 
+	AND CINEMA_NAME = #{cinemaName}
+	ORDER BY CINEMA_EV_ENROLL_DATE DESC
+	</select>
   	
+  	<insert id = "commentInsert">
+  	INSERT INTO "MOVIE_EVALUATION"
+	VALUES(SEQ_CINEMA_EV_NO.NEXTVAL, 
+			#{memberNo},
+			#{cinemaNo},
+			#{cinemaCommentType},
+			#{cinemaCommentContent},
+			#{cinemaGrade},
+			SYSDATE,
+			DEFAULT)
+  	</insert>
   	
 
 </mapper>

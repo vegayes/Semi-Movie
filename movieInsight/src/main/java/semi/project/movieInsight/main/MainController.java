@@ -39,12 +39,15 @@ public class MainController {
 	}
 
 	
+
 	  @GetMapping("/movie")
 	    public String getMovies(Model model){
 		  // 모든 영화 정보 가져오기
 	        List<Movie> movieList = movieService.findAllMovies();
 	     // 가져온 영화 정보  model에 추가  
 	        model.addAttribute("movieList", movieList);
+  
+       model.addAttribute("pageType","movie");
 	        return "movie/home-page";
 	    }
 
@@ -68,6 +71,7 @@ public class MainController {
 	        //  movieNo에 해당하는 영화의 상세 정보 가져오기
 	        return "movie/movie-detail-page";
 	    }
+
 
 
 	@GetMapping("/cinema")

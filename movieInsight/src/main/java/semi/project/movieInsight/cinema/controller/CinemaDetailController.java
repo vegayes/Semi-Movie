@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -65,10 +66,10 @@ public class CinemaDetailController {
 		
 		 	model.addAttribute("movieList", movieList);
 		 	
-			// 3) 영화관에서 댓글 조회
-//			List<Cinema> commentCinemaList = service.commentMovieList(cinemaNo);
-//			System.out.println(commentMovieList);
-//			model.addAttribute("commentMovieList", commentMovieList);
+			// 3) 영화관에서 댓글 조회 (시설 / 직원 / 메뉴 ) 
+			List<Cinema> commentCinemaList = service.commentCinemaList(cinemaName);
+			System.out.println(commentCinemaList);
+			model.addAttribute("commentCinemaList", commentCinemaList);
 		 	
 		 	
 			// 해당 위치 넘기기
@@ -84,13 +85,6 @@ public class CinemaDetailController {
 	
 	
 	
-
-	
-	
-	// 상영중인 영화 조회
-	
-	
-	
 	
 	// 시설만족도,직원친절도,메뉴 추천 조회
 	
@@ -99,6 +93,42 @@ public class CinemaDetailController {
 	// 댓글 평점 입력
 	
 	// 메뉴 추천 점수순으로 업데이트
+	
+	
+	
+	
+	
+	
+	/** 댓글 삽입
+	 * @param commentContent
+	 * @param movieNo
+	 * @param movieGrade
+	 * @param movie
+	 * @param loginMember
+	 * @return
+	 */
+	@GetMapping(value = "/comment/insert", produces = "application/json; charset=UTF-8" )	
+	@ResponseBody
+	public int insert(String commentContent, int cinemaNo, float cinemaGrade,
+					 String cinemaCommentType, Cinema cinema,
+					@SessionAttribute(value = "loginMember", required =false) Member loginMember) {
+		
+		
+		System.out.println("commentContent" + commentContent);
+		System.out.println("cinemaNo" + cinemaNo);
+		System.out.println("cinemaCommentType" + cinemaCommentType);
+		System.out.println("댓글 삽입 로그인된 회원 번호 :" + loginMember.getMemberNo());
+		
+		cinema.setCinemaCommentContent(commentContent);
+		cinema.setCinemaGrade(cinemaGrade);
+		cinema.setCinemaNo(cinemaNo);
+		cinema.setCinemaCommentType(cinemaCommentType);
+		cinema.setMemberNo(loginMember.getMemberNo());
+		
+		
+		
+		return service.insert(cinema);
+	} 
 	
 	
 	 

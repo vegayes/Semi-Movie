@@ -240,38 +240,50 @@
                       시설만족도
                 </section>
                <section class="block_body">
-                <div class="combody">
-                    <div class="comb">
-                        <img id="pop1" src="resources/images/cinema/popcon.png"><img id="pop2" src="resources/images/cinema/popcon.png">
-                    </div>
-                    <div class="comb2">
-                        <div class="cb1"><h2 id="idd">id :</h2></div><div class="cb1-1"><h3 id="dd1">댓글내용 .......................................................................................................</h3></div><div class="cb1-2"><button class="editBtn">수정</button><button class="deletBtn">삭제</button></div>
-                    </div>
-                    <div class="comb">
-                        <img id="pop1" src="resources/images/cinema/popcon.png"><img id="pop2" src="resources/images/cinema/popcon.png">
-                    </div>
-                    <div class="comb4">
-                        <div class="cb2"><h2 id="idd">id :</h2></div><div class="cb2-1"><h3 id="dd1">댓글내용 .......................................................................................................</h3></div><div class="cb2-2"><button class="editBtn">수정</button><button class="deletBtn">삭제</button></div>
-                    </div>
-                    <div class="comb">
-                        <img id="pop1" src="resources/images/cinema/popcon.png"><img id="pop2" src="resources/images/cinema/popcon.png">
-                    </div>
-                    <div class="comb6">
-                        <div class="cb3"><h2 id="idd">id :</h2></div><div class="cb3-1"><h3 id="dd1">댓글내용 .......................................................................................................</h3></div><div class="cb3-2"><button class="editBtn">수정</button><button class="deletBtn">삭제</button></div>
-                    </div>
-                    <div class="comb">
-                        <img id="pop1" src="resources/images/cinema/popcon.png"><img id="pop2" src="resources/images/cinema/popcon.png">
-                    </div>
-                    <div class="comb6">
-                        <div class="cb3"><h2 id="idd">id :</h2></div><div class="cb3-1"><h3 id="dd1">댓글내용 .......................................................................................................</h3></div><div class="cb3-2"><button class="editBtn">수정</button><button class="deletBtn">삭제</button></div>
-                    </div>
-            </div>
+               	 <div class="combody">
+                	
+                    <table class = "comment-list-table">
+	                	<c:forEach items = "${commentCinemaList}" var="facility">
+	                		<c:if test ="${facility.cinemaCommentType eq '시설'}">
+	                			<tr class = "comment-grade-tr">
+		                			<td>평점 ${facility.cinemaGrade}</td>
+		                		</tr>
+		                		<tr class = "comment-content-tr" style = "border : 2px solid blue">
+		                			 <td class = "comment-img">
+	                                      <div class = "comment-writer-img-wrapper">
+	                                      	<c:if test = "${empty facility.writerProfile}">
+	                                     		<img src="/movieInsight/resources/images/member/기본이미지.png">
+	                                      	</c:if>
+	                                      	<c:if test = "${not empty facility.writerProfile}">
+		                                          <img src="/movieInsight/resources/images/member/${comment.writerProfile}">                                      	
+	                                      	</c:if>
+	                                      </div>  
+	                                      
+	                                 </td>
+	                                 <td class = "comment-list-id">
+	                                 	${facility.commentCinemaWriter} : 
+	                                 </td>
+	                                  <td class = "comment-list-content comment-content">${facility.cinemaCommentContent}</td>
+	                                  <td class = "comment-list-date">${facility.cinemaCommentDate}</td>
+	                                  <td class = "comment-list-edit">
+	                                  	<c:if test = "${facility.commentCinemaWriter eq sessionScope.loginMember.memberId}">
+	    	                            	<button class="editBtn" >수정</button>
+			                            	<button class="deletBtn" onclick="deleteComment(${facility.cinemaCommentNo})">삭제</button>                              	
+	                                  	</c:if>
+	                                  </td>
+		                		</tr>
+	                		</c:if>
+
+	                		
+	                	</c:forEach> 
+                	</table>
+            	</div>
             </section>
           </section>
             <fieldset class="commentForm">
                 <form id="facilityForm">
                     <div>
-                        <input placeholder= "시설 평가내용 입력....">
+                        <input placeholder= "시설 평가내용 입력...." id = "commentContent">
                     </div>
                     <div>
                         평점 : 
@@ -285,7 +297,9 @@
                         <i class="far fa-thumbs-up"></i>
                     </div>
                 </form>
-                <button form="facilityForm" id="submit"></button>
+                    <div id="commentSubmit">
+                        <img src="/movieInsight/resources/images/movie/movieT/list.png">
+                    </div>
             </fieldset>
 
         </section>  
@@ -298,6 +312,42 @@
                 </section>
                <section class="block_body">
                 <div class="combody">
+                    <table class = "comment-list-table">
+	                	<c:forEach items = "${commentCinemaList}" var="comment">
+	                		
+	                		<c:if test ="${comment.cinemaCommentType eq '친절도'}">
+	                			<tr class = "comment-grade-tr">
+		                			<td>평점 ${comment.cinemaGrade}</td>
+		                		</tr>
+		                		<tr class = "comment-content-tr" style = "border : 2px solid blue">
+		                			 <td class = "comment-img">
+	                                      <div class = "comment-writer-img-wrapper">
+	                                      	<c:if test = "${empty comment.writerProfile}">
+	                                     		<img src="/movieInsight/resources/images/member/기본이미지.png">
+	                                      	</c:if>
+	                                      	<c:if test = "${not empty comment.writerProfile}">
+		                                          <img src="/movieInsight/resources/images/member/${comment.writerProfile}">                                      	
+	                                      	</c:if>
+	                                      </div>  
+	                                      
+	                                 </td>
+	                                 <td class = "comment-list-id">
+	                                 	${comment.commentCinemaWriter} : 
+	                                 </td>
+	                                  <td class = "comment-list-content comment-content">${comment.cinemaCommentContent}</td>
+	                                  <td class = "comment-list-date">${comment.cinemaCommentDate}</td>
+	                                  <td class = "comment-list-edit">
+	                                  	<c:if test = "${comment.commentCinemaWriter eq sessionScope.loginMember.memberId}">
+	    	                            	<button class="editBtn" >수정</button>
+			                            	<button class="deletBtn" onclick="deleteComment(${comment.cinemaCommentNo})">삭제</button>                              	
+	                                  	</c:if>
+	                                  </td>
+		                		</tr>
+	                		</c:if>
+	                		
+	                	</c:forEach> 
+                	</table>
+                <!-- 
                     <div class="comb">
                         <img id="pop1" src="resources/images/cinema/popcon.png"><img id="pop2" src="resources/images/cinema/popcon.png">
                     </div>
@@ -322,12 +372,14 @@
                     <div class="comb6">
                         <div class="cb3"><h2 id="idd">id :</h2></div><div class="cb3-1"><h3 id="dd1">댓글내용 .......................................................................................................</h3></div><div class="cb3-2"><button class="editBtn">수정</button><button class="deletBtn">삭제</button></div>
                     </div>
+                     -->
+                 </div>
             </section>
           </section>
             <fieldset class="commentForm">
                 <form id="facilityForm">
                     <div>
-                        <input type="text" placeholder= "직원 친절도 평가 입력....">
+                        <input type="text" placeholder= "직원 친절도 평가 입력...." id = "commentContent">
                     </div>
                     <div>
                         평점 : 
@@ -341,7 +393,9 @@
                         <i class="far fa-thumbs-up"></i>
                     </div>
                 </form>
-                <button form="facilityForm" id="submit"></button>
+                    <div id="commentSubmit">
+                        <img src="/movieInsight/resources/images/movie/movieT/list.png">
+                    </div>
             </fieldset>
         </section>  
 
@@ -414,7 +468,7 @@
 
 
 
-                  <div class="comment">
+            <div class="comment" >
                 <fieldset>
                     <form id="menuForm">
 
@@ -447,7 +501,9 @@
                                 <i class="far fa-thumbs-up"></i>
                             </div>
                     </form>
-                    <button form="facilityForm" id="submit"></button>
+                    <div id="menuCommentSubmit" >
+                        <img src="/movieInsight/resources/images/movie/movieT/list.png">
+                    </div>
                  </fieldset>
             </div>
             
@@ -464,10 +520,12 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-
-
-
 </body>
+
+    <script>
+        const cinemaNo = "${cinemaInfo.cinemaName}"
+        const memberNo = "${sessionScope.loginMember.memberNo}";
+    </script>
 
     <script src="/movieInsight/resources/js/cinema/cinema-detail-page.js"></script>
     

@@ -92,7 +92,7 @@
                                  </label>
                              </div>
                  
-                             <div class = "favorite-list-container">
+                             <div class = "favorite-list-container" id = "fvMovie">
                                  <table class = "favorite-list-table">
                                      <thead>
                                          <tr>
@@ -103,9 +103,8 @@
                                          </tr>
                                      </thead>
                                      
-                                     
                                      <c:forEach items = "${movieList}" var="movie">
-	                                     <tr class = "favorite-list" style = "border : 2px solid blue">
+	                                     <tr class = "favorite-list" style = "border : 2px solid blue" >
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
@@ -120,9 +119,20 @@
 	                                         </td>
 	                                     </tr> 
                                      </c:forEach>
-                                     
+                             </div>
+                             <div class = "favorite-list-container" id = "fvCinema">
+                                 <table class = "favorite-list-table">
+                                     <thead>
+                                         <tr>
+                                             <th class = "favorite-list-img">list</th>
+                                             <th class = "favorite-list-title">Title</th>
+                                             <th class = "favorite-list-date">Date of registration</th>
+                                             <th class = "favorite-list-check">check</th>
+                                         </tr>
+                                     </thead>         
+                            
                                      <c:forEach items = "${cinemaList}" var="cinema">
-	                                     <tr class = "favorite-list" style = "border : 2px solid red">
+	                                     <tr class = "favorite-list" style = "border : 2px solid red"  >
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
@@ -138,9 +148,7 @@
 	                                     </tr> 
                                      </c:forEach>
                                  </table>
-                                 
-                                
-                             </div>
+                            </div>
                              
                              <a class = "favorite-delet-btn-container">
                                 <div class = "red favorite-delet-btn">삭제</div>
@@ -410,8 +418,8 @@
 
                     </div>
 
-                    <div class = "comment-list-content-container">
-                        <table class = "comment-list-table" id = "movie-comment-container">
+                    <div class = "comment-list-content-container" id = "movie-comment-container">
+                        <table class = "comment-list-table" >
 
 							<c:if test= "${empty commentMovie}">
 								<tr class = "comment-not-content">
@@ -442,8 +450,9 @@
  								</c:forEach>
 		 					</c:if>
 		 				</table>		
-
- 						<table class = "comment-list-table" id = "cinema-comment-container" style = "display : none">
+					</div>
+					<div class = "comment-list-content-container" id = "cinema-comment-container" style = "display : none">
+ 						<table class = "comment-list-table">
  							
  							<c:if test= "${empty commentCinema}">
 								<tr class = "comment-not-content">

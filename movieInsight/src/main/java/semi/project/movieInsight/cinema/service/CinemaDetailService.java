@@ -13,4 +13,16 @@ public interface CinemaDetailService {
 
 	List<Movie> selectMovieList(int cinemaNo);
 
+	/** 영화관 댓글 조회 
+	 * @param cinemaName
+	 * @return
+	 */
+	List<Cinema> commentCinemaList(String cinemaName);
+
+	/** 영화관 댓글 삽입
+	 * @param cinema
+	 * @return
+	 */
+	int insert(Cinema cinema);
+
 }

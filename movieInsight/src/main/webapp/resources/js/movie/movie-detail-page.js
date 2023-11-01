@@ -104,7 +104,7 @@ function deleteComment(movieCommentNo){
 }
 
 
-// 댓글 수정
+// 댓글 수정 (아직 안함) 
 function updateComment(commentNo, btn){
 
     // 새로 작성된 댓글 내용 얻어오기
