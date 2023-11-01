@@ -8,12 +8,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.member.service.MemberServiceimpl;
 import semi.project.movieInsight.movie.dto.Movie;
 
 @Repository
@@ -21,6 +24,8 @@ public class ManagerDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	private Logger logger = LoggerFactory.getLogger(ManagerDAO.class);
+	
 	/** 1-1)특별관 전체 조회
 	 * @return
 	 */
@@ -142,22 +147,28 @@ public class ManagerDAO {
 		List<String> castingList = new ArrayList<>(actorNamesList);
 		castingList.addAll(directorNamesList);
 		
-		System.out.println("결합된 리스트 : " + castingList);
+		Map<String,Object> castingMap = new HashMap<String,Object>();
+		castingMap.put("actorNamesList", actorNamesList);
+		castingMap.put("directorNamesList", directorNamesList);
+		
+		logger.debug("결합된 리스트 : " + castingList);
 		
 		if(insertMovie > 0) {
 			
-			int insertDirectors = sqlSession.insert("movieMapper.insertDirectors", directorNamesList);
+			
+			int insertDirectors = sqlSession.insert("movieMapper.insertDirectors", castingMap);
 			
 			if(insertDirectors > 0) {
 				
-				System.out.println("insertDirectors 성공");
-				int insertActors = sqlSession.insert("movieMapper.insertActors", actorNamesList);
+				logger.info("insertDirectors 성공");
+				int insertActors = sqlSession.insert("movieMapper.insertActors", castingMap);
 				
 				if(insertActors > 0) {
 					
-					 System.out.println("insertActors 성공");
+					 logger.info("insertActors 성공");
 					 int movieNo = selectMovieNo(movieInfo.getMovieTitle());
 					 List<Integer> castingNo= selectCastingNo(castingList);
+					 logger.debug("castingNo : " + castingNo);
 					 
 					 Map<String, Object> movieCastingMap = new HashMap<String, Object>();
 					 movieCastingMap.put("movieNo", movieNo);
@@ -166,7 +177,7 @@ public class ManagerDAO {
 					 
 					 if(movieCasting > 0) {
 						 
-						 System.out.println("movieCasting 성공");
+						 logger.info("movieCasting 성공");
 						 return movieCasting;
 						 
 					 }else {
@@ -199,7 +210,7 @@ public class ManagerDAO {
 
 	
 	/** 출연castingNo
-	 * @param directorNamesList
+	 * @param castingList
 	 * @return
 	 */
 	public List<Integer> selectCastingNo(List<String> castingList) {

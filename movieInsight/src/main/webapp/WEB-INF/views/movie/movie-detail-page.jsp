@@ -43,55 +43,54 @@
                 <%-- *************** 관리자 페이지에서 등록 버튼 눌렀을 때 ************************ --%>
                 <c:when test="${empty movieInfo}">
                     <form action="/movieInsight/managerDetail/insertMovie" method="POST" encType="multipart/form-data" class="movie">
-                        
-                            <div class="movie_img">
-                                <img src="" id="movieImg">
-                                <input type="file" name="movieImage"  id="fileInput" accept="image/*">
+                    
+                        <div class="movie_img">
+                            <img src="" id="movieImg">
+                            <input type="file" name="movieImage"  id="fileInput" accept="image/*">
+                        </div>
+                        <div id="movie-content">
+                            <div class="movie_title">
+                                <div class="star">
+                                    <a href="#">
+                                        <i class="fa-solid fa-star" id="star"></i>         
+                                    </a>
+                                </div>
+                                <input type="text" name="movieTitle" style="font-size: 30px;" placeholder="제목">
+                                <div> <%-- 평점 --%>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             </div>
-                            <div id="movie-content">
+                            <h2 class = "movie_summary_title">줄거리</h2>  
+                            <textarea  name="movieSummary" ></textarea>
+
+                            <div class="movie_description">
+                                
+                                <span>
+                                    <input type="text" name="movieGenre" placeholder="장르">
+                                    <input type="text" name="movieReleaseDate" placeholder="출시일(2020-01-01)">
+                                </span>
+                                <div>
+
+                                    <input type="text" name="directorNames" placeholder="감독(/구분)">
+                                    <input type="text" name="actorNames" placeholder="출연진(/구분)">
+                                    <input type="text" name="movieAge" placeholder="관람나이(세)">
+                                    <input type="text" name="movieRunningTime" placeholder="상영시간(숫자만)">
+
+                                </div>
+                                <button type="submit" style="color: black;" id="insertButton" name="insert">등록하기</button>
+                            </div>
                             
-                                <div class="movie_title">
-                                    <div class="star">
-                                        <a href="#">
-                                            <i class="fa-solid fa-star" id="star"></i>         
-                                        </a>
-                                    </div>
-                                    <input type="text" name="movieTitle" style="font-size: 30px;" placeholder="제목">
-                                    <div> <%-- 평점 --%>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                </div>
-                                <h2 class = "movie_summary_title">줄거리</h2>  
-                                <textarea  name="movieSummary" ></textarea>
-
-                                <div class="movie_description">
-                                    
-                                    <span>
-                                        <input type="text" name="movieGenre" placeholder="장르">
-                                        <input type="text" name="movieReleaseDate" placeholder="출시일(2020-01-01)">
-                                    </span>
-                                    <div>
-
-                                        <input type="text" name="directorNames" placeholder="감독(/구분)">
-                                        <input type="text" name="actorNames" placeholder="출연진(/구분)">
-                                        <input type="text" name="movieAge" placeholder="관람나이(세)">
-                                        <input type="text" name="movieRunningTime" placeholder="상영시간(숫자만)">
-
-                                    </div>
-                                    <button type="submit" style="color: black;" id="insertButton" name="insert">등록하기</button>
-                                </div>
-                               
-                            </div>
+                        </div>
                     </div>
                 </form>
             </c:when>
             
             <%-- *************** 관리자 페이지에서 수정 버튼 눌렀을 때 ************************--%>
-            <c:when test="trun">
+            <c:when test="false">
                 <form action="/movieInsight/managerDetail/updateMovie" method="POST" encType="multipart/form-data" class="movie">
                     <div class="movie_img">
                             <img src="/movieInsight/resources/images/movie/${movieInfo.movieImg}">
@@ -99,9 +98,14 @@
                     <div>
                         <div class="movie_title">
                             <div class="star">
-                                <a href="#">
-                                    <i class="fa-solid fa-star" id="star"></i>         
-                                </a>
+                                <c:if test="${empty favorite}">             
+			                        <i class="fa-regular fa-star" id = "favoriteStar"></i>
+		                    	</c:if>
+								                       
+		                    	<%-- 누르적이 있는 경우 --%>
+		                    	<c:if test="${not empty favorite}">             
+			                        <i class="fa-solid fa-star" id="favoriteStar"></i>  
+		                    	</c:if>
                             </div>
                             <div>${movieInfo.movieTitle}</div>
                             <div> <%-- 평점 --%>
