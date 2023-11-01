@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -37,22 +39,35 @@ public class MainController {
 	}
 
 	
-	@GetMapping("/movie")
-	public String movieMain(Model model) {
-		
-		System.out.println("영화 메인페이지 이동");
-		
-        List<Movie> movies = movieService.getMovies(); // 영화 정보를 가져오는 로직을 호출
-        model.addAttribute("movieList", movies); // 모델에 영화 리스트를 추가
-		
-		
+	  @GetMapping("/movie")
+	    public String getMovies(Model model){
+		  // 모든 영화 정보 가져오기
+	        List<Movie> movieList = movieService.findAllMovies();
+	     // 가져온 영화 정보  model에 추가  
+	        model.addAttribute("movieList", movieList);
+	        return "movie/home-page";
+	    }
 
-		model.addAttribute("pageType","movie");
-		
-		return "movie/home-page";
-	}
+	    @GetMapping("/movie/{genre}")
+	    public String getMoviesByGenre(@PathVariable String genre, Model model) {
+	        // 주어진 장르에 해당하는 영화 정보를 가져옵니다.
+	        List<Movie> movieList = movieService.findMoviesByCategory(genre);
+	        
+	        model.addAttribute("movieList", movieList);
+	        
+	        return "movie/home-page";
+	    }
 
-
+	    @GetMapping("/movieInsight/movie/{movieNo}")
+	    public String getMovieDetail(@PathVariable Long movieNo, Model model) {
+	    	
+	    	 //  movieNo에 해당하는 영화의 상세 정보를 가져오기
+	        Movie movie = movieService.findMovieById(movieNo);
+	        //  movieNo에 해당하는 영화의 상세 정보를 가져오기
+	        model.addAttribute("movie", movie);
+	        //  movieNo에 해당하는 영화의 상세 정보 가져오기
+	        return "movie/movie-detail-page";
+	    }
 
 
 	@GetMapping("/cinema")
