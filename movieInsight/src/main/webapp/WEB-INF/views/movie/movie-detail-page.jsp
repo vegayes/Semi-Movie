@@ -42,20 +42,57 @@
         <c:choose>
                 <%-- *************** 관리자 페이지에서 등록 버튼 눌렀을 때 ************************ --%>
                 <c:when test="${empty movieInfo}">
-                    <form action="/movieInsight/managerDetail/insertMovie" method="POST" encType="multipart/form-data" class="movie">
+                    <form action="/movieInsight/managerDetail/insertMovie" method="POST" encType="multipart/form-data" class="movieForm">
                     
-                        <div class="movie_img">
+                        <div class="movieForm_img">
                             <img src="" id="movieImg">
                             <input type="file" name="movieImage"  id="fileInput" accept="image/*">
                         </div>
-                        <div id="movie-content">
-                            <div class="movie_title">
-                                <div class="star">
-                                    <a href="#">
-                                        <i class="fa-solid fa-star" id="star"></i>         
-                                    </a>
+                        <div id="movieForm-content">
+                                <div class="movieForm_title">
+                                    <input type="text" name="movieTitle" style="font-size: 30px;" placeholder="제목">
+                                    <div> <%-- 평점 --%>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </div>
-                                <input type="text" name="movieTitle" style="font-size: 30px;" placeholder="제목">
+                                <h2 class = "movieForm_summary_title">줄거리</h2>  
+                                <textarea  name="movieSummary" ></textarea>
+
+                                <div class="movieForm_description">
+                                    
+                                    <div class="movieFormGenre">
+                                        <input type="text" name="movieGenre" placeholder="장르">
+                                        <input type="text" name="movieReleaseDate" placeholder="출시일(2020-01-01)">
+                                    </div>
+                                    <div class="movieFormCasting">
+                                        <input type="text" name="directorNames" placeholder="감독(/구분)">
+                                        <input type="text" name="actorNames" placeholder="출연진(/구분)">
+                                        <div class="movieFormAge">
+                                            <input type="text" name="movieAge" placeholder="관람나이(세)">
+                                            <input type="text" name="movieRunningTime" placeholder="상영시간(숫자만)">
+                                        </div>
+                                    </div>
+                                    <button type="submit" style="color: black;" id="insertButton" name="insert">등록하기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </c:when>
+            
+            <%-- *************** 관리자 페이지에서 수정 버튼 눌렀을 때 ************************--%>
+            <c:when test="${loginMember.memberNo == 12}">
+                <form action="/movieInsight/managerDetail/updateMovie" method="POST" encType="multipart/form-data" class="movie">
+                    <div class="movieForm_img">
+                        <img src="/movieInsight/resources/images/movie/${movieInfo.movieImg}" id="movieImg">
+                        <input type="file" name="movieImage"  id="fileInput" accept="image/*">
+                    </div>
+                    <div id="movieForm-content">
+                            <div class="movieForm_title">
+                                <input type="text" name="movieTitle" style="font-size: 30px;" value="${movieInfo.movieTitle}">
                                 <div> <%-- 평점 --%>
                                     <div></div>
                                     <div></div>
@@ -64,123 +101,22 @@
                                     <div></div>
                                 </div>
                             </div>
-                            <h2 class = "movie_summary_title">줄거리</h2>  
-                            <textarea  name="movieSummary" ></textarea>
-
-                            <div class="movie_description">
-                                
-                                <span>
-                                    <input type="text" name="movieGenre" placeholder="장르">
-                                    <input type="text" name="movieReleaseDate" placeholder="출시일(2020-01-01)">
-                                </span>
-                                <div>
-
-                                    <input type="text" name="directorNames" placeholder="감독(/구분)">
-                                    <input type="text" name="actorNames" placeholder="출연진(/구분)">
-                                    <input type="text" name="movieAge" placeholder="관람나이(세)">
-                                    <input type="text" name="movieRunningTime" placeholder="상영시간(숫자만)">
-
+                            <h2 class = "movieForm_summary_title">줄거리</h2>  
+                            <textarea name="movieSummary">${movieInfo.movieSummary}</textarea>
+                            <div class="movieForm_description">
+                                <div class="movieFormGenre">
+                                    <input type="text" name="movieGenre" value="${movieInfo.movieGenre}">
+                                    <input type="text" name="movieReleaseDate" value="${movieInfo.movieReleaseDate}">
+                                </div>
+                                <div class="movieFormCasting">
+                                    <input type="text" name="directorNames" value="${directorInfoList}">
+                                    <input type="text" name="actorNames" value="${actorInfoList}">
+                                    <div class="movieFormAge">
+                                        <input type="text" name="movieAge" value="${movieInfo.movieAge}">
+                                        <input type="text" name="movieRunningTime" value="${movieInfo.movieRunningTime}">
+                                    </div>
                                 </div>
                                 <button type="submit" style="color: black;" id="insertButton" name="insert">등록하기</button>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </form>
-            </c:when>
-            
-            <%-- *************** 관리자 페이지에서 수정 버튼 눌렀을 때 ************************--%>
-            <c:when test="false">
-                <form action="/movieInsight/managerDetail/updateMovie" method="POST" encType="multipart/form-data" class="movie">
-                    <div class="movie_img">
-                            <img src="/movieInsight/resources/images/movie/${movieInfo.movieImg}">
-                    </div>
-                    <div>
-                        <div class="movie_title">
-                            <div class="star">
-                                <c:if test="${empty favorite}">             
-			                        <i class="fa-regular fa-star" id = "favoriteStar"></i>
-		                    	</c:if>
-								                       
-		                    	<%-- 누르적이 있는 경우 --%>
-		                    	<c:if test="${not empty favorite}">             
-			                        <i class="fa-solid fa-star" id="favoriteStar"></i>  
-		                    	</c:if>
-                            </div>
-                            <div>${movieInfo.movieTitle}</div>
-                            <div> <%-- 평점 --%>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-                        </div>
-                         <h2 class = "movie_summary_title">줄거리</h2>  
-                        <div class="movie_summary">
-                             ${movieInfo.movieSummary} 
-                        </div>
-                        <div class="movie_description">
-                            <div>
-                                <div>
-                                    <div>장르 :
-                                        ${movieInfo.movieGenre}
-                                    </div> 
-                                        
-                                </div>
-                                <div>
-                                    <div>감독 :</div>
-                                    
-                                    <c:forEach items = "${directorInfoList}" var="directorInfo" varStatus="status">
-                                    
-                                            <c:if test="${status.index >= 0}">
-                                                <a href="${directorInfo.CASTING_URL}" target="_blank">
-                                                    ${directorInfo.CASTING_NAME}
-                                                </a>
-                                            
-                                                <c:if test="${!status.last}">&nbsp; / </c:if>
-                                            
-                                            </c:if>
-        
-                                    </c:forEach>                             
-                                    
-                                    
-                                    <%-- 감독 나무위키 링크 걸어두기 (inline 으로 잡아서?? 구분자를 기준으로 많이 존재하면 그만큼 받아서 링크 걸어두기--%>
-                                    <%-- <c:choose>></c:choose>--%>
-                                    <a> ${movieInfo.directorNames}</a>
-                                </div>
-                                <div>
-                                    <div>출연진 :</div>
-                                        
-                                    <c:forEach items = "${actorInfoList}" var="actorInfo" varStatus="status">
-                                    
-                                        <c:if test="${status.index >= 0}">
-                                            <a href="${actorInfo.CASTING_URL}" target="_blank">
-                                                ${actorInfo.CASTING_NAME}
-                                             </a>
-                                            
-                                             <c:if test="${!status.last}">&nbsp; / </c:if>
-                                        </c:if>
-        
-                                    </c:forEach>                            
-                                </div>
-                            </div>
-                            <div>
-                                <div>개봉일 : ${movieInfo.movieReleaseDate}</div>
-                                <div>등급 : 
-                                <%-- 
-                                    <c:choose>
-                                        <c:when test="${movie.movieAge}.length() > 2">
-                                            ${movie.movieAge}
-                                        </c:when>
-                                        <c:otherwise>
-                                            ${movie.movieRunningTime}이상 관람가
-                                        </c:otherwise>
-                                    </c:choose>
-                                --%>
-                                    ${movieInfo.movieAge}
-                                </div>
-                                <div>러닝타임 : ${movieInfo.movieRunningTime }분</div>
                             </div>
                         </div>
                     </div>

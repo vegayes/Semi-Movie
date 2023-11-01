@@ -22,8 +22,7 @@ import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 
 
-//@SessionAttributes({"loginMember"})
-
+@SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("/cinemaDetail")
 public class CinemaDetailController {
@@ -40,14 +39,14 @@ public class CinemaDetailController {
 	@GetMapping("/{cinemaName}")
 	public String selectCinema(
 			@PathVariable("cinemaName") String cinemaName,
-		//	@SessionAttribute(value="loginMember",required=false) Member loginMember,
+			@SessionAttribute(value="loginMember",required=false) Member loginMember,
 			HttpServletRequest req,
 			HttpServletResponse resp,
 			Model model
 			){
 		
 
-		
+			System.out.println("loginMember : " + loginMember);
 
 			if(cinemaName.equals("insert")) {
 				
@@ -56,7 +55,7 @@ public class CinemaDetailController {
 		
 			Cinema  cinemaInfo =  service.selectCinemaInfo(cinemaName);
 		 	
-		 	
+			model.addAttribute("loginMember", loginMember);
 		 	model.addAttribute("cinemaInfo", cinemaInfo);
 		 	
 		 	

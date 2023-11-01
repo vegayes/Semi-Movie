@@ -56,8 +56,8 @@ public class MemberController {
 		
 		Member inputMember = new Member();
 		// ------- 임시 로그인 설정 ------------
-		inputMember.setMemberId("id");
-		inputMember.setMemberPw("pw");
+		inputMember.setMemberId("movieInsight");
+		inputMember.setMemberPw("movieInsight");
 		// ------------------------------------------
 		
 		
