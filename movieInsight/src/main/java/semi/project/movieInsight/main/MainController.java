@@ -32,8 +32,8 @@ public class MainController {
 	public String test1() {
 
 
-		return "/member/login_signUp";
-
+		return "redirect:movie";
+		//return "/member/login_signUp";
 	}
 
 	
@@ -49,7 +49,7 @@ public class MainController {
 
 		model.addAttribute("pageType","movie");
 		
-		return "movie/home-page";
+		return "member/home-page";
 	}
 
 
