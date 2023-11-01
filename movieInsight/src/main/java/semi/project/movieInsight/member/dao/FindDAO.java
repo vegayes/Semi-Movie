@@ -6,14 +6,16 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import semi.project.movieInsight.member.dto.Member;
+
 @Repository
 public class FindDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public String selectFindId(String email) {
-		return sqlSession.selectOne("findMapper.findId", email);
+	public Member selectFindId(String memberEmail) {
+		return sqlSession.selectOne("findMapper.findId",memberEmail);
 	}
 
 	// 비밀번호 찾기 
