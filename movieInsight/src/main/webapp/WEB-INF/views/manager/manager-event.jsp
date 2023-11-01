@@ -126,79 +126,79 @@
 
  <%-- =====================================================================================================================================       
                     								 이벤트/특별관 수정  팝업    --%> 
-                     <div id = "manager-event-update-box" style="display : none;">
-                         <div id = "manager-event-update-content">
-                             <div id = "event-modal-close" >&times;</div>
-                             
-					            <section class ="title-container">
-					                이벤트 수정
-					            </section>
-					
-					            <section class = "event-container">
-					                <div class = "event-info-container">
-					                    <table>
-					                        <tr>
-					                            <th> 홍보 카테고리</th>
-					                            <td>
-					                                <form>
-					                                    <select name="menu" >
-					                                      <option value="none">=== 카테고리 선택 ===</option>
-					                                      <option value="privat-cinema">특별관</option>
-					                                      <option value="event">이벤트</option>
-					                                    </select>
-					                                  </form>
-					                            </td>
-					                        </tr>
-					
-					                        <tr>
-					                            <th> 제목</th>
-					                            <td>
-					                                <input type="text"  autocomplete="off">
-					                            </td>
-					                        </tr>
-					
-					                        <tr>
-					                            <th> 내용</th>
-					                            <td>
-					                                <form>
-					                                    <textarea>
-					                                        
-					                                    </textarea>
-					                                </form>
-					                            </td>
-					                        </tr>
-					
-					                        <tr>
-					                            <th> 사진 </th>
-					                            <td>
-					                                <input type="file">
-					                            </td>
-					                        </tr>
-					
-					                        <tr>
-					                            <th> URL </th>
-					                            <td>
-					                                <input type="text" value="https://">
-					                            </td>
-					                        </tr>
-					                    </table>
-					
-					
-					                </div>
-					            </section>
-					
-					            <section class = "event-btn-container">
-					                <div class ="btn">
-					                    수정하기
-					                </div>
-					                <div class ="btn">
-					                    취소하기
-					                </div>
-					            </section>                             
-
-                         </div>
-                         <label  id = "event-modal-back"></label>
-                     </div>    
+				
+			<div id = "manager-event-update-box" style="display : none;">
+					<div id = "manager-event-update-content">
+						<div id = "event-modal-close" >&times;</div>
+						<form method="POST" encType="multipart/form-data">   
+							<section class ="title-container">
+								이벤트 수정
+							</section>
+				
+							<section class = "event-container">
+								<div class = "event-info-container">
+									<table>
+										<tr>
+											<th> 홍보 카테고리</th>
+											<td>
+												<select name="menu" >
+													<option value="none">=== 카테고리 선택 ===</option>
+													<option value="privat-cinema">특별관</option>
+													<option value="event">이벤트</option>
+												</select>
+											</td>
+										</tr>
+				
+										<tr>
+											<th> 제목</th>
+											<td>
+												<input type="text"  autocomplete="off" name="title">
+											</td>
+										</tr>
+				
+										<tr>
+											<th> 내용</th>
+											<td>
+												
+												<textarea name="content">
+														
+												</textarea>
+												
+											</td>
+										</tr>
+				
+										<tr>
+											<th> 사진 </th>
+											<td>
+												<input type="file"  accept="image/*" name="img">
+											</td>
+										</tr>
+				
+										<tr>
+											<th> URL </th>
+											<td>
+												<input type="text" value="https://" name="url">
+											</td>
+										</tr>
+									</table>
+				
+				
+								</div>
+							</section>
+						
+							<section class = "event-btn-container">
+								<div class ="btn">
+									<button type="submit">수정하기</button>
+								</div>
+								<div class ="btn">
+									취소하기
+								</div>
+							</section>                             
+						</form>  
+					<label  id = "event-modal-back"></label>
+				</div>	
+			</div>    
+				
 <%-- ============================================================  이벤트/특별관 수정 (팝업) 끝 ============================================================ --%>
 	
 

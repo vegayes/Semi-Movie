@@ -40,37 +40,37 @@ public class MainController {
 
 	
 
-//	  @GetMapping("/movie")
-//	    public String getMovies(Model model){
-//		  // 모든 영화 정보 가져오기
-//	        List<Movie> movieList = movieService.findAllMovies();
-//	     // 가져온 영화 정보  model에 추가  
-//	        model.addAttribute("movieList", movieList);
-//  
-//       model.addAttribute("pageType","movie");
-//	        return "movie/home-page";
-//	    }
-//
-//	    @GetMapping("/movie/{genre}")
-//	    public String getMoviesByGenre(@PathVariable String genre, Model model) {
-//	        // 주어진 장르에 해당하는 영화 정보를 가져옵니다.
-//	        List<Movie> movieList = movieService.findMoviesByCategory(genre);
-//	        
-//	        model.addAttribute("movieList", movieList);
-//	        
-//	        return "movie/home-page";
-//	    }
-//
-//	    @GetMapping("/movieInsight/movie/{movieNo}")
-//	    public String getMovieDetail(@PathVariable Long movieNo, Model model) {
-//	    	
-//	    	 //  movieNo에 해당하는 영화의 상세 정보를 가져오기
-//	        Movie movie = movieService.findMovieById(movieNo);
-//	        //  movieNo에 해당하는 영화의 상세 정보를 가져오기
-//	        model.addAttribute("movie", movie);
-//	        //  movieNo에 해당하는 영화의 상세 정보 가져오기
-//	        return "movie/movie-detail-page";
-//	    }
+	  @GetMapping("/movie")
+	    public String getMovies(Model model){
+		  // 모든 영화 정보 가져오기
+	        List<Movie> movieList = movieService.findAllMovies();
+	     // 가져온 영화 정보  model에 추가  
+	    //    model.addAttribute("movieList", movieList);
+  
+      // model.addAttribute("pageType","movie");
+	        return "movie/home-page";
+	    }
+
+	   // @GetMapping("/movie/{genre}")
+	    public String getMoviesByGenre(@PathVariable String genre, Model model) {
+	        // 주어진 장르에 해당하는 영화 정보를 가져옵니다.
+	        List<Movie> movieList = movieService.findMoviesByCategory(genre);
+	        
+	        model.addAttribute("movieList", movieList);
+	        
+	        return "movie/home-page";
+	    }
+
+	  //  @GetMapping("/movieInsight/movie/{movieNo}")
+	    public String getMovieDetail(@PathVariable Long movieNo, Model model) {
+	    	
+	    	 //  movieNo에 해당하는 영화의 상세 정보를 가져오기
+	        Movie movie = movieService.findMovieById(movieNo);
+	        //  movieNo에 해당하는 영화의 상세 정보를 가져오기
+	        model.addAttribute("movie", movie);
+	        //  movieNo에 해당하는 영화의 상세 정보 가져오기
+	        return "movie/movie-detail-page";
+	    }
 
 
 

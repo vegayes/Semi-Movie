@@ -19,6 +19,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.service.ManagerService;
 
@@ -170,7 +171,7 @@ public class ManagerDetailController {
 		if(result > 0) {
 			ra.addFlashAttribute("message","등록 성공");
 			movieNo = service.selectMovieNo(movieInfo.getMovieTitle());
-			return "redirect:/movie/"+movieNo;
+			return "redirect:/manager/movie";
 		}else {
 			ra.addFlashAttribute("message","등록 실패");
 			return "redirect:/movie/0";
@@ -182,11 +183,28 @@ public class ManagerDetailController {
 	
 	
 	
+	/* ********************************이벤트****************************************** */
 	
-	
-	
-	
-	
+	@PostMapping("insertPromotion")
+	public String insertPromotion(RedirectAttributes ra, HttpSession session,
+			@RequestParam(value = "img", required = false) MultipartFile Image,
+			@RequestParam("title") String title,
+			@RequestParam("url") String url,
+			@RequestParam("content") String content
+			) throws Exception{
+		
+		Promotion promotion  = new Promotion();
+		promotion.setPromotionType(title);
+		promotion.setPromotionURL(url);
+		promotion.setPromotionContent(content);
+		
+		String webPath = "/resources/images/cinema/";
+		String filePath = session.getServletContext().getRealPath(webPath);
+		
+		int result = service.insertPromotion(promotion,Image,filePath);
+		
+		return "redirect:/manager/promotion";
+	}
 	
 	
 	
