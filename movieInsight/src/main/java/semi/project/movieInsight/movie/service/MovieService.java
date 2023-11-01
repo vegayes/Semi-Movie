@@ -15,6 +15,8 @@ public interface MovieService {
 
 	List<Movie> selectManagerMovieList();
 
+	List<Movie> getMovies();
+
 
 
 }
