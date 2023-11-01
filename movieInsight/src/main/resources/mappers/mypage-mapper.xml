@@ -167,7 +167,17 @@
 		CINEMA_GRADE = #{cinemaGrade}
 		WHERE CINEMA_EV_NO = #{cinemaCommentNo}
   	</update>
+  	
+  	
+  	<!-- 즐겨찾기 삭제하기 -->
+  	<delete id = "delFavoriteMovie">
+	 DELETE FROM MOVIE_LIKE 
+	 WHERE MOVIE_NO IN
+  	<foreach collection="delMovieNo" item="movieNo" open="(" separator="," close=")">
+   	 #{movieNo}
+ 	 </foreach>
+ 	 AND  MEMBER_NO = #{memberNo}	
+  	</delete>
 	
 </mapper>
-
 

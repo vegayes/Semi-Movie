@@ -55,11 +55,12 @@ public class MemberController {
 		System.out.println("로그인 진행 시작");
 		
 		Member inputMember = new Member();
-		// ------- 임시 로그인 설정 ------------
-		inputMember.setMemberId("movieInsight");
-		inputMember.setMemberPw("movieInsight");
+//		// ------- 임시 로그인 설정 ------------
+//		inputMember.setMemberId("movieInsight");
+//		inputMember.setMemberPw("movieInsight");
 		// ------------------------------------------
-		
+		inputMember.setMemberId("id");
+		inputMember.setMemberPw("pw");
 		
 		// 로그인 서비스 호출
 		Member loginMember = service.login(inputMember);
@@ -92,6 +93,8 @@ public class MemberController {
 			cookie.setPath("/movieInsight"); // localhost:/ 이하 모든 주소????
 			
 			System.out.println("loginMember" + loginMember.getMemberId());
+			
+			System.out.println("성별 : " + loginMember.getMemberGender());
 
 			resp.addCookie(cookie);
 			

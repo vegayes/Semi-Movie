@@ -4,6 +4,7 @@ package semi.project.movieInsight.mypage.controller;
 
 import java.nio.file.spi.FileSystemProvider;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -127,6 +129,7 @@ public class MypageController {
 		model.addAttribute("commentCinema", selectCommentCinema);
 		
 		
+		model.addAttribute("loginMember", loginMember);
 		
 		
 		return "mypage/mypage";
@@ -347,16 +350,29 @@ public class MypageController {
 		return service.updateCinemaComment(cinema);
 	}
 	
-	// 즐겨찾기 팝업에서 삭제하기 (영화) 
+	// 즐겨찾기 팝업에서 조회 하기 ( ajax 영화 ) 
 	@ResponseBody
-	@GetMapping(value = "/like/del", produces = "application/json; charset=UTF-8" )
-	public int delMovieComment(int[] delMovie) {
+	@GetMapping(value ="/like/select", produces = "application/json; charset=UTF-8")
+	public List<Movie> selectFvMovie(int memberNo){
 		
-		System.out.println("해당 값 가져오기 : " + delMovie[0] + delMovie[1]);
+		System.out.println("비동기 조회 : " + memberNo);
 		
-		// 즐겨찾기 
+		return service.selectLikeMovie(memberNo);
+	}
 		
-		return 0;
+	
+	// 즐겨찾기 팝업에서 삭제하기 (영화) 	
+	@ResponseBody
+	@PostMapping(value = "/like/del", produces = "application/json; charset=UTF-8" )
+	public int delMovieComment(@RequestBody Map<String, List<Integer>> requestBody, // "delMovie" 의 key로 들어가 있음. 
+								@SessionAttribute("loginMember") Member loginMember) {
+				
+	
+		Map<String, Object> favoriteDelMovie = new HashMap<String , Object>();
+		favoriteDelMovie.put("delMovieNo", requestBody.get("delMovie"));
+		favoriteDelMovie.put("memberNo", loginMember.getMemberNo());
+		
+	    return service.delFavoriteMovie(favoriteDelMovie);
 	}
 	
 

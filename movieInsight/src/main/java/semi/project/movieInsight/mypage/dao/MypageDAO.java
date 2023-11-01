@@ -114,6 +114,14 @@ public class MypageDAO {
 		return sqlSession.update("mypageMapper.updateCinemaComment", cinema);
 	}
 
+	/** 즐겨찾기 영화 삭제 
+	 * @param favoriteDelMovie
+	 * @return
+	 */
+	public int delFavoriteMovie(Map<String, Object> favoriteDelMovie) {
+		return sqlSession.delete("mypageMapper.delFavoriteMovie", favoriteDelMovie);
+	}
+
 
 
 	

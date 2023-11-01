@@ -92,8 +92,8 @@
                                  </label>
                              </div>
                  
-                             <div class = "favorite-list-container" id = "fvMovie">
-                                 <table class = "favorite-list-table">
+                             <div class = "favorite-list-container" >
+                                 <table class = "favorite-list-table" id = "favorite-list-table">
                                      <thead>
                                          <tr>
                                              <th class = "favorite-list-img">list</th>
@@ -104,7 +104,7 @@
                                      </thead>
                                      
                                      <c:forEach items = "${movieList}" var="movie">
-	                                     <tr class = "favorite-list" style = "border : 2px solid blue" >
+	                                     <tr class = "favorite-list fvMovie" style = "border : 2px solid blue" id = "fvMovie">
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
@@ -119,20 +119,9 @@
 	                                         </td>
 	                                     </tr> 
                                      </c:forEach>
-                             </div>
-                             <div class = "favorite-list-container" id = "fvCinema">
-                                 <table class = "favorite-list-table">
-                                     <thead>
-                                         <tr>
-                                             <th class = "favorite-list-img">list</th>
-                                             <th class = "favorite-list-title">Title</th>
-                                             <th class = "favorite-list-date">Date of registration</th>
-                                             <th class = "favorite-list-check">check</th>
-                                         </tr>
-                                     </thead>         
-                            
+                           
                                      <c:forEach items = "${cinemaList}" var="cinema">
-	                                     <tr class = "favorite-list" style = "border : 2px solid red"  >
+	                                     <tr class = "favorite-list fvCinema" style = "border : 2px solid red"  id = "fvCinema">
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
@@ -711,16 +700,13 @@
 		                                </button>
 		
 		                                <button class = "member-info-option-btn red">
-		                                    회원탈퇴
+		                                    회원탈퇴 
 		                                </button>
 		                            </div>
 	                            
 							   </form>
 		                   </div>    
 	                       
-						
-
-						
 						</div>
                     </div>
                 </section>
@@ -736,6 +722,8 @@
       	<script>
 			// 로그인한 회원의 성별
 			const loginMemberGender = "${loginMember.memberGender}";
+			var memberNo = ${loginMember.memberNo};
+			
 		</script>
 
         <script src = "/movieInsight/resources/js/mypage/mypage.js"></script>		
