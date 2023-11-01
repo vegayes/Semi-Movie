@@ -31,12 +31,13 @@
 
     <!-- 옆 선택창 -->
     <aside>
-        <li class="link-policy" name="policy"><a href="#tos">이용약관</a></li>
-        <li class="link-policy" name="policy"><a href="#policy">개인정보처리방침</a></li>
-        <li class="link-policy" name="policy"><a href="#location">운영정책</a></li>
-        <li class="link-policy" name="policy"><a href="#notice">공지사항</a></li>
-        <button onclick="scrollToTop(0,0)">맨위로</button>
-    </ul>
+	    <ul>
+	        <li class="link-policy" name="policy"><a href="#tos">이용약관</a></li>
+	        <li class="link-policy" name="policy"><a href="#policy">개인정보처리방침</a></li>
+	        <li class="link-policy" name="policy"><a href="#location">운영정책</a></li>
+	        <li class="link-policy" name="policy"><a href="#notice">공지사항</a></li>
+	        <button onclick="scrollToTop(0,0)">맨위로</button>
+	    </ul>
     </aside>
 
 
