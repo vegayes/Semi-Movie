@@ -25,6 +25,8 @@ import semi.project.movieInsight.movie.service.MovieService;
 @Controller
 public class MainController {
 	
+	  @Autowired
+	    private MovieService movieService; // 영화 정보를 가져오는 서비스를 주입	
 	
 	@RequestMapping("/")
 	public String test1() {
@@ -39,6 +41,11 @@ public class MainController {
 	public String movieMain(Model model) {
 		
 		System.out.println("영화 메인페이지 이동");
+		
+        List<Movie> movies = movieService.getMovies(); // 영화 정보를 가져오는 로직을 호출
+        model.addAttribute("movieList", movies); // 모델에 영화 리스트를 추가
+		
+		
 
 		model.addAttribute("pageType","movie");
 		
@@ -58,17 +65,9 @@ public class MainController {
 		return "cinema/cinema-homepage";
 	}
 	
-	  @Autowired
-	    private MovieService movieService; // 영화 정보를 가져오는 서비스를 주입
 
-	    // 기타 메소드들 ...
 
-	    @GetMapping("/movie")
-	    public String getMovieInfo(Model model) {
-	        List<Movie> movies = movieService.getMovies(); // 영화 정보를 가져오는 로직을 호출
-	        model.addAttribute("movieList", movies); // 모델에 영화 리스트를 추가
-	        return "home-page"; // home-page.jsp로 리다이렉트
-	    }
+
 	
 	
 }

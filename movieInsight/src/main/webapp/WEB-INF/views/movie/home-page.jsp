@@ -286,7 +286,6 @@
                 </a>
                 <img src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
                      width="100%" height="100%" style="object-fit: cover"/>
-                     <c:if test="${movie.movieNo == 2}">
             </li>
         </c:forEach>
           <c:forEach var="movie" items="${movieList}">
