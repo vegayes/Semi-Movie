@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,7 +58,7 @@ public class FindController {
 	  }else {
 		  
 		    model.addAttribute("message", "입력한 이메일 주소에 해당하는 사용자를 찾을 수 없습니다.");
-		    service.sendEmail(result, memberEmail);
+	
 		 
 	  }
 
@@ -66,7 +67,7 @@ public class FindController {
 
 	
 	
-	//비밀번호 찾기 
+	//비밀번호 찾기 및 변경 후 암호화
 	
 	@PostMapping("/findPW")
 	public String findPW(String memberEmail, String memberId, Model model) {
@@ -76,29 +77,66 @@ public class FindController {
 		map.put("memberEmail", memberEmail);
 		map.put("memberId", memberId);
 		
-			
-			int result=service.findPW(map);
+			// 비밀번호 찾기
+			Member member=service.findPW(map);
 		
-			  if(result!=0) {
+//			bcyrpt.matches(memberPw.)
+			
+			//System.out.println(member);
+			
+				// 비밀번호가 있다면 
+			  if(member!=null) {
 				  
-				   service.sendEmail(result, map);
+				  	String memberPw = member.getMemberPw();
 				  
-				   model.addAttribute("message", "새로운 비밀번호가 이메일로 발송되었습니다.");
+				  	// 무작위 비밀번호 생성 후 저장
+				  	// 보안상 문제
+				  	String newPw = createPw(memberId);
+				  	System.out.println(newPw);
+				  	
+				  	// 비밀번호 암호화
+				  	String salt = BCrypt.gensalt(); // 암호화를 위한 동일한 솔트생성
+				    String hashedPw = BCrypt.hashpw(newPw, salt);
+					System.out.println(hashedPw);
+					//BCryptPasswordEncoder
+				    //passwordEncoder.matches 솔트매치 확인
+					
+					
+					// 맵에 임시 비밀번호 저장
+				  	map.put("memberPw",hashedPw);
+					
+				  	// 임시 비밀번호로 변경
+				  	int result = service.updatePw(map);
+				  	
+				  	System.out.println(map);
+				  	
+				  	// 새로운 패스워드 보내기위해 다시 저장
+				  	map.put("memberPw",newPw);
+					service.sendEmail(map);
+					  
+				
+				   model.addAttribute("message", "임시 비밀번호가 이메일로 발송되었습니다. 마이페이지에서 변경해주세요");
 				   
 				   
 			  }else {
 				  
-				    model.addAttribute("message", "해당하는 사용자를 찾을 수 없습니다.");
-				    service.sendEmail(result, map);
-				 
+				    model.addAttribute("message", "입력한 이메일 주소와 아이디에 해당하는 사용자를 찾을 수 없습니다.");
+			
 			  }
 			
 			
 		 return "member/find_pw";
 	}
+
+	// 무작위 비밀번호 생성 
+	private String createPw(String memberId) {
+	
+		
+		return service.createPw(memberId);
+	}
 	
 	
-	
+
 
 	
 }

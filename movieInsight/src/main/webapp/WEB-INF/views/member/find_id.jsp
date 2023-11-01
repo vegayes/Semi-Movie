@@ -45,6 +45,7 @@
 									    <h1>아이디 찾기 결과</h1>
 									    <p>${message}</p>
 									    <a href="/movieInsight/find/findID">다시 아이디 찾기</a>
+										<a href="/member/login_signUp">로그인 페이지로</a>
 									    <c:remove var="message" scope="session"/>
 									</c:otherwise>
                       	</c:choose>  	

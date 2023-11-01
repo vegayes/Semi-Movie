@@ -23,8 +23,7 @@ import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 
 
-//@SessionAttributes({"loginMember"})
-
+@SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("/cinemaDetail")
 public class CinemaDetailController {
@@ -48,7 +47,7 @@ public class CinemaDetailController {
 			){
 		
 
-		
+			System.out.println("loginMember : " + loginMember);
 
 			if(cinemaName.equals("insert")) {
 				
@@ -57,7 +56,7 @@ public class CinemaDetailController {
 		
 			Cinema  cinemaInfo =  service.selectCinemaInfo(cinemaName);
 		 	
-		 	
+			model.addAttribute("loginMember", loginMember);
 		 	model.addAttribute("cinemaInfo", cinemaInfo);
 		 	
 		 	

@@ -76,6 +76,7 @@ public class MovieDetailController {
 		List<Map<String,Object>> directorInfoList = service.directorInfoList(movieNo);
 		List<Map<String,Object>> actorInfoList = service.actorInfoList(movieNo);
 		
+		model.addAttribute("loginMember", loginMember);
 		model.addAttribute("movieInfo", movieInfo);
 		model.addAttribute("directorInfoList", directorInfoList);
 		model.addAttribute("actorInfoList", actorInfoList);

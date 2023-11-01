@@ -201,10 +201,10 @@
 	</select>
 	
 	
-	<select id="selectCastingNo"  resultType = "list">
+	<select id="selectCastingNo"  resultType = "_integer">
 		SELECT CASTING_NO
 		FROM (
-			<foreach  collection="castingList"  item = "value" separator = ",">
+			<foreach  collection="list"  item = "value" separator = "UNION">
 				SELECT CASTING_NO 
 				FROM CASTING
 				WHERE CASTING_NAME = #{value}
@@ -212,35 +212,44 @@
 		)
 	</select>
 	
-	<!-- 감독 INSERT
-	<insert id="insertDirectors"  parameterType="java.util.List">
-
-		<foreach collection="directorNamesList" item="name" separator=";">
-			INSERT INTO CASTING
-			VALUES
-			(SEQ_CASTING_NO.NEXTVAL,#{name},'https://namu.wiki/w/' || #{name},'D')
-
-		<foreach collection="list" separator="," item="directorNamesList">
-			INSERT INTO CASTING (CASTING_NO,CASTING_NAME,CASTING_URL,CASTING_CATEGORY)
-			VALUES
-			(SEQ_CASTING_NO.NEXTVAL,#{directorNamesList},'https://namu.wiki/w/' || #{directorNamesList},'D')
-
-		</foreach>
-	</insert>
-	 -->
 	
-	<!-- 
+
+	
 	<insert id="insertDirectors" parameterType="java.util.List">
-    	INSERT ALL
-	    <foreach collection="list" item="directorName">
-	        INTO CASTING (CASTING_NO, CASTING_NAME, CASTING_URL, CASTING_CATEGORY)
-	        VALUES (SEQ_CASTING_NO.NEXTVAL, #{directorName}, 'https://namu.wiki/w/' || #{directorName}, 'D')
-	    </foreach>
-	    SELECT * FROM dual
+    	INSERT INTO CASTING (CASTING_NO, CASTING_NAME, CASTING_URL, CASTING_CATEGORY)
+	    SELECT SEQ_CASTING_NO.NEXTVAL, A.CASTING_NAME, A.CASTING_URL, A.CASTING_CATEGORY 
+	    FROM (
+	        <foreach collection="list" item="directorNamesList" separator=" UNION ALL ">
+	            SELECT #{directorNamesList} as CASTING_NAME, 'https://namu.wiki/w/' || #{directorNamesList} as CASTING_URL, 'D' as CASTING_CATEGORY
+	            FROM DUAL
+	        </foreach>
+	    ) A
 	</insert>
-	 -->
 	
 	
+	<insert id="insertActors" parameterType="java.util.List">
+    	INSERT INTO CASTING (CASTING_NO, CASTING_NAME, CASTING_URL, CASTING_CATEGORY)
+	    SELECT SEQ_CASTING_NO.NEXTVAL, A.CASTING_NAME, A.CASTING_URL, A.CASTING_CATEGORY 
+	    FROM (
+	        <foreach collection="list" item="actorNamesList" separator=" UNION ALL ">
+	            SELECT #{actorNamesList} as CASTING_NAME, 'https://namu.wiki/w/' || #{actorNamesList} as CASTING_URL, 'A' as CASTING_CATEGORY
+	            FROM DUAL
+	        </foreach>
+	    ) A
+	</insert>
+
+
+	<insert id="insertMovieCasting" parameterType="java.util.Map">
+    	INSERT INTO MOVIE_CASTING (MOVIE_CASTING_NO, MOVIE_NO, CASTING_NO)
+	    SELECT SEQ_MOVIE_CASTING_NO.NEXTVAL, A.MOVIE_NO, A.CASTING_NO
+	    FROM (
+	        <foreach collection="castingNo" item="casting" separator=" UNION ALL ">
+	            SELECT #{movieNo} as MOVIE_NO, #{casting} as CASTING_NO
+	            FROM DUAL
+	        </foreach>
+	    ) A
+	</insert>
+
 	
 	<!-- ============================ 댓글 =========================================== -->
 	

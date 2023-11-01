@@ -129,7 +129,7 @@ public class ManagerDAO {
 	 */
 	public int insertCinema(Cinema cinemaInfo) {
 		
-		return sqlSession.insert("cinemaMapper.insertMovie", cinemaInfo);
+		return sqlSession.insert("cinemaMapper.insertCinema", cinemaInfo);
 	}
 
 	
@@ -156,19 +156,21 @@ public class ManagerDAO {
 		if(insertMovie > 0) {
 			
 			
-			int insertDirectors = sqlSession.insert("movieMapper.insertDirectors", castingMap);
+			int insertDirectors = sqlSession.insert("movieMapper.insertDirectors", directorNamesList);
+			
+			logger.debug("insertDirectors insert :: " + insertDirectors);
 			
 			if(insertDirectors > 0) {
 				
 				logger.info("insertDirectors 성공");
-				int insertActors = sqlSession.insert("movieMapper.insertActors", castingMap);
+				int insertActors = sqlSession.insert("movieMapper.insertActors", actorNamesList);
 				
 				if(insertActors > 0) {
 					
 					 logger.info("insertActors 성공");
 					 int movieNo = selectMovieNo(movieInfo.getMovieTitle());
 					 List<Integer> castingNo= selectCastingNo(castingList);
-					 logger.debug("castingNo : " + castingNo);
+					 System.out.println("castingNo : " + castingNo);
 					 
 					 Map<String, Object> movieCastingMap = new HashMap<String, Object>();
 					 movieCastingMap.put("movieNo", movieNo);

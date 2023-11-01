@@ -43,6 +43,30 @@ public class MovieServiceimpl implements MovieService{
 		return null;
 	}
 
+
+
+	@Override
+	public List<Movie> findMoviesByCategory(String category) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Movie findMovieById(Long movieNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public List<Movie> findAllMovies() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }
