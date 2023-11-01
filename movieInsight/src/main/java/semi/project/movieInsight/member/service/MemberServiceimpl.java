@@ -1,5 +1,7 @@
 package semi.project.movieInsight.member.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import semi.project.movieInsight.member.dto.Member;
 @Service
 public class MemberServiceimpl implements MemberService{
 
+	private Logger logger = LoggerFactory.getLogger(MemberServiceimpl.class);
+	
 	@Autowired
 	private MemberDAO dao;
 	
@@ -48,6 +52,10 @@ public class MemberServiceimpl implements MemberService{
 	 */
 	@Override
 	public Member login(Member inputMember) {
+		logger.info("MemberServiceImpl.login 실행");
+		logger.debug("inputMember : " + inputMember.getMemberId());
+		//logger.warn("경고");
+		//logger.error("오류");
 		return dao.login(inputMember);
 	}
 
