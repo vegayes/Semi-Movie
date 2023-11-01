@@ -215,9 +215,9 @@
 	
 	<!-- 감독 INSERT -->
 	<insert id="insertDirectors"  parameterType="java.util.List">
-		INSERT INTO CASTING (CASTING_NO,CASTING_NAME,CASTING_URL,CASTING_CATEGORY)
-		VALUES
 		<foreach collection="list" separator="," item="directorNamesList">
+			INSERT INTO CASTING (CASTING_NO,CASTING_NAME,CASTING_URL,CASTING_CATEGORY)
+			VALUES
 			(SEQ_CASTING_NO.NEXTVAL,#{directorNamesList},'https://namu.wiki/w/' || #{directorNamesList},'D')
 		</foreach>
 		

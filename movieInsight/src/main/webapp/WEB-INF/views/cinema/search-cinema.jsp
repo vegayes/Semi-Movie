@@ -31,50 +31,55 @@
                 
 					<c:otherwise>
 						<c:forEach items = "${cinemaList}" var="cinema" >
-			                <div class = "cinema-search-list-container" onclick="movieInfo('${cinema.cinemaNo}')"> <%-- value 값으로 전달가능? --%>
-			                    <div class = "cinema-search-img-wapper">
-			
-			                        <img src = "/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
-							
-			                    </div>
-			                    
-			                    <div class = "cinema-search-content-container">
-			                        <div class = "cinema-search-content">
-			                            <h1>${cinema.cinemaName} 정보</h1>
-			                            <div class = "content-box">
-	                                		<table>
-			                            		<tr>
-			                            			<td>
-			                            				주소 : ${cinema.cinemaAddress}    
-			                            			</td>
-			                            			<td>
-			                            				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 특별관 : 4DX,IMAX,SCREENX,Dolby Atmos (아직 안함)
-			                            			</td>	                            			
-			                            		</tr>
-			                            		
-			                            		<tr>
-			                            			<td>
-			                            				수용인원 : 20관(????) (${cinema.cinemaMaxInclude}석)    
-			                            			</td>
-			                            			<td>
-			                            				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연락처 : ${cinema.cinemaContact}
-			                            			</td>	
-			                            		
-			                            		</tr>
-			                            	</table>
-			                                
-			                            </div>
-			                        </div>
-			                        <div class = "cinema-search-content">
-			                            <h1>영화관 평점</h1>
-			                            <div class = "content-box">
-			                                <p>
-			                                    평점 (이것도 아직 못가져옴)
-			                                </p>
-			                            </div>
-			                        </div>
-			                    </div>
-			                </div>
+							<a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">
+				                <div class = "cinema-search-list-container" onclick="movieInfo('${cinema.cinemaNo}')"> <%-- value 값으로 전달가능? --%>
+				                    <div class = "cinema-search-img-wapper">
+				
+				                        <img src = "/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
+								
+				                    </div>
+				                    
+				                    <div class = "cinema-search-content-container">
+				                        <div class = "cinema-search-content">
+				                            <h1>${cinema.cinemaName} 정보</h1>
+				                            <div class = "content-box">
+		                                		<table>
+				                            		<tr>
+				                            			<td>
+				                            				주소 : ${cinema.cinemaAddress}    
+				                            			</td>
+				                            			
+				                            			<c:if test = "${ not empty cinema.cinemaSpecialHall }">
+					                            			<td>
+					                            				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 특별관 : ${cinema.cinemaSpecialHall}
+					                            			</td>	  				                            			
+				                            			</c:if>
+				                            		</tr>
+				                            		
+				                            		<tr>
+				                            			<td>
+				                            				수용인원 : ${cinema.cinemaMaxInclude}석   
+				                            			</td>
+				                            			<td>
+				                            				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연락처 : ${cinema.cinemaContact}
+				                            			</td>	
+				                            		
+				                            		</tr>
+				                            	</table>
+				                                
+				                            </div>
+				                        </div>
+				                        <div class = "cinema-search-content">
+				                            <h1>영화관 평점</h1>
+				                            <div class = "content-box">
+				                                <p>
+				                                    평점 (이것도 아직 못가져옴)
+				                                </p>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+			                </a>
 		               </c:forEach>					
 					</c:otherwise>                
                 

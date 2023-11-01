@@ -66,6 +66,11 @@ public class CinemaDetailController {
 		
 		 	model.addAttribute("movieList", movieList);
 		 	
+			// 3) 영화관에서 댓글 조회
+//			List<Cinema> commentCinemaList = service.commentMovieList(cinemaNo);
+//			System.out.println(commentMovieList);
+//			model.addAttribute("commentMovieList", commentMovieList);
+		 	
 		 	
 			// 해당 위치 넘기기
 //			List<Object> currentUrl =  Arrays.asList(req.getRequestURI().toString().split("/"));

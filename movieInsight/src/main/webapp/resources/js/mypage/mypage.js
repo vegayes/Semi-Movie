@@ -118,6 +118,113 @@ document.getElementsByName("favorite-check").forEach(function(v) {
 
 
 
+// 2-3) 선택이 된 값들 출력
+/*
+document.querySelector(".favorite-delet-btn").addEventListener("click", function() {
+
+  var checkedItems = document.querySelectorAll('input[name="favorite-check"]:checked');
+  console.log(checkedItems);
+  var a = Array.from(checkedItems);
+  console.log("a : "+ a);
+  console.log("a[0] " + a[0]);
+  var selectedMovieNos = a.map(function(checkbox) {
+      console.log(checkbox);
+      return checkbox.getAttribute('data-movieno');
+  });
+
+  if (selectedMovieNos.length > 0) {
+      var confirmed = confirm("선택된 항목을 삭제하시겠습니까?");
+      if (confirmed) {
+          // TODO: AJAX 요청을 보내서 서버에서 삭제 작업 수행
+          console.log(selectedMovieNos); // 선택된 movieNo 확인용 로그
+
+
+
+
+
+      }
+  } else {
+      alert("삭제할 항목을 선택해주세요."); 
+  }
+});
+*/
+
+document.querySelector(".favorite-delet-btn").addEventListener("click", function() {
+
+  var checkedItems = document.querySelectorAll('input[name="favorite-check"]:checked');
+  var a = Array.from(checkedItems);
+  var selectedDelMovie = a.map(function(checkbox) {
+      return checkbox.getAttribute('data-movieno');
+  });
+
+  if (selectedDelMovie.length > 0) {
+      var confirmed = confirm("선택된 항목을 삭제하시겠습니까?");
+      if (confirmed) {
+
+          console.log(selectedDelMovie);
+
+          fetch("/movieInsight/mypage/like/del?delMovie=" + selectedDelMovie)
+          .then(response => response.json()) 
+          .then(result => {
+              console.log(result);
+        
+          })
+          .catch(err => console.log(err));
+/*
+            // e.target.classList.toggle("fa-regular");
+            // e.target.classList.toggle("fa-solid");
+    
+  */  
+    
+        }}
+     else {
+      alert("삭제할 항목을 선택해주세요."); 
+  }
+});
+
+
+
+/*
+    document.addEventListener("DOMContentLoaded", function() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="favorite-check"]');
+        
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    var movieNo = this.parentElement.querySelector('p').textContent;
+                    console.log('선택된 영화의 movieNo:', movieNo);
+                    // 여기에서 movieNo를 활용하여 원하는 작업을 수행할 수 있습니다.
+                }
+            });
+        });
+    });
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 3) 즐겨찾기 -> 영화관, 영화 구분하기
 const movieBtn = document.getElementById("movie-favorite-btn");
 const cinemaBtn = document.getElementById("cinema-favorite-btn");
@@ -196,40 +303,6 @@ commentCinemaBtn.addEventListener("click" ,function(){
 
 
 
-// 5) 체크박스 하나만 선택하게하기 ( 성별 )
-// const divCheckboxes = document.querySelectorAll('.modify-gender');
-
-// // 클릭 이벤트를 처리하는 함수
-// function handleCheckboxInteraction() {
-//   const checkbox = this.querySelector('input[type="checkbox"]');
-//   const label = this.querySelector('label');
-
-//   // 모든 체크박스의 배경색과 레이블 색상을 초기화
-//   divCheckboxes.forEach((otherDiv) => {
-//     otherDiv.style.backgroundColor = '';
-//     otherDiv.querySelector('label').style.color = ''; 
-//   });
-
-//   // 선택된 체크박스의 배경색과 레이블 색상을 변경
-//   this.style.backgroundColor = 'blue';
-//   label.style.color = 'white';
-//   checkbox.checked = !checkbox.checked; // 체크박스 상태 변경
-// }
-
-// // 각 div 요소에 클릭 이벤트 리스너를 추가합니다.
-// divCheckboxes.forEach((divCheckbox) => {
-//   divCheckbox.addEventListener('click', handleCheckboxInteraction);
-// });
-// 4) 파일 열기
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   const fileTrigger = document.getElementById("file-trigger");
-//   const fileInput = document.getElementById("file-input");
-
-//   fileTrigger.addEventListener("click", function() {
-//       fileInput.click(); // 파일 업로드 input 열기
-//   });
-// });
 
 
 
