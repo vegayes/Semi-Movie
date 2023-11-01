@@ -7,8 +7,10 @@
 		<meta charset="UTF-8">
 		<title>Admin-Menu</title>
 		
-		<link rel="stylesheet" href = "/movieInsight/resources/css/manager/manager-menu.css">
-
+		<link rel="stylesheet" href = "/movieInsight/resources/css/manager/manager-menu.css">\
+		<!--  
+		<link rel="stylesheet" href = "/movieInsight/resources/css/manager/menu_update_popup.css">
+-->
         <script src="https://kit.fontawesome.com/ac58eafae7.js" crossorigin="anonymous"></script>
 		
 	</head>
@@ -64,7 +66,7 @@
                                         </td>
 
                                         <td class = "menu-update">
-                                            <div>
+                                            <div onclick=updateMenu(${popcorn.menuNo})>
                                                 수정
                                             </div>
                                         </td>
@@ -116,7 +118,7 @@
                                         </td>
 
                                         <td class = "menu-update">
-                                            <div>
+                                            <div onclick=updateMenu(${drink.menuNo})>
                                                 수정
                                             </div>
                                         </td>
@@ -169,7 +171,7 @@
                                         </td>
 
                                         <td class = "menu-update">
-                                            <div>
+                                            <div onclick=updateMenu(${snack.menuNo})>
                                                 수정
                                             </div>
                                         </td>
@@ -189,7 +191,82 @@
                     </div>
                 </div>
             </section>
+ <%-- =====================================================================================================================================       
+                    								 메뉴 수정  팝업    --%> 
+                     <div id = "manager-menu-update-box" style="display : none;">
+                         <div id = "manager-menu-update-content">
+                             <div id = "menu-modal-close" >&times;</div>
+					            <section class = "update-container">
+					                <div class = "update-info-container">
+					                    <table>
+					                        <tr>
+					                            <th> 메뉴 카테고리</th>
+					                            <td>
+					                                <form>
+					                                    <select name="menu" >
+					                                      <option value="none">=== 카테고리 선택 ===</option>
+					                                      <option value="popcon">팝콘</option>
+					                                      <option value="beverage">음료</option>
+					                                      <option value="side">사이드</option>
+					                                    </select>
+					                                  </form>
+					                            </td>
+					                        </tr>
+					
+					                        <tr>
+					                            <th> 메뉴명</th>
+					                            <td>
+					                                <input type="text"  autocomplete="off">
+					                            </td>
+					                        </tr>
+					
+					                        <tr>
+					                            <th> 가격</th>
+					                            <td>
+					                                <input type="number">
+					                            </td>
+					                        </tr>
+					
+					                        <tr>
+					                            <th> 메뉴 이미지 </th>
+					                            <td>
+					                                <input type="file">
+					                            </td>
+					                        </tr>
+					                        <tr>
+					                            <th> 판매 영화관</th>
+					                            <td>
+					                                <form>
+					                                    <select name="cinema" >
+					                                      <option value="none">=== 영화관 선택 ===</option>
+					                                      <option value="1">cgv명동</option>
+					                                      <option value="2">cgv영등포</option>
+					                                      <option value="3">메가박스</option>
+					                                    </select>
+					                                  </form>
+					                            </td>
+					                        </tr>
+					
+					
+					                    </table>
+					
+					
+					                </div>
+					            </section>
+					
+					            <section class = "update-btn-container">
+					                <div class ="btn">
+					                    수정하기
+					                </div>
+					                <div class ="btn">
+					                    취소하기
+					                </div>
+					            </section>                          
 
+                         </div>
+                         <label  id = "event-modal-back"></label>
+                     </div>    
+<%-- ============================================================  메뉴 수정 (팝업) 끝 ============================================================ --%>
 
 
 
@@ -288,7 +365,7 @@
 
     </script>
 
-
+	
         <script src ="/movieInsight/resources/js/manager/manager-menu.js"></script>
     </body>	
 	</body>

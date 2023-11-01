@@ -177,7 +177,6 @@ public class MovieDetailController {
 		movie.setMovieNo(movieNo);
 		movie.setMemberNo(loginMember.getMemberNo());
 		
-		System.out.println("movieNo에서 꺼낸값");
 		
 		return service.insert(movie);
 	} 

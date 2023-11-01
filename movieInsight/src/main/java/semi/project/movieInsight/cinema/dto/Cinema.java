@@ -25,14 +25,21 @@ public class Cinema {
 	// 즐겨찾기 CINEMA 등록일
 	private String cinemaLikeEnrollDate;
 	
-	// 영화관 즐겨찾기
+	// 영화관 즐겨찾기 ( 댓글 ) 
 	private int cinemaCommentNo; 
     private String cinemaCommentContent;			
     private String cinemaCommentDate;
     private String cinemaCommentType;
     private float cinemaGrade; // 각 평점 
     
+    private String writerProfile;// 댓글 작성자 프로필
+    private String commentCinemaWriter; // 댓글 작성자 	
+    private int memberNo; // 댓글 작성자 No
    
     // 영화관 구분
     private String 	cinemaType;  // 영화관이면 C , OTT 면 O	
+   
+    
+    
+    
 }

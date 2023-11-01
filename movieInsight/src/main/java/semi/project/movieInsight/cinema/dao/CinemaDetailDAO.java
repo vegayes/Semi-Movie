@@ -34,6 +34,24 @@ public class CinemaDetailDAO {
 		
 		return sqlSession.selectList("cinemaMapper.selectMovieList", cinemaNo);
 	}
+
+
+	/** 영화관 댓글 조회 
+	 * @param cinemaName
+	 * @return
+	 */
+	public List<Cinema> commentCinemaList(String cinemaName) {
+		return sqlSession.selectList("cinemaMapper.commentCinemaList", cinemaName);
+	}
+
+
+	/** 영화관 댓글 삽입
+	 * @param cinema
+	 * @return
+	 */
+	public int commentInsert(Cinema cinema) {
+		return sqlSession.insert("cinemaMapper.commentInsert", cinema);
+	}
 	
 
 }

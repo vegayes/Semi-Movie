@@ -45,11 +45,10 @@ public class MainController {
         List<Movie> movies = movieService.getMovies(); // 영화 정보를 가져오는 로직을 호출
         model.addAttribute("movieList", movies); // 모델에 영화 리스트를 추가
 		
-		
 
 		model.addAttribute("pageType","movie");
 		
-		return "member/home-page";
+		return "movie/home-page";
 	}
 
 
