@@ -82,8 +82,8 @@ public class ManagerDetailController {
 		
 		String cinemaName = cinemaInfo.getCinemaName();
 		
-		String webPath = "/resources/images/cinema/";
 		
+		String webPath = "/resources/images/cinema/";
 		String filePath = session.getServletContext().getRealPath(webPath);
 		
 		if(updateButton != null) {
@@ -162,7 +162,7 @@ public class ManagerDetailController {
 		List<String> directorNamesList = new ArrayList<>(Arrays.asList(directorNamesArray));
 		
 		int movieNo = 0;
-		String webPath = "/resources/images/cinema/";
+		String webPath = "/resources/images/movie/";
 		String filePath = session.getServletContext().getRealPath(webPath);
 		
 		int result = service.insertMovie(movieInfo,movieImage,filePath,actorNamesList,directorNamesList);

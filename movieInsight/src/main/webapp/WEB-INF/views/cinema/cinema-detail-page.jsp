@@ -49,11 +49,10 @@
                             <c:choose>
 
                                 <c:when test="${empty cinemaInfo}">
-                                    <input type="text" name="cinemaName" style="font-size: 30px;">
+                                    <input type="text" name="cinemaName" style="font-size: 30px;" placeholder="영화관 이름">
                                 </c:when>
-                                <c:when test="false">
-
-                                    <input type="text" name="cinemaName" style="font-size: 30px;" value="${cinemaInfo.cinemaName}">
+                                <c:when test="${loginMember.memberNo == 12}">
+                                    <input type="text" name="cinemaName" style="font-size: 30px;" value="${cinemaInfo.cinemaName}" >
                                 </c:when>
                                 <c:otherwise>
                                     ${cinemaInfo.cinemaName}  
@@ -84,10 +83,9 @@
                                 <c:choose>
 
                                     <c:when test="${empty cinemaInfo}">
-                                        <input type="text" name="cinemaAddress" style="font-size: 22px; width: 500px">
+                                        <input type="text" name="cinemaAddress" style="font-size: 22px; width: 500px" placeholder="영화관 주소">
                                     </c:when>
-                                    <c:when test="false">
-
+                                    <c:when test="${loginMember.memberNo == 12}">
                                         <input type="text" name="cinemaAddress" style="font-size: 22px; width: 500px" value="${cinemaInfo.cinemaAddress}">
                                     </c:when>
                                     <c:otherwise>
@@ -99,10 +97,9 @@
                                 <c:choose>
 
                                     <c:when test="${empty cinemaInfo}">
-                                        <input type="text" name="cinemaContact" style="font-size: 22px; width: 500px">
+                                        <input type="text" name="cinemaContact" style="font-size: 22px; width: 500px" placeholder="영화관 연락처">
                                     </c:when>
-                                    <c:when test="false">
-
+                                    <c:when test="${loginMember.memberNo == 12}">
                                         <input type="text" name="cinemaContact" style="font-size: 22px; width: 500px" value="${cinemaInfo.cinemaContact}">
                                     </c:when>
                                     <c:otherwise>
@@ -114,10 +111,9 @@
                                 <c:choose>
 
                                     <c:when test="${empty cinemaInfo}">
-                                        <input type="text" name="cinemaMaxInclude" style="font-size: 22px; width: 500px">
+                                        <input type="text" name="cinemaMaxInclude" style="font-size: 22px; width: 500px" placeholder="최대 수용인원">
                                     </c:when>
-                                    <c:when test="false">
-
+                                    <c:when test="${loginMember.memberNo == 12}">
                                         <input type="text" name="cinemaMaxInclude" style="font-size: 22px; width: 500px" value="${cinemaInfo.cinemaMaxInclude}">
                                     </c:when>
                                     <c:otherwise>
@@ -129,13 +125,9 @@
                                 <c:choose>
 
                                     <c:when test="${empty cinemaInfo}">
-                                        <input type="text" name="cinemaSpecialHall" style="font-size: 22px; width: 500px">
+                                        <input type="text" name="cinemaSpecialHall" style="font-size: 22px; width: 500px" placeholder="특별관 정보(/구분)">
                                     </c:when>
-                                    <c:when test="${empty cinemaInfo}">
-                                        <input type="text" name="cinemaSpecialHall" style="font-size: 22px; width: 500px">
-                                    </c:when>
-                                    <c:when test="false">
-
+                                    <c:when test="${loginMember.memberNo == 12}">
                                         <input type="text" name="cinemaSpecialHall" style="font-size: 22px ; width: 500px" value="${cinemaInfo.cinemaSpecialHall}">
                                     </c:when>
                                     <c:otherwise>
@@ -147,10 +139,9 @@
                                 <c:choose>
 
                                     <c:when test="${empty cinemaInfo}">
-                                        <input type="text" name="cinemaLink" style="font-size: 17px; width: 500px">
+                                        <input type="text" name="cinemaLink" style="font-size: 17px; width: 500px" placeholder="바로가기 링크">
                                     </c:when>
-                                    <c:when test="false">
-
+                                    <c:when test="${loginMember.memberNo == 12}">
                                         <input type="text" name="cinemaLink" style="font-size: 17px; width: 500px;" value="${cinemaInfo.cinemaLink}">
                                     </c:when>
                                     <c:otherwise>
@@ -159,7 +150,7 @@
                                 </c:choose>   
                             </div>
 
-                            <c:if test="false">
+                            <c:if test="${loginMember.memberNo == 12}">
                                 <div>
                                     <button type="submit" id="updateButton" name="update" style="color: black;">수정하기</button>
                                 </div>

@@ -49,7 +49,7 @@ public class MainController {
 
 		model.addAttribute("pageType","movie");
 		
-		return "member/home-page";
+		return "movie/home-page";
 	}
 
 
