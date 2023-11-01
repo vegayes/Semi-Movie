@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -345,7 +346,18 @@ public class MypageController {
 		
 		return service.updateCinemaComment(cinema);
 	}
+	
+	// 즐겨찾기 팝업에서 삭제하기 (영화) 
+	@ResponseBody
+	@GetMapping(value = "/like/del", produces = "application/json; charset=UTF-8" )
+	public int delMovieComment(int[] delMovie) {
 		
+		System.out.println("해당 값 가져오기 : " + delMovie[0] + delMovie[1]);
+		
+		// 즐겨찾기 
+		
+		return 0;
+	}
 	
 
 }

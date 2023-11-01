@@ -213,15 +213,22 @@
 		)
 	</select>
 	
-	<!-- 감독 INSERT -->
+	<!-- 감독 INSERT
 	<insert id="insertDirectors"  parameterType="java.util.List">
+
 		<foreach collection="directorNamesList" item="name" separator=";">
 			INSERT INTO CASTING
 			VALUES
 			(SEQ_CASTING_NO.NEXTVAL,#{name},'https://namu.wiki/w/' || #{name},'D')
+
+		<foreach collection="list" separator="," item="directorNamesList">
+			INSERT INTO CASTING (CASTING_NO,CASTING_NAME,CASTING_URL,CASTING_CATEGORY)
+			VALUES
+			(SEQ_CASTING_NO.NEXTVAL,#{directorNamesList},'https://namu.wiki/w/' || #{directorNamesList},'D')
+
 		</foreach>
 	</insert>
-	
+	 -->
 	
 	<!-- 
 	<insert id="insertDirectors" parameterType="java.util.List">

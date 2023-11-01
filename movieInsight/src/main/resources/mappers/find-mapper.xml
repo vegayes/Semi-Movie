@@ -15,13 +15,14 @@
 		
 	</resultMap>
 	
+	<!--아이디 조회-->
 	<select id="findId" resultMap="member">
-		SELECT MEMBER_ID FROM "MEMBER" WHERE MEMBER_EMAIL = '${memberEmail}'
+		SELECT MEMBER_ID FROM "MEMBER" WHERE MEMBER_EMAIL = #{memberEmail}
 	</select>
   	
-
-	<select id="findPw" resultMap="member">
-		SELECT MEMBER_PW FROM "MEMBER" WHERE MEMBER_EMAIL = 'id@naver.com' AND MEMBER_ID='id'
+	<!--비밀번호 조회-->
+	<select id="findPw" resultMap="member" resultType="int">
+		SELECT MEMBER_PW FROM "MEMBER" WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_ID= #{memberId} 
 	</select>
   	
 

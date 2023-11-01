@@ -35,6 +35,14 @@ public class MovieServiceimpl implements MovieService{
 		return dao.selectManagerMovieList();
 	}
 
+
+
+	@Override
+	public List<Movie> getMovies() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

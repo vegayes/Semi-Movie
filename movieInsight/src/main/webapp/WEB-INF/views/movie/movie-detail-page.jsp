@@ -188,7 +188,7 @@
             </c:when>
             <%-- *************** 일반 회원이 영화 조회할 때 ************************--%>
             <c:otherwise>
-                <div class="movie">
+                <div class="movie" style = "border : 2px solid red;">
                     <div class="movie_img">
                         <img src="/movieInsight/resources/images/movie/${movieInfo.movieImg}">
                     </div>
