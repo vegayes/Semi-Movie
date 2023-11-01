@@ -163,56 +163,21 @@ document.querySelector(".favorite-delet-btn").addEventListener("click", function
 
           console.log(selectedDelMovie);
 
-          fetch("/movieinsight/mypage/like/del", {
-            method : "POST",
-            headers : {"Content-Type" : "application/json"},
-            body : JSON.stringify(selectedDelMovie)
+          fetch("/movieInsight/mypage/like/del?delMovie=" + selectedDelMovie)
+          .then(response => response.json()) 
+          .then(result => {
+              console.log(result);
+        
           })
-        .then(response => response.text()) // 응답 객체를 필요한 형태로 파싱하여 리턴
+          .catch(err => console.log(err));
+/*
+            // e.target.classList.toggle("fa-regular");
+            // e.target.classList.toggle("fa-solid");
     
-        .then(count => { 
+  */  
     
-            console.log("count : " + count);
-    
-            if(count == -1){ // INSERT, DELETE 실패 시
-                console.log("즐겨찾기 제거 처리 실패");
-                return;
-            }
-    
-            // toggle() : 클래스가 있으면 없애고, 없으면 추가하고
-            e.target.classList.toggle("fa-regular");
-            e.target.classList.toggle("fa-solid");
-    
-            // 현재 게시글의 좋아요 수를 화면에 출력
-            e.target.nextElementSibling.innerText = count;
-    
-    
-        }) // 파싱된 데이터를 받아서 처리하는 코드 작성
-
-
-          /*
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'your_server_endpoint_url_here', true);
-            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-            xhr.onload = function () {
-                if (xhr.status >= 200 && xhr.status < 400) {
-                    // 성공적으로 서버에서 응답을 받았을 때 수행할 코드
-                    console.log(xhr.responseText);
-                } else {
-                    // 서버에서 오류 응답을 받았을 때 수행할 코드
-                    console.error(xhr.statusText);
-                }
-            };
-            xhr.onerror = function () {
-                // 네트워크 오류 등으로 인해 요청이 실패했을 때 수행할 코드
-                console.error('네트워크 오류');
-            };
-            xhr.send(JSON.stringify(selectedMovieNos));
-          */
-
-
-      }
-  } else {
+        }}
+     else {
       alert("삭제할 항목을 선택해주세요."); 
   }
 });

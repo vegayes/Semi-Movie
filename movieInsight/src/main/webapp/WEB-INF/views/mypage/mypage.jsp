@@ -113,12 +113,10 @@
 	                 
 	                                         </td>
 	                                         <td class = "favorite-list-title">${movie.movieTitle}</td>
-	                                         <td class = "favorite-list-date">${movie.movieLikeEnrollDate} ${movie.movieNo}</td>
+	                                         <td class = "favorite-list-date">${movie.movieLikeEnrollDate}</td>
 	                                         <td class = "favorite-list-check">
 	                                             <input type="checkbox" name ="favorite-check" id="check_btn" data-movieNo="${movie.movieNo}"/>
 	                                             <label for="check_btn"></label>
-	                                             
-	                                             <p>${movie.movieNo}</p>
 	                                         </td>
 	                                     </tr> 
                                      </c:forEach>
