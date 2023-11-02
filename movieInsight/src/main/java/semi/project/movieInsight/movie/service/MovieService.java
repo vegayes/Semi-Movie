@@ -23,6 +23,8 @@ public interface MovieService {
 
 	List<Movie> findAllMovies();
 
+	Movie selectMovie(int movieNo);
+
 	
 
 

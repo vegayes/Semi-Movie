@@ -9,30 +9,42 @@ const checkObj = {
     "memberGender" : false
 };
 
+ 
+
 
 // 중복 확인 버튼에 대한 클릭 이벤트 핸들러를 등록
 document.getElementById("idCheck").addEventListener("click", function() {
-    // 아이디 입력 필드의 값을 가져옴
-    var idInput = document.getElementById("member_Id");
-    var idValue = idInput.value;
-    
-    // 입력 필드가 비어 있는지 확인
-    if (!idValue) {
-        showMessage("아이디를 입력해주세요");
-        return; // 입력 필드가 비어 있으면 중복 확인을 수행하지 않음
-    }
-    
-    // 여기에서 중복 확인을 수행하고, 결과를 result 변수에 할당
-    // result가 서버에서 받아온 중복 확인 결과라고 가정
-    var result = result;
-    
-    // 결과에 따라 메시지를 표시
-    if (result === 1) {
-        showMessage("중복된 아이디입니다.");
-    } else {
-        showMessage("사용 가능한 아이디입니다.");
-        checkObj.memberId = true;
-    }
+ 	  // 아이디 입력 필드의 값을 가져옴
+		 const memberId = document.getElementById("memberId");
+		 const idValue = memberId.value;
+		   
+		    
+	    // 입력 필드가 비어 있는지 확인
+	    if (!idValue) {
+	        showMessage("아이디를 입력해주세요");
+	        return; // 입력 필드가 비어 있으면 중복 확인을 수행하지 않음
+	    }
+	
+	    
+	 	fetch("/movieInsight/member/idCheck?memberId="+memberId.value)
+		.then(res => res.json())
+		.then(result => {
+	    
+	    // 여기에서 중복 확인을 수행하고, 결과를 result 변수에 할당
+	    // result가 서버에서 받아온 중복 확인 결과라고 가정
+	    var result = result;
+	    
+	    // 결과에 따라 메시지를 표시
+	    if (result === 1) {
+	        showMessage("중복된 아이디입니다.");
+	    } else {
+	        showMessage("사용 가능한 아이디입니다.");
+	        checkObj.memberId = true;
+	    }
+
+
+    })
+
 });
 
 // 메시지를 표시하는 함수
