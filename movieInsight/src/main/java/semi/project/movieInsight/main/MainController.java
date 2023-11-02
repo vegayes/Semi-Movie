@@ -34,8 +34,8 @@ public class MainController {
 	public String test1() {
 
 
-		//return "redirect:movie";
-		return "/member/login_signUp";
+		return "redirect:movie";
+		//return "/member/login_signUp";
 	}
 
 	
@@ -45,13 +45,13 @@ public class MainController {
 		  // 모든 영화 정보 가져오기
 	        List<Movie> movieList = movieService.findAllMovies();
 	     // 가져온 영화 정보  model에 추가  
-	        model.addAttribute("movieList", movieList);
+	    //    model.addAttribute("movieList", movieList);
   
-       model.addAttribute("pageType","movie");
+      // model.addAttribute("pageType","movie");
 	        return "movie/home-page";
 	    }
 
-	    @GetMapping("/movie/{genre}")
+	   // @GetMapping("/movie/{genre}")
 	    public String getMoviesByGenre(@PathVariable String genre, Model model) {
 	        // 주어진 장르에 해당하는 영화 정보를 가져옵니다.
 	        List<Movie> movieList = movieService.findMoviesByCategory(genre);
@@ -61,7 +61,7 @@ public class MainController {
 	        return "movie/home-page";
 	    }
 
-	    @GetMapping("/movieInsight/movie/{movieNo}")
+	  //  @GetMapping("/movieInsight/movie/{movieNo}")
 	    public String getMovieDetail(@PathVariable Long movieNo, Model model) {
 	    	
 	    	 //  movieNo에 해당하는 영화의 상세 정보를 가져오기

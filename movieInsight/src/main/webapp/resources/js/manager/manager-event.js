@@ -104,6 +104,23 @@ document.getElementById("event-add").addEventListener("click", function(){
 
 
 
+// select로 카테고리 바꾸면 다른 곳으로 전송
+if(document.getElementById("menuSelect")) {
+
+  document.getElementById("menuSelect").addEventListener("change", function () {
+    var selectedValue = this.value;
+    var form = document.getElementById("updateForm");
+
+    if (selectedValue === "privat-cinema") {
+        form.action = "/movieInsight/managerDetail/insertPromotion";
+    } else if (selectedValue === "event") {
+        form.action = "/movieInsight/managerDetail/insertEvent";
+    } else {
+        // 다른 선택지에 대한 처리를 추가하실 수 있습니다.
+    }
+  });
+
+}
 // 4) 검색어에 입력했을 때 
 
 
