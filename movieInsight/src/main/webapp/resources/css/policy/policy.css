@@ -190,7 +190,7 @@ text-align: left;
 }
 
 
-aside{
+/* aside{
     display: table;
 	flex: 1;
     height: 90px;
@@ -204,7 +204,7 @@ aside{
     float: right;
 
 }
-
+ */
 
 aside > a{
     color: white;

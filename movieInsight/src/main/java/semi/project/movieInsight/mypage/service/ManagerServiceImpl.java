@@ -212,6 +212,40 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 	
+	
+	
+	/**
+	 * 특별관 홍보 
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertPromotion(Promotion promotion, MultipartFile image, String filePath) throws Exception{
+		promotion.setPromotionImg(image.getOriginalFilename());
+		int result = 0;
+				//dao.insertMovie(promotion);
+		
+		if(result > 0) { 
+			
+			if(image.getSize() != 0) {
+				image.transferTo(new File(filePath + image.getOriginalFilename()));
+				
+			}		
+			
+		}else {
+			
+			 throw new RuntimeException("Promotion insert failed ");
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+
+
+	
 
 
 

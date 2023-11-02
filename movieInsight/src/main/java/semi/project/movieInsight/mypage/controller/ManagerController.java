@@ -42,7 +42,7 @@ public class ManagerController {
 		// 1) Map으로 가져오기
 		Map<String,Object> promotionMap = service.selectPromotion();
 		
-		//System.out.println("promotionMap : " + promotionMap);
+		System.out.println("promotionMap : " + promotionMap);
 		model.addAttribute("promotionMap", promotionMap);
 		
 		return "manager/manager-event";
