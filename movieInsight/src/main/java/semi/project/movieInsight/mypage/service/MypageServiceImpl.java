@@ -186,6 +186,16 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 
+	/**
+	 * 즐겨찾기 선택된 값 삭제 ( 영화 ) 
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int delFavoriteMovie(Map<String, Object> favoriteDelMovie) {
+		return dao.delFavoriteMovie(favoriteDelMovie);
+	}
+
+
 
 
 

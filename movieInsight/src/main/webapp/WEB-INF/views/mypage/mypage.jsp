@@ -92,8 +92,8 @@
                                  </label>
                              </div>
                  
-                             <div class = "favorite-list-container" id = "fvMovie">
-                                 <table class = "favorite-list-table">
+                             <div class = "favorite-list-container" >
+                                 <table class = "favorite-list-table" id = "favorite-list-table">
                                      <thead>
                                          <tr>
                                              <th class = "favorite-list-img">list</th>
@@ -104,7 +104,7 @@
                                      </thead>
                                      
                                      <c:forEach items = "${movieList}" var="movie">
-	                                     <tr class = "favorite-list" style = "border : 2px solid blue" >
+	                                     <tr class = "favorite-list fvMovie" style = "border : 2px solid blue" id = "fvMovie">
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
@@ -119,20 +119,9 @@
 	                                         </td>
 	                                     </tr> 
                                      </c:forEach>
-                             </div>
-                             <div class = "favorite-list-container" id = "fvCinema">
-                                 <table class = "favorite-list-table">
-                                     <thead>
-                                         <tr>
-                                             <th class = "favorite-list-img">list</th>
-                                             <th class = "favorite-list-title">Title</th>
-                                             <th class = "favorite-list-date">Date of registration</th>
-                                             <th class = "favorite-list-check">check</th>
-                                         </tr>
-                                     </thead>         
-                            
+                           
                                      <c:forEach items = "${cinemaList}" var="cinema">
-	                                     <tr class = "favorite-list" style = "border : 2px solid red"  >
+	                                     <tr class = "favorite-list fvCinema" style = "border : 2px solid red"  id = "fvCinema">
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
@@ -162,7 +151,7 @@
 					<%--1) 즐겨찾기 리스트가 없는 경우  --%>
 					
 					<%--<c:if test="${empty }">--%>
-					<div class = "favorite-list" id = "movie-favorite-container"  >
+					<div class = "favorite-list" id = "movie-favorite-container">
 						<%--1) 즐겨찾기 리스트가 없는 경우  --%>
 						<c:if test = "${empty movieList}">
 							
@@ -419,7 +408,7 @@
                     </div>
 
                     <div class = "comment-list-content-container" id = "movie-comment-container">
-                        <table class = "comment-list-table" >
+                        <table class = "comment-list-table" id = "comment-list-table" >
 
 							<c:if test= "${empty commentMovie}">
 								<tr class = "comment-not-content">
@@ -430,7 +419,7 @@
 		 					
 		 					<c:if test= "${not empty commentMovie}">
 	 							<c:forEach items = "${commentMovie}" var = "commentMovie" varStatus="status">
-		                             <tr class = "comment-list-col" >
+		                             <tr class = "comment-list-col movieComment" >
 		                                <td class = "comment-list-check">
 		                                    <input type="checkbox" name = "comment-check" id = "check">
 		
@@ -439,7 +428,8 @@
 		                                <td class = "comment-list-content-no">${status.count}</td>
 		                                <td class = "comment-list-board">${commentMovie.movieTitle}</td>
 		                                <td class = "comment-list-content">${commentMovie.movieCommentContent}</td>
-		                                <td class = "comment-list-date"> ${commentMovie.movieCommentDate} ${commentMovie.movieCommentNo}</td>
+		                                <td class = "comment-list-date"> ${commentMovie.movieCommentDate} </td>
+		                                <td class = "comment-list-type" style="display:none">${commentMovie.movieCommentNo}</td>
 		                                <td class = "comment-list-edit" id = "cmPopup">
 		                                    <button onclick="updateCommentModal(${commentMovie.movieCommentNo})">
 		                                        수정 
@@ -471,7 +461,7 @@
 		                                <td class = "comment-list-board">${commentCinema.cinemaName}</td>
 		                                <td class = "comment-list-content">${commentCinema.cinemaCommentContent}</td>
 		                                <td class = "comment-list-date"> ${commentCinema.cinemaCommentDate}</td>
-		                                 <td class = "comment-list-type" style="display:none">${commentCinema.cinemaCommentType}</td>
+		                                <td class = "comment-list-type" style="display:none">${commentCinema.cinemaCommentType}</td>
 		                                <td class = "comment-list-edit" id = "cmPopup">
 		                                    <button onclick="updateCommentModalCinema(${commentCinema.cinemaCommentNo})">
 		                                        수정 
@@ -488,7 +478,7 @@
                                 <td class = "comment-list-check">
                                     <input type="checkbox" name = "comment-All" id = "comment-del-All">
                                 </td>
-                   		        <td class = "comment-list-all-content-">전체선택</td>
+                   		        <td class = "comment-list-all-content">전체선택</td>
                                 <td class = "comment-list-board">
                                    <button class = "comment-list-del-btn">
                                         삭제
@@ -711,16 +701,13 @@
 		                                </button>
 		
 		                                <button class = "member-info-option-btn red">
-		                                    회원탈퇴
+		                                    회원탈퇴 
 		                                </button>
 		                            </div>
 	                            
 							   </form>
 		                   </div>    
 	                       
-						
-
-						
 						</div>
                     </div>
                 </section>
@@ -736,6 +723,8 @@
       	<script>
 			// 로그인한 회원의 성별
 			const loginMemberGender = "${loginMember.memberGender}";
+			var memberNo = ${loginMember.memberNo};
+			
 		</script>
 
         <script src = "/movieInsight/resources/js/mypage/mypage.js"></script>		
