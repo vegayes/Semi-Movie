@@ -115,7 +115,9 @@ public class MemberController {
 	// 로그인
 	@PostMapping("login")
 	public String login(Member inputMember,Model model,
-			@RequestParam(value="saveId", required = false) String saveId) {
+			@RequestParam(value="saveId", required = false) String saveId,
+			@RequestHeader("referer") String referer, RedirectAttributes ra,
+			HttpServletResponse resp) {
 		
 		
 			Member loginMember = service.login(inputMember);
@@ -145,10 +147,15 @@ public class MemberController {
 					
 				}
 				
-				cookie.setPath("/");
-				
+				// 클라이언트가 어떤 요청을 할 때 쿠키가 첨부될지 경로(주소)를 지정
+				cookie.setPath("/member/loginPage");
+				resp.addCookie(cookie);
 		
 				
+				
+			}else {
+				path += referer;
+				ra.addFlashAttribute("message", "아이디 또는 비밀번호 불일치");
 				
 			}
 		
@@ -182,7 +189,7 @@ public class MemberController {
 		String message = null;
 		
 		if(result > 0) {
-			//path += "movie/home-page";
+			path += "movieInsight/home-page";
 			
 			message = inputMember.getMemberNickname() + "님 가입성공!";
 		} else {
