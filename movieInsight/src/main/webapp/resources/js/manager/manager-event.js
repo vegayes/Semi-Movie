@@ -21,45 +21,45 @@ closeModalCMBack.addEventListener("click", modalCMClose);
 
 
 // 1-2)수정 팝업 띄우기  (특별관)
-function updatePromotion(promotionNo) {
+// function updatePromotion(promotionNo) {
 
-  modalCMOpen();
-  console.log("모달창 띄우기");
-  console.log("promotionNo : " + promotionNo);
-  promotionNo = promotionNo;
+//   modalCMOpen();
+//   console.log("모달창 띄우기");
+//   console.log("promotionNo : " + promotionNo);
+//   promotionNo = promotionNo;
 
-  fetch("/movieInsight/managerDetail/updatePromotion?promotionNo=" + promotionNo)
-  .then(response => response.json()) 
-  .then(commentInfo => {
-      console.log(commentInfo);
+//   fetch("/movieInsight/managerDetail/updatePromotion?promotionNo=" + promotionNo)
+//   .then(response => response.json()) 
+//   .then(commentInfo => {
+//       console.log(commentInfo);
 
-  })
-  .catch(err => console.log(err));
+//   })
+//   .catch(err => console.log(err));
 
-  document.getElementById("comment-del-btn").addEventListener("click", e=> {
+//   document.getElementById("comment-del-btn").addEventListener("click", e=> {
 
-    if(confirm("댓글 변경을 수정을 취소하시겠습니까?")){    
-      modalCMClose();
-    }
+//     if(confirm("댓글 변경을 수정을 취소하시겠습니까?")){    
+//       modalCMClose();
+//     }
 
-  });
-}
+//   });
+// }
 
 
-// 1-3수정 팝업 띄우기  (이벤트)
-function updateEvent(eventNo) {
+// // 1-3수정 팝업 띄우기  (이벤트)
+// function updateEvent(eventNo) {
 
-  modalCMOpen();
-  promotionNo = promotionNo;
+//   modalCMOpen();
+//   promotionNo = promotionNo;
 
-  document.getElementById("comment-del-btn").addEventListener("click", e=> {
+//   document.getElementById("comment-del-btn").addEventListener("click", e=> {
 
-    if(confirm("댓글 변경을 수정을 취소하시겠습니까?")){    
-      modalCMClose();
-    }
+//     if(confirm("댓글 변경을 수정을 취소하시겠습니까?")){    
+//       modalCMClose();
+//     }
 
-  });
-}
+//   });
+// }
 
 
 

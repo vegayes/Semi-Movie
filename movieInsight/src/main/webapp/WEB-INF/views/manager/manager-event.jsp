@@ -201,7 +201,7 @@
 								</div>
 								
 								<div class ="btn">
-									<button type="submit" id="update-del-button">취소하기</button>
+									<button  id="update-del-button">취소하기</button>
 								</div>
 								
 							</section>                             
@@ -213,14 +213,14 @@
 <%-- ============================================================  이벤트/특별관 수정 (팝업) 끝 ============================================================ --%>
 	
 	<script>
-		// 이벤트 리스너가 설정되는 지점을 확인하세요.
+		
 		document.addEventListener("DOMContentLoaded", function () {
 			var updateButton = document.getElementById("updateButton");
 			var menuSelect = document.getElementById("menuSelect");
 			var updateForm = document.getElementById("updateform");
 			
 			if(updateButton) {
-				// 메뉴 선택에 따라 동작을 변경합니다.
+				// 메뉴 선택에 따라 동작 변경
 				menuSelect.addEventListener("change", function(){
 					// 이벤트 리스너 내부에서 변수를 선언해야 합니다.
 					var value = this.value;
@@ -228,7 +228,7 @@
 				});
 
 				updateButton.addEventListener("click", function(event) {
-					event.preventDefault(); // 폼의 기본 제출 동작을 방지합니다.
+					event.preventDefault(); // 폼 기본 제출 동작을 방지
 					console.log("수정버튼 눌림");
 					// 메뉴 선택 값에 접근하여 해당 값에 따라 action 설정
 					var selectedValue = menuSelect.value;
@@ -241,7 +241,7 @@
 						updateForm.action = "/movieInsight/managerDetail/insertEvent";
 					}
 
-					// 변경된 action을 가진 폼을 제출합니다.
+					// 폼 제출
 					updateForm.submit();
 				});
 			}   
