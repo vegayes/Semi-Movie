@@ -47,15 +47,15 @@ public class MainController {
 	    public String getMovies(Model model){
 		  // 모든 영화 정보 가져오기
 	        List<Movie> movieList = movieService.findAllMovies();
-	     // 가져온 영화 정보  model에 추가  
+	    // 가져온 영화 정보  model에 추가  
 	    //    model.addAttribute("movieList", movieList);
-            List<Movie> categoryMovieList = movieService.findMoviesByCategory(genre);
-	         //  movieNo에 해당하는 영화의 상세 정보를 가져오기
-	        Movie movie = movieService.findMovieById(movieNo);
+//            List<Movie> categoryMovieList = movieService.findMoviesByCategory(genre);
+//	         //  movieNo에 해당하는 영화의 상세 정보를 가져오기
+//	        Movie movie = movieService.findMovieById(movieNo);
 	        //  movieNo에 해당하는 영화의 상세 정보를 가져오기
-	        model.addAttribute("movie", movie);
+//	        model.addAttribute("movie", movie);
 	        //  movieNo에 해당하는 영화의 상세 정보 가져오기
-	          model.addAttribute("movieList", movieList);      
+//	          model.addAttribute("movieList", movieList);      
         
         
            model.addAttribute("pageType","movie");

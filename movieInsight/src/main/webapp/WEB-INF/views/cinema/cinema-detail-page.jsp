@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MOVIEINSIGHT, 영화관 상세페이지</title>
 
 
  <script src="https://kit.fontawesome.com/69a462bb6c.js" crossorigin="anonymous"></script>
@@ -40,14 +40,20 @@
                 
                 <div>
                     <div class="cinema_title">
-                        <div class="star">
-                            <a href="#">
-                                <i class="fa-solid fa-star" id="star"></i>            
-                            </a> 
-                        </div>                 
+                         <div class="star">
+                                  
+	                    	<c:if test="${empty favorite}">             
+		                        <i class="fa-regular fa-star" id = "favoriteStar"></i>
+	                    	</c:if>
+							                       
+	                    	<%-- 누르적이 있는 경우 --%>
+	                    	<c:if test="${not empty favorite}">             
+		                        <i class="fa-solid fa-star" id="favoriteStar"></i>  
+	                    	</c:if>
+                                    
+                        </div>                
                         <div>
                             <c:choose>
-
                                 <c:when test="${empty cinemaInfo}">
                                     <input type="text" name="cinemaName" style="font-size: 30px;" placeholder="영화관 이름">
                                 </c:when>
@@ -60,20 +66,12 @@
                             </c:choose>
                         </div>
                         <div>
-                            <div>
-                                <img src="/movieInsight/resources/images/cinema/popcon.png">
-                            </div>
-                            <div>
-                                <img src="/movieInsight/resources/images/cinema/popcon.png">
-                            </div>
-                            <div>
-                                <img src="/movieInsight/resources/images/cinema/popcon.png">
-                            </div>
-                            <div>
-                                <img src="/movieInsight/resources/images/cinema/popcon.png">
-                            </div>
-                            <div>
-                                <img src="/movieInsight/resources/images/cinema/popcon.png">
+                            <div> <%-- 평점 --%>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
                             </div>
                         </div>
                     </div>
@@ -255,7 +253,7 @@
 	                                     		<img src="/movieInsight/resources/images/member/기본이미지.png">
 	                                      	</c:if>
 	                                      	<c:if test = "${not empty facility.writerProfile}">
-		                                          <img src="/movieInsight/resources/images/member/${comment.writerProfile}">                                      	
+		                                          <img src="/movieInsight/resources/images/member/${facility.writerProfile}">                                      	
 	                                      	</c:if>
 	                                      </div>  
 	                                      
@@ -264,10 +262,10 @@
 	                                 	${facility.commentCinemaWriter} : 
 	                                 </td>
 	                                  <td class = "comment-list-content comment-content">${facility.cinemaCommentContent}</td>
-	                                  <td class = "comment-list-date">${facility.cinemaCommentDate}</td>
+	                                  <td class = "comment-list-date">${facility.cinemaCommentDate} ${facility.cinemaCommentNo}</td>
 	                                  <td class = "comment-list-edit">
 	                                  	<c:if test = "${facility.commentCinemaWriter eq sessionScope.loginMember.memberId}">
-	    	                            	<button class="editBtn" >수정</button>
+	    	                            	<button class="editBtn" onclick="updateComment(${facility.cinemaCommentNo})" >수정</button>
 			                            	<button class="deletBtn" onclick="deleteComment(${facility.cinemaCommentNo})">삭제</button>                              	
 	                                  	</c:if>
 	                                  </td>
@@ -290,11 +288,11 @@
                     </div>
                     <div class="CF2"> 
                         <!-- 따봉 -->
-                        <i class="far fa-thumbs-up"></i>
-                        <i class="far fa-thumbs-up"></i>
-                        <i class="far fa-thumbs-up"></i>
-                        <i class="far fa-thumbs-up"></i>
-                        <i class="far fa-thumbs-up"></i>
+                        <i class="far fa-thumbs-up facilityGrade"></i>
+                        <i class="far fa-thumbs-up facilityGrade"></i>
+                        <i class="far fa-thumbs-up facilityGrade"></i>
+                        <i class="far fa-thumbs-up facilityGrade"></i>
+                        <i class="far fa-thumbs-up facilityGrade"></i>
                     </div>
                 </form>
                     <div id="commentSubmit">
@@ -386,11 +384,11 @@
                     </div>
                     <div class="CF2"> 
                         <!-- 따봉 -->
-                        <i class="far fa-thumbs-up"></i>
-                        <i class="far fa-thumbs-up"></i>
-                        <i class="far fa-thumbs-up"></i>
-                        <i class="far fa-thumbs-up"></i>
-                        <i class="far fa-thumbs-up"></i>
+                        <i class="far fa-thumbs-up commentGrade"></i>
+                        <i class="far fa-thumbs-up commentGrade"></i>
+                        <i class="far fa-thumbs-up commentGrade"></i>
+                        <i class="far fa-thumbs-up commentGrade"></i>
+                        <i class="far fa-thumbs-up commentGrade"></i>
                     </div>
                 </form>
                     <div id="commentSubmit">
@@ -476,16 +474,25 @@
                         <select id="menu" name="menu">
                             <option value="" disabled selected>목록</option>
                             <optgroup label="팝콘">
-                                <option>팝콘팝</option>
-                                <option>치즈팝콘</option>
+ 	                           <c:forEach items = "${menuList}" var="menuName">
+	                            	<c:if test ="${menuName.menuCategory eq '팝콘' }">
+		                            	 	<option>${menuName.menuName}</option>
+	                            	</c:if>
+                            	</c:forEach> 
                             </optgroup>
                             <optgroup label="음료">
-                                <option>콜라</option>
-                                <option>스위트아이스</option>
+ 	                           <c:forEach items = "${menuList}" var="menuName">
+	                            	<c:if test ="${menuName.menuCategory eq '음료' }">
+		                            	 	<option>${menuName.menuName}</option>
+	                            	</c:if>
+                            	</c:forEach> 
                             </optgroup>
                             <optgroup label="사이드">
-                                <option>소시지치킨</option>
-                                <option>찰리치즈나쵸</option>
+ 	                           <c:forEach items = "${menuList}" var="menuName">
+	                            	<c:if test ="${menuName.menuCategory eq '스낵' }">
+		                            	 	<option>${menuName.menuName}</option>
+	                            	</c:if>
+                            	</c:forEach>
                             </optgroup>
                         </select>
 
@@ -494,11 +501,11 @@
                             </div>
                             <div class="CF2"> 
                                 <!-- 따봉 -->
-                                <i class="far fa-thumbs-up"></i>
-                                <i class="far fa-thumbs-up"></i>
-                                <i class="far fa-thumbs-up"></i>
-                                <i class="far fa-thumbs-up"></i>
-                                <i class="far fa-thumbs-up"></i>
+                                <i class="far fa-thumbs-up menuGrade"></i>
+                                <i class="far fa-thumbs-up menuGrade"></i>
+                                <i class="far fa-thumbs-up menuGrade"></i>
+                                <i class="far fa-thumbs-up menuGrade"></i>
+                                <i class="far fa-thumbs-up menuGrade"></i>
                             </div>
                     </form>
                     <div id="menuCommentSubmit" >
@@ -512,18 +519,13 @@
         </section>
     </main>
 
-    <form id="correction">
-            <button >수정 하기 </button>
-    </form>
-
-
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 </body>
 
     <script>
-        const cinemaNo = "${cinemaInfo.cinemaName}"
+        const cinemaName = "${cinemaInfo.cinemaName}"
         const memberNo = "${sessionScope.loginMember.memberNo}";
     </script>
 

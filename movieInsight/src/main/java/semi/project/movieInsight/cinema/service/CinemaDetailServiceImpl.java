@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import semi.project.movieInsight.cinema.dao.CinemaDetailDAO;
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.common.utility.Util;
 import semi.project.movieInsight.movie.dto.Movie;
 
@@ -36,7 +37,7 @@ public class CinemaDetailServiceImpl implements CinemaDetailService {
 
 
 	/**
-	 * 영화관 댓글 조회 
+	 * 영화관 댓글 조회 ㄴ
 	 */
 	@Override
 	public List<Cinema> commentCinemaList(String cinemaName) {
@@ -56,6 +57,26 @@ public class CinemaDetailServiceImpl implements CinemaDetailService {
 		cinema.setCinemaCommentContent(Util.XSSHandling(cinema.getCinemaCommentContent()));
 		
 		return dao.commentInsert(cinema);
+	}
+
+
+
+	/**
+	 * 영화관 메뉴 가져오기 ( 카테고리에 넣기 위해서 ) 
+	 */
+	@Override
+	public List<Menu> getMenuList(String cinemaName) {
+		return dao.getMenuList(cinemaName);
+	}
+
+
+
+	/**
+	 * 영화관 댓글 삭제 
+	 */
+	@Override
+	public int delete(int cinemaCommentNo) {
+		return dao.delete(cinemaCommentNo);
 	}
 
 
