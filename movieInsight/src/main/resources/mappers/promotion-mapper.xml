@@ -27,8 +27,8 @@
   	
   	
   	<select id = "selectPromotionList" resultMap = "promotion_rm">
-  		SELECT * 
-  		FROM CINEMA_PROMOTION
+  		SELECT  DISTINCT PROMOTION_TYPE,PROMOTION_NO 
+		FROM CINEMA_PROMOTION
   	</select>
   	
   	<select id = "selectEventPromotionList" resultMap = "event_rm">
@@ -37,7 +37,58 @@
   	</select>
   	
   	
+  	<insert id="insertPromotion" parameterType="java.util.Map">
+  		INSERT INTO CINEMA_PROMOTION (PROMOTION_NO, PROMOTION_TYPE, PROMOTION_IMG, PROMOTION_URL, PROMOTION_CONTENT, CINEMA_NO)
+	    SELECT SEQ_PROMOTION_NO.NEXTVAL, A.PROMOTION_TYPE, A.PROMOTION_IMG, A.PROMOTION_URL, A.PROMOTION_CONTENT, A.CINEMA_NO
+	    FROM (
+	        <foreach collection="cinemaNoList" item="cinemaNo" separator=" UNION ALL ">
+	            SELECT #{promotion.promotionType} as PROMOTION_TYPE, #{promotion.promotionImg} as PROMOTION_IMG, #{promotion.promotionURL} as PROMOTION_URL,
+	            	   #{promotion.promotionContent} as PROMOTION_CONTENT, #{cinemaNo} as CINEMA_NO
+	            FROM DUAL
+	        </foreach>
+	    ) A
+  	</insert>
   	
   	
-
+  	<insert id="insertEvent"  parameterType="java.util.Map">
+  		INSERT INTO EVENT_PROMOTION (EVENT_PR_NO, CINEMA_NO, EVENT_TITLE, EVENT_CONTENT, EVENT_IMG, EVENT_URL)
+	    SELECT SEQ_EVENT_PR_NO.NEXTVAL, A.CINEMA_NO, A.EVENT_TITLE, A.EVENT_CONTENT, A.EVENT_IMG, A.EVENT_URL
+	    FROM (
+	        <foreach collection="cinemaNoList" item="cinemaNo" separator=" UNION ALL ">
+	            SELECT #{cinemaNo} as CINEMA_NO, #{event.eventTitle} as EVENT_TITLE, #{event.eventContent} as EVENT_CONTENT,
+	            	   #{event.eventImg} as EVENT_IMG, #{eventURL} as EVENT_URL
+	            FROM DUAL
+	        </foreach>
+	    ) A
+  	</insert>
+  	
+	<delete id="deleteEvent">
+		 DELETE FROM EVENT_PROMOTION
+		 WHERE EVENT_PR_NO = #{eventPRNo}
+	</delete>
+	
+	
+	<delete id="deletePromotion">
+		 DELETE FROM CINEMA_PROMOTION
+		 WHERE PROMOTION_NO = #{promotionNo}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

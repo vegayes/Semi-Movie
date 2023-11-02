@@ -232,8 +232,7 @@
             </c:choose>
             
     </section>
-    
-
+    <%-- ======================= 영화관 설명 끝 ================================---%>
         <section class="facility" id="cinemaScroll">
             <section class="block">
                 <section class="block_name">                    

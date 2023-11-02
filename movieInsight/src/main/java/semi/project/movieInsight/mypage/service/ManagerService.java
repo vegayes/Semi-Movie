@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.movie.dto.Movie;
@@ -61,7 +62,13 @@ public interface ManagerService {
 
 	int selectMovieNo(String movieTitle);
 
-	int insertPromotion(Promotion promotion, MultipartFile image, String filePath) throws Exception;
+	int insertPromotion(MultipartFile image, String filePath, Map<String, Object> promotionMap) throws Exception;
+
+	int insertEvent(Map<String, Object> eventMap, MultipartFile image, String filePath) throws Exception;
+
+	int deleteEvent(int eventPRNo);
+
+	int deletePromotion(int promotionNo);
 
 	
 	

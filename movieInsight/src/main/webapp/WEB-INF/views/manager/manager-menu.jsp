@@ -274,91 +274,91 @@
 
     <script>
 
-    // menu-search.js
-    document.getElementById("popcorn-search-btn").addEventListener("click", function() {
-        var searchInput = document.getElementById("popcorn-search-input").value;
-        console.log("searchInput :" , searchInput);
-        searchMenu(searchInput, "popcorn");
-    });
-
-    document.getElementById("popcorn-search-input").addEventListener("keyup", function(event) {
-
-        if (event.key === "Enter") { 
+        // menu-search.js
+        document.getElementById("popcorn-search-btn").addEventListener("click", function() {
             var searchInput = document.getElementById("popcorn-search-input").value;
+            console.log("searchInput :" , searchInput);
             searchMenu(searchInput, "popcorn");
-        }
-    });
+        });
 
-      // =============================//
+        document.getElementById("popcorn-search-input").addEventListener("keyup", function(event) {
 
-    document.getElementById("drink-search-btn").addEventListener("click", function() {
+            if (event.key === "Enter") { 
+                var searchInput = document.getElementById("popcorn-search-input").value;
+                searchMenu(searchInput, "popcorn");
+            }
+        });
 
-        var searchInput = document.getElementById("drink-search-input").value;
-        searchMenu(searchInput, "drink");
-    });
-    
-    document.getElementById("drink-search-input").addEventListener("keyup", function(event) {
+        // =============================//
 
-        if (event.key === "Enter") { 
+        document.getElementById("drink-search-btn").addEventListener("click", function() {
+
             var searchInput = document.getElementById("drink-search-input").value;
             searchMenu(searchInput, "drink");
-        }
-    });
+        });
+        
+        document.getElementById("drink-search-input").addEventListener("keyup", function(event) {
 
-    // =============================//
+            if (event.key === "Enter") { 
+                var searchInput = document.getElementById("drink-search-input").value;
+                searchMenu(searchInput, "drink");
+            }
+        });
+
+        // =============================//
 
 
-    document.getElementById("snack-search-btn").addEventListener("click", function() {
-        var searchInput = document.getElementById("snack-search-input").value;
-        searchMenu(searchInput, "snack");
-    });
-
-    document.getElementById("snack-search-input").addEventListener("keyup", function(event) {
-
-        if (event.key === "Enter") { 
+        document.getElementById("snack-search-btn").addEventListener("click", function() {
             var searchInput = document.getElementById("snack-search-input").value;
             searchMenu(searchInput, "snack");
-        }
-    });
-    
-    // =============================//
+        });
 
-    function searchMenu(searchValue, menuCategory) {
-        
-        
-        console.log("menuCategory : ",menuCategory);
+        document.getElementById("snack-search-input").addEventListener("keyup", function(event) {
 
-        let menuItems = [];
-        switch(menuCategory) {
-            case "popcorn":
-                menuItems = document.querySelectorAll(".popcorn-info-list");
-                console.log("menuItems(팝콘) : ", menuItems);
-                break;
-            case "drink":
-                menuItems = document.querySelectorAll(".drink-info-list");
-                console.log("menuItems(음료) : ", menuItems);
-                break;
-            case "snack":
-                menuItems = document.querySelectorAll(".snack-info-list");
-                console.log("menuItems(간식) : ", menuItems);
-                break;
-        }
-    
-        
-            for (var i = 0; i < menuItems.length; i++) {
-            // 각 영화 항목의 제목 가져오기
-                var menuTitle = menuItems[i].querySelector(".menu-title").textContent;
-        
-                // 영화 제목에 검색어가 포함되어 있으면 항목을 보이게 하고, 포함되어 있지 않으면 항목을 숨김
-                if (menuTitle.toLowerCase().includes(searchValue.toLowerCase())) {
-                    menuItems[i].style.display = "flex";
-                } else {
-                    menuItems[i].style.display = "none";                      
-                }
+            if (event.key === "Enter") { 
+                var searchInput = document.getElementById("snack-search-input").value;
+                searchMenu(searchInput, "snack");
             }
+        });
+        
+        // =============================//
+
+        function searchMenu(searchValue, menuCategory) {
+            
+            
+            console.log("menuCategory : ",menuCategory);
+
+            let menuItems = [];
+            switch(menuCategory) {
+                case "popcorn":
+                    menuItems = document.querySelectorAll(".popcorn-info-list");
+                    console.log("menuItems(팝콘) : ", menuItems);
+                    break;
+                case "drink":
+                    menuItems = document.querySelectorAll(".drink-info-list");
+                    console.log("menuItems(음료) : ", menuItems);
+                    break;
+                case "snack":
+                    menuItems = document.querySelectorAll(".snack-info-list");
+                    console.log("menuItems(간식) : ", menuItems);
+                    break;
+            }
+        
+            
+                for (var i = 0; i < menuItems.length; i++) {
+                // 각 영화 항목의 제목 가져오기
+                    var menuTitle = menuItems[i].querySelector(".menu-title").textContent;
+            
+                    // 영화 제목에 검색어가 포함되어 있으면 항목을 보이게 하고, 포함되어 있지 않으면 항목을 숨김
+                    if (menuTitle.toLowerCase().includes(searchValue.toLowerCase())) {
+                        menuItems[i].style.display = "flex";
+                    } else {
+                        menuItems[i].style.display = "none";                      
+                    }
+                }
 
 
-    }
+        }
 
 
 

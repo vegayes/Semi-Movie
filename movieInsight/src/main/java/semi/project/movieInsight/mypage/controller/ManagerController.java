@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import semi.project.movieInsight.cinema.dao.CinemaDAO;
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.service.CinemaService;
@@ -32,6 +33,8 @@ public class ManagerController {
 	@Autowired
 	private MovieService movieService;
 	
+	@Autowired
+	private CinemaDAO cinemaDAO;
 	
 	/** 1) 모든 홍보정보 조회
 	 * @param model
@@ -42,7 +45,11 @@ public class ManagerController {
 		// 1) Map으로 가져오기
 		Map<String,Object> promotionMap = service.selectPromotion();
 		
-		System.out.println("promotionMap : " + promotionMap);
+		List<Cinema> cinemaList = cinemaDAO.selectManagerCinemaList();
+		
+		//System.out.println("promotionMap : " + promotionMap);
+		//System.out.println("cinemaList : " + cinemaList);
+		model.addAttribute("cinemaList", cinemaList);
 		model.addAttribute("promotionMap", promotionMap);
 		
 		return "manager/manager-event";

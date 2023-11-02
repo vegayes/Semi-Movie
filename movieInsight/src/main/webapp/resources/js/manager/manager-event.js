@@ -28,7 +28,7 @@ function updatePromotion(promotionNo) {
   console.log("promotionNo : " + promotionNo);
   promotionNo = promotionNo;
 
-  fetch("/movieInsight/mypage/comment?promotionNo=" + promotionNo)
+  fetch("/movieInsight/managerDetail/updatePromotion?promotionNo=" + promotionNo)
   .then(response => response.json()) 
   .then(commentInfo => {
       console.log(commentInfo);
@@ -50,17 +50,7 @@ function updatePromotion(promotionNo) {
 function updateEvent(eventNo) {
 
   modalCMOpen();
-  console.log("모달창 띄우기");
-  console.log("promotionNo : " + promotionNo);
   promotionNo = promotionNo;
-
-  fetch("/movieInsight/mypage/comment?promotionNo=" + promotionNo)
-  .then(response => response.json()) 
-  .then(commentInfo => {
-      console.log(commentInfo);
-
-  })
-  .catch(err => console.log(err));
 
   document.getElementById("comment-del-btn").addEventListener("click", e=> {
 
@@ -78,7 +68,7 @@ document.getElementById("special-add").addEventListener("click", function(){
   modalCMOpen();
   
   
-    document.getElementById("comment-del-btn").addEventListener("click", e=> {
+    document.getElementById("update-del-button").addEventListener("click", e=> {
 
     if(confirm("댓글 변경을 수정을 취소하시겠습니까?")){    
       modalCMClose();
@@ -104,24 +94,7 @@ document.getElementById("event-add").addEventListener("click", function(){
 
 
 
-// select로 카테고리 바꾸면 다른 곳으로 전송
-if(document.getElementById("menuSelect")) {
 
-  document.getElementById("menuSelect").addEventListener("change", function () {
-    var selectedValue = this.value;
-    var form = document.getElementById("updateForm");
-
-    if (selectedValue === "privat-cinema") {
-        form.action = "/movieInsight/managerDetail/insertPromotion";
-    } else if (selectedValue === "event") {
-        form.action = "/movieInsight/managerDetail/insertEvent";
-    } else {
-        // 다른 선택지에 대한 처리를 추가하실 수 있습니다.
-    }
-  });
-
-}
-// 4) 검색어에 입력했을 때 
 
 
 

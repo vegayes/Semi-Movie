@@ -125,12 +125,20 @@
   	
   	
   	<select id="selectManagerCinemaList" parameterType="Cinema" resultMap="cinema_rm" >
-  	
-  		SELECT CINEMA_NO,CINEMA_NAME,CINEMA_ADDRESS,NVL2('NULL',0,CINEMA_GRADE) CINEMA_GRADE,CINEMA_MAX_INCLUDE
-		FROM CINEMA c 
-		LEFT JOIN CINEMA_EVALUATION ce USING (CINEMA_NO)
-		WHERE CINEMA_DEL_YN = 'N'
-  	
+	 SELECT 
+	    c.CINEMA_NO,
+	    c.CINEMA_NAME,
+	    c.CINEMA_ADDRESS,
+	    NVL(ROUND(AVG(ce.CINEMA_GRADE), 1), 0) AS CINEMA_GRADE, 
+	    c.CINEMA_MAX_INCLUDE
+	FROM 
+	    CINEMA c 
+	LEFT JOIN 
+	    CINEMA_EVALUATION ce ON c.CINEMA_NO = ce.CINEMA_NO
+	WHERE 
+	    c.CINEMA_DEL_YN = 'N'
+	GROUP BY 
+	    c.CINEMA_NO, c.CINEMA_NAME, c.CINEMA_ADDRESS, c.CINEMA_MAX_INCLUDE
   	</select>
   	
   	
@@ -203,6 +211,32 @@
 			SYSDATE,
 			DEFAULT)
   	</insert>
+  	
+  	
+  	<select id="getCinemaNoList"  resultType = "_integer">
+		SELECT  CINEMA_NO
+		FROM CINEMA
+		WHERE CINEMA_DEL_YN = 'N' 
+		AND  (CINEMA_SPECIAL_HALL LIKE '%' || '4DX' || '%')
+  	</select>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   	
 
 </mapper>
