@@ -294,6 +294,18 @@ public class MypageController {
 	
 	
 	
+	
+	
+	// 댓글 수정후 마이페이지에서 조회 
+	@ResponseBody
+	@GetMapping(value = "/comment/select", produces = "application/json; charset=UTF-8")
+	public List<Movie> selectMyMovieComment(int memberNo) {
+		System.out.println("댓글 조회 비동기 :" +  memberNo);
+		
+		return service.selectCommentMovie(memberNo);
+	}	
+	
+	
 	// 댓글 수정 팝업 내용 조회하기 (영화)
 	@ResponseBody
 	@GetMapping(value = "/comment", produces = "application/json; charset=UTF-8")
@@ -374,6 +386,16 @@ public class MypageController {
 		
 	    return service.delFavoriteMovie(favoriteDelMovie);
 	}
+	
+	// 즐겨찾기 삭제 후 마이페이지에서 다시 조회 
+	@ResponseBody
+	@GetMapping(value = "/favorite/select", produces = "application/json; charset=UTF-8")
+	public List<Movie> selectMyMovieFavorite(int memberNo) {
+		System.out.println("즐겨찾기 조회 비동기 :" +  memberNo);
+		
+		return service.selectLikeMovie(memberNo);
+	}	
+	
 	
 
 }
