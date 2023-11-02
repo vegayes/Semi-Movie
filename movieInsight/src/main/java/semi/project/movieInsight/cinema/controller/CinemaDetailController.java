@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.service.CinemaDetailService;
 import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
@@ -71,10 +72,13 @@ public class CinemaDetailController {
 			System.out.println(commentCinemaList);
 			model.addAttribute("commentCinemaList", commentCinemaList);
 		 	
+			
+			// 4) 메뉴 목록 가져오기 
+			List<Menu> menuList = service.getMenuList(cinemaName);
+			System.out.println(menuList);
+			model.addAttribute("menuList", menuList);
 		 	
-			// 해당 위치 넘기기
-//			List<Object> currentUrl =  Arrays.asList(req.getRequestURI().toString().split("/"));
-//			model.addAttribute("cureentUrl" + currentUrl.get(2));
+
 		 	
 			model.addAttribute("pageType","cinema");
 			
@@ -109,29 +113,31 @@ public class CinemaDetailController {
 	 */
 	@GetMapping(value = "/comment/insert", produces = "application/json; charset=UTF-8" )	
 	@ResponseBody
-	public int insert(String commentContent, int cinemaNo, float cinemaGrade,
+	public int insert(String commentValue, String cinemaName, float cinemaGrade,
 					 String cinemaCommentType, Cinema cinema,
 					@SessionAttribute(value = "loginMember", required =false) Member loginMember) {
 		
 		
-		System.out.println("commentContent" + commentContent);
-		System.out.println("cinemaNo" + cinemaNo);
+		System.out.println("commentValue" + commentValue);
+		System.out.println("cinemaName" + cinemaName);
 		System.out.println("cinemaCommentType" + cinemaCommentType);
 		System.out.println("댓글 삽입 로그인된 회원 번호 :" + loginMember.getMemberNo());
 		
-		cinema.setCinemaCommentContent(commentContent);
+		cinema.setCinemaCommentContent(commentValue);
 		cinema.setCinemaGrade(cinemaGrade);
-		cinema.setCinemaNo(cinemaNo);
+		cinema.setCinemaName(cinemaName);
 		cinema.setCinemaCommentType(cinemaCommentType);
 		cinema.setMemberNo(loginMember.getMemberNo());
-		
-		
 		
 		return service.insert(cinema);
 	} 
 	
-	
-	 
+
+	@GetMapping(value = "/comment/delete", produces = "application/json; charset=UTF-8" )
+	@ResponseBody
+	public int delete(int cinemaCommentNo) {
+		return service.delete(cinemaCommentNo);
+	}
 	
 	
 	

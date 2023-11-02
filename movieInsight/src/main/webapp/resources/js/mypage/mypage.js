@@ -487,6 +487,8 @@ document.querySelector(".favorite-delet-btn").addEventListener("click", function
               if(result > 0){
                 alert("즐겨찾기 삭제 완료하였습니다.");
                 refreshFavoriteList();
+                modalClose();
+
               }else{
                 alert("즐겨찾기 삭제 실패했습니다.")
               }
