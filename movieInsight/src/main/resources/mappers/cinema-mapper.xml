@@ -20,9 +20,9 @@
 		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
 		<result property="sumCinemaGrade" column="SUM_CINEMA_GRADE"/>
 		
-		<result property="cinemaCommentNo" column="MOVIE_EV_NO"/>
-		<result property="cinemaCommentContent" column="EVALUATION_CONTENT"/>
-		<result property="cinemaCommentDate" column="MOVIE_EV_ENROLL_DATE"/>
+		<result property="cinemaCommentNo" column="CINEMA_EV_NO"/>
+		<result property="cinemaCommentContent" column="CINEMA_COMMENT"/>
+		<result property="cinemaCommentDate" column="CINEMA_EV_ENROLL_DATE"/>
 		<result property="cinemaGrade" column="CINEMA_GRADE"/>
 		<result property="cinemaCommentType" column="CINEMA_COMMENT_TYPE"/>
 		
@@ -200,11 +200,12 @@
 	ORDER BY CINEMA_EV_ENROLL_DATE DESC
 	</select>
   	
+  	<!--  영화관 댓글 삽입 -->
   	<insert id = "commentInsert">
-  	INSERT INTO "MOVIE_EVALUATION"
+  	INSERT INTO "CINEMA_EVALUATION"
 	VALUES(SEQ_CINEMA_EV_NO.NEXTVAL, 
 			#{memberNo},
-			#{cinemaNo},
+			(SELECT CINEMA_NO FROM CINEMA WHERE CINEMA_NAME = #{cinemaName}),
 			#{cinemaCommentType},
 			#{cinemaCommentContent},
 			#{cinemaGrade},
@@ -212,27 +213,23 @@
 			DEFAULT)
   	</insert>
   	
+
   	
   	<select id="getCinemaNoList"  resultType = "_integer">
-		SELECT  CINEMA_NO
-		FROM CINEMA
-		WHERE CINEMA_DEL_YN = 'N' 
-		AND  (CINEMA_SPECIAL_HALL LIKE '%' || '4DX' || '%')
+      SELECT  CINEMA_NO
+      FROM CINEMA
+      WHERE CINEMA_DEL_YN = 'N' 
+      AND  (CINEMA_SPECIAL_HALL LIKE '%' || '4DX' || '%')
   	</select>
   	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
+  
+  	<!--  영화관 댓글 삭제  -->
+  	<update id = "commentDelete">
+	  	UPDATE CINEMA_EVALUATION
+	  	SET CINEMA_EV_DEL_YN = 'Y'
+	  	WHERE CINEMA_EV_NO = ${cinemaCommentNo}
+  	</update>
+
   	
   	
   	

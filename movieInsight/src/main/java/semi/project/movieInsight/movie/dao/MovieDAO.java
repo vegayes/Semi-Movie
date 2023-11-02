@@ -27,7 +27,11 @@ public class MovieDAO {
 
 	}
 
-	
+	  // 장르에 따른 영화 조회
+    public List<Movie> findMoviesByCategory(String category) {
+    	System.out.println(category);
+        return sqlSession.selectList("movieMapper.findMoviesByCategory", category);
+    }
 
 
 }

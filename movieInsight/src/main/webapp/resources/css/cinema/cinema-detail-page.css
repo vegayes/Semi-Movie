@@ -91,40 +91,37 @@ main{
 
     height: 20%;
     display: flex;
-
+	
+	border : 2px solid red;
 
 
 }
 
 
-
-
-
-#star {
-    color: white; 
-    transition: color 0.3s; 
-    font-size: 3.5rem;
+star{
+	display:flex;
+	justify-content: center;
     align-items: center;
-    justify-content: center;
-   
-}
-
-#star:hover {
-    color: blue;
 }
 
 .star-clicked {
     color: purple;
 }
 
-.star{
+
+#favoriteStar {
+    color: white; 
+    transition: color 0.3s; 
+    font-size: 60px;
+   	display:flex;
+	justify-content: center;
     align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-right: 2%;
+     margin-top: 43%; 
 }
 
-
+#favoriteStar:hover {
+    color: blue;
+}
 
 
 
@@ -135,7 +132,7 @@ main{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 3rem;
+    font-size: 45px;
     font-weight: bold;
 }
 
@@ -894,14 +891,6 @@ main{
 
 
 
-#correction{
-
-    display: flex;
-    justify-content: center;
-    height: 2%;
-    
-
-}
 
 #correction button{
 

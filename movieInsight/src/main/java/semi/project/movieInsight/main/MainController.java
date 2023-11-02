@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieService;
@@ -35,35 +36,39 @@ public class MainController {
 
 
 
-
 		return "redirect:movie";
 		//return "/member/login_signUp";
-
 	}
 
 	
-
-	  @GetMapping("/movie")
-	    public String getMovies(Model model){
-		  // 모든 영화 정보 가져오기
-	        List<Movie> movieList = movieService.findAllMovies();
-	     // 가져온 영화 정보  model에 추가  
-	    //    model.addAttribute("movieList", movieList);
-         //   List<Movie> categoryMovieList = movieService.findMoviesByCategory(genre);
-	         //  movieNo에 해당하는 영화의 상세 정보를 가져오기
-	     //   Movie movie = movieService.findMovieById(movieNo);
-	        //  movieNo에 해당하는 영화의 상세 정보를 가져오기
-	     //   model.addAttribute("movie", movie);
-	        //  movieNo에 해당하는 영화의 상세 정보 가져오기
-	          model.addAttribute("movieList", movieList);      
-        
-        
+	 @GetMapping("/movie")
+	    public String getMovies(Model model) {
+	        // 다양한 장르의 영화를 조회합니다.
+	        List<Movie> popularMovies = movieService.findMoviesByCategory("인기순");
+	        List<Movie> actionMovies = movieService.findMoviesByCategory("액션");
+	        List<Movie> crimeMovies = movieService.findMoviesByCategory("범죄");
+	        List<Movie> animationMovies = movieService.findMoviesByCategory("애니메이션");
+	        List<Movie> sfMovies = movieService.findMoviesByCategory("SF");
+	        List<Movie> comedyMovies = movieService.findMoviesByCategory("코미디");
+	        List<Movie> romanceMovies = movieService.findMoviesByCategory("로맨스");
+            
+	        
+	        
+	        model.addAttribute("popularMovies", popularMovies);
+	        model.addAttribute("actionMovies", actionMovies);
+	        model.addAttribute("crimeMovies", crimeMovies);
+	        model.addAttribute("animationMovies", animationMovies);
+	        model.addAttribute("sfMovies", sfMovies);
+	        model.addAttribute("comedyMovies", comedyMovies);
+	        model.addAttribute("romanceMovies", romanceMovies);
+	        
+	        
+	        System.out.println("범죄 : " + crimeMovies);
+	
            model.addAttribute("pageType","movie");
+
 	        return "movie/home-page";
 	    }
-
-	
-	    
 
 
 	@GetMapping("/cinema")

@@ -33,6 +33,15 @@
 		SELECT * FROM MENU m
 		WHERE MENU_CATEGORY = '스낵'
 	</select>
+	
+	<select id = "getMenuList" resultMap = "menu_rm">
+		SELECT MENU_NO, MENU_NAME, MENU_PRICE, MENU_CATEGORY
+		FROM MENU_STATUS
+		LEFT JOIN MENU USING(MENU_NO)
+		WHERE CINEMA_NO = (SELECT CINEMA_NO 
+							FROM CINEMA 
+							WHERE CINEMA_NAME LIKE #{cinemaName})				
+	</select>
 
 
 

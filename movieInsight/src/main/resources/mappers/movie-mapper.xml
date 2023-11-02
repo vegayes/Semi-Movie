@@ -323,7 +323,15 @@
 	FROM MOVIE_LIKE 
 	WHERE MOVIE_NO = #{movieNo}  AND MEMBER_NO = #{memberNo}
 	</select>
+
+	<!-- 장르에 따른 영화 조회 -->
+	<select id="findMoviesByCategory" resultMap="movie_rm">
+		SELECT MOVIE_NO, MOVIE_TITLE , MOVIE_IMG ,MOVIE_GENRE 
+		FROM MOVIE m 
+		WHERE MOVIE_GENRE LIKE '%' || #{category} || '%' AND MOVIE_DEL_YN  ='N'
+	</select>
 	
+		
 </mapper>
 
 

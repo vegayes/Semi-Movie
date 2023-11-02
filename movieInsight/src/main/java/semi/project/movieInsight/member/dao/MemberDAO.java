@@ -18,10 +18,10 @@ public class MemberDAO {
 	
 		return sqlSession.insert("memberMapper.signUp", inputMember);
 	}
-
-	public int idCheck(String id_check) {
 	
-		return sqlSession.selectOne("memberMapper.checkId",id_check);
+	public int idCheck(String memberId) {
+		
+		return sqlSession.selectOne("memberMapper.checkId",memberId);
 	}
 
 
