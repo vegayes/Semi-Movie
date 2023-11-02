@@ -1,7 +1,9 @@
 package semi.project.movieInsight.cinema.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,17 +59,40 @@ public class CinemaDetailController {
 				return "cinema/cinema-detail-page";
 			}
 		
+			// 1) 영화관 정보 조회
 			Cinema  cinemaInfo =  service.selectCinemaInfo(cinemaName);
 		 	
 			model.addAttribute("loginMember", loginMember);
 		 	model.addAttribute("cinemaInfo", cinemaInfo);
 		 	
+			// 1-2) 즐겨찾기 여부 확인
+			if(loginMember != null) {
+				Map<String, Object> favoriteCheck = new HashMap<String , Object>();
+				favoriteCheck.put("memberNo", loginMember.getMemberNo());
+				favoriteCheck.put("cinemaName", cinemaName);
+				
+				
+				// 좋아요 여부 확인 서비스 호출
+				int result = service.favoriteCheck(favoriteCheck);
+				
+				System.out.println("즐겨찾기 Controller result : " + result);
+
+				if(result > 0) model.addAttribute("favorite", "on");
+				
+			}
 		 	
-		 	// 영화관에서 상영중인 영화 목록 조회
+		 	
+		 	
+		 	// 2) 영화관에서 상영중인 영화 목록 조회
 		 	List<Movie> movieList = service.selectMovieList(cinemaInfo.getCinemaNo());
 		 	//System.out.println("movieList : " + movieList);
 		
 		 	model.addAttribute("movieList", movieList);
+		 	
+
+			
+		 	
+		 	
 		 	
 			// 3) 영화관에서 댓글 조회 (시설 / 직원 / 메뉴 ) 
 			List<Cinema> commentCinemaList = service.commentCinemaList(cinemaName);
@@ -78,8 +105,13 @@ public class CinemaDetailController {
 			System.out.println(menuList);
 			model.addAttribute("menuList", menuList);
 		 	
-
+			// 4-1) 베스트 메뉴 가져오기
+			Map<String,Menu> bestMenu = service.getBestMenu(cinemaName);
+			model.addAttribute("bestMenu", bestMenu);
 		 	
+			
+			
+			
 			model.addAttribute("pageType","cinema");
 			
 			return "cinema/cinema-detail-page";
@@ -132,7 +164,11 @@ public class CinemaDetailController {
 		return service.insert(cinema);
 	} 
 	
-
+	
+	/** 댓글 삭제
+	 * @param cinemaCommentNo
+	 * @return
+	 */
 	@GetMapping(value = "/comment/delete", produces = "application/json; charset=UTF-8" )
 	@ResponseBody
 	public int delete(int cinemaCommentNo) {
@@ -140,5 +176,29 @@ public class CinemaDetailController {
 	}
 	
 	
+	
+	// 즐겨찾기 
+	@PostMapping("/favorite")
+	@ResponseBody
+	public int updatefavorite(@RequestBody Map<String, Object> paramMap) {
+		
+		return service.updatefavorite(paramMap);
+	}
+	
+	
+	/** 댓글 조회 (ajax) 
+	 * @param cinemaName
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping(value = "/comment/select", produces = "application/json; charset=UTF-8")
+	public List<Cinema> selectCinemaCommentList( String cinemaName) {
+		
+		List<Cinema> result = service.commentCinemaList(cinemaName);
+		
+		System.out.println("비동기 조회 " + result);
+		
+		return result;
+	}	
 	
 }

@@ -35,6 +35,92 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+function selectMovieCommentList() {
+    fetch("/movieInsight/movie/comment/select?movieNo=" + movieNo)
+        .then(response => response.json()) 
+        .then(list => {
+            console.log(list);
+
+            const commentListTable = document.getElementById('comment-list-table');
+            commentListTable.innerHTML = ''; // 기존 테이블 내용 초기화
+
+            for (let comment of list) {
+
+                const gradeTr = document.createElement('tr');
+                gradeTr.classList.add('comment-grade-tr');
+                const gradeTd = document.createElement('td');
+                gradeTd.innerText = `평점 ${comment.cinemaGrade}`;
+                gradeTr.appendChild(gradeTd);
+
+                const contentTr = document.createElement('tr');
+                contentTr.classList.add('comment-content-tr');
+                contentTr.style.border = '2px solid blue';
+
+                const imgTd = document.createElement('td');
+                imgTd.classList.add('comment-img');
+                const writerImgWrapper = document.createElement('div');
+                writerImgWrapper.classList.add('comment-writer-img-wrapper');
+                const imgSrc = comment.writerProfile ? `/movieInsight/resources/images/member/${comment.writerProfile}` : '/movieInsight/resources/images/member/기본이미지.png';
+                const writerImg = document.createElement('img');
+                writerImg.setAttribute('src', imgSrc);
+                writerImgWrapper.appendChild(writerImg);
+                imgTd.appendChild(writerImgWrapper);
+
+                const idTd = document.createElement('td');
+                idTd.classList.add('comment-list-id');
+                idTd.innerText = `${comment.commentCinemaWriter} : `;
+
+                const contentTd = document.createElement('td');
+                contentTd.classList.add('comment-list-content', 'comment-content');
+                contentTd.innerText = comment.cinemaCommentContent;
+
+                const dateTd = document.createElement('td');
+                dateTd.classList.add('comment-list-date');
+                dateTd.innerText = comment.cinemaCommentDate;
+
+                const editTd = document.createElement('td');
+                editTd.classList.add('comment-list-edit');
+
+                if (comment.commentMovieWriter === memberNo) {
+                    const editBtn = document.createElement('button');
+                    editBtn.classList.add('editBtn');
+                    editBtn.innerText = '수정';
+                    editBtn.onclick = function() {
+                        updateCommentModal(comment.movieCommentNo);
+                    };
+
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.classList.add('deleteBtn');
+                    deleteBtn.innerText = '삭제';
+                    deleteBtn.onclick = function() {
+                        // 삭제 버튼 클릭 시 동작하는 함수 호출
+                        deleteComment(comment.movieCommentNo);
+                    };
+
+                    editTd.appendChild(editBtn);
+                    editTd.appendChild(deleteBtn);
+                }
+
+                contentTr.appendChild(imgTd);
+                contentTr.appendChild(idTd);
+                contentTr.appendChild(contentTd);
+                contentTr.appendChild(dateTd);
+                contentTr.appendChild(editTd);
+
+                commentListTable.appendChild(gradeTr);
+                commentListTable.appendChild(contentTr);
+                
+            }
+        })
+        .catch(err => console.log(err));
+}
+    
+
+
+
+
+
+
 const addComment = document.getElementById("commentSubmit");
 const commentContent = document.getElementById("commentContent");
 
@@ -70,7 +156,7 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
 
             commentContent.value = ""; // 작성했던 댓글 삭제
 
-            // selectCommentList(); // 비동기 댓글 목록 조회 함수 호출
+            selectMovieCommentList();
 
         } else { // 실패
             alert("댓글 등록에 실패했습니다...");
@@ -93,7 +179,7 @@ function deleteComment(movieCommentNo){
         .then(result => {
             if(result > 0){
                 alert("삭제되었습니다");
-                // selectCommentList(); // 목록을 다시 조회해서 삭제된 글을 제거
+                selectMovieCommentList();
             }else{
                 alert("삭제 실패");
             }
@@ -116,7 +202,7 @@ function updateComment(commentNo, btn){
     .then(result => {
         if(result > 0){
             alert("댓글이 수정되었습니다.");
-            selectCommentList();
+            selectMovieCommentList();
         }else{
             alert("댓글 수정 실패");
         }
@@ -193,16 +279,16 @@ if(document.getElementById("star")) {
         if (clicked) {
             star.style.color = 'white'; // 클릭 후 다시 하얀색으로 변경
         } else {
-            star.style.color = 'purple'; // 클릭 시 색상을 보라색으로 변경
+            star.style.color = 'yellow'; // 클릭 시 색상을 보라색으로 변경
         }
         clicked = !clicked;
     });
     
     star.addEventListener("mouseenter", function () {
         if (!clicked) {
-            star.style.color = 'blue'; // 마우스를 올렸을 때 파란색으로 변경
+            star.style.color = 'yellow'; // 마우스를 올렸을 때 파란색으로 변경
         } else {
-            star.style.color = 'purple'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
+            star.style.color = 'yellow'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
         }
     });
     

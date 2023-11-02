@@ -195,7 +195,7 @@
                 <c:when test="${empty movieList}">
 
                     <div class = "screening_movie_detail"  id = "none-list">
-                        검색결과가 존재하지 않습니다.
+                        <h1>검색결과가 존재하지 않습니다.</h1>
                     </div>
 
                 </c:when>
@@ -239,7 +239,7 @@
                <section class="block_body">
                	 <div class="combody">
                 	
-                    <table class = "comment-list-table">
+                    <table class = "comment-list-table"  id = "comment-list-table">
 	                	<c:forEach items = "${commentCinemaList}" var="facility">
 	                		<c:if test ="${facility.cinemaCommentType eq '시설'}">
 	                			<tr class = "comment-grade-tr">
@@ -309,7 +309,7 @@
                 </section>
                <section class="block_body">
                 <div class="combody">
-                    <table class = "comment-list-table">
+                    <table class = "comment-list-table"  id = "comment-list-table">
 	                	<c:forEach items = "${commentCinemaList}" var="comment">
 	                		
 	                		<c:if test ="${comment.cinemaCommentType eq '친절도'}">
@@ -375,7 +375,7 @@
           </section>
             <fieldset class="commentForm">
                 <form id="facilityForm">
-                    <div>
+                    <div style = "border : 2px solid blue">
                         <input type="text" placeholder= "직원 친절도 평가 입력...." id = "commentContent">
                     </div>
                     <div>
@@ -402,71 +402,128 @@
             <div>
                 <div class="popcorn">
                     <div>팝콘 1등</div>
-                    <div >
-                        <img src="/resources/images/cinema/menu_popcorn.png" id="img_popcorn">
-                    </div>
-                    <div>
-                        이름 : 더블치즈팝콘(L)
-                    </div>
-                    <div>
-                        가격 : 6500원
-                    </div>
-                    <div class="score_popcorn">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+                    <c:if test = "${empty bestMenu.bestPopCorn}">
+                    	<div>
+	                    	<h1>
+	                    		아직 등록된 팝콘 평점이 존재하지 않습니다.
+	                    	</h1> 
+                    	</div>
+                    	<div>
+                 	         <h1>
+                    			팝콘에 대한 평점을 남겨주세요!!
+                    		</h1>
+                    	</div>
+
+                    </c:if>
+                    
+                   <c:if test = "${not empty bestMenu.bestPopCorn}">
+	                    <div>
+		                    <div class = "menu-wrapper" >
+	    	                    <img src="/movieInsight/resources/images/menu/${bestMenu.bestPopCorn.menuCategory}/${bestMenu.bestPopCorn.menuImg}" id="img_popcorn">
+	    	                </div>
+	       	             </div>
+	                    <div>
+	                        이름 : ${bestMenu.bestPopCorn.menuName}
+	                    </div>
+	                    <div>
+	                        가격 : ${bestMenu.bestPopCorn.menuPrice}원
+	                    </div>
+	                    <div class="score_popcorn">
+	                    	${bestMenu.bestPopCorn.menuGrade}
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                    </div>
+                    </c:if>
+
                 </div>
 
 
                 <div class="beverage">
                     <div>음료 1등</div>
-                    <div >
-                        <img src="/resources/images/cinema/menu_beverage.png" id="img_beverage">
-                    </div>
-                    <div>
-                        이름 : 스위트아이스
-                    </div>
-                    <div>
-                        가격 : 5000원
-                    </div>
-                    <div class="score_beverage">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+                    
+                    <c:if test = "${empty bestMenu.bestDrink}">
+                    	<div>
+	                    	<h1>
+	                    		아직 등록된 음료 평점이 존재하지 않습니다.
+	                    	</h1> 
+                    	</div>
+                    	<div>
+                 	         <h1>
+                    			음료에 대한 평점을 남겨주세요!!
+                    		</h1>
+                    	</div>
+
+                    </c:if>
+                    <c:if test = "${not empty bestMenu.bestDrink}">
+	                    <div  >
+	                    	<div class = "menu-wrapper" >
+		                        <img src="/movieInsight/resources/images/menu/${bestMenu.bestDrink.menuCategory}/${bestMenu.bestDrink.menuImg}" id="img_beverage">
+	                    	</div>
+	                    </div>
+	                    <div>
+	                        이름 : ${bestMenu.bestDrink.menuName}
+	                    </div>
+	                    <div>
+	                        가격 : ${bestMenu.bestDrink.menuPrice}원
+	                    </div>
+	                    <div class="score_beverage">
+	                    	${bestMenu.bestDrink.menuGrade}
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                    </div>
+	                </c:if>
                 </div>
 
 
                 <div>
                     <div>사이드 1등</div>
-                    <div >
-                        <img src="/resources/images/cinema/menu_side.png" id="img_side">
-                    </div>
-                    <div>
-                        이름 : 찰리치즈나쵸
-                    </div>
-                    <div>
-                        가격 : 5000원
-                    </div>
-                    <div class="score_side">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+                    <c:if test = "${empty bestMenu.bestSnack}">
+                    	<div>
+	                    	<h1>
+	                    		아직 등록된 스낵 평점이 존재하지 않습니다.
+	                    	</h1> 
+                    	</div>
+                    	<div>
+                 	         <h1>
+                    			스낵에 대한 평점을 남겨주세요!!
+                    		</h1>
+                    	</div>
+
+                    </c:if>
+                   <c:if test = "${not empty bestMenu.bestSnack}">
+	                    <div>
+	                    	<div class = "menu-wrapper" >
+		                        <img src="/movieInsight/resources/images/menu/${bestMenu.bestSnack.menuCategory}/${bestMenu.bestSnack.menuImg}" id="img_side">
+		                    </div>
+	                    </div>
+	                    <div>
+	                        이름 : ${bestMenu.bestSnack.menuName}
+	                    </div>
+	                    <div>
+	                        가격 : ${bestMenu.bestSnack.menuPrice}원
+	                    </div>
+	                    <div class="score_side">
+	                    	${bestMenu.bestSnack.menuGrade}
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                    </div>
+	                </c:if>
                 </div>
             </div>
 
 
 
             <div class="comment" >
-                <fieldset>
+                <fieldset class = "menuFromContainer">
                     <form id="menuForm">
 
                         <label for="menu">해당 극장 메뉴</label>
@@ -507,7 +564,7 @@
                                 <i class="far fa-thumbs-up menuGrade"></i>
                             </div>
                     </form>
-                    <div id="menuCommentSubmit" >
+                    <div id="menuCommentSubmit">
                         <img src="/movieInsight/resources/images/movie/movieT/list.png">
                     </div>
                  </fieldset>
@@ -526,6 +583,7 @@
     <script>
         const cinemaName = "${cinemaInfo.cinemaName}"
         const memberNo = "${sessionScope.loginMember.memberNo}";
+        
     </script>
 
     <script src="/movieInsight/resources/js/cinema/cinema-detail-page.js"></script>

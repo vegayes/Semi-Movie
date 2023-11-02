@@ -111,7 +111,7 @@
 		                    <p>LOGIN</p>
 		                </a>
 
-		                <a class = "user-mypage"  href= "/movieInsight/member/loginPage"> <%-- 일단 로그인 필터 적용안되기 때문에..  --%>
+		                <a class = "user-mypage"  href= "/movieInsight/member/login"> <%-- 일단 로그인 필터 적용안되기 때문에..  --%>
 
 		                	<div class = "mypage-wrapper">
 		                	 	<i class="fa-solid fa-user"></i>    

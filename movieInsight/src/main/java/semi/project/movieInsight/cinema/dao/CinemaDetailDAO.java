@@ -74,6 +74,58 @@ public class CinemaDetailDAO {
 	public int delete(int cinemaCommentNo) {
 		return sqlSession.update("cinemaMapper.commentDelete", cinemaCommentNo);
 	}
+
+
+	/** 즐겨찾기 조회 
+	 * @param favoriteCheck
+	 * @return
+	 */
+	public int favoriteCheck(Map<String, Object> favoriteCheck) {
+		return sqlSession.selectOne("cinemaMapper.favoriteCheck", favoriteCheck);
+	}
+
+
+	/** 즐겨찾기 삽입
+	 * @param paramMap
+	 * @return
+	 */
+	public int addFavorite(Map<String, Object> paramMap) {
+		return sqlSession.insert("cinemaMapper.addFavorite", paramMap);
+	}
+
+
+	/** 즐겨찾기 삭제
+	 * @param paramMap
+	 * @return
+	 */
+	public int delFavorite(Map<String, Object> paramMap) {
+		return sqlSession.delete("cinemaMapper.delFavorite", paramMap);
+	}
+
+
+	/** 베스트 메뉴 뽑기
+	 * @param cinemaName
+	 * @return
+	 */
+	public Map<String, Menu> getBestMenu(String cinemaName) {
+		
+		Map<String,Menu> bestMenuMap = new HashMap<String,Menu>();
+		
+		Menu bestPopCorn = sqlSession.selectOne("menuMapper.getBestPopCornMenu", cinemaName);
+		Menu bestDrink = sqlSession.selectOne("menuMapper.getBestDrinkMenu", cinemaName);
+		Menu bestSnack = sqlSession.selectOne("menuMapper.getBestSnackMenu", cinemaName);
+		
+		System.out.println(bestPopCorn);
+		System.out.println(bestDrink);
+		System.out.println(bestSnack);
+		
+		bestMenuMap.put("bestPopCorn", bestPopCorn);
+		bestMenuMap.put("bestDrink", bestDrink);
+		bestMenuMap.put("bestSnack", bestSnack);
+		
+		
+		return bestMenuMap;
+	}
 	
 
 }

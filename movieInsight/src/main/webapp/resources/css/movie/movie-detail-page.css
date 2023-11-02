@@ -1518,7 +1518,7 @@ main>div{
     position: relative;
     overflow: hidden;
     height: 90%;
-    padding: 2%;
+    padding: 2% 5%;
     width: 100%;
 
 }
@@ -1582,7 +1582,7 @@ main>div{
 
 .recommendImg-wrapper{
 	height: 200px;
-    width: 330px;
+    width: 260px;
     overflow : hidden;	
     
     border : 2px solid white;
@@ -1591,6 +1591,7 @@ main>div{
 	display : flex;
     justify-content: center;
     align-items: center;
+    padding-top : 40px;
     
     position: relative;
 }
@@ -1611,9 +1612,7 @@ main>div{
 }
 
 .recommendImg-wrapper img {
-	
-	height : 100%;
-	width : 100%;
+	width :100%;
 
     margin-top: 0;
 }

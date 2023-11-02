@@ -204,6 +204,21 @@ public class MovieDetailController {
 		return service.updatefavorite(paramMap);
 	}
 	
+	/** 댛글 조회 (ajax) 
+	 * @param cinemaName
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping(value = "/comment/select", produces = "application/json; charset=UTF-8")
+	public List<Movie> commentMovieList( int movieNo) {
+		
+		List<Movie> result = service.commentMovieList(movieNo);
+		
+		System.out.println("비동기 조회 " + result);
+		
+		return result;
+	}	
+	
 	
 	
 }
