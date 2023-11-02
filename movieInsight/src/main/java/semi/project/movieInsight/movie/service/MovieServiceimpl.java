@@ -47,8 +47,7 @@ public class MovieServiceimpl implements MovieService{
 
 	@Override
 	public List<Movie> findMoviesByCategory(String category) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findMoviesByCategory(category);
 	}
 
 
@@ -67,6 +66,14 @@ public class MovieServiceimpl implements MovieService{
 		return null;
 	}
 
+
+
+	@Override
+	public Movie selectMovie(int movieNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+ 
 	
 
 }
