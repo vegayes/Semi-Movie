@@ -51,7 +51,7 @@
                               			</form>  
 		                          <i class="input-icon uil uil-lock-alt"></i>
 		                        </div>
-                        			<a href="/member/login_signUp" class="btn mt-4">BACK</a>
+                        			<button onclick="history.back()" value="뒤로가기" class="btn mt-4">BACK</button>
                          	</c:when> 
                         		<c:otherwise>
 								    <h1>비밀번호 찾기 결과</h1>

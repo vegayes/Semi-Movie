@@ -35,6 +35,7 @@ public class MainController {
 	public String test1() {
 
 
+
 		return "redirect:movie";
 		//return "/member/login_signUp";
 	}
@@ -67,13 +68,6 @@ public class MainController {
 
 	        return "movie/home-page";
 	    }
-	 @GetMapping("/movieDetail")
-	 public String movieDetail(@RequestParam("movieNo") int movieNo, Model model) {
-	     Movie movie = movieService.selectMovie(movieNo);
-	     model.addAttribute("movie", movie);
-	     return "movie/detail-page";
-	 }
-
 
 
 	@GetMapping("/cinema")

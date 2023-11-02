@@ -35,8 +35,8 @@ public class MemberController {
 	@GetMapping("/loginPage")
 	public String moveLogin() {
 		
-//		return "member/login_signUp";
-		return "redirect:/member/login";
+		return "member/login_signUp";
+//		return "redirect:/member/login";
 	}
 	
 	/** 임시 로그인 페이지
@@ -55,11 +55,12 @@ public class MemberController {
 		System.out.println("로그인 진행 시작");
 		
 		Member inputMember = new Member();
-		// ------- 임시 로그인 설정 ------------
-		inputMember.setMemberId("movieInsight");
-		inputMember.setMemberPw("movieInsight");
+//		// ------- 임시 로그인 설정 ------------
+//		inputMember.setMemberId("movieInsight");
+//		inputMember.setMemberPw("movieInsight");
 		// ------------------------------------------
-		
+		inputMember.setMemberId("id");
+		inputMember.setMemberPw("pw");
 		
 		// 로그인 서비스 호출
 		Member loginMember = service.login(inputMember);
@@ -92,6 +93,8 @@ public class MemberController {
 			cookie.setPath("/movieInsight"); // localhost:/ 이하 모든 주소????
 			
 			System.out.println("loginMember" + loginMember.getMemberId());
+			
+			System.out.println("성별 : " + loginMember.getMemberGender());
 
 			resp.addCookie(cookie);
 			
@@ -105,6 +108,51 @@ public class MemberController {
 		}
 		
 		return path;
+	}
+	
+	
+	
+	// 로그인
+	@PostMapping("login")
+	public String login(Member inputMember,Model model,
+			@RequestParam(value="saveId", required = false) String saveId) {
+		
+		
+			Member loginMember = service.login(inputMember);
+			
+			String path = "redirect:";
+			if(loginMember != null) {
+				
+				path += "/";
+				
+				model.addAttribute("loginMember", loginMember);
+				
+				Cookie cookie = new Cookie("saveId", loginMember.getMemberId());
+			
+				if(saveId != null) { // 체크가 되었을 때
+					
+					// 한 달(30일) 동안 유지되는 쿠키 생성
+					cookie.setMaxAge(60*60*24*30); // 초단위 지정
+					
+					
+					
+					
+				} else { // 체크가 안되었을 때 
+					
+					// 0초 동안 유지되는 쿠키 생성
+					// -> 기존에 쿠기가 지정되어있었다면 해당 쿠키를 삭제
+					cookie.setMaxAge(0);
+					
+				}
+				
+				cookie.setPath("/");
+				
+		
+				
+				
+			}
+		
+		return "redirect:/";
 	}
 	
 	
@@ -134,7 +182,7 @@ public class MemberController {
 		String message = null;
 		
 		if(result > 0) {
-			path += "movie/home-page";
+			//path += "movie/home-page";
 			
 			message = inputMember.getMemberNickname() + "님 가입성공!";
 		} else {
@@ -144,7 +192,7 @@ public class MemberController {
 		
 		ra.addFlashAttribute("message", message);
 		
-		return path;
+		return "redirect:/member/loginPage";
 		
 		
 	}
@@ -159,11 +207,15 @@ public class MemberController {
 	
 }
 	
+	// 아이디 중복검사
 	@ResponseBody
-	@PostMapping("/idCheck")
-	public int IdCheck(String id_check) {
-		int result = service.idCheck(id_check);
+	@GetMapping("/idCheck")
+	public int IdCheck(String memberId) {
+		System.out.println(memberId);
+		int result = service.idCheck(memberId);
 		return result;
+		
+	
 	}
 	
 	@ResponseBody

@@ -10,7 +10,7 @@
 		<result property="memberPw" column="MEMBER_PW" />
 		<result property="memberEmail" column="MEMBER_EMAIL" />
 		<result property="memberNickname" column="MEMBER_NICKNAME" />
-		<result property="memberGender" column="MEMBER_GENDER" />
+		<result property="memberGender" column="MEMEBER_GENDER" />
 		<result property="memberProfile" column="MEMBER_PROFILE" />
 		<result property="memberEnrollDate" column="MEMBER_ENROLL_DATE" />
 		<result property="memberDelYN" column="MEMBER_DEL_YN" />
@@ -38,11 +38,11 @@
 	</select>
 	
 	
-	
-	<select id="checkId" parameterType="java.lang.String">
+	<!--아이디 중복확인  -->
+	<select id="checkId" resultType="java.lang.Integer" >
 		SELECT COUNT(*) 
 		FROM MEMBER
-		WHERE MEMBER_ID = #{id_check}
+		WHERE MEMBER_ID = #{memberId}
 	</select>
 	
 	<!--  비밀번호 찾기에서 ==> 초기화 시키거나 랜덤 수로 다시 지정한 후 알려주기  -->

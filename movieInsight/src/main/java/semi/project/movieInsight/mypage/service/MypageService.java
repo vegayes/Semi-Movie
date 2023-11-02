@@ -92,6 +92,14 @@ public interface MypageService {
 	 */
 	int updateCinemaComment(Cinema cinema);
 
+	/** 즐겨찾기 선택 된 값 삭제하기 ( 영화 ) 
+	 * @param favoriteDelMovie
+	 * @return
+	 */
+	int delFavoriteMovie(Map<String, Object> favoriteDelMovie);
+
+
+
 	
 	// 댓글 삭제
 	
