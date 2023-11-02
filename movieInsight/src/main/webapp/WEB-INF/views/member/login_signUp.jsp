@@ -57,47 +57,48 @@
                               >Forgot ID?</a
                             >
                           </p>
-                          <input
-                            type="email"
-                            name="logemail"
-                            class="form-style"
-                            placeholder="Your Email"
-                            id="logemail"
-                            autocomplete="off"
-                          />
-                          <i class="input-icon uil uil-at"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <p class="mb-0 mt-4 text-center">
-                            <a href="/movieInsight/find/findPW" class="link"
-                              >Forgot PW?</a
-                            >
-                          </p>
-                          <input
-                            type="password"
-                            name="logpass"
-                            class="form-style"
-                            placeholder="Your Password"
-                            id="logpass"
-                            autocomplete="off"
-                          />
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <label
-                          style="
-                            color: black;
-                            margin-bottom: 12px;
-                            display: block;
-                          "
-                        >
-                          <input
-                            type="checkbox"
-                            style="position: relative; left: 0"
-                          />
-                          Remember ID
-                        </label>
-
-                        <a href="#" class="btn mt-4">LOGIN</a>
+                          <form action="/movieInsight/member/login"  method="post" name="login-form" id="loginFrm">
+	                          <input
+	                            name="memberId"
+	                            class="form-style"
+	                            placeholder="Your ID"
+	                            id="memberId"
+	                            autocomplete="off"
+	                          />
+	                          <i class="input-icon uil uil-at"></i>
+	                        </div>
+	                        <div class="form-group mt-2">
+	                          <p class="mb-0 mt-4 text-center">
+	                            <a href="/movieInsight/find/findPW" class="link"
+	                              >Forgot PW?</a
+	                            >
+	                          </p>
+	                          <input
+	                            type="password"
+	                            name="memberPw"
+	                            class="form-style"
+	                            placeholder="Your Password"
+	                            id="memberPw"
+	                            autocomplete="off"
+	                          />
+	                          <i class="input-icon uil uil-lock-alt"></i>
+	                        </div>
+	                        <label
+	                          style="
+	                            color: black;
+	                            margin-bottom: 12px;
+	                            display: block;
+	                          "
+	                        >
+	                          <input
+	                            type="checkbox"
+	                            style="position: relative; left: 0"
+	                          />
+	                          Remember ID
+	                        </label>
+	                         <button type="submit"class="btn mt-4">LOGIN</button>
+						</form>
+                       
                       </div>
                     </div>
                   </div>
@@ -113,10 +114,10 @@
 			                            name="memberId"
 			                            class="form-style"
 			                            placeholder="your Id"
-			                            id="member_Id"
+			                            id="memberId"
 			                            autocomplete="off"
 			                          />
-			                          <button onclick="return false;" type="button" id="idCheck">중복확인</button>
+			                          <button type="button" id="idCheck">중복확인</button>
 			                          <p id="messageDiv_1"></p>
 			                          <i class="input-icon uil uil-user"></i>
 			                        </div>
@@ -195,8 +196,6 @@
 			                        </div>
                               <button id="signUpBut" class="btn mt-4 blue">SIGN UP</button>
 			                    </form>    
-                        
-                        
                       </div>
                     </div>
                   </div>
