@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
+import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.movie.dto.Movie;
 
 public interface ManagerService {
@@ -59,6 +60,8 @@ public interface ManagerService {
 	int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath, List<String> actorNamesList, List<String> directorNamesList) throws Exception ;
 
 	int selectMovieNo(String movieTitle);
+
+	int insertPromotion(Promotion promotion, MultipartFile image, String filePath) throws Exception;
 
 	
 	
