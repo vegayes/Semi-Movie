@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.member.service.MemberServiceimpl;
@@ -135,7 +136,8 @@ public class ManagerDAO {
 	
 	
 	
-	/** 영화 새로 등록 DAO : 
+	/** 영화 새로 등록 DAO :
+	 * 1. 감독을 insert  2. 배우를 insert 3.영화no 가져움 4. 배우와 감독의 castingNo 가져움 5. MOVIE_CASTING 에 INSERT
 	 * @param movieInfo
 	 * @param directorNamesList 
 	 * @param actorNamesList 
@@ -218,6 +220,45 @@ public class ManagerDAO {
 	public List<Integer> selectCastingNo(List<String> castingList) {
 		
 		return sqlSession.selectList("movieMapper.selectCastingNo", castingList);
+	}
+
+	
+	
+	
+	/** 특별관 추가
+	 * @param promotionMap
+	 * @return
+	 */
+	public int insertPromotion(Map<String, Object> promotionMap) {
+		//System.out.println("insertPromotionDAO 에서 가져온 promotionMap : " + promotionMap);
+		return sqlSession.insert("promotionMapper.insertPromotion", promotionMap);
+	}
+
+	
+	
+	
+	
+	/** 이벤트 추가 
+	 * @param eventMap
+	 * @return
+	 */
+	public int insertEvent(Map<String, Object> eventMap) {
+
+		return sqlSession.insert("promotionMapper.insertEvent", eventMap);
+	}
+
+	
+	
+	public int deleteEvent(int eventPRNo) {
+		
+		return sqlSession.delete("promotionMapper.deleteEvent", eventPRNo);
+	}
+
+	
+	
+	public int deletePromotion(int promotionNo) {
+		
+		return sqlSession.delete("promotionMapper.deletePromotion", promotionNo);
 	}
 
 	

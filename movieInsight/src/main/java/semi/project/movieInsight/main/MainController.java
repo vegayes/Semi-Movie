@@ -65,7 +65,6 @@ public class MainController {
 	        
 	        System.out.println("범죄 : " + crimeMovies);
 	
-
            model.addAttribute("pageType","movie");
 
 	        return "movie/home-page";

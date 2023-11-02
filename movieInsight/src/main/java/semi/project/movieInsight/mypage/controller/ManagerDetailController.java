@@ -4,7 +4,9 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.service.ManagerService;
@@ -190,29 +194,102 @@ public class ManagerDetailController {
 			@RequestParam(value = "img", required = false) MultipartFile Image,
 			@RequestParam("title") String title,
 			@RequestParam("url") String url,
-			@RequestParam("content") String content
+			@RequestParam("content") String content,
+			@RequestParam("cinemaNoList") List<Integer> cinemaNoList
+			
 			) throws Exception{
 		
 		Promotion promotion  = new Promotion();
 		promotion.setPromotionType(title);
 		promotion.setPromotionURL(url);
 		promotion.setPromotionContent(content);
+		promotion.setPromotionImg(Image.getOriginalFilename());
+		
+		Map<String,Object> promotionMap = new HashMap<String, Object>();
+		promotionMap.put("promotion", promotion);
+		promotionMap.put("cinemaNoList", cinemaNoList);
 		
 		String webPath = "/resources/images/cinema/";
 		String filePath = session.getServletContext().getRealPath(webPath);
 		
-		int result = service.insertPromotion(promotion,Image,filePath);
 		
+		int result = service.insertPromotion(Image,filePath,promotionMap);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message","등록 성공");
+		}else {
+			ra.addFlashAttribute("message","등록 실패");
+		}
+
+		return "redirect:/manager/promotion";
+	}
+	
+		
+	@PostMapping("insertEvent")
+	public String insertEvent(RedirectAttributes ra, HttpSession session,
+			@RequestParam(value = "img", required = false) MultipartFile Image,
+			@RequestParam("title") String title,
+			@RequestParam("url") String url,
+			@RequestParam("content") String content,
+			@RequestParam("cinemaNoList") List<Integer> cinemaNoList
+			) throws Exception{
+		
+		Event event  = new Event();
+		event.setEventTitle(title);
+		event.setEventURL(url);
+		event.setEventContent(content);
+		event.setEventImg(Image.getOriginalFilename());
+		
+		System.out.println("cinemaNoList이벤트 : " + cinemaNoList);
+		Map<String,Object> eventMap = new HashMap<String, Object>();
+		eventMap.put("event", event);
+		eventMap.put("cinemaNoList", cinemaNoList);
+		
+		String webPath = "/resources/images/cinema/";
+		String filePath = session.getServletContext().getRealPath(webPath);
+		
+		int result = service.insertEvent(eventMap,Image,filePath);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message","등록 성공");
+		}else {
+			ra.addFlashAttribute("message","등록 실패");
+		}
+
 		return "redirect:/manager/promotion";
 	}
 	
 	
+	@GetMapping("deleteEvent/{eventPRNo:^[^0]\\d*}") // 정수 숫자만
+	public String deleteEvent (@PathVariable("eventPRNo") int eventPRNo, Model model,
+			RedirectAttributes ra) {
+		
+		int result = service.deleteEvent(eventPRNo);
+		if(result > 0) {
+			ra.addFlashAttribute("message","삭제에 성공했습니다");
+		}else {
+			ra.addFlashAttribute("message","삭제에 실패했습니다");
+		}
+		
+		return "redirect:/manager/promotion";
+		
+	}
 	
 	
-	
-	
-	
-	
+	@GetMapping("deletePromotion/{promotionNo:^[^0]\\d*}") // 정수 숫자만
+	public String deletePromotion (@PathVariable("promotionNo") int promotionNo, Model model,
+			RedirectAttributes ra) {
+		
+		int result = service.deletePromotion(promotionNo);
+		if(result > 0) {
+			ra.addFlashAttribute("message","삭제에 성공했습니다");
+		}else {
+			ra.addFlashAttribute("message","삭제에 실패했습니다");
+		}
+		
+		return "redirect:/manager/promotion";
+		
+	}
 	
 	
 	

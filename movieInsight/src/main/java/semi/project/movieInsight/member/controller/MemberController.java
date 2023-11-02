@@ -59,8 +59,8 @@ public class MemberController {
 //		inputMember.setMemberId("movieInsight");
 //		inputMember.setMemberPw("movieInsight");
 		// ------------------------------------------
-		inputMember.setMemberId("id");
-		inputMember.setMemberPw("pw");
+		inputMember.setMemberId("movieInsight");
+		inputMember.setMemberPw("movieInsight");
 		
 		// 로그인 서비스 호출
 		Member loginMember = service.login(inputMember);

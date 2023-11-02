@@ -173,10 +173,20 @@
 	
 	<!-- 관리자-영화 페이지에서 영화 목록 조회 -->
 	<select id="selectManagerMovieList" resultMap = "movie_rm">
-		SELECT MOVIE_NO,MOVIE_TITLE,MOVIE_GENRE,NVL2('NULL',0,MOVIE_GRADE) MOVIE_GRADE,MOVIE_RUNNING_TIME  
-		FROM MOVIE m 
-		LEFT JOIN MOVIE_EVALUATION me USING (MOVIE_NO)
-		WHERE MOVIE_DEL_YN = 'N'
+	SELECT 
+	    m.MOVIE_NO,
+	    m.MOVIE_TITLE,
+	    m.MOVIE_GENRE,
+	    NVL(ROUND(AVG(me.MOVIE_GRADE), 1), 0) AS MOVIE_GRADE, 
+	    m.MOVIE_RUNNING_TIME
+	FROM 
+	    Movie m 
+	LEFT JOIN 
+	    MOVIE_EVALUATION me ON m.MOVIE_NO = me.MOVIE_NO
+	WHERE 
+	    m.MOVIE_DEL_YN = 'N'
+	GROUP BY 
+	    m.MOVIE_NO, m.MOVIE_TITLE, m.MOVIE_GENRE, m.MOVIE_RUNNING_TIME
 	</select>
 	
 
@@ -213,7 +223,7 @@
 	</select>
 	
 	
-
+	<!-- 감독,배우,영화-캐스팅 테이블에 insert 구문 -->
 	
 	<insert id="insertDirectors" parameterType="java.util.List">
     	INSERT INTO CASTING (CASTING_NO, CASTING_NAME, CASTING_URL, CASTING_CATEGORY)

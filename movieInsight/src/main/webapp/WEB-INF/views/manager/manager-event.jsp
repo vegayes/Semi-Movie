@@ -64,14 +64,9 @@
 	                                    	
 	                                        ${promotion.promotionType}
 	                                    </td>
-	                                    <td class = "event-update">
-	                                        <div onclick=updatePromotion(${promotion.promotionNo})>
-	                                            수정
-	                                        </div>
-	                                    </td>
 	                                    <td class = "event-del">
 	                                        <div>
-	                                            삭제
+	                                            <a href="/movieInsight/managerDetail/deletePromotion/${promotion.promotionNo}" class="delete-button">삭제</a>
 	                                        </div>
 	                                    </td>
 	                                </tr>
@@ -105,14 +100,10 @@
 	                                    <td class = "event-title">
 	                                        ${event.eventTitle}
 	                                    </td>
-	                                    <td class = "event-update">
-	                                        <div onclick=updateEvent(${event.eventPRNo})>
-	                                            수정
-	                                        </div>
-	                                    </td>
+	                                   
 	                                    <td class = "event-del">
 	                                        <div>
-	                                            삭제
+	                                            <a href="/movieInsight/managerDetail/deleteEvent/${event.eventPRNo}" class="delete-button">삭제</a>
 	                                        </div>
 	                                    </td>
 	                                </tr>
@@ -130,7 +121,7 @@
 			<div id = "manager-event-update-box" style="display : none;">
 					<div id = "manager-event-update-content">
 						<div id = "event-modal-close" >&times;</div>
-						<form method="POST" encType="multipart/form-data">   
+						<form   method="POST" encType="multipart/form-data" id="updateform">   
 							<section class ="title-container">
 								이벤트 수정
 							</section>
@@ -141,9 +132,9 @@
 										<tr>
 											<th> 홍보 카테고리</th>
 											<td>
-												<select name="menu" >
+												<select name="menu" id="menuSelect">
 													<option value="none">=== 카테고리 선택 ===</option>
-													<option value="privat-cinema">특별관</option>
+													<option value="promotion-cinema">특별관</option>
 													<option value="event">이벤트</option>
 												</select>
 											</td>
@@ -166,7 +157,25 @@
 												
 											</td>
 										</tr>
-				
+										
+										
+										<tr class = "cinema-content">
+											<th>해당 영화관</th>
+											
+											<td>
+												<div id="cinemaCheckBox">
+													<c:forEach items="${cinemaList}" var = "cinema">
+														<div class = "checkBox-container">
+															<p>${cinema.cinemaName}</p>
+															<input type="checkbox"  value="${cinema.cinemaNo}" class = "checkBox" name="cinemaNoList">
+														</div>
+
+													</c:forEach>
+												</div>
+											</td>
+
+										</tr>
+
 										<tr>
 											<th> 사진 </th>
 											<td>
@@ -188,11 +197,13 @@
 						
 							<section class = "event-btn-container">
 								<div class ="btn">
-									<button type="submit">수정하기</button>
+									<button type="submit" id="updateButton">추가하기</button>
 								</div>
+								
 								<div class ="btn">
-									취소하기
+									<button type="submit" id="update-del-button">취소하기</button>
 								</div>
+								
 							</section>                             
 						</form>  
 					<label  id = "event-modal-back"></label>
@@ -201,8 +212,58 @@
 				
 <%-- ============================================================  이벤트/특별관 수정 (팝업) 끝 ============================================================ --%>
 	
+	<script>
+		// 이벤트 리스너가 설정되는 지점을 확인하세요.
+		document.addEventListener("DOMContentLoaded", function () {
+			var updateButton = document.getElementById("updateButton");
+			var menuSelect = document.getElementById("menuSelect");
+			var updateForm = document.getElementById("updateform");
+			
+			if(updateButton) {
+				// 메뉴 선택에 따라 동작을 변경합니다.
+				menuSelect.addEventListener("change", function(){
+					// 이벤트 리스너 내부에서 변수를 선언해야 합니다.
+					var value = this.value;
+					console.log(value);
+				});
+
+				updateButton.addEventListener("click", function(event) {
+					event.preventDefault(); // 폼의 기본 제출 동작을 방지합니다.
+					console.log("수정버튼 눌림");
+					// 메뉴 선택 값에 접근하여 해당 값에 따라 action 설정
+					var selectedValue = menuSelect.value;
+
+					if (selectedValue === "promotion-cinema") {
+						console.log("영화관 홍보");
+						updateForm.action = "/movieInsight/managerDetail/insertPromotion";
+					} else if (selectedValue === "event") {
+						console.log("이벤트 홍보");
+						updateForm.action = "/movieInsight/managerDetail/insertEvent";
+					}
+
+					// 변경된 action을 가진 폼을 제출합니다.
+					updateForm.submit();
+				});
+			}   
+		});
+	</script>
 
 
+
+
+
+
+
+
+			<c:if test="${not empty message}">
+					
+				<script>
+					// EL/JSTL 구문이 먼저 해석
+					// 문자열의 경우 따옴표가 없는 상태이니 옆에 붙여줘야함.
+					alert('${message}') // ${message}
+				</script>
+
+			</c:if>
 
             <script src="/movieInsight/resources/js/manager/manager-event.js"></script>
         </main>	

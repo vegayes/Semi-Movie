@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.movie.dto.Movie;
@@ -213,16 +214,17 @@ public class ManagerServiceImpl implements ManagerService{
 
 	
 	
+	///===============================특별관======================================================///////////
 	
 	/**
-	 * 특별관 홍보 
+	 * 관리자가 특별관 홍보 추가
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int insertPromotion(Promotion promotion, MultipartFile image, String filePath) throws Exception{
-		promotion.setPromotionImg(image.getOriginalFilename());
-		int result = 0;
-				//dao.insertMovie(promotion);
+	public int insertPromotion(MultipartFile image, String filePath, Map<String, Object> promotionMap) throws Exception{
+		
+		
+		int result = dao.insertPromotion(promotionMap);
 		
 		if(result > 0) { 
 			
@@ -238,6 +240,69 @@ public class ManagerServiceImpl implements ManagerService{
 		
 		return result;
 	}
+	
+	
+	
+	
+	
+	/**
+	 * 관리자가 이벤트 정보 추가
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertEvent(Map<String, Object> eventMap, MultipartFile image, String filePath) throws Exception{
+		
+		int result = dao.insertEvent(eventMap);
+		
+		if(result > 0) { 
+			
+			if(image.getSize() != 0) {
+				image.transferTo(new File(filePath + image.getOriginalFilename()));
+			}		
+			
+		}else {
+			 throw new RuntimeException("Promotion insert failed ");
+		}
+		
+		return result;
+	}
+
+	
+	/**
+	 * 이벤트 삭제 메서드
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int deleteEvent(int eventPRNo) {
+
+		 int result = dao.deleteEvent(eventPRNo);
+
+		    if (result > 0) {
+		        return result;
+		    } else {
+		       
+		        throw new RuntimeException("event deletion failed for cinemaNo: " + eventPRNo);
+		    }
+	}
+
+	
+	/**
+	 * 이벤트 삭제 메서드
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int deletePromotion(int promotionNo) {
+
+		 int result = dao.deletePromotion(promotionNo);
+
+		    if (result > 0) {
+		        return result;
+		    } else {
+		       
+		        throw new RuntimeException("promotion deletion failed for promotionNo: " + promotionNo);
+		    }
+	}
+
 	
 	
 	

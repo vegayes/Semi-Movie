@@ -149,7 +149,7 @@ main{
     height: 700px;
 
     display: flex;
-
+    
     overflow: hidden scroll;
 
 
@@ -249,4 +249,47 @@ tr >td:not(:nth-of-type(3))*/{
 
 .event-del > div{
     background-color: red;
+}
+
+
+.cinema-content > th{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top : 20px;
+}
+
+#cinemaCheckBox {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+.checkBox-container{
+    flex-basis: 50%;
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.checkBox-container > p{
+    flex-basis : 90%;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.checkBox-container > input {
+    flex-basis: 10%;
+    font-size : 10px;
+
 }
