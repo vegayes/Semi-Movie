@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieService;
@@ -34,43 +35,44 @@ public class MainController {
 	public String test1() {
 
 
-		//return "redirect:movie";
-		return "/member/login_signUp";
+		return "redirect:movie";
+		//return "/member/login_signUp";
 	}
 
 	
+	 @GetMapping("/movie")
+	    public String getMovies(Model model) {
+	        // 다양한 장르의 영화를 조회합니다.
+	        List<Movie> popularMovies = movieService.findMoviesByCategory("인기순");
+	        List<Movie> actionMovies = movieService.findMoviesByCategory("액션");
+	        List<Movie> crimeMovies = movieService.findMoviesByCategory("범죄");
+	        List<Movie> animationMovies = movieService.findMoviesByCategory("애니메이션");
+	        List<Movie> sfMovies = movieService.findMoviesByCategory("SF");
+	        List<Movie> comedyMovies = movieService.findMoviesByCategory("코미디");
+	        List<Movie> romanceMovies = movieService.findMoviesByCategory("로맨스");
+            
+	        
+	        
+	        model.addAttribute("popularMovies", popularMovies);
+	        model.addAttribute("actionMovies", actionMovies);
+	        model.addAttribute("crimeMovies", crimeMovies);
+	        model.addAttribute("animationMovies", animationMovies);
+	        model.addAttribute("sfMovies", sfMovies);
+	        model.addAttribute("comedyMovies", comedyMovies);
+	        model.addAttribute("romanceMovies", romanceMovies);
+	        
+	        
+	        System.out.println("범죄 : " + crimeMovies);
+	        
 
-	  @GetMapping("/movie")
-	    public String getMovies(Model model){
-		  // 모든 영화 정보 가져오기
-	        List<Movie> movieList = movieService.findAllMovies();
-	     // 가져온 영화 정보  model에 추가  
-	        model.addAttribute("movieList", movieList);
-  
-       model.addAttribute("pageType","movie");
 	        return "movie/home-page";
 	    }
-
-	    @GetMapping("/movie/{genre}")
-	    public String getMoviesByGenre(@PathVariable String genre, Model model) {
-	        // 주어진 장르에 해당하는 영화 정보를 가져옵니다.
-	        List<Movie> movieList = movieService.findMoviesByCategory(genre);
-	        
-	        model.addAttribute("movieList", movieList);
-	        
-	        return "movie/home-page";
-	    }
-
-	    @GetMapping("/movieInsight/movie/{movieNo}")
-	    public String getMovieDetail(@PathVariable Long movieNo, Model model) {
-	    	
-	    	 //  movieNo에 해당하는 영화의 상세 정보를 가져오기
-	        Movie movie = movieService.findMovieById(movieNo);
-	        //  movieNo에 해당하는 영화의 상세 정보를 가져오기
-	        model.addAttribute("movie", movie);
-	        //  movieNo에 해당하는 영화의 상세 정보 가져오기
-	        return "movie/movie-detail-page";
-	    }
+	 @GetMapping("/movieDetail")
+	 public String movieDetail(@RequestParam("movieNo") int movieNo, Model model) {
+	     Movie movie = movieService.selectMovie(movieNo);
+	     model.addAttribute("movie", movie);
+	     return "movie/detail-page";
+	 }
 
 
 
