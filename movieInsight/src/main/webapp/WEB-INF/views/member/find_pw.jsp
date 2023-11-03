@@ -16,7 +16,9 @@
       <div class="container">
         <div class="row full-height justify-content-center">
           <div class="col-12 text-center align-self-center py-5">
-            <img src="" style="margin: 24px auto; display: flex" />
+             <a href="/movieInsight/movie">
+        	  <img src="/movieInsight/resources/images/common/logo.png" style="margin: 24px auto; display: flex" />
+         	 </a>  
             <div class="section pb-5 pt-5 pt-sm-2 text-center">
               <div class="card-3d-wrap mx-auto">
                 <div class="card-3d-wrapper">
@@ -57,7 +59,7 @@
 								    <h1>비밀번호 찾기 결과</h1>
 								    <p>${message}</p>
 								    <a href="/movieInsight/find/findPW">다시 비밀번호 찾기</a>
-								    <a href="/member/login_signUp">로그인 페이지로</a>
+								    <a href="/movieInsight/member/loginPage">로그인 페이지로</a>
 								    <c:remove var="message" scope="session"/>
 								</c:otherwise>
 					    </c:choose>

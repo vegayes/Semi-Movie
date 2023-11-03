@@ -38,8 +38,7 @@ public class MemberController {
 		return "member/login_signUp";
 //		return "redirect:/member/login";
 	}
-	
-	
+
 	
 	// 로그인
 	@PostMapping("login")

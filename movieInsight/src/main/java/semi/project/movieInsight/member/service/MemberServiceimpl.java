@@ -27,9 +27,10 @@ public class MemberServiceimpl implements MemberService{
 	@Override
 	public int signUp(Member inputMember) {
 		
+
 		String encPw = bcrypt.encode(inputMember.getMemberPw());
 		inputMember.setMemberPw(encPw);
-		
+	
 		return dao.signUp(inputMember);
 	}
 
@@ -48,7 +49,7 @@ public class MemberServiceimpl implements MemberService{
 	}
 
 	/**
-	 * 임시 로그인 
+	 *로그인 
 	 */
 	@Override
 	public Member login(Member inputMember) {
@@ -56,7 +57,34 @@ public class MemberServiceimpl implements MemberService{
 		logger.debug("inputMember : " + inputMember.getMemberId());
 		//logger.warn("경고");
 		//logger.error("오류");
-		return dao.login(inputMember);
+		Member loginMember = dao.login(inputMember);
+		
+//		if(loginMember != null) { // 아이디가 일치하는 회원이 조회된 경우
+//			
+//			// 입력한 pw,  암호화된 pw 같은지 확인
+//			
+//			// 같을 경우
+//			if(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw())) {
+//				
+//				// 비밀번호를 유지하지 않기 위해서 로그인 정보에서 제거
+//				loginMember.setMemberPw(null);
+//			
+//			} else { // 다를경우
+//				loginMember = null;
+//			}
+//			
+//			
+//		} 
+		System.out.println("loginMember : "+loginMember.getMemberPw());
+		
+		System.out.println(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw()));
+	
+		
+		
+
+		return loginMember;
+		
+		
 	}
 
 	@Override

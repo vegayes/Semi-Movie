@@ -29,10 +29,9 @@
       <div class="container">
         <div class="row full-height justify-content-center">
           <div class="col-12 text-center align-self-center py-5">
-            <img
-              src="/movieInsight/resources/images/common/logo.png"
-              style="margin: 0 auto; display: flex; margin-top: 24px"
-            />
+            <a href="/movieInsight/movie">
+        	  <img src="/movieInsight/resources/images/common/logo.png" style="margin: 24px auto; display: flex" />
+         	 </a>  
             <div class="section pb-5 pt-5 pt-sm-2 text-center">
               <h6 class="mb-0 pb-3">
                 <span><label for="reg-log">LogIn</label> </span
