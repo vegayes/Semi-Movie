@@ -201,4 +201,29 @@ public class CinemaDetailController {
 		return result;
 	}	
 	
+	
+	
+	/*메뉴 평점 삽입*/
+	@ResponseBody
+	@GetMapping(value = "/menu/insert", produces = "application/json; charset=UTF-8" )	
+	public int insertMenuGrade(@SessionAttribute(value = "loginMember", required =false) Member loginMember,
+						 int menuGrade, String cinemaName, String menuSelect , 
+						 Menu menu) {
+		
+		
+		System.out.println("menuGrade" + menuGrade);
+		System.out.println("cinemaName" + cinemaName);
+		System.out.println("menuSelect" + menuSelect);
+		
+		menu.setMenuName(menuSelect);
+		menu.setMenuGrade(menuGrade);
+		menu.setCinemaName(cinemaName);
+		menu.setMemberNo(loginMember.getMemberNo());
+		
+		int result = service.insertMenuGrade(menu);
+		
+		System.out.println("result : " + result);
+		return 0;
+	} 	
+	
 }

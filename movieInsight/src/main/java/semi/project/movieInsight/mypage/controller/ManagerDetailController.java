@@ -176,6 +176,9 @@ public class ManagerDetailController {
 		if(result > 0) {
 			ra.addFlashAttribute("message","등록 성공");
 			movieNo = service.selectMovieNo(movieInfo.getMovieTitle());
+			
+			System.out.println(movieNo);
+			
 			return "redirect:/manager/movie";
 		}else {
 			ra.addFlashAttribute("message","등록 실패");
