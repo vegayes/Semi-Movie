@@ -60,47 +60,20 @@
 				<span class="section_title">직원 친절도</span>
 				<div class="swiper swiper-ls-2">
 					<div class="swiper-wrapper">
-						<ul class="kind_wrapper swiper-slide">
-							<li class="kind_item"><span>영화관 1</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 2</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 3</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 4</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 5</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
+						<ul class="kind_wrapper swiper-slide" id="cinemaList" >
+							<c:forEach var="cinema" items="${cinemaStaff}" varStatus="loop">
+								<c:if test="${loop.index < 5}">
+									<li class="kind_item"><span>${cinema.cinemaName}</span>
+										<div>
+											<button>😀</button>
+											<button>😀</button>
+											<button>😀</button>
+											<button>😀</button>
+											<button>😀</button>
+										</div>
+									</li>
+								</c:if>
+							</c:forEach>
 						</ul>
 						<ul class="kind_wrapper swiper-slide">
 							<li class="kind_item"><span>영화관 1</span>
@@ -111,73 +84,9 @@
 									<button>😀</button>
 									<button>😀</button>
 								</div></li>
-							<li class="kind_item"><span>영화관 2</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 3</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 4</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 5</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
 						</ul>
 						<ul class="kind_wrapper swiper-slide">
-							<li class="kind_item"><span>영화관 1</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
 							<li class="kind_item"><span>영화관 2</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 3</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 4</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 5</span>
 								<div>
 									<button>😀</button>
 									<button>😀</button>

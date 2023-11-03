@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "staffMapper">
+	
+	
+	<resultMap type="Cinema" id="cinema_rm">
+		
+		<!-- 자바의 변수와 DB의 컬럼을 매핑해줌 -> 조회 결과 자동으로 저장 -->
+		<!-- DB의 기본 키(PK, 복합키면 여러 개 작성) -->
+		<id property="cinemaNo" column="CINEMA_NO" />
+
+		<!-- DB의 일반 컬럼들 -->
+		<result property="cinemaName" column="CINEMA_NAME" />
+		<result property="cinemaAddress" column="CINEMA_ADDRESS" />
+		<result property="cinemaContact" column="CINEMA_CONTACT" />
+		<result property="cinemaImg" column="CINEMA_IMG" />
+		<result property="cinemaLink" column="CINEMA_LINK" />
+		<result property="cinemaMaxInclude" column="CINEMA_MAX_INCLUDE" />
+		<result property="cinemaDelYN" column="CINEMA_DEL_YN" />
+		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
+		<result property="sumCinemaGrade" column="SUM_CINEMA_GRADE"/>
+		
+		<result property="cinemaCommentNo" column="CINEMA_EV_NO"/>
+		<result property="cinemaCommentContent" column="CINEMA_COMMENT"/>
+		<result property="cinemaCommentDate" column="CINEMA_EV_ENROLL_DATE"/>
+		<result property="cinemaGrade" column="CINEMA_GRADE"/>
+		<result property="cinemaCommentType" column="CINEMA_COMMENT_TYPE"/>
+		
+		
+
+		<result property="cinemaType" column="CINEMA_TYPE" />
+		
+
+		<result property="commentCinemaWriter" column="COMMENT_CINEMA_WRITER"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="writerProfile" column="COMMENT_MEMBER_PROFILE"/>
+
+	</resultMap>
+
+
+
+
+
+
+	<!-- 영화관 정보 조회 -->
+	<select id="selectCinema" resultMap="cinema_rm">
+  		SELECT *
+		FROM "CINEMA"
+  	</select>
+  	
+  	
+  	
+
+  	
+
+</mapper>
