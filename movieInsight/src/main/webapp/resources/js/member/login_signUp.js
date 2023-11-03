@@ -318,51 +318,48 @@ const memberNickname = document.getElementById("member_Nickname");
 const nickMessage = document.getElementById('nickMessage');
 
 // 닉네임이 입력이 되었을 때
-memberNickname.addEventListener("input", ()=>{
-
+memberNickname.addEventListener("input", () => {
     // 닉네임 입력이 되지 않은 경우
-    if(memberNickname.value.trim() == ''){
-        nickMessage.innerText = "한글,영어,숫자로만 2~10글자";
+    if (memberNickname.value.trim() == '') {
+        nickMessage.innerText = "한글, 영어, 숫자로만 2~10글자";
         nickMessage.classList.remove("confirm", "error");
         checkObj.memberNickname = false;
-        memberNickname.value = ""; 
+        memberNickname.value = "";
         return;
     }
 
     // 정규표현식으로 유효성 검사
     const regEx = /^[가-힣\w\d]{2,10}$/;
 
-    if(regEx.test(memberNickname.value)){// 유효
+    if (regEx.test(memberNickname.value)) { // 유효
+        fetch("/movieInsight/member/nickCheck?nick_check=" + memberNickname.value)
+            .then(resp => resp.text()) // 응답 객체를 text로 파싱(변환)
+            .then(count => {
+                if (count == 0) { // 중복 아닌 경우
+                    nickMessage.innerText = "사용 가능한 닉네임 입니다";
+                    nickMessage.classList.add("confirm");
+                    nickMessage.classList.remove("error");
+                    checkObj.memberNickname = true;
+                } else { // 중복인 경우
+                    nickMessage.innerText = "이미 사용중인 닉네임 입니다";
+                    nickMessage.classList.add("error");
+                    nickMessage.classList.remove("confirm");
+                    checkObj.memberNickname = false;
+                }
+            })
+            .catch(err => console.log(err));
 
-        fetch("/movieInsight/member/nickCheck?nick_check="+memberNickname.value)
-        .then(resp => resp.text()) // 응답 객체를 text로 파싱(변환)
-        .then(count => {
-
-            if(count == 0){ // 중복 아닌 경우
-                nickMessage.innerText = "사용 가능한 닉네임 입니다";
-                nickMessage.classList.add("confirm");
-                nickMessage.classList.remove("error");
-                checkObj.memberNickname = true;
-                
-            }else{ // 중복인 경우
-                nickMessage.innerText = "이미 사용중인 닉네임 입니다";
-                nickMessage.classList.add("error");
-                nickMessage.classList.remove("confirm");
-                checkObj.memberNickname = false;
-            }
-        })
-        .catch(err => console.log(err));
-
-        
-
-
-    } else{ // 무효
+    } else { // 무효
         nickMessage.innerText = "닉네임 형식이 유효하지 않습니다";
         nickMessage.classList.add("error");
         nickMessage.classList.remove("confirm");
         checkObj.memberNickname = false;
     }
 
+    // 에러 메시지를 3초 후에 지우는 로직 추가
+    setTimeout(() => {
+        nickMessage.innerText = "";
+    }, 3000); // 3초 후에 에러 메시지를 지웁니다.
 });
     
 
