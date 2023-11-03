@@ -216,6 +216,7 @@
 		SELECT MOVIE_NO 
 		FROM MOVIE
 		WHERE MOVIE_TITLE = #{movieTitle}
+		AND MOVIE_DEL_YN = 'N'
 	</select>
 	
 	
@@ -308,8 +309,6 @@
 			MOVIE_EV_ENROLL_DATE = SYSDATE				
 		WHERE MOVIE_EV_NO = #{movieCommentNo}
 	</update>
-	
-	
 	
 	
 	<!-- 즐겨찾기 ON -->

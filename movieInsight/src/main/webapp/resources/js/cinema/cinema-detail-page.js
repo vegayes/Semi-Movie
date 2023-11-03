@@ -512,6 +512,7 @@ function updateComment(commentNo){
         if(result > 0){
             alert("댓글이 수정되었습니다.");
             selectCinemaCommentList();
+            selectGoodCommentList();
         }else{
             alert("댓글 수정 실패");
         }
@@ -523,8 +524,64 @@ function updateComment(commentNo){
 
 // 메뉴 댓글(댓글 내용은 없음 )
 const menuComment  = document.getElementById("menuCommentSubmit");
+console.log(menuComment);
+
+menuComment.addEventListener("click", e => { 
+
+    console.log("누름");
+
+    const selectMenu = document.getElementById("menuSelect").value;
+
+    console.log("내용보기 :" + selectMenu);
+    console.log("메뉴 :" + menuGrade);
+
+    var menuSelect = document.getElementById('menuSelect');
+
+    menuSelect = menuSelect.options[menuSelect.selectedIndex].value;
+
+    console.log(menuSelect);
+
+    if(memberNo == ""){ // 로그인 X
+        alert("로그인 후 이용해주세요~");
+        return;
+    }
 
 
+    // 2) 댓글 내용이 작성되어있나?
+    if(menuSelect === '' ){ // 미작성인 경우
+        alert("메뉴를 선택한 후  버튼을 클릭해주세요.");
+        selectMenu.focus();
+        return;
+    }else if(menuGrade == 0){
+        alert("1점 이상 체크한 후 버튼을 클릭해주세요.");
+        return;
+    }
+
+    // 4) AJAX를 이용해서 댓글 내용 DB에 저장(INSERT)
+    fetch("/movieInsight/cinemaDetail/menu/insert?menuSelect="+menuSelect + "&cinemaName="+cinemaName + "&menuGrade=" + menuGrade)
+    .then(resp => resp.text())
+    .then(result => {
+        if(result > 0){ // 등록 성공
+            alert("메뉴 평점이 등록되었습니다.");
+
+            cselectMenu.value = ""; // 작성했던 댓글 삭제
+
+
+
+            const commentGradeIcons = document.querySelectorAll('.menuGrade');
+            commentGradeIcons.forEach(icon => icon.classList.remove('fas', 'far'));
+            commentGradeIcons.forEach(icon => icon.classList.add('far'));
+
+            // 시설 등급 초기화
+            resetGrade('menu');
+
+            
+        } else { // 실패
+            alert("메뉴 평점에 실패했습니다...");
+        }
+    })
+    .catch(err => console.log(err));
+});
 
 
 

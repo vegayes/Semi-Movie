@@ -56,5 +56,11 @@ public interface CinemaDetailService {
 	 */
 	Map<String, Menu> getBestMenu(String cinemaName);
 
+	/** 메뉴 평점 삽입 
+	 * @param menu
+	 * @return
+	 */
+	int insertMenuGrade(Menu menu);
+
 
 }
