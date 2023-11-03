@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.main.service.StaffKindService;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieService;
 
@@ -30,6 +32,9 @@ public class MainController {
 	
 	  @Autowired
 	    private MovieService movieService; // 영화 정보를 가져오는 서비스를 주입	
+	  
+	  @Autowired
+	  private StaffKindService service; // 직원친절도
 	
 	@RequestMapping("/")
 	public String test1() {
@@ -72,6 +77,19 @@ public class MainController {
 	        System.out.println("범죄 : " + crimeMovies);
 	
            model.addAttribute("pageType","movie");
+           
+           // 직원친절도를 위한 영화관 이름 번호 찾기
+           List<Cinema> cinemaStaff = service.cinemaStaff();
+		
+           model.addAttribute("cinemaStaff", cinemaStaff);
+           
+           // 영화관 정보 번호를 가져와서 다른 테이블에 있는 각각의 영화관 친절도 평점 조회 
+           
+           System.out.println(cinemaStaff);
+           
+           // 영화관 평점 더하고 평균내기 
+           
+           // 영화관 평점 보내기
 
 	        return "movie/home-page";
 	    }
@@ -86,6 +104,9 @@ public class MainController {
 		
 		return "cinema/cinema-homepage";
 	}
+	
+
+	
 
 
 	}
