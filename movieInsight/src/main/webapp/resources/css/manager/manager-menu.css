@@ -271,9 +271,23 @@ tr > td{
 
 
 
+/* ==========메뉴 팝업===============   */
 
+.cinema-content > th{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top : 20px;
+}
 
+#cinemaCheckBox {
+    display: flex;
+    flex-wrap: wrap;
 
+    justify-content: center;
+    align-items: center;
+}
 
 
 

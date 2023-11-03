@@ -303,6 +303,13 @@ public class ManagerServiceImpl implements ManagerService{
 		    }
 	}
 
+	@Override
+	public int insertMenu(Map<String, Object> menutMap, MultipartFile image, String filePath) throws Exception {
+		
+		
+		return 0;
+	}
+
 	
 	
 	

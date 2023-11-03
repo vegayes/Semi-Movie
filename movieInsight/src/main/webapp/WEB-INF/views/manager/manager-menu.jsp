@@ -30,7 +30,8 @@
         <main>
             <section class = "title-container">
                 <div>
-                    메뉴 관리 
+                    메뉴 관리
+                    <a class="fa-regular fa-square-plus" id = "event-add"></a> 
                 </div>
             </section>
 
@@ -65,11 +66,6 @@
                                             ${popcorn.menuPrice}
                                         </td>
 
-                                        <td class = "menu-update">
-                                            <div onclick=updateMenu(${popcorn.menuNo})>
-                                                수정
-                                            </div>
-                                        </td>
                                         <td class = "menu-del">
                                             <div>
                                                 삭제
@@ -117,11 +113,6 @@
                                             ${drink.menuPrice}
                                         </td>
 
-                                        <td class = "menu-update">
-                                            <div onclick=updateMenu(${drink.menuNo})>
-                                                수정
-                                            </div>
-                                        </td>
                                         <td class = "menu-del">
                                             <div>
                                                 삭제
@@ -170,11 +161,6 @@
                                             ${snack.menuPrice}
                                         </td>
 
-                                        <td class = "menu-update">
-                                            <div onclick=updateMenu(${snack.menuNo})>
-                                                수정
-                                            </div>
-                                        </td>
                                         <td class = "menu-del">
                                             <div>
                                                 삭제
@@ -193,79 +179,88 @@
             </section>
  <%-- =====================================================================================================================================       
                     								 메뉴 수정  팝업    --%> 
-                   <div id = "manager-menu-update-box" style="display : none;">
-                       <div id = "manager-menu-update-content">
-                           <div id = "menu-modal-close" >&times;</div>
-			            <section class = "update-container">
-			                <div class = "update-info-container">
-			                    <table>
-			                        <tr>
-			                            <th> 메뉴 카테고리</th>
-			                            <td>
-			                                <form>
-			                                    <select name="menu" >
-			                                      <option value="none">=== 카테고리 선택 ===</option>
-			                                      <option value="popcon">팝콘</option>
-			                                      <option value="beverage">음료</option>
-			                                      <option value="side">사이드</option>
-			                                    </select>
-			                                  </form>
-			                            </td>
-			                        </tr>
-			
-			                        <tr>
-			                            <th> 메뉴명</th>
-			                            <td>
-			                                <input type="text"  autocomplete="off">
-			                            </td>
-			                        </tr>
-			
-			                        <tr>
-			                            <th> 가격</th>
-			                            <td>
-			                                <input type="number">
-			                            </td>
-			                        </tr>
-			
-			                        <tr>
-			                            <th> 메뉴 이미지 </th>
-			                            <td>
-			                                <input type="file">
-			                            </td>
-			                        </tr>
-			                        <tr>
-			                            <th> 판매 영화관</th>
-			                            <td>
-			                                <form>
-			                                    <select name="cinema" >
-			                                      <option value="none">=== 영화관 선택 ===</option>
-			                                      <option value="1">cgv명동</option>
-			                                      <option value="2">cgv영등포</option>
-			                                      <option value="3">메가박스</option>
-			                                    </select>
-			                                  </form>
-			                            </td>
-			                        </tr>
-			
-			
-			                    </table>
-			
-			
-			                </div>
-			            </section>
-			
-			            <section class = "update-btn-container">
-			                <div class ="btn">
-			                    수정하기
-			                </div>
-			                <div class ="btn">
-			                    취소하기
-			                </div>
-			            </section>                          
 
-                       </div>
-                       <label  id = "event-modal-back"></label>
-                   </div>    
+                     <div id = "manager-menu-update-box" style="display : none;">
+                         <div id = "manager-menu-update-content">
+                             <div id = "menu-modal-close" >&times;</div>
+                                <form  action="/movieInsight/managerDetail/insertMenu" method="POST" encType="multipart/form-data" id="updateform">   
+                                    <section class = "update-container">
+                                        <div class = "update-info-container">
+                                            <table>
+                                                <tr>
+                                                    <th> 메뉴 카테고리</th>
+                                                    <td>
+                                                        
+                                                        <select name="menuCategory" >
+                                                            <option value="none">=== 카테고리 선택 ===</option>
+                                                            <option value="팝콘">팝콘</option>
+                                                            <option value="음료">음료</option>
+                                                            <option value="스낵">스낵</option>
+                                                        </select>
+                                                        
+                                                    </td>
+                                                </tr>
+                        
+                                                <tr>
+                                                    <th> 메뉴명</th>
+                                                    <td>
+                                                        <input type="text"  autocomplete="off" name="menuName">
+                                                    </td>
+                                                </tr>
+                        
+                                                <tr>
+                                                    <th> 가격</th>
+                                                    <td>
+                                                        <input type="number" name="menuPrice">
+                                                    </td>
+                                                </tr>
+                        
+                                                <tr>
+                                                    <th> 메뉴 이미지 </th>
+                                                    <td>
+                                                        <input type="file" accept="image/*" name="img">
+                                                    </td>
+                                                </tr>
+
+                                               
+                                                <tr class = "cinema-content">
+                                                    <th>판매 영화관</th>
+                                                    
+                                                    <td>
+                                                        <div id="cinemaCheckBox">
+                                                            <c:forEach items="${cinemaList}" var = "cinema">
+                                                                <div class = "checkBox-container">
+                                                                    <p>${cinema.cinemaName}</p>
+                                                                    <input type="checkbox"  value="${cinema.cinemaNo}" class = "checkBox" name="cinemaNoList">
+                                                                </div>
+        
+                                                            </c:forEach>
+                                                        </div>
+                                                    </td>
+        
+                                                </tr>
+                        
+                                            </table>
+                        
+                        
+                                        </div>
+                                    </section>
+                        
+                                    <section class = "update-btn-container">
+                                        <div class ="btn" id="updateButton">
+                                            <button>추가하기</button>
+                                        </div>
+                                        <div class ="btn" id="update-del-button">
+                                            취소하기
+                                        </div>
+                                    </section>                          
+                                </form>
+                            </div>
+                         <label  id = "event-modal-back"></label>
+                     </div>    
+
+    
+    
 <%-- ============================================================  메뉴 수정 (팝업) 끝 ============================================================ --%>
 
 
@@ -360,6 +355,9 @@
 
         }
 
+
+
+	</script>
 
 
 

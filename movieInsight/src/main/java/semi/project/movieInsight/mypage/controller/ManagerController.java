@@ -36,6 +36,9 @@ public class ManagerController {
 	@Autowired
 	private CinemaDAO cinemaDAO;
 	
+	
+			
+			
 	/** 1) 모든 홍보정보 조회
 	 * @param model
 	 * @return
@@ -78,9 +81,13 @@ public class ManagerController {
 	public String managerPageMenu(Model model) {
 		Map<String,List<Menu>> selectMenu = service.selectMenu();
 		
+		
+		List<Cinema> cinemaList = cinemaService.selectManagerCinemaList();
+		
 		model.addAttribute("popcorn", selectMenu.get("popcorn"));
 		model.addAttribute("drink", selectMenu.get("drink"));
 		model.addAttribute("snack", selectMenu.get("snack"));
+		model.addAttribute("cinemaList", cinemaList);
 		
 		return "manager/manager-menu";
 	}
@@ -113,9 +120,7 @@ public class ManagerController {
 	public String moveCinema(Model model) {
 		
 		
-		// 1) Map으로 가져오기 : 영화관 정보 가져오기
 		List<Cinema> cinemaList = cinemaService.selectManagerCinemaList();
-		
 		//System.out.println("cinemaList : " + cinemaList);
 		model.addAttribute("cinemaList",cinemaList);
 		

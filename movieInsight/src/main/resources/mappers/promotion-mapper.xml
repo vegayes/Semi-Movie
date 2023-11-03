@@ -25,15 +25,26 @@
 		<result property="eventDelYN" column="EVENT_DEL_YN"/>
 	</resultMap>
   	
-  	
+
+  	<!-- 특별관,이벤트 홍보목록을 가져오는데 중복되는 경우 PROMOTION_NO,EVENT_PROMOTION 가 큰 값으로 가져옴 -->
   	<select id = "selectPromotionList" resultMap = "promotion_rm">
-  		SELECT  DISTINCT PROMOTION_TYPE,PROMOTION_NO 
-		FROM CINEMA_PROMOTION
+  		SELECT DISTINCT t1.*
+		FROM CINEMA_PROMOTION t1
+		WHERE t1.PROMOTION_NO = (
+		    SELECT MAX(t2.PROMOTION_NO)
+		    FROM CINEMA_PROMOTION t2
+		    WHERE t2.PROMOTION_TYPE = t1.PROMOTION_TYPE
+		)
   	</select>
   	
   	<select id = "selectEventPromotionList" resultMap = "event_rm">
-  		SELECT * 
-  		FROM EVENT_PROMOTION 	
+  		SELECT DISTINCT t1.*
+		FROM EVENT_PROMOTION  t1
+		WHERE t1.EVENT_PR_NO  = (
+		    SELECT MAX(t2.EVENT_PR_NO)
+		    FROM EVENT_PROMOTION t2
+		    WHERE t2.EVENT_TITLE  = t1.EVENT_TITLE
+		)
   	</select>
   	
   	
