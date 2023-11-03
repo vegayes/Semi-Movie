@@ -70,7 +70,9 @@ public interface ManagerService {
 
 	int deletePromotion(int promotionNo);
 
-	int insertMenu(Map<String, Object> menutMap, MultipartFile image, String filePath) throws Exception;
+	int insertMenu(Map<String, Object> menuMap, MultipartFile image, String filePath) throws Exception;
+
+	int updateMovie(Movie movieInfo);
 
 	
 	

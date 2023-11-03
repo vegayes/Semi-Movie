@@ -47,7 +47,7 @@
 		)
   	</select>
   	
-  	
+  	<!-- 관리자가 특별관 홍보나 이벤트 정보를 추가 -->
   	<insert id="insertPromotion" parameterType="java.util.Map">
   		INSERT INTO CINEMA_PROMOTION (PROMOTION_NO, PROMOTION_TYPE, PROMOTION_IMG, PROMOTION_URL, PROMOTION_CONTENT, CINEMA_NO)
 	    SELECT SEQ_PROMOTION_NO.NEXTVAL, A.PROMOTION_TYPE, A.PROMOTION_IMG, A.PROMOTION_URL, A.PROMOTION_CONTENT, A.CINEMA_NO
@@ -83,8 +83,6 @@
 		 DELETE FROM CINEMA_PROMOTION
 		 WHERE PROMOTION_NO = #{promotionNo}
 	</delete>
-	
-	
 	
 	
 	
