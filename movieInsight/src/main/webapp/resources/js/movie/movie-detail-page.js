@@ -35,6 +35,27 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+function selectMovieGradeUpdate() {
+    fetch("/movieInsight/movie/update/grade?movieNo=" + movieNo)
+    .then(response => response.json()) 
+    .then(movie => {
+        console.log(movie);
+        console.log(movie.sumMovieGrade);
+
+        const gradeElement = document.getElementById('grade');
+
+        if (gradeElement) {
+            gradeElement.textContent = `평점 : ${movie.sumMovieGrade}`;
+        } else {
+            console.error("Element with id 'grade' not found.");
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+
+
+
 function selectMovieCommentList() {
     fetch("/movieInsight/movie/comment/select?movieNo=" + movieNo)
         .then(response => response.json()) 
@@ -88,7 +109,7 @@ function selectMovieCommentList() {
                     editBtn.classList.add('editBtn');
                     editBtn.innerText = '수정';
                     editBtn.onclick = function() {
-                        updateCommentModal(comment.movieCommentNo);
+                        updateComment(comment.movieCommentNo);
                     };
 
                     const deleteBtn = document.createElement('button');
@@ -118,7 +139,18 @@ function selectMovieCommentList() {
 }
     
 
+function resetGrade() {
 
+    movieGrade = 0;
+
+    // 등급 아이콘 초기화
+    const thumbs = document.querySelectorAll(`.fa-thumbs-up`);
+    thumbs.forEach(thumb => {
+        thumb.classList.remove('fas');
+        thumb.classList.add('far');
+        thumb.style.color = '';
+    });
+}
 
 
 
@@ -147,7 +179,13 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
         commentContent.value = ""; // 띄어쓰기, 개행문자 제거
         commentContent.focus();
         return;
+    }else if (movieGrade == 0){
+        alert("1점 이상 체크한 후 버튼을 클릭해주세요.");
+        return;
     }
+
+
+
 
     // 3) AJAX를 이용해서 댓글 내용 DB에 저장(INSERT)
     fetch("/movieInsight/movie/comment/insert?commentContent="+commentContent.value + "&movieNo="+movieNo + "&movieGrade=" + movieGrade)
@@ -159,6 +197,8 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
             commentContent.value = ""; // 작성했던 댓글 삭제
 
             selectMovieCommentList();
+            selectMovieGradeUpdate();
+            resetGrade();
 
         } else { // 실패
             alert("댓글 등록에 실패했습니다...");
@@ -182,6 +222,7 @@ function deleteComment(movieCommentNo){
             if(result > 0){
                 alert("삭제되었습니다");
                 selectMovieCommentList();
+                selectMovieGradeUpdate();
             }else{
                 alert("삭제 실패");
             }
@@ -203,6 +244,7 @@ function updateComment(commentNo){
         if(result > 0){
             alert("댓글이 수정되었습니다.");
             selectMovieCommentList();
+            selectMovieGradeUpdate();
         }else{
             alert("댓글 수정 실패");
         }

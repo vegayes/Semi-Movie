@@ -204,7 +204,7 @@ public class MovieDetailController {
 		return service.updatefavorite(paramMap);
 	}
 	
-	/** 댛글 조회 (ajax) 
+	/** 댓글 조회 (ajax) 
 	 * @param cinemaName
 	 * @return
 	 */
@@ -219,6 +219,12 @@ public class MovieDetailController {
 		return result;
 	}	
 	
+	// 평점 수정되는 것 조회 
+	@ResponseBody
+	@GetMapping(value = "/update/grade", produces = "application/json; charset=UTF-8")
+	public Movie updateGrade(int movieNo) {
+		return service.selectMovie(movieNo);
+	}
 	
 	
 }

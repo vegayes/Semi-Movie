@@ -450,6 +450,10 @@ for(let i = 0; i < addComment.length; i++){
                 facilityGradeIcons.forEach(icon => icon.classList.remove('fas', 'far'));
                 facilityGradeIcons.forEach(icon => icon.classList.add('far'));
 
+                const commentGradeIcons = document.querySelectorAll('.commentGrade');
+                commentGradeIcons.forEach(icon => icon.classList.remove('fas', 'far'));
+                commentGradeIcons.forEach(icon => icon.classList.add('far'));
+
                 // 시설 등급 초기화
                 resetGrade('facility');
                 resetGrade('comment');
