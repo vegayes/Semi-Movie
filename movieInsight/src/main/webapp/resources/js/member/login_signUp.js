@@ -12,16 +12,20 @@ const checkObj = {
  
 
 
+
+
 // 중복 확인 버튼에 대한 클릭 이벤트 핸들러를 등록
 document.getElementById("idCheck").addEventListener("click", function() {
- 	  // 아이디 입력 필드의 값을 가져옴
-		 const memberId = document.getElementById("memberId");
+ 	  	// 아이디 입력 필드의 값을 가져옴
+ 	  	// 로그인과 회원가입 페이지가 같아서 memberId 다르게함
+		 const memberId = document.getElementById("memberIdd");
 		 const idValue = memberId.value;
 		   
 		    
 	    // 입력 필드가 비어 있는지 확인
 	    if (!idValue) {
 	        showMessage("아이디를 입력해주세요");
+	      	checkObj.memberId = false;
 	        return; // 입력 필드가 비어 있으면 중복 확인을 수행하지 않음
 	    }
 	
@@ -40,12 +44,15 @@ document.getElementById("idCheck").addEventListener("click", function() {
 	    } else {
 	        showMessage("사용 가능한 아이디입니다.");
 	        checkObj.memberId = true;
+	        console.log("checkObj.memberId set to true");
 	    }
 
 
     })
 
 });
+
+
 
 // 메시지를 표시하는 함수
 function showMessage(message) {
@@ -135,6 +142,7 @@ memberPwConfirm.addEventListener('input', ()=>{
             pwMessage.classList.add("confirm");
             pwMessage.classList.remove("error");
             checkObj.memberPwConfirm = true;
+            console.log("checkObj.memberPw set to true");
             
         } else{ // 다를 경우
             pwMessage.innerText = "비밀번호가 일치하지 않습니다";
@@ -368,7 +376,7 @@ maleButton.addEventListener("click", function() {
     femaleButton.style.color = "";
     
     // checkObj 객체의 gender 속성을 true로 설정
-    checkObj.gender = true;
+    checkObj.membergender = true;
 });
 
 femaleButton.addEventListener("click", function() {
@@ -377,7 +385,7 @@ femaleButton.addEventListener("click", function() {
     maleButton.style.color = "";
     
     // checkObj 객체의 gender 속성을 true로 설정
-    checkObj.gender = true;
+    checkObj.membergender = true;
 });
 
 maleButton.addEventListener("click", function() {
@@ -391,7 +399,7 @@ femaleButton.addEventListener("click", function() {
     // 다른 버튼의 memberGender는 false로 설정 (둘 중 하나만 true가 되도록)
     maleButton.memberGender = false;
 });
-
+	
 
     
 

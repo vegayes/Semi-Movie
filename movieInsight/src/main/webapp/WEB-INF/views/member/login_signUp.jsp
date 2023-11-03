@@ -114,7 +114,7 @@
 			                            name="memberId"
 			                            class="form-style"
 			                            placeholder="your Id"
-			                            id="memberId"
+			                            id="memberIdd"
 			                            autocomplete="off"
 			                          />
 			                          <button type="button" id="idCheck">중복확인</button>
@@ -190,11 +190,11 @@
 			                          <!-- <button class="gender" id="genderM" type="button" name="memberGender" value="M">남자</button>
 			                          <button class="gender" id="genderF" type="button" name="memberGender" value="F">여자</button> -->
 
-                                <input type="radio" class="gender" id="gender" type="button" name="memberGender" value="M">남자
-                                <input type="radio" class="gender" id="gender" type="button" name="memberGender" value="F">여자
+                                <input type="radio" class="gender" id="genderM" type="button" name="memberGender" value="M">남자
+                                <input type="radio" class="gender" id="genderF" type="button" name="memberGender" value="F">여자
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
-                              <button id="signUpBut" class="btn mt-4 blue">SIGN UP</button>
+                              <button id="signUpBut" class="btn mt-4 blue" type="submit">SIGN UP</button>
 			                    </form>    
                       </div>
                     </div>
@@ -209,5 +209,5 @@
   </body>
   
   <script src="/movieInsight/resources/js/member/login_signUp.js"></script>
-  
+  <script src="/movieInsight/resources/js/member/login.js"></script>
 </html>
