@@ -113,7 +113,7 @@
 			                            name="memberId"
 			                            class="form-style"
 			                            placeholder="your Id"
-			                            id="memberIdd"
+			                            id="member_Id"
 			                            autocomplete="off"
 			                          />
 			                          <button type="button" id="idCheck">중복확인</button>
@@ -177,7 +177,7 @@
 			                            name="memberNickname"
 			                            class="form-style"
 			                            placeholder="Your Nickname"
-			                            id="memberNickname"
+			                            id="member_Nickname"
 			                            autocomplete="off"
 			                          />
                                 <P id="nickMessage">메세지</P>

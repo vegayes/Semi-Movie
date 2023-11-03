@@ -18,7 +18,7 @@ const checkObj = {
 document.getElementById("idCheck").addEventListener("click", function() {
  	  	// 아이디 입력 필드의 값을 가져옴
  	  	// 로그인과 회원가입 페이지가 같아서 memberId 다르게함
-		 const memberId = document.getElementById("memberIdd");
+		 const memberId = document.getElementById("member_Id");
 		 const idValue = memberId.value;
 		   
 		    
@@ -30,7 +30,7 @@ document.getElementById("idCheck").addEventListener("click", function() {
 	    }
 	
 	    
-	 	fetch("/movieInsight/member/idCheck?memberId="+memberId.value)
+	 	fetch("/movieInsight/member/idCheck?id_check="+memberId.value)
 		.then(res => res.json())
 		.then(result => {
 	    
@@ -314,7 +314,7 @@ checkAuthKeyBtn.addEventListener("click", function(){
 
 
 // 닉네임 유효성 검사
-const memberNickname = document.getElementById("memberNickname");
+const memberNickname = document.getElementById("member_Nickname");
 const nickMessage = document.getElementById('nickMessage');
 
 // 닉네임이 입력이 되었을 때
@@ -334,7 +334,7 @@ memberNickname.addEventListener("input", ()=>{
 
     if(regEx.test(memberNickname.value)){// 유효
 
-        fetch("/movieInsight/member/dupCheck/nickname?memberNickname="+memberNickname.value)
+        fetch("/movieInsight/member/nickCheck?nick_check="+memberNickname.value)
         .then(resp => resp.text()) // 응답 객체를 text로 파싱(변환)
         .then(count => {
 

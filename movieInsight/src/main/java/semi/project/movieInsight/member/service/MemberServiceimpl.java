@@ -36,9 +36,11 @@ public class MemberServiceimpl implements MemberService{
 
 	// 아이디 중복검사
 	@Override
-	public int idCheck(String memberId) {
-		System.out.println("memberSevice"+memberId);
-		return dao.idCheck(memberId);
+	public int idCheck(String id_check) {
+		
+		System.out.println(id_check);
+		
+		return dao.idCheck(id_check);
 	}
 	
 	// 이메일 중복검사
@@ -47,7 +49,6 @@ public class MemberServiceimpl implements MemberService{
 	
 		return dao.CheckEmail(email);
 	}
-
 	/**
 	 *로그인 
 	 */
@@ -86,13 +87,12 @@ public class MemberServiceimpl implements MemberService{
 		
 		
 	}
-
+	
 	@Override
 	public int nickCheck(String nick_check) {
 		
 		return dao.nickCheck(nick_check);
 	}
-
 
 
 }

@@ -142,25 +142,17 @@ public class MemberController {
 	
 }
 	
-	// 아이디 중복검사
 	@ResponseBody
 	@GetMapping("/idCheck")
-	public int IdCheck(String memberId) {
-		System.out.println(memberId);
-		int result = service.idCheck(memberId);
-		return result;
-		
-	
+	public int IdCheck(String id_check) {
+		return service.idCheck(id_check);
 	}
 	
+	
 	@ResponseBody
-	@GetMapping("/dupCheck/nickname")
+	@GetMapping("/nickCheck")
 	public int nickCheck(String nick_check) {
-		
-		int result = service.nickCheck(nick_check);
-		
-		return result;
-		
+		return service.nickCheck(nick_check);
 	}
 	
 

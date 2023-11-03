@@ -44,7 +44,7 @@ public class MemberDAO {
 
 	public int nickCheck(String nick_check) {
 		
-		return sqlSession.selectOne("memberMapper.checkEmail", nick_check);
+		return sqlSession.selectOne("memberMapper.checkNick", nick_check);
 	}
 
 	
