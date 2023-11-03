@@ -8,7 +8,7 @@ public interface MemberService {
 
 	int signUp(Member inputMember);
 	
-	int idCheck(String memberId);
+	int idCheck(String id_check);
 
 
 	Member login(Member inputMember);
@@ -16,7 +16,6 @@ public interface MemberService {
 	int checkEmail(String email);
 
 	int nickCheck(String nick_check);
-
 
 
 
