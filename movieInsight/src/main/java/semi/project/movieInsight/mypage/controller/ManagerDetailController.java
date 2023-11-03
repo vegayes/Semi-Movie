@@ -186,6 +186,27 @@ public class ManagerDetailController {
 	}
 	
 	
+	@PostMapping("updateMovie/{movieNo:^[^0]\\d*}")
+	public String updateMovie(Movie movieInfo,RedirectAttributes ra,
+			@RequestParam(value = "movieImage", required = false) MultipartFile movieImage, HttpSession session,
+			@PathVariable("movieNo") int movieNo
+			) throws Exception{
+		
+		movieInfo.setMovieNo(movieNo);
+		System.out.println("수정하려는 정보 : " + movieInfo);
+		
+		
+		int result = service.updateMovie(movieInfo);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message","등록 성공");
+		}else {
+			ra.addFlashAttribute("message","등록 실패");
+		}
+		
+		return "redirect:/manager/movie";
+	}
+	
 	
 	
 	/* ********************************이벤트****************************************** */
@@ -304,16 +325,20 @@ public class ManagerDetailController {
 			Menu menu 
 			) throws Exception{
 		
+			menu.setMenuImg(Image.getOriginalFilename());
 
-			Map<String,Object> menutMap = new HashMap<String, Object>();
-			menutMap.put("menu", menu);
-			menutMap.put("cinemaNoList", cinemaNoList);
+			Map<String,Object> menuMap = new HashMap<String, Object>();
+			menuMap.put("menu", menu);
+			menuMap.put("cinemaNoList", cinemaNoList);
 			
 			
-			String webPath = "/resources/images/cinema/"+menu.getMenuCategory();
+			String webPath = "/resources/images/menu/"+menu.getMenuCategory();
 			String filePath = session.getServletContext().getRealPath(webPath);
 			
-			int result = service.insertMenu(menutMap,Image,filePath);
+			System.out.println("webPath : " + webPath);
+			System.out.println("filePath : " + filePath);
+			
+			int result = service.insertMenu(menuMap,Image,filePath);
 			
 			if(result > 0) {
 				ra.addFlashAttribute("message","등록 성공");
@@ -328,6 +353,22 @@ public class ManagerDetailController {
 	
 	
 	
+	@GetMapping("deleteMenu/{menuCategory}/{menuNo}")
+	public String deleteMenu(@PathVariable String menuCategory, @PathVariable int menuNo,
+			RedirectAttributes ra ) {
+	   
+		
+		int result = 1;
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message","등록 성공");
+		}else {
+			ra.addFlashAttribute("message","등록 실패");
+		}
+		
+		
+		return "redirect:/manager/menu";
+	}
 	
 	
 	

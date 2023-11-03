@@ -197,6 +197,12 @@ public class ManagerDAO {
 		
 	}
 	
+	
+	public int updateMovie(Movie movieInfo) {
+		
+		return sqlSession.update("movieMapper.updateMovie",movieInfo);
+	}
+	
 // 영화, 출연진 정보 입력
 //  영화에 대한 입력값을 dB에 저장, 제대로 들어가면(result >0)
 //	출연진 정보 : jsp : 가/나/다/라/마.. -> 컨트롤러 :  구분자로 리스트로 변환 [가,나,다]... 이걸 dB에 넣음
@@ -260,6 +266,35 @@ public class ManagerDAO {
 		
 		return sqlSession.delete("promotionMapper.deletePromotion", promotionNo);
 	}
+
+	
+	
+	/** 메뉴 추가
+	 * @param menuMap
+	 * @return
+	 */
+	public int insertMenu(Map<String, Object> menuMap) {
+		int result = sqlSession.insert("menuMapper.insertMenu", menuMap);
+		
+		if(result > 0) {
+			int menuNo = sqlSession.selectOne("menuMapper.selectMenuNo", menuMap);
+			menuMap.put("menuNo", menuNo);
+			int menuStatus = sqlSession.insert("menuMapper.insertMenuStatus", menuMap);
+			if(menuStatus > 0) {
+				return menuStatus;
+			}else {
+				System.out.println("menuStatus 필드에 입력 중 오류");
+				return 0;
+			}
+		}
+		System.out.println("insertMenu 중 오류");
+		return 0;
+	}
+
+	
+	
+	
+	
 
 	
 }

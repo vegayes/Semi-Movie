@@ -68,7 +68,7 @@
 
                                         <td class = "menu-del">
                                             <div>
-                                                삭제
+                                                <a href="/movieInsight/managerDetail/deleteMenu/%ED%8C%9D%EC%BD%98/${popcorn.menuNo}" class="delete-button">삭제</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -115,7 +115,7 @@
 
                                         <td class = "menu-del">
                                             <div>
-                                                삭제
+                                                <a href="/movieInsight/managerDetail/deleteMenu/%EC%9D%8C%EB%A3%8C/${drink.menuNo}" class="delete-button">삭제</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -135,7 +135,7 @@
                 <div class = "menu-container">
                     <div class = menu-list>
                         <div class = "menu-container-title" >
-                            사이드
+                            스낵
                         </div>
 
                         <div class = "menu-container-search">
@@ -163,7 +163,7 @@
 
                                         <td class = "menu-del">
                                             <div>
-                                                삭제
+                                                <a href="/movieInsight/managerDetail/deleteMenu/EC%8A%A4%EB%82%B5/${snack.menuNo}" class="delete-button">삭제</a>
                                             </div>
                                         </td>
                                     </tr>

@@ -207,11 +207,39 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 	
+	
+	/**
+	 * 영화 번호 얻어옴
+	 */
 	@Override
 	public int selectMovieNo(String movieTitle) {
 		return dao.selectMovieNo(movieTitle);
 	}
 
+	
+	
+	
+	/**
+	 * 영화 업데이트
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateMovie(Movie movieInfo) {
+		
+		int result = dao.updateMovie(movieInfo);
+		
+		if(result > 0) { 
+			
+			return result;
+			
+		}else {
+			
+			 throw new RuntimeException("Cinema insert failed ");
+		}
+		
+	}
+	
+	
 	
 	
 	///===============================특별관======================================================///////////
@@ -303,12 +331,38 @@ public class ManagerServiceImpl implements ManagerService{
 		    }
 	}
 
+	
+	
+	/**
+	 *  메뉴 추가 메서드
+	 */
 	@Override
-	public int insertMenu(Map<String, Object> menutMap, MultipartFile image, String filePath) throws Exception {
+	@Transactional(rollbackFor = Exception.class)
+	public int insertMenu(Map<String, Object> menuMap, MultipartFile image, String filePath) throws Exception {
 		
 		
-		return 0;
+		
+		int result = dao.insertMenu(menuMap);
+		
+		if(result > 0) { 
+			
+			if(image.getSize() != 0) {
+				image.transferTo(new File(filePath + image.getOriginalFilename()));
+				
+			}		
+			
+		}else {
+			
+			 throw new RuntimeException("insertMenu insert failed ");
+		}
+		
+		return result;
+		
 	}
+
+	
+	
+	
 
 	
 	

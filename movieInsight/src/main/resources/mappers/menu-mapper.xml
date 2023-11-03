@@ -96,6 +96,39 @@
 	</select>
 
 
+
+	<!-- 관리자가 메뉴를 추가 -->
+  	<insert id="insertMenu" parameterType="java.util.Map">
+  		INSERT INTO MENU VALUES
+  		(SEQ_MENU_NO.NEXTVAL, #{menu.menuName}, #{menu.menuPrice}, #{menu.menuImg}, #{menu.menuCategory})
+  	</insert>
+	
+
+	<select id="selectMenuNo" resultType = "_int">
+		SELECT MENU_NO
+		FROM MENU
+		WHERE MENU_NAME = #{menu.menuName}
+	</select>
+
+
+
+	<insert id="insertMenuStatus">
+		INSERT INTO MENU_STATUS (SNACK_CINEMA_NO, CINEMA_NO, MENU_NO)
+	    SELECT SEQ_SNACK_CINEMA_NO.NEXTVAL, A.CINEMA_NO, A.MENU_NO
+	    FROM (
+	        <foreach collection="cinemaNoList" item="cinemaNo" separator=" UNION ALL ">
+	         	SELECT  #{cinemaNo} as CINEMA_NO, #{menuNo} as MENU_NO
+	            FROM DUAL
+	        </foreach>
+	    ) A
+	</insert>
+
+
+
+
+
+
+
 </mapper>
 
 
