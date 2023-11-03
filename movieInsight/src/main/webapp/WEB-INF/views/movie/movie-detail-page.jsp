@@ -93,7 +93,7 @@
                     <div id="movieForm-content">
                             <div class="movieForm_title">
                                 <input type="text" name="movieTitle" style="font-size: 30px;" value="${movieInfo.movieTitle}">
-                                <div> <%-- 평점 --%>
+                                <div> <%-- 평점 --%> 
                                     <div></div>
                                     <div></div>
                                     <div></div>
@@ -143,7 +143,8 @@
                                      
                             </div>
                             <div>${movieInfo.movieTitle}</div>
-                            <div> <%-- 평점 --%>
+                            <div style = "display : flex;  justify-content: center; align-items: center;"> <%-- 평점 --%>
+                               <h1 id="grade">평점 : ${movieInfo.sumMovieGrade}</h1>
                                 <div></div>
                                 <div></div>
                                 <div></div>
@@ -308,7 +309,7 @@
                                   <td class = "comment-list-date">${comment.movieCommentDate}</td>
                                   <td class = "comment-list-edit">
                                   	<c:if test = "${comment.commentMovieWriter eq sessionScope.loginMember.memberId}">
-    	                            	<button class="editBtn" >수정</button>
+    	                            	<button class="editBtn" onclick = "updateComment(${comment.movieCommentNo})">수정</button>
 		                            	<button class="deletBtn" onclick="deleteComment(${comment.movieCommentNo})">삭제</button>                              	
                                   	</c:if>
                                   </td>

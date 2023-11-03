@@ -127,6 +127,18 @@ public class MovieDetailDAO {
 	}
 
 
+	/*영화에 대한 총 평점*/
+	public float sumMovieGrade(int movieNo) {
+		
+		Float sum = sqlSession.selectOne("movieMapper.sumMovieGrade", movieNo);
+		System.out.println("평점 : " + sum);
+		if (sum == null) {
+		    sum = 0.0f;
+		}
+		return sum;
+	}
+
+
 
 	
 	

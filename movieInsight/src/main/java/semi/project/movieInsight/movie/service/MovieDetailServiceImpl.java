@@ -31,6 +31,11 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 		Movie movieInfo = dao.selectMovie(movieNo);
 		
 		// 2) 평점 가져오기 
+		float sumMovieGrade = dao.sumMovieGrade(movieNo);
+		
+		System.out.println("총 평점 : " + sumMovieGrade);
+		
+		movieInfo.setSumMovieGrade(sumMovieGrade);
 		
 		return movieInfo;
 	}

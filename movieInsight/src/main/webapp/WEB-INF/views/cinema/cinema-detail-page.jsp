@@ -390,9 +390,9 @@
                         <i class="far fa-thumbs-up commentGrade"></i>
                     </div>
                 </form>
-                    <div id="commentSubmit">
-                        <img src="/movieInsight/resources/images/movie/movieT/list.png">
-                    </div>
+                <div id="commentSubmit">
+                    <img src="/movieInsight/resources/images/movie/movieT/list.png">
+                </div>
             </fieldset>
         </section>  
 
@@ -523,7 +523,7 @@
 
 
             <div class="comment" >
-                <fieldset class = "menuFromContainer">
+                <div class = "menuFromContainer">
                     <form id="menuForm">
 
                         <label for="menu">해당 극장 메뉴</label>
@@ -553,7 +553,7 @@
                         </select>
 
                             <div>
-                                평점 : 
+                                평점 :  
                             </div>
                             <div class="CF2"> 
                                 <!-- 따봉 -->
@@ -564,10 +564,10 @@
                                 <i class="far fa-thumbs-up menuGrade"></i>
                             </div>
                     </form>
-                    <div id="menuCommentSubmit">
+                 	<div id="menuCommentSubmit">
                         <img src="/movieInsight/resources/images/movie/movieT/list.png">
                     </div>
-                 </fieldset>
+                 </div>
             </div>
             
             

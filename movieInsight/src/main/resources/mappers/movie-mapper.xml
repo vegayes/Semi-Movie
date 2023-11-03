@@ -339,7 +339,14 @@
 		WHERE MOVIE_GENRE LIKE '%' || #{category} || '%' AND MOVIE_DEL_YN  ='N'
 	</select>
 	
-		
+	<!-- 영화에 대한 총 평점 계산 -->
+	<select id = "sumMovieGrade" resultType = "_float">
+		SELECT NVL(ROUND(AVG(MOVIE_GRADE), 1), 0) AS SUM_MOVIE_GRADE
+		FROM MOVIE_EVALUATION
+		WHERE MOVIE_EV_DEL_YN = 'N' AND MOVIE_NO = #{movieNo}
+		GROUP BY MOVIE_NO
+	</select>
+
 </mapper>
 
 
