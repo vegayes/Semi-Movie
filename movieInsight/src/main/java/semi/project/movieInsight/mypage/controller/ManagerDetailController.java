@@ -304,10 +304,24 @@ public class ManagerDetailController {
 			Menu menu 
 			) throws Exception{
 		
-			System.out.println("cinemaNoList : " + cinemaNoList);
-			System.out.println("menu : " + menu);
+
+			Map<String,Object> menutMap = new HashMap<String, Object>();
+			menutMap.put("menu", menu);
+			menutMap.put("cinemaNoList", cinemaNoList);
+			
+			
+			String webPath = "/resources/images/cinema/"+menu.getMenuCategory();
+			String filePath = session.getServletContext().getRealPath(webPath);
+			
+			int result = service.insertMenu(menutMap,Image,filePath);
+			
+			if(result > 0) {
+				ra.addFlashAttribute("message","등록 성공");
+			}else {
+				ra.addFlashAttribute("message","등록 실패");
+			}
 		
-		
+			
 		
 			return "redirect:/manager/menu";
 	}
