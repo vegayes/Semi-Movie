@@ -216,7 +216,20 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
+
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-taglibs</artifactId>
+		<version>YOUR_SPRING_SECURITY_VERSION</version>
+	</dependency>
+	
+	<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-taglibs</artifactId>
+    <version>5.7.1</version> <!-- 예시 버전, 실제 프로젝트의 버전을 사용하세요 -->
+</dependency>
+	
 		
 		<!-- 단위 테스트 도구 (JUnit) -->
 		<!-- https://mvnrepository.com/artifact/junit/junit -->

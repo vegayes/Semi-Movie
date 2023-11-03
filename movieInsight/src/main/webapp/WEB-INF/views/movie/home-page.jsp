@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,15 +43,21 @@
 			<section class="movie_list swiper swiper-ls-1">
 				<span class="section_title">영화관 추천</span>
 				<ul class="movie_list swiper-wrapper">
-					<li class="movie_recommand_item swiper-slide"><img
-						src="/movieInsight/resources/images/movie/home-page/홈페이지로고/2.png" />
-					</li>
-					<li class="movie_recommand_item swiper-slide"><img
-						src="/movieInsight/resources/images/movie/home-page/홈페이지로고/2.png" />
-					</li>
-					<li class="movie_recommand_item swiper-slide"><img
-						src="/movieInsight/resources/images/movie/home-page/홈페이지로고/2.png" />
-					</li>
+					<li class="movie_recommand_item swiper-slide"><a
+						href="http://localhost:8080/movieInsight/cinemaDetail/CGV%20%ED%94%BC%EC%B9%B4%EB%94%94%EB%A6%AC1958">
+							<img
+							src="/movieInsight/resources/images/movie/home-page/홈페이지로고/picadiri.jpg" />
+					</a></li>
+					<li class="movie_recommand_item swiper-slide"><a
+						href="http://localhost:8080/movieInsight/cinemaDetail/CGV%20%EC%99%95%EC%8B%AD%EB%A6%AC">
+							<img
+							src="/movieInsight/resources/images/movie/home-page/홈페이지로고/picadiri.jpg" />
+					</a></li>
+					<li class="movie_recommand_item swiper-slide"><a
+						href="http://localhost:8080/movieInsight/cinemaDetail/CGV%20%EA%B1%B4%EB%8C%80%EC%9E%85%EA%B5%AC">
+							<img
+							src="/movieInsight/resources/images/movie/home-page/홈페이지로고/picadiri.jpg" />
+					</a></li>
 				</ul>
 
 				<!-- If we need navigation buttons -->
@@ -215,14 +225,14 @@
 
 
 		<div class="center">
-			<div class="swiper swiper-center">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<img
-							src="/movieInsight/resources/images/movie/home-page/홈페이지로고/5.png"
-							width="100%" height="100%" style="object-fit: cover" ;
-              />
-					</div>
+				<div class="swiper swiper-center">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<video width="100%" height="100%" style="object-fit: cover"
+								controls autoplay muted loop>
+								<source src="/movieInsight/resources/images/movie/home-page/홈페이지로고/87553_220506_1200_128_960_540.mp4" type="video/mp4">
+							</video>
+						</div>
 					<div class="swiper-slide">
 						<img
 							src="/movieInsight/resources/images/movie/home-page/홈페이지로고/5.png"
@@ -234,11 +244,10 @@
 							width="100%" height="100%" style="object-fit: cover" />
 					</div>
 				</div>
-				<div class="swiper-button-prev center-p"></div>
-				<div class="swiper-button-next center-n"></div>
+			
 
 			</div>
-
+            <sec:authorize access="isAuthenticated()">
 			<section class="movie_list swiper main-10">
 				<span class="section_title">User 맞춤 영상</span>
 				<ul class="movie_list swiper-wrapper">
@@ -255,6 +264,7 @@
 				<div class="swiper-button-prev main-1-p"></div>
 				<div class="swiper-button-next main-1-n"></div>
 			</section>
+			</sec:authorize>
 			
 			<section class="movie_list swiper main-2">
 				<span class="section_title">최신순</span>
@@ -280,7 +290,7 @@
 						<li class="movie_item swiper-slide"><a
 							href="/movieInsight/movie/${popular.movieNo}"> <span
 								class="detail_text">상세보기</span>
-						</a> <img src="/movieInsight/resources/images/movie/${action.movieImg}"
+						</a> <img src="/movieInsight/resources/images/movie/${popular.movieImg}"
 							width="100%" height="100%" style="object-fit: cover" /></li>
 					</c:forEach>
 				</ul>
@@ -294,7 +304,7 @@
 				<span class="section_title">액션</span>
 
 				<ul class="movie_list swiper-wrapper">
-					<c:forEach var="action" items="${comedyMovies}">
+					<c:forEach var="action" items="${actionMovies}">
 						<li class="movie_item swiper-slide"><a
 							href="/movieInsight/movie/${action.movieNo}"> <span
 								class="detail_text">상세보기</span>
@@ -393,7 +403,7 @@
 				<div class="swiper-button-next main-9-n"></div>
 			</section>
 			
-			<section class="movie_list swiper main-9">
+			<section class="movie_list swiper main-10">
 				<span class="section_title">호러</span>
 				<ul class="movie_list swiper-wrapper">
 					<c:forEach var="horror" items="${horrorMovies}">
@@ -406,15 +416,15 @@
 					</c:forEach>
 				</ul>
 				<!-- If we need navigation buttons -->
-				<div class="swiper-button-prev main-9-p"></div>
-				<div class="swiper-button-next main-9-n"></div>
+				<div class="swiper-button-prev main-10-p"></div>
+				<div class="swiper-button-next main-10-n"></div>
 			</section>
 			
 	   
      </div>
 		<aside>
 			<div class="side-banner">
-				<a href="/cinema"> <img
+				<a href="http://localhost:8080/movieInsight/cinema"> <img
 					src="/movieInsight/resources/images/movie/home-page/홈페이지로고/4.png"
 					width="100%" />
 				</a>

@@ -210,12 +210,13 @@
 	    SET MOVIE_TITLE = #{movieTitle}, MOVIE_SUMMARY =#{movieSummary}, 
 	    MOVIE_GENRE = #{movieGenre}, MOVIE_AGE = #{movieAge}, MOVIE_RUNNING_TIME = #{movieRunningTime}
 	    WHERE MOVIE_NO = #{movieNo}
-	</update>
+	</update>	
 	
 	<select id="selectMovieNo"  resultType = "_integer">
 		SELECT MOVIE_NO 
 		FROM MOVIE
 		WHERE MOVIE_TITLE = #{movieTitle}
+		AND MOVIE_DEL_YN = 'N'
 	</select>
 	
 	

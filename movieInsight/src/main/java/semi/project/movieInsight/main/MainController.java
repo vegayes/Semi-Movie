@@ -74,8 +74,12 @@ public class MainController {
            model.addAttribute("pageType","movie");
 
 	        return "movie/home-page";
-	    }
+   
 
+	     
+ 
+	    }
+	
 
 	@GetMapping("/cinema")
 	public String cinemaMain(Model model) {
@@ -86,7 +90,21 @@ public class MainController {
 		
 		return "cinema/cinema-homepage";
 	}
-
+      
+	
+	  // 영화관 페이지로 이동
+	  @RequestMapping(value = "/movieInsight/cinema", method = RequestMethod.GET)
+	    public String redirectToCinemaHomePage() {
+	        return "cinema-homepage";
+	    }
+	   //  영화관 상세 페이지 이동
+	  @RequestMapping(value = "/movieInsight/cinemaDetail/{cinemaName}", method = RequestMethod.GET)
+	    public String cinemaDetail(@PathVariable String cinemaName, Model model) {
+	        
+	        model.addAttribute("cinemaName", cinemaName);
+	        
+	        return "cinemaDetailPage"; 
+	    }
 
 	}
 
