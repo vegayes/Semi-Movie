@@ -387,13 +387,22 @@ public class MypageController {
 	    return service.delFavoriteMovie(favoriteDelMovie);
 	}
 	
-	// 즐겨찾기 삭제 후 마이페이지에서 다시 조회 
+	// 즐겨찾기 삭제 후 마이페이지에서 다시 조회 (영화) 
 	@ResponseBody
 	@GetMapping(value = "/favorite/select", produces = "application/json; charset=UTF-8")
 	public List<Movie> selectMyMovieFavorite(int memberNo) {
 		System.out.println("즐겨찾기 조회 비동기 :" +  memberNo);
 		
 		return service.selectLikeMovie(memberNo);
+	}	
+	
+	// 즐겨찾기 삭제 후 마이페이지에서 다시 조회 (영화관) 	
+	@ResponseBody
+	@GetMapping(value = "/favorite/select/cinema", produces = "application/json; charset=UTF-8")
+	public List<Cinema> selectMyCinemaFavorite(int memberNo) {
+		System.out.println("즐겨찾기 조회 비동기 :" +  memberNo);
+		
+		return service.selectLikeCinema(memberNo);
 	}	
 	
 	

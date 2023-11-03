@@ -27,7 +27,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>movie-Detail</title>
+    <title>MOVIEINSIGHT, 영화 상세페이지</title>
     
     <link rel="stylesheet" href="/movieInsight/resources/css/movie/movie-detail-page.css">
     <script src="https://kit.fontawesome.com/69a462bb6c.js" crossorigin="anonymous"></script>
@@ -283,13 +283,13 @@
         <div class="comment" id="commentScroll">
             <div class="comhead"><h1 id="comment">comment</h1></div>
                 <div class="combody" style = "border:2px solid red">
-                	<table class = "comment-list-table">
+                	<table class = "comment-list-table" id = "comment-list-table" >
 	                	<c:forEach items = "${commentMovieList}" var="comment">
 	                		
 	                		<tr class = "comment-grade-tr">
 	                			<td>평점 ${comment.movieGrade}</td>
 	                		</tr>
-	                		<tr class = "comment-content-tr" style = "border : 2px solid blue">
+	                		<tr class = "comment-content-tr">
 	                			 <td class = "comment-img">
                                       <div class = "comment-writer-img-wrapper">
                                       	<c:if test = "${empty comment.writerProfile}">
@@ -379,6 +379,7 @@
     <script>
         const movieNo = "${movieInfo.movieNo}"
         const memberNo = "${sessionScope.loginMember.memberNo}";
+        const memberId = "${sessionScope.loginMember.memberId}";
     </script>
 
     <script src="/movieInsight/resources/js/movie/movie-detail-page.js"></script>
