@@ -204,6 +204,14 @@
 		,#{movieReleaseDate},#{movieAge},#{movieRunningTime},DEFAULT,DEFAULT)
 	</insert>
 	
+	
+	<update id="updateMovie">
+		UPDATE MOVIE 
+	    SET MOVIE_TITLE = #{movieTitle}, MOVIE_SUMMARY =#{movieSummary}, 
+	    MOVIE_GENRE = #{movieGenre}, MOVIE_AGE = #{movieAge}, MOVIE_RUNNING_TIME = #{movieRunningTime}
+	    WHERE MOVIE_NO = #{movieNo}
+	</update>
+	
 	<select id="selectMovieNo"  resultType = "_integer">
 		SELECT MOVIE_NO 
 		FROM MOVIE
