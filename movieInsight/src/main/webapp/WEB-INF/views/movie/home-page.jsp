@@ -60,47 +60,20 @@
 				<span class="section_title">직원 친절도</span>
 				<div class="swiper swiper-ls-2">
 					<div class="swiper-wrapper">
-						<ul class="kind_wrapper swiper-slide">
-							<li class="kind_item"><span>영화관 1</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 2</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 3</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 4</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 5</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
+						<ul class="kind_wrapper swiper-slide" id="cinemaList" >
+							<c:forEach var="cinema" items="${cinemaStaff}" varStatus="loop">
+								<c:if test="${loop.index < 5}">
+									<li class="kind_item"><span>${cinema.cinemaName}</span>
+										<div>
+											<button>😀</button>
+											<button>😀</button>
+											<button>😀</button>
+											<button>😀</button>
+											<button>😀</button>
+										</div>
+									</li>
+								</c:if>
+							</c:forEach>
 						</ul>
 						<ul class="kind_wrapper swiper-slide">
 							<li class="kind_item"><span>영화관 1</span>
@@ -111,73 +84,9 @@
 									<button>😀</button>
 									<button>😀</button>
 								</div></li>
-							<li class="kind_item"><span>영화관 2</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 3</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 4</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 5</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
 						</ul>
 						<ul class="kind_wrapper swiper-slide">
-							<li class="kind_item"><span>영화관 1</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
 							<li class="kind_item"><span>영화관 2</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 3</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 4</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
-							<li class="kind_item"><span>영화관 5</span>
 								<div>
 									<button>😀</button>
 									<button>😀</button>
@@ -193,15 +102,26 @@
 
 				<span class="section_title">메뉴 추천</span>
 				<ul class="movie_list swiper-wrapper">
-					<li class="movie_recommand_item swiper-slide"><img
-						src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png"
-						width="100%" /></li>
-					<li class="movie_recommand_item swiper-slide"><img
-						src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png"
-						" width="100%" /></li>
-					<li class="movie_recommand_item swiper-slide"><img
-						src="/movieInsight/resources/images/movie/home-page/홈페이지로고/3.png"
-						width="100%" /></li>
+					<li class="movie_recommand_item swiper-slide">
+						<a href="https://www.lottecinema.co.kr/NLCHS/CinemaMall/Detail?MenuId=2&ItemId=2310190004&ClassificationCode=20">
+							<img src="/movieInsight/resources/images/movie/lotte.jpg"width="100%" />
+						</a>
+					</li>
+					<li class="movie_recommand_item swiper-slide">
+						<a href="https://www.megabox.co.kr/store/detail?prdtClCd=CPC05&prdtNo=1729">
+					    	<img src="/movieInsight/resources/images/movie/코엑스-세트.jpg" width="100%" />
+					</li>
+						</a>
+					<li class="movie_recommand_item swiper-slide">
+						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100326#">
+							<img src="/movieInsight/resources/images/movie/cgv-popcon.jpg" width="100%" />
+					</li>
+						</a>
+					<li class="movie_recommand_item swiper-slide">
+						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100333">
+							<img src="/movieInsight/resources/images/movie/cgv-drink.jpg"width="100%" />
+						</a>
+					</li>
 				</ul>
 
 				<!-- If we need navigation buttons -->

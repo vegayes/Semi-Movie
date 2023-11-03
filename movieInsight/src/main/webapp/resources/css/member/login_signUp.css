@@ -6,7 +6,7 @@
         font-weight: 300;
         font-size: 15px;
         line-height: 1.7;
-        color: #c4c3ca;
+        color: white;
         background-color: #1f2029;
         overflow-x: hidden;
       }
@@ -174,7 +174,7 @@
         line-height: 22px;
         letter-spacing: 0.5px;
         outline: none;
-        color: #c4c3ca;
+        color: #black;
         background-color: white;
         border: none;
         -webkit-transition: all 200ms linear;
@@ -324,6 +324,7 @@
         border-radius: 15px;
         border: 0;
         padding: 8px 16px;
+        color: bule;
       }
 
       p.mb-0.mt-4.text-center {
@@ -400,4 +401,11 @@
         align-items: center;
       }
 
-     
+   		form input {
+   	 color: black !important;
+		}
+		
+		.gender {
+		color: black;
+		}
+		

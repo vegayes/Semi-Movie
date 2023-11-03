@@ -174,8 +174,7 @@ public class ManagerDetailController {
 		int result = service.insertMovie(movieInfo,movieImage,filePath,actorNamesList,directorNamesList);
 		System.out.println("삽입 결과 : " + result);
 		if(result > 0) {
-			ra.addFlashAttribute("message","등록 성공");
-			
+			ra.addFlashAttribute("message","등록 성공");		
 			return "redirect:/manager/movie";
 		}else {
 			ra.addFlashAttribute("message","등록 실패");

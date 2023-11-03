@@ -128,5 +128,18 @@ public class CinemaDetailServiceImpl implements CinemaDetailService {
 
 
 
+	/**
+	 * 메뉴 평점 삽입
+	 */
+	@Override
+	public int insertMenuGrade(Menu menu) {
+		return dao.insertMenuGrade(menu);
+	}
+
+
+
+
+
+
 
 }

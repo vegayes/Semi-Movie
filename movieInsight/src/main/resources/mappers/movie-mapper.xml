@@ -311,8 +311,6 @@
 	</update>
 	
 	
-	
-	
 	<!-- 즐겨찾기 ON -->
 	<insert id = "addFavorite">
 		INSERT INTO MOVIE_LIKE 

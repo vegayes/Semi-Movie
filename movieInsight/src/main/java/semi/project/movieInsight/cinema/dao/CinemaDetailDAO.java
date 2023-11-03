@@ -126,6 +126,22 @@ public class CinemaDetailDAO {
 		
 		return bestMenuMap;
 	}
+
+
+	/** 메뉴 평점 삽입
+	 * @param menu
+	 * @return
+	 */
+	public int insertMenuGrade(Menu menu) {
+		sqlSession.insert("menuMapper.insertMenuGrade", menu);
+		
+		System.out.println(menu.getMenuName());
+		System.out.println(menu.getCinemaName());
+		System.out.println(menu.getMemberNo());
+		System.out.println(menu.getMenuGrade());
+		
+		return 0;
+	}
 	
 
 }
