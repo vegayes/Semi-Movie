@@ -48,6 +48,10 @@ public class CinemaController {
         return "cinema/search-cinema";
     }
 	
+	
 
-}
+	}
+	
+
+
 
