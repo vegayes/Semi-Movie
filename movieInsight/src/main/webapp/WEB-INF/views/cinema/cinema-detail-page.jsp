@@ -148,7 +148,7 @@
                                 </c:choose>   
                             </div>
 
-                            <c:if test="${loginMember.memberNo == 12}">
+                            <c:if test="${loginMember.memberNo == 12 && not empty cinemaInfo}">
                                 <div>
                                     <button type="submit" id="updateButton" name="update" style="color: black;">수정하기</button>
                                 </div>
@@ -524,29 +524,28 @@
 
             <div class="comment" >
                 <div class = "menuFromContainer">
-                    <form id="menuForm">
-
-                        <label for="menu">해당 극장 메뉴</label>
-                        <select id="menu" name="menu">
+                    <form action="/movieInsight/cinemaDetail/menu/insert" method="POST" encType="multipart/form-data" id="updateform"id="menuForm">
+                        <label for="menuSelect">해당 극장 메뉴</label>
+                        <select id="menuSelect" name="menu">
                             <option value="" disabled selected>목록</option>
                             <optgroup label="팝콘">
  	                           <c:forEach items = "${menuList}" var="menuName">
 	                            	<c:if test ="${menuName.menuCategory eq '팝콘' }">
-		                            	 	<option>${menuName.menuName}</option>
+		                            	 	<option name = "menuSelect" value = "${menuName.menuName}">${menuName.menuName}</option>
 	                            	</c:if>
                             	</c:forEach> 
                             </optgroup>
                             <optgroup label="음료">
  	                           <c:forEach items = "${menuList}" var="menuName">
 	                            	<c:if test ="${menuName.menuCategory eq '음료' }">
-		                            	 	<option>${menuName.menuName}</option>
+		                            	 	<option name = "menuSelect" value = "${menuName.menuName}">${menuName.menuName}</option>
 	                            	</c:if>
                             	</c:forEach> 
                             </optgroup>
                             <optgroup label="사이드">
  	                           <c:forEach items = "${menuList}" var="menuName">
 	                            	<c:if test ="${menuName.menuCategory eq '스낵' }">
-		                            	 	<option>${menuName.menuName}</option>
+		                            	 	<option name = "menuSelect" value = "${menuName.menuName}">${menuName.menuName}</option>
 	                            	</c:if>
                             	</c:forEach>
                             </optgroup>
@@ -564,9 +563,9 @@
                                 <i class="far fa-thumbs-up menuGrade"></i>
                             </div>
                     </form>
-                 	<div id="menuCommentSubmit">
-                        <img src="/movieInsight/resources/images/movie/movieT/list.png">
-                    </div>
+	                <div id="menuCommentSubmit">
+	                    <img src="/movieInsight/resources/images/movie/movieT/list.png">
+	                </div>
                  </div>
             </div>
             

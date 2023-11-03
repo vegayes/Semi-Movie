@@ -119,7 +119,7 @@ public class ManagerDetailController {
 		System.out.println("encodedCinemaName : " + encodedCinemaName);
 
 		
-		return "redirect:/cinemaDetail/" + encodedCinemaName;
+		return "redirect:/manager/cinema";
 	}	
 	
 	
@@ -167,15 +167,14 @@ public class ManagerDetailController {
 		List<String> actorNamesList = new ArrayList<>(Arrays.asList(actorNamesArray));
 		List<String> directorNamesList = new ArrayList<>(Arrays.asList(directorNamesArray));
 		
-		int movieNo = 0;
+	
 		String webPath = "/resources/images/movie/";
 		String filePath = session.getServletContext().getRealPath(webPath);
 		
 		int result = service.insertMovie(movieInfo,movieImage,filePath,actorNamesList,directorNamesList);
-		
+		System.out.println("삽입 결과 : " + result);
 		if(result > 0) {
-			ra.addFlashAttribute("message","등록 성공");
-			movieNo = service.selectMovieNo(movieInfo.getMovieTitle());
+			ra.addFlashAttribute("message","등록 성공");		
 			return "redirect:/manager/movie";
 		}else {
 			ra.addFlashAttribute("message","등록 실패");
@@ -199,9 +198,9 @@ public class ManagerDetailController {
 		int result = service.updateMovie(movieInfo);
 		
 		if(result > 0) {
-			ra.addFlashAttribute("message","등록 성공");
+			ra.addFlashAttribute("message","수정 성공");
 		}else {
-			ra.addFlashAttribute("message","등록 실패");
+			ra.addFlashAttribute("message","수정 실패");
 		}
 		
 		return "redirect:/manager/movie";
@@ -282,11 +281,11 @@ public class ManagerDetailController {
 	}
 	
 	
-	@GetMapping("deleteEvent/{eventPRNo:^[^0]\\d*}") // 정수 숫자만
-	public String deleteEvent (@PathVariable("eventPRNo") int eventPRNo, Model model,
+	@GetMapping("deleteEvent/{eventTitle}") 
+	public String deleteEvent (@PathVariable("eventTitle") String eventTitle, Model model,
 			RedirectAttributes ra) {
 		
-		int result = service.deleteEvent(eventPRNo);
+		int result = service.deleteEvent(eventTitle);
 		if(result > 0) {
 			ra.addFlashAttribute("message","삭제에 성공했습니다");
 		}else {
@@ -298,11 +297,11 @@ public class ManagerDetailController {
 	}
 	
 	
-	@GetMapping("deletePromotion/{promotionNo:^[^0]\\d*}") // 정수 숫자만
-	public String deletePromotion (@PathVariable("promotionNo") int promotionNo, Model model,
+	@GetMapping("deletePromotion/{promotionType}") 
+	public String deletePromotion (@PathVariable("promotionType") String promotionType, Model model,
 			RedirectAttributes ra) {
 		
-		int result = service.deletePromotion(promotionNo);
+		int result = service.deletePromotion(promotionType);
 		if(result > 0) {
 			ra.addFlashAttribute("message","삭제에 성공했습니다");
 		}else {
@@ -353,24 +352,43 @@ public class ManagerDetailController {
 	
 	
 	
-	@GetMapping("deleteMenu/{menuCategory}/{menuNo}")
-	public String deleteMenu(@PathVariable String menuCategory, @PathVariable int menuNo,
+	@GetMapping("deleteMenu/{menuNo}")
+	public String deleteMenu(@PathVariable("menuNo") int menuNo,
 			RedirectAttributes ra ) {
 	   
 		
-		int result = 1;
+		int result = service.deleteMenu(menuNo);
 		
 		if(result > 0) {
-			ra.addFlashAttribute("message","등록 성공");
+			ra.addFlashAttribute("message","삭제 성공");
 		}else {
-			ra.addFlashAttribute("message","등록 실패");
+			ra.addFlashAttribute("message","삭제 실패");
 		}
 		
 		
 		return "redirect:/manager/menu";
 	}
 	
+	/*================================회원====================================*/
 	
+	@ResponseBody
+	@GetMapping(value = "/selectMemberInfo/select", produces = "application/json; charset=UTF-8")
+	public Map<String,Object> selectMyMovieFavorite(int memberNo) {
+		System.out.println("회원정보 조회 비동기 :" +  memberNo);
+		
+		// 영화관과 영화 댓글 목록 조회
+		List<Movie> movieCommentList = service.selectMovieComment(memberNo);
+		List<Cinema> cinemaCommentList = service.selectCinemaComment(memberNo);
+		
+		Map<String, Object> commentMap = new HashMap<String, Object>();
+		
+		commentMap.put("movieComment", movieCommentList);
+		commentMap.put("cinemaComment", cinemaCommentList);
+		
+		System.out.println("commentMap : " + commentMap);
+		
+		return commentMap;
+	}	
 	
 	
 	

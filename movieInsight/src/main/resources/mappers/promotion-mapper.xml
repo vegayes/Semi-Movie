@@ -75,13 +75,13 @@
   	
 	<delete id="deleteEvent">
 		 DELETE FROM EVENT_PROMOTION
-		 WHERE EVENT_PR_NO = #{eventPRNo}
+		 WHERE EVENT_TITLE = #{eventTitle}
 	</delete>
 	
 	
 	<delete id="deletePromotion">
 		 DELETE FROM CINEMA_PROMOTION
-		 WHERE PROMOTION_NO = #{promotionNo}
+		 WHERE PROMOTION_TYPE = #{promotionType}
 	</delete>
 	
 	

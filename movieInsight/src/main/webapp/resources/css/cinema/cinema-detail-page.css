@@ -867,7 +867,7 @@ star{
     justify-content: center;
     background-color: white;
     /* width: 58%; */
-    width : 60%;
+    width : 65%;
     height: 80%;
     border-radius: 20px;
 }
@@ -1033,12 +1033,13 @@ star{
 
 /* 등록 버튼 */
 #menuCommentSubmit{
-	left-margin : 2%;
     background-repeat: no-repeat;/* 배경 이미지 1개 */
     background-position: center;
+    background-color: #383B3E;
     width: 100px;
     height: 100px;
     border: 0px;
+    
     display : flex;
     justify-content: center;
     align-items: center;

@@ -258,5 +258,26 @@
   	
   	
   	
+  	<select id="selectCinemaComment" resultMap = "cinema_rm" >
+		SELECT *
+		FROM CINEMA_EVALUATION
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
 
 </mapper>

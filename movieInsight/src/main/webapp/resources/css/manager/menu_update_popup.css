@@ -1,5 +1,6 @@
 /* 메뉴 수정 */
-#manager-menu-info-box{
+#manager-menu-update-box{
+	
     position: fixed;
     top: 0;
     left: 0;
@@ -19,13 +20,14 @@
 } */
 
 
-#manager-menu-info-content{
+#manager-menu-update-content{
     background-color: #00171f;
     width: 60%;
     /* width: 1000px;
     height: 570px;*/ 
     padding: 20px ;
     border-radius: 15px;
+    
     position: relative;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* 그림자 효과 */
     display: flex;
@@ -67,6 +69,8 @@
   cursor: pointer;
 }
 
+
+/**************************************************************************************/
 .title-container{
     flex-basis: 10%;
     

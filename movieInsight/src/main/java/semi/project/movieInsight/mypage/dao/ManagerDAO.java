@@ -255,16 +255,16 @@ public class ManagerDAO {
 
 	
 	
-	public int deleteEvent(int eventPRNo) {
+	public int deleteEvent(String eventTitle) {
 		
-		return sqlSession.delete("promotionMapper.deleteEvent", eventPRNo);
+		return sqlSession.delete("promotionMapper.deleteEvent", eventTitle);
 	}
 
 	
 	
-	public int deletePromotion(int promotionNo) {
+	public int deletePromotion(String promotionType) {
 		
-		return sqlSession.delete("promotionMapper.deletePromotion", promotionNo);
+		return sqlSession.delete("promotionMapper.deletePromotion", promotionType);
 	}
 
 	
@@ -289,6 +289,28 @@ public class ManagerDAO {
 		}
 		System.out.println("insertMenu 중 오류");
 		return 0;
+	}
+
+	public int deleteMenu(int menuNo) {
+		
+		int result = sqlSession.delete("menuMapper.deleteMenu", menuNo);
+//		if(result > 0) {
+//			return sqlSession.delete("menuMapper.")
+//		}
+		return result;
+	}
+
+	
+	
+	// 관리자 : 회원 페이지에서 댓글목록 조회
+	public List<Movie> selectMovieComment(int memberNo) {
+		
+		return sqlSession.selectList("memberMapper.selectMovieComment", memberNo);
+	}
+
+	public List<Cinema> selectCinemaComment(int memberNo) {
+		
+		return sqlSession.selectList("memberMapper.selectCinemaComment", memberNo);
 	}
 
 	

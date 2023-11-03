@@ -51,7 +51,7 @@
     </div>
    
     <!--영화 이동 링크-->
-    <a href="/movie">
+    <a href="/movieInsight/movie">
         <img  class="movie_link"><br>
     </a>
 

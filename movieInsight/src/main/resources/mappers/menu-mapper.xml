@@ -12,7 +12,9 @@
 		<result property="menuCategory" column="MENU_CATEGORY"/>
 		
 		<result property = "menuGrade" column = "MENU_GRADE"/>
+		<result property = "memberNo" column = "MEMBER_NO"/>
 	
+		<result property = "cinemaName" column = "CINEMA_NAME"/>
   </resultMap>
 
 
@@ -112,6 +114,8 @@
 
 
 
+	<!-- 메뉴-영화관 테이블에 삽입 -->
+	<!--삽입 메뉴 상태 -->
 	<insert id="insertMenuStatus">
 		INSERT INTO MENU_STATUS (SNACK_CINEMA_NO, CINEMA_NO, MENU_NO)
 	    SELECT SEQ_SNACK_CINEMA_NO.NEXTVAL, A.CINEMA_NO, A.MENU_NO
@@ -123,9 +127,25 @@
 	    ) A
 	</insert>
 
+	<delete id="deleteMenu">
+		DELETE FROM MENU m
+		WHERE MENU_NO  = #{menuNo}
+	</delete>
 
 
-
+	
+	
+	<!--  
+	<insert id = "insertMenuGrade">
+	INSERT INTO "MENU_RECOMMEND"
+	VALUES (SEQ_MENU_RC_NO.NEXTVAL,(SELECT SNACK_CINEMA_NO 
+									FROM MENU_STATUS ms 
+									LEFT JOIN MENU USING(MENU_NO)
+									WHERE MENU_NAME = #{menuName} AND CINEMA_NO = (SELECT CINEMA_NO 
+																						FROM CINEMA 
+																						WHERE CINEMA_NAME LIKE #{cinemaName)), #{memberNo}, #{menuGrade} )
+	</insert> 
+	-->
 
 
 

@@ -311,8 +311,6 @@
 	</update>
 	
 	
-	
-	
 	<!-- 즐겨찾기 ON -->
 	<insert id = "addFavorite">
 		INSERT INTO MOVIE_LIKE 
@@ -347,6 +345,27 @@
 		WHERE MOVIE_EV_DEL_YN = 'N' AND MOVIE_NO = #{movieNo}
 		GROUP BY MOVIE_NO
 	</select>
+
+
+
+	<!-- 회원 번호에 해당하는 영화 댓글목록 조회 -->
+	<select id="selectMovieComment" resultMap = "movie_rm" >
+		SELECT *
+		FROM MOVIE_EVALUATION me
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+
+
+	
+
+
+
+
+
+
+
+
+
 
 </mapper>
 
