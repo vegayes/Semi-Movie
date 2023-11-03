@@ -79,6 +79,7 @@
 		FROM MOVIE 
 		JOIN MOVIE_LIKE USING(MOVIE_NO)
 		WHERE MOVIE_LIKE_DEL_YN = 'N' AND MOVIE_LIKE_DEL_YN = 'N'AND MEMBER_NO =#{memberNo}
+		ORDER BY MOVIE_LIKE_ENROLL_DATE DESC
 	</select>
 	
   	<!-- 마이페이지 영화관 즐겨찾기 조회  -->
@@ -86,7 +87,8 @@
 		SELECT CINEMA_NO, CINEMA_NAME, CINEMA_IMG, TO_CHAR(CINEMA_LIKE_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') CINEMA_LIKE_ENROLL_DATE
 		FROM CINEMA 
 		JOIN CINEMA_LIKE USING(CINEMA_NO)
-		WHERE CINEMA_LIKE_DEL_YN = 'N' AND CINEMA_LIKE_DEL_YN = 'N'AND MEMBER_NO =#{memberNo} 	
+		WHERE CINEMA_LIKE_DEL_YN = 'N' AND CINEMA_LIKE_DEL_YN = 'N'AND MEMBER_NO =#{memberNo}
+		ORDER BY CINEMA_LIKE_ENROLL_DATE DESC 	
   	</select>
   	
   	
@@ -95,7 +97,7 @@
 		SELECT MOVIE_EV_NO, MOVIE_TITLE, EVALUATION_CONTENT ,  TO_CHAR(MOVIE_EV_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') MOVIE_EV_ENROLL_DATE, MOVIE_GRADE 
 		FROM MOVIE_EVALUATION 
 		JOIN MOVIE USING(MOVIE_NO)
-		WHERE MOVIE_DEL_YN ='N' AND MEMBER_NO = #{memberNo}
+		WHERE MOVIE_DEL_YN ='N' AND MOVIE_EV_DEL_YN = 'N' AND MEMBER_NO = #{memberNo}
 		ORDER BY MOVIE_EV_ENROLL_DATE DESC
   	</select>	
   	
@@ -104,7 +106,7 @@
 		SELECT CINEMA_EV_NO , CINEMA_NAME, EVALUATION_TYPE , CINEMA_COMMENT ,  TO_CHAR(CINEMA_EV_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') CINEMA_EV_ENROLL_DATE, CINEMA_GRADE 
 		FROM CINEMA_EVALUATION ce  
 		JOIN CINEMA USING(CINEMA_NO)
-		WHERE CINEMA_DEL_YN ='N' AND MEMBER_NO = #{memberNo}
+		WHERE CINEMA_DEL_YN ='N' AND CINEMA_EV_DEL_YN = 'N' AND MEMBER_NO = #{memberNo}
 		ORDER BY CINEMA_EV_ENROLL_DATE DESC  	
   	</select>
   	
@@ -131,14 +133,51 @@
 	</update>
   	
   	
+  	<!--  영화 댓글 팝업 내용 가져오기 -->
+ 	<select id = "selectMovieComment" resultMap="movie_rm">
+	 	SELECT MOVIE_EV_NO, MOVIE_TITLE, EVALUATION_CONTENT ,  TO_CHAR(MOVIE_EV_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') MOVIE_EV_ENROLL_DATE, MOVIE_GRADE 
+		FROM MOVIE_EVALUATION 
+		JOIN MOVIE USING(MOVIE_NO)
+		WHERE MOVIE_DEL_YN ='N' AND MOVIE_EV_DEL_YN = 'N' AND MOVIE_EV_NO = #{commentNo}
+ 	</select>
+  	
+  	<!-- 영화  댓글 팝업 내용 수정하기 -->
+  	<update id = "updateMovieComment">
+	  	UPDATE MOVIE_EVALUATION 
+		SET EVALUATION_CONTENT = #{movieCommentContent},
+		MOVIE_EV_ENROLL_DATE = SYSDATE,
+		MOVIE_GRADE  = #{movieGrade}
+		WHERE MOVIE_EV_NO = #{movieCommentNo}
+  	</update>
   	
   	
+  	<!--  영화관 댓글 팝업 내용 가져오기  -->
+  	<select id = "selectCinemaComment" resultMap = "cinema_rm">
+		SELECT CINEMA_EV_NO , CINEMA_NAME, EVALUATION_TYPE , CINEMA_COMMENT ,  TO_CHAR(CINEMA_EV_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') CINEMA_EV_ENROLL_DATE, CINEMA_GRADE 
+		FROM CINEMA_EVALUATION ce  
+		JOIN CINEMA USING(CINEMA_NO)
+		WHERE CINEMA_DEL_YN ='N' AND CINEMA_EV_DEL_YN = 'N' AND CINEMA_EV_NO = #{cinemaCommentNo}	
+  	</select>
+  	
+  	<!--  영화관 댓글 팝업 내용 수정하기 -->
+  	<update id = "updateCinemaComment">
+		UPDATE CINEMA_EVALUATION
+		SET CINEMA_COMMENT = #{cinemaCommentContent},
+		CINEMA_EV_ENROLL_DATE = SYSDATE,
+		CINEMA_GRADE = #{cinemaGrade}
+		WHERE CINEMA_EV_NO = #{cinemaCommentNo}
+  	</update>
   	
   	
-  	
-  	
-  	
+  	<!-- 즐겨찾기 삭제하기 -->
+  	<delete id = "delFavoriteMovie">
+	 DELETE FROM MOVIE_LIKE 
+	 WHERE MOVIE_NO IN
+  	<foreach collection="delMovieNo" item="movieNo" open="(" separator="," close=")">
+   	 #{movieNo}
+ 	 </foreach>
+ 	 AND  MEMBER_NO = #{memberNo}	
+  	</delete>
 	
 </mapper>
-
 

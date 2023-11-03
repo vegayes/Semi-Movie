@@ -10,7 +10,7 @@
 		<result property="memberPw" column="MEMBER_PW" />
 		<result property="memberEmail" column="MEMBER_EMAIL" />
 		<result property="memberNickname" column="MEMBER_NICKNAME" />
-		<result property="memberGender" column="MEMBER_GENDER" />
+		<result property="memberGender" column="MEMEBER_GENDER" />
 		<result property="memberProfile" column="MEMBER_PROFILE" />
 		<result property="memberEnrollDate" column="MEMBER_ENROLL_DATE" />
 		<result property="memberDelYN" column="MEMBER_DEL_YN" />
@@ -38,11 +38,11 @@
 	</select>
 	
 	
-	
-	<select id="checkId" parameterType="java.lang.String">
-		SELECT COUNT(*) 
-		FROM MEMBER
-		WHERE MEMBER_ID = #{id_check}
+	<!--아이디 중복확인  -->
+	<select id="checkId" resultType="_int">
+		SELECT COUNT(*) FROM "MEMBER"
+		WHERE MEMBER_ID = #{memberId}
+		AND MEMBER_DEL_YN = 'N'
 	</select>
 	
 	<!--  비밀번호 찾기에서 ==> 초기화 시키거나 랜덤 수로 다시 지정한 후 알려주기  -->
@@ -54,6 +54,7 @@
 				MEMEBER_GENDER , MEMBER_PROFILE , TO_CHAR(MEMBER_ENROLL_DATE, 'YYYY"년" MM"월" DD"일"') AS MEMBER_ENROLL_DATE, MEMBER_DEL_YN 
 		FROM MEMBER
 	</select>
+	
 	
 	<!-- 관리자- 회원정보 수 찾기 -->
 	<select id = "selectMemberCount" resultType = "_int">
@@ -71,6 +72,29 @@
 		WHERE MEMBER_EMAIL = #{email}
 		AND MEMBER_DEL_YN = 'N'
 	</select>
+	
+	<!-- 닉네임 중복 검사 -->
+	<select id="checkNick" resultType="_int">
+		SELECT COUNT(*) FROM "MEMBER"
+		WHERE MEMBER_NICKNAME = #{memberNickname}
+		AND MEMBER_DEL_YN = 'N'
+	</select>
+	
+	
+
+
+	
+
+	<select id="selectCinemaComment">
+	
+	
+	
+	</select>
+
+
+
+
+
 
 
 

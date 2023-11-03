@@ -35,6 +35,126 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+function selectMovieGradeUpdate() {
+    fetch("/movieInsight/movie/update/grade?movieNo=" + movieNo)
+    .then(response => response.json()) 
+    .then(movie => {
+        console.log(movie);
+        console.log(movie.sumMovieGrade);
+
+        const gradeElement = document.getElementById('grade');
+
+        if (gradeElement) {
+            gradeElement.textContent = `평점 : ${movie.sumMovieGrade}`;
+        } else {
+            console.error("Element with id 'grade' not found.");
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+
+
+
+function selectMovieCommentList() {
+    fetch("/movieInsight/movie/comment/select?movieNo=" + movieNo)
+        .then(response => response.json()) 
+        .then(list => {
+            console.log(list);
+
+            const commentListTable = document.getElementById('comment-list-table');
+            commentListTable.innerHTML = ''; // 기존 테이블 내용 초기화
+
+            for (let comment of list) {
+
+                const gradeTr = document.createElement('tr');
+                gradeTr.classList.add('comment-grade-tr');
+                const gradeTd = document.createElement('td');
+                gradeTd.innerText = `평점 ${comment.movieGrade}`;
+                gradeTr.appendChild(gradeTd);
+
+                const contentTr = document.createElement('tr');
+                contentTr.classList.add('comment-content-tr');
+                contentTr.style.border = '2px solid blue';
+
+                const imgTd = document.createElement('td');
+                imgTd.classList.add('comment-img');
+                const writerImgWrapper = document.createElement('div');
+                writerImgWrapper.classList.add('comment-writer-img-wrapper');
+                const imgSrc = comment.writerProfile ? `/movieInsight/resources/images/member/${comment.writerProfile}` : '/movieInsight/resources/images/member/기본이미지.png';
+                const writerImg = document.createElement('img');
+                writerImg.setAttribute('src', imgSrc);
+                writerImgWrapper.appendChild(writerImg);
+                imgTd.appendChild(writerImgWrapper);
+
+                const idTd = document.createElement('td');
+                idTd.classList.add('comment-list-id');
+                idTd.innerText = `${comment.commentMovieWriter} : `;
+
+                const contentTd = document.createElement('td');
+                contentTd.classList.add('comment-list-content', 'comment-content');
+                contentTd.innerText = comment.movieCommentContent;
+
+                const dateTd = document.createElement('td');
+                dateTd.classList.add('comment-list-date');
+                dateTd.innerText = comment.movieCommentDate;
+
+                const editTd = document.createElement('td');
+                editTd.classList.add('comment-list-edit');
+                
+                console.log("memberid :" + memberId);
+                console.log("commentWriter :" + comment.commentMovieWriter);
+                if (comment.commentMovieWriter === memberId) {
+                    const editBtn = document.createElement('button');
+                    editBtn.classList.add('editBtn');
+                    editBtn.innerText = '수정';
+                    editBtn.onclick = function() {
+                        updateComment(comment.movieCommentNo);
+                    };
+
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.classList.add('deleteBtn');
+                    deleteBtn.innerText = '삭제';
+                    deleteBtn.onclick = function() {
+                        // 삭제 버튼 클릭 시 동작하는 함수 호출
+                        deleteComment(comment.movieCommentNo);
+                    };
+
+                    editTd.appendChild(editBtn);
+                    editTd.appendChild(deleteBtn);
+                }
+
+                contentTr.appendChild(imgTd);
+                contentTr.appendChild(idTd);
+                contentTr.appendChild(contentTd);
+                contentTr.appendChild(dateTd);
+                contentTr.appendChild(editTd);
+
+                commentListTable.appendChild(gradeTr);
+                commentListTable.appendChild(contentTr);
+                
+            }
+        })
+        .catch(err => console.log(err));
+}
+    
+
+function resetGrade() {
+
+    movieGrade = 0;
+
+    // 등급 아이콘 초기화
+    const thumbs = document.querySelectorAll(`.fa-thumbs-up`);
+    thumbs.forEach(thumb => {
+        thumb.classList.remove('fas');
+        thumb.classList.add('far');
+        thumb.style.color = '';
+    });
+}
+
+
+
+
 const addComment = document.getElementById("commentSubmit");
 const commentContent = document.getElementById("commentContent");
 
@@ -59,7 +179,13 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
         commentContent.value = ""; // 띄어쓰기, 개행문자 제거
         commentContent.focus();
         return;
+    }else if (movieGrade == 0){
+        alert("1점 이상 체크한 후 버튼을 클릭해주세요.");
+        return;
     }
+
+
+
 
     // 3) AJAX를 이용해서 댓글 내용 DB에 저장(INSERT)
     fetch("/movieInsight/movie/comment/insert?commentContent="+commentContent.value + "&movieNo="+movieNo + "&movieGrade=" + movieGrade)
@@ -70,7 +196,9 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
 
             commentContent.value = ""; // 작성했던 댓글 삭제
 
-            // selectCommentList(); // 비동기 댓글 목록 조회 함수 호출
+            selectMovieCommentList();
+            selectMovieGradeUpdate();
+            resetGrade();
 
         } else { // 실패
             alert("댓글 등록에 실패했습니다...");
@@ -80,39 +208,142 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
 });
 
 
+// 댓글 삭제
+function deleteComment(movieCommentNo){
+                    
+    console.log("삭제 버튼 누름 " + movieCommentNo);
+
+    if( confirm("정말로 삭제 하시겠습니까?") ){
+
+        console.log("정말로 삭제 응답")
+        fetch("/movieInsight/movie/comment/delete?movieCommentNo="+ movieCommentNo)
+        .then(resp => resp.text())
+        .then(result => {
+            if(result > 0){
+                alert("삭제되었습니다");
+                selectMovieCommentList();
+                selectMovieGradeUpdate();
+            }else{
+                alert("삭제 실패");
+            }
+        })
+        .catch(err => console.log(err));
+
+    }
+}
 
 
+// 댓글 수정 (아직 안함) btn이 왜 있었지?
+function updateComment(commentNo){
+
+    // 새로 작성된 댓글 내용 얻어오기
+    const commentContent = btn.parentElement.previousElementSibling.value;
+    fetch("/commnet/update?commentContent="+commentContent + "&commentNo="+commentNo)
+    .then(resp => resp.text())
+    .then(result => {
+        if(result > 0){
+            alert("댓글이 수정되었습니다.");
+            selectMovieCommentList();
+            selectMovieGradeUpdate();
+        }else{
+            alert("댓글 수정 실패");
+        }
+    })
+    .catch(err => console.log(err));
+
+}
 
 
+// 즐겨찾기 버튼이 클릭 되었을 때
+const favoriteStar = document.getElementById("favoriteStar");
 
+if(document.getElementById("favoriteStar")) {
+
+    favoriteStar.addEventListener("click", e => {
+
+        // 로그인 여부 검사  빈문자열은 "" 임.
+        if(memberNo == ""){
+            alert("로그인 후 이용해주세요")
+            return;
+        }
+
+        let check; // 버튼  X(빈 별) : 0  
+                //      O(꽉찬 별) : 1
+
+        // contains("클래스명") : 클래스가 있으면 true, 없으면 false
+        if(e.target.classList.contains("fa-regular")){ // 빈 별
+            check = 0;
+        }else{ // 꽉찬 별
+            check = 1;
+        }
+
+        const data =   {"movieNo" : movieNo , 
+                        "memberNo" : memberNo,
+                        "check" : check };
+
+        fetch("/movieInsight/movie/favorite", {
+            method : "POST",
+            headers : {"Content-Type" : "application/json"},
+            body : JSON.stringify(data)
+        })
+        .then(response => response.text()) 
+
+        .then(count => { 
+
+            if(count == -1){ // INSERT, DELETE 실패 시
+                console.log("즐겨찾기 추가 오류");
+                return;
+            }
+
+            e.target.classList.toggle("fa-regular");
+            e.target.classList.toggle("fa-solid");
+
+        }) 
+
+        .catch(err => {
+            console.log("예외 발생");
+            console.log(err);
+        }) 
+
+
+    });
+
+}
 
 
 
 const star = document.getElementById("star");
 let clicked = false;
 
-star.addEventListener("click", function () {
-    if (clicked) {
-        star.style.color = 'white'; // 클릭 후 다시 하얀색으로 변경
-    } else {
-        star.style.color = 'purple'; // 클릭 시 색상을 보라색으로 변경
-    }
-    clicked = !clicked;
-});
+if(document.getElementById("star")) {
 
-star.addEventListener("mouseenter", function () {
-    if (!clicked) {
-        star.style.color = 'blue'; // 마우스를 올렸을 때 파란색으로 변경
-    } else {
-        star.style.color = 'purple'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
-    }
-});
+    star.addEventListener("click", function () {
+        if (clicked) {
+            star.style.color = 'white'; // 클릭 후 다시 하얀색으로 변경
+        } else {
+            star.style.color = 'yellow'; // 클릭 시 색상을 보라색으로 변경
+        }
+        clicked = !clicked;
+    });
+    
+    star.addEventListener("mouseenter", function () {
+        if (!clicked) {
+            star.style.color = 'yellow'; // 마우스를 올렸을 때 파란색으로 변경
+        } else {
+            star.style.color = 'white'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
+        }
+    });
+    
+    star.addEventListener("mouseleave", function () {
+        if (!clicked) {
+            star.style.color = 'white'; // 마우스를 내렸을 때 다시 하얀색으로 변경
+        }
+    });
 
-star.addEventListener("mouseleave", function () {
-    if (!clicked) {
-        star.style.color = 'white'; // 마우스를 내렸을 때 다시 하얀색으로 변경
-    }
-});
+    
+}
+
+
 
 const gallery = document.querySelector('.gallery');
 const prevButton = document.querySelector('.prev-button');

@@ -15,6 +15,17 @@ public interface MovieService {
 
 	List<Movie> selectManagerMovieList();
 
+	List<Movie> getMovies();
+
+	List<Movie> findMoviesByCategory(String category);
+
+	Movie findMovieById(Long movieNo);
+
+	List<Movie> findAllMovies();
+
+	Movie selectMovie(int movieNo);
+
+	
 
 
 }

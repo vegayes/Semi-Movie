@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class EmailDAO {
       
 	@Autowired
-	private SqlSessionTemplate sqlSession ;
+	private SqlSessionTemplate sqlSession;
 	
 
 	public int updateAuthKey(Map<String, String> map) {

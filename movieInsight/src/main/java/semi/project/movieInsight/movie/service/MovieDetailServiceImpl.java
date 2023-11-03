@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.common.utility.Util;
 import semi.project.movieInsight.movie.dao.MovieDetailDAO;
 import semi.project.movieInsight.movie.dto.Movie;
 
@@ -30,6 +31,11 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 		Movie movieInfo = dao.selectMovie(movieNo);
 		
 		// 2) 평점 가져오기 
+		float sumMovieGrade = dao.sumMovieGrade(movieNo);
+		
+		System.out.println("총 평점 : " + sumMovieGrade);
+		
+		movieInfo.setSumMovieGrade(sumMovieGrade);
 		
 		return movieInfo;
 	}
@@ -90,11 +96,57 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 	/**
 	 * 댓글 삽입 
 	 */
-//	@Transactional(rollbackFor = Exception.class)
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int insert(Movie movie) {
+		
+		// 0. XSS 방지 처리 
+		movie.setMovieCommentContent(Util.XSSHandling(movie.getMovieCommentContent()));
+		
 		return dao.commentInsert(movie);
+	}
+
+	/**
+	 * 댓글 삭제
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int delete(int movieCommentNo) {
+		return dao.commentDelete(movieCommentNo);
+	}
+
+	/**
+	 * 즐겨찾기 체크
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updatefavorite(Map<String, Integer> paramMap) {
+		
+		int check = (int)paramMap.get("check"); 
+		
+		System.out.println("check :" + check);
+		
+		int result = 0;
+		
+		if(check == 0) {
+			result = dao.addFavorite(paramMap);
+
+		}else {
+			result = dao.delFavorite(paramMap);
+		}
+		
+		if(result == 0) return -1;
+		
+		
+		return result;
+	}
+
+	/**
+	 * 즐겨찾기 조회 
+ 	 */
+	@Override
+	public int favoriteCheck(Map<String, Object> favoriteCheck) {
+		return dao.favoriteCheck(favoriteCheck);
 	}
 	
 	

@@ -148,6 +148,54 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 
+	/**
+	 * 3-3) 영화 댓글 팝업  조회 
+	 */
+	@Override
+	public Movie selectMovieComment(int commentNo) {
+		return dao.selectMovieComment(commentNo);
+	}
+
+
+	/**
+	 * 3-4) 영화 댓글 팝업 수정 
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateMovieComment(Movie movie) {
+		return dao.updateMovieComment(movie);
+	}
+
+
+	/**
+	 *3-5) 영화관 댓글 팝업 조회 
+	 */
+	@Override
+	public Cinema selectCinemaComment(int cinemaCommentNo) {
+		return dao.selectCinemaComment(cinemaCommentNo);
+	}
+
+
+	/**
+	 * 3-6) 영화관 댓글 팝업 수정 
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateCinemaComment(Cinema cinema) {
+		return dao.updateCinemaComment(cinema);
+	}
+
+
+	/**
+	 * 즐겨찾기 선택된 값 삭제 ( 영화 ) 
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int delFavoriteMovie(Map<String, Object> favoriteDelMovie) {
+		return dao.delFavoriteMovie(favoriteDelMovie);
+	}
+
+
 
 
 

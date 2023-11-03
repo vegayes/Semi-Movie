@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.movie.dto.Movie;
@@ -128,13 +129,13 @@ public class ManagerServiceImpl implements ManagerService{
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int updateCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) 
+	public int updateCinema(MultipartFile cinemaImage, String filePath, Cinema cinemaInfo) 
 		throws Exception{
 		
 		//System.out.println("영화관 사진이름 : " + cinemaImage.getOriginalFilename());
 		cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
 		int result = dao.updateCinema(cinemaInfo);
-		//System.out.println("filePath : " + filePath);
+		
 		
 		if(result > 0) { 
 			
@@ -153,9 +154,12 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 
+	/**
+	 * 영화관 새로 등록
+	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int insertCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) throws Exception{
+	public int insertCinema(MultipartFile cinemaImage,String filePath, Cinema cinemaInfo) throws Exception{
 		
 				cinemaInfo.setCinemaImg(cinemaImage.getOriginalFilename());
 				int result = dao.insertCinema(cinemaInfo);
@@ -176,6 +180,233 @@ public class ManagerServiceImpl implements ManagerService{
 				return result;
 				
 	}
+
+	/**
+	 * 영화 새로 등록
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath, List<String> actorNamesList, List<String> directorNamesList) throws Exception {
+		
+		movieInfo.setMovieImg(movieImage.getOriginalFilename());
+		int result = dao.insertMovie(movieInfo,actorNamesList,directorNamesList);
+		
+		if(result > 0) { 
+			
+			if(movieImage.getSize() != 0) {
+				movieImage.transferTo(new File(filePath + movieImage.getOriginalFilename()));
+				
+			}		
+			
+		}else {
+			
+			 throw new RuntimeException("Cinema insert failed ");
+		}
+		
+		return result;
+	}
+
+	
+	
+	/**
+	 * 영화 번호 얻어옴
+	 */
+	@Override
+	public int selectMovieNo(String movieTitle) {
+		return dao.selectMovieNo(movieTitle);
+	}
+
+	
+	
+	
+	/**
+	 * 영화 업데이트
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateMovie(Movie movieInfo) {
+		
+		int result = dao.updateMovie(movieInfo);
+		
+		if(result > 0) { 
+			
+			return result;
+			
+		}else {
+			
+			 throw new RuntimeException("Cinema insert failed ");
+		}
+		
+	}
+	
+	
+	
+	
+	///===============================특별관======================================================///////////
+	
+	/**
+	 * 관리자가 특별관 홍보 추가
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertPromotion(MultipartFile image, String filePath, Map<String, Object> promotionMap) throws Exception{
+		
+		
+		int result = dao.insertPromotion(promotionMap);
+		
+		if(result > 0) { 
+			
+			if(image.getSize() != 0) {
+				image.transferTo(new File(filePath + image.getOriginalFilename()));
+				
+			}		
+			
+		}else {
+			
+			 throw new RuntimeException("Promotion insert failed ");
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 관리자가 이벤트 정보 추가
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertEvent(Map<String, Object> eventMap, MultipartFile image, String filePath) throws Exception{
+		
+		int result = dao.insertEvent(eventMap);
+		
+		if(result > 0) { 
+			
+			if(image.getSize() != 0) {
+				image.transferTo(new File(filePath + image.getOriginalFilename()));
+			}		
+			
+		}else {
+			 throw new RuntimeException("Promotion insert failed ");
+		}
+		
+		return result;
+	}
+
+	
+	/**
+	 * 이벤트 삭제 메서드
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int deleteEvent(String eventTitle) {
+
+		 int result = dao.deleteEvent(eventTitle);
+
+		    if (result > 0) {
+		        return result;
+		    } else {
+		       
+		        throw new RuntimeException("event deletion failed for cinemaNo: " + eventTitle);
+		    }
+	}
+
+	
+	/**
+	 * 이벤트 삭제 메서드
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int deletePromotion(String promotionType) {
+
+		 int result = dao.deletePromotion(promotionType);
+
+		    if (result > 0) {
+		        return result;
+		    } else {
+		       
+		        throw new RuntimeException("promotion deletion failed for promotionNo: " + promotionType);
+		    }
+	}
+
+	
+	
+	/**
+	 *  메뉴 추가 메서드
+	 */
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public int insertMenu(Map<String, Object> menuMap, MultipartFile image, String filePath) throws Exception {
+		
+		
+		
+		int result = dao.insertMenu(menuMap);
+		
+		if(result > 0) { 
+			
+			if(image.getSize() != 0) {
+				image.transferTo(new File(filePath + image.getOriginalFilename()));
+				
+			}		
+			
+		}else {
+			
+			 throw new RuntimeException("insertMenu insert failed ");
+		}
+		
+		return result;
+		
+	}
+
+	
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public int deleteMenu(int menuNo) {
+		
+		int result = dao.deleteMenu(menuNo);
+		
+		if(result > 0) { 
+			
+			return result;
+			
+		}else {
+			
+			 throw new RuntimeException("deleteMenu delete failed ");
+		}
+		
+	}
+
+	
+	// 영화, 영화관 댓글목록 가져오는 메서드
+	@Override
+	public List<Movie> selectMovieComment(int memberNo) {
+		
+		return dao.selectMovieComment(memberNo);
+	}
+
+	@Override
+	public List<Cinema> selectCinemaComment(int memberNo) {
+		
+		return dao.selectCinemaComment(memberNo);
+	}
+
+	
+	
+
+	
+	
+	
+
+	
+	
+	
+	
+	
+
+
+	
 
 
 

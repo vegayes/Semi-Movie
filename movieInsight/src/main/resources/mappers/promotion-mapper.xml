@@ -25,19 +25,79 @@
 		<result property="eventDelYN" column="EVENT_DEL_YN"/>
 	</resultMap>
   	
-  	
+
+  	<!-- 특별관,이벤트 홍보목록을 가져오는데 중복되는 경우 PROMOTION_NO,EVENT_PROMOTION 가 큰 값으로 가져옴 -->
   	<select id = "selectPromotionList" resultMap = "promotion_rm">
-  		SELECT * 
-  		FROM CINEMA_PROMOTION
+  		SELECT DISTINCT t1.*
+		FROM CINEMA_PROMOTION t1
+		WHERE t1.PROMOTION_NO = (
+		    SELECT MAX(t2.PROMOTION_NO)
+		    FROM CINEMA_PROMOTION t2
+		    WHERE t2.PROMOTION_TYPE = t1.PROMOTION_TYPE
+		)
   	</select>
   	
   	<select id = "selectEventPromotionList" resultMap = "event_rm">
-  		SELECT * 
-  		FROM EVENT_PROMOTION 	
+  		SELECT DISTINCT t1.*
+		FROM EVENT_PROMOTION  t1
+		WHERE t1.EVENT_PR_NO  = (
+		    SELECT MAX(t2.EVENT_PR_NO)
+		    FROM EVENT_PROMOTION t2
+		    WHERE t2.EVENT_TITLE  = t1.EVENT_TITLE
+		)
   	</select>
   	
+  	<!-- 관리자가 특별관 홍보나 이벤트 정보를 추가 -->
+  	<insert id="insertPromotion" parameterType="java.util.Map">
+  		INSERT INTO CINEMA_PROMOTION (PROMOTION_NO, PROMOTION_TYPE, PROMOTION_IMG, PROMOTION_URL, PROMOTION_CONTENT, CINEMA_NO)
+	    SELECT SEQ_PROMOTION_NO.NEXTVAL, A.PROMOTION_TYPE, A.PROMOTION_IMG, A.PROMOTION_URL, A.PROMOTION_CONTENT, A.CINEMA_NO
+	    FROM (
+	        <foreach collection="cinemaNoList" item="cinemaNo" separator=" UNION ALL ">
+	            SELECT #{promotion.promotionType} as PROMOTION_TYPE, #{promotion.promotionImg} as PROMOTION_IMG, #{promotion.promotionURL} as PROMOTION_URL,
+	            	   #{promotion.promotionContent} as PROMOTION_CONTENT, #{cinemaNo} as CINEMA_NO
+	            FROM DUAL
+	        </foreach>
+	    ) A
+  	</insert>
   	
   	
+  	<insert id="insertEvent"  parameterType="java.util.Map">
+  		INSERT INTO EVENT_PROMOTION (EVENT_PR_NO, CINEMA_NO, EVENT_TITLE, EVENT_CONTENT, EVENT_IMG, EVENT_URL)
+	    SELECT SEQ_EVENT_PR_NO.NEXTVAL, A.CINEMA_NO, A.EVENT_TITLE, A.EVENT_CONTENT, A.EVENT_IMG, A.EVENT_URL
+	    FROM (
+	        <foreach collection="cinemaNoList" item="cinemaNo" separator=" UNION ALL ">
+	            SELECT #{cinemaNo} as CINEMA_NO, #{event.eventTitle} as EVENT_TITLE, #{event.eventContent} as EVENT_CONTENT,
+	            	   #{event.eventImg} as EVENT_IMG, #{eventURL} as EVENT_URL
+	            FROM DUAL
+	        </foreach>
+	    ) A
+  	</insert>
   	
-
+	<delete id="deleteEvent">
+		 DELETE FROM EVENT_PROMOTION
+		 WHERE EVENT_TITLE = #{eventTitle}
+	</delete>
+	
+	
+	<delete id="deletePromotion">
+		 DELETE FROM CINEMA_PROMOTION
+		 WHERE PROMOTION_TYPE = #{promotionType}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

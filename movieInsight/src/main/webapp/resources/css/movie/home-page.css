@@ -301,3 +301,14 @@
   top: 0;
 }
 
+.movie_item {
+  transition: transform 0.3s ease; /* 부드러운 변환 효과 */
+}
+
+.movie_item.hovered {
+  transform: scale(1.05); /* 이미지를 5% 증가 */
+}
+
+
+
+

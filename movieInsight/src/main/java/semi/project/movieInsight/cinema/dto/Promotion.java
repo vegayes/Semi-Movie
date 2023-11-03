@@ -18,6 +18,6 @@ public class Promotion {
 	private String promotionContent;
 	private String promotionDelYN;
 	private int cinemaNo;
-
+	
 
 }

@@ -29,10 +29,9 @@
       <div class="container">
         <div class="row full-height justify-content-center">
           <div class="col-12 text-center align-self-center py-5">
-            <img
-              src="/movieInsight/resources/images/common/logo.png"
-              style="margin: 0 auto; display: flex; margin-top: 24px"
-            />
+            <a href="/movieInsight/movie">
+        	  <img src="/movieInsight/resources/images/common/logo.png" style="margin: 24px auto; display: flex" />
+         	 </a>  
             <div class="section pb-5 pt-5 pt-sm-2 text-center">
               <h6 class="mb-0 pb-3">
                 <span><label for="reg-log">LogIn</label> </span
@@ -57,58 +56,58 @@
                               >Forgot ID?</a
                             >
                           </p>
-                          <input
-                            type="email"
-                            name="logemail"
-                            class="form-style"
-                            placeholder="Your Email"
-                            id="logemail"
-                            autocomplete="off"
-                          />
-                          <i class="input-icon uil uil-at"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <p class="mb-0 mt-4 text-center">
-                            <a href="/movieInsight/find/pw" class="link"
-                              >Forgot PW?</a
-                            >
-                          </p>
-                          <input
-                            type="password"
-                            name="logpass"
-                            class="form-style"
-                            placeholder="Your Password"
-                            id="logpass"
-                            autocomplete="off"
-                          />
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <label
-                          style="
-                            color: black;
-                            margin-bottom: 12px;
-                            display: block;
-                          "
-                        >
-                          <input
-                            type="checkbox"
-                            style="position: relative; left: 0"
-                          />
-                          Remember ID
-                        </label>
-
-                        <a href="#" class="btn mt-4">LOGIN</a>
+                          <form action="/movieInsight/member/login"  method="post" name="login-form" id="loginFrm">
+	                          <input
+	                            name="memberId"
+	                            class="form-style"
+	                            placeholder="Your ID"
+	                            id="memberId"
+	                            autocomplete="off"
+	                          />
+	                          <i class="input-icon uil uil-at"></i>
+	                        </div>
+	                        <div class="form-group mt-2">
+	                          <p class="mb-0 mt-4 text-center">
+	                            <a href="/movieInsight/find/findPW" class="link"
+	                              >Forgot PW?</a
+	                            >
+	                          </p>
+	                          <input
+	                            type="password"
+	                            name="memberPw"
+	                            class="form-style"
+	                            placeholder="Your Password"
+	                            id="memberPw"
+	                            autocomplete="off"
+	                          />
+	                          <i class="input-icon uil uil-lock-alt"></i>
+	                        </div>
+	                        <label
+	                          style="
+	                            color: black;
+	                            margin-bottom: 12px;
+	                            display: block;
+	                          "
+	                        >
+	                          <input
+	                            type="checkbox"
+	                            style="position: relative; left: 0"
+	                          />
+	                          Remember ID
+	                        </label>
+	                         <button type="submit"class="btn mt-4">LOGIN</button>
+						</form>
+                       
                       </div>
                     </div>
                   </div>
                   <div class="card-back">
                     <div class="center-wrap">
                       <div class="section text-center">
-                        <h4 class="mb-4 pb-3">Sign Up</h4>
                         <div class="form-group">
                           <h5 class="labela">USER ID</h5>
                           
-                          		<form action="/member/login_signUp" method="POST" name="inputMember">
+                          		<form action="/movieInsight/member/signUp" method="POST" name="inputMember" id="signUpFrm">
 			                          <input
 			                            type="text"
 			                            name="memberId"
@@ -117,7 +116,7 @@
 			                            id="member_Id"
 			                            autocomplete="off"
 			                          />
-			                          <button onclick="return false;" type="button" id="idCheck">중복확인</button>
+			                          <button type="button" id="idCheck">중복확인</button>
 			                          <p id="messageDiv_1"></p>
 			                          <i class="input-icon uil uil-user"></i>
 			                        </div>
@@ -178,22 +177,24 @@
 			                            name="memberNickname"
 			                            class="form-style"
 			                            placeholder="Your Nickname"
-			                            id="logpass"
+			                            id="member_Nickname"
 			                            autocomplete="off"
 			                          />
+                                <P id="nickMessage">메세지</P>
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
-			                        <div class="form-group mt-2" id="nickMessage">
+			                        <div class="form-group mt-2">
 			                          <h5 class="labela">GENDER</h5>
 			
-			                          <button class="gender">남자</button>
-			                          <button class="gender">여자</button>
+			                          <!-- <button class="gender" id="genderM" type="button" name="memberGender" value="M">남자</button>
+			                          <button class="gender" id="genderF" type="button" name="memberGender" value="F">여자</button> -->
+
+                                <input type="radio" class="gender" id="genderM" type="button" name="memberGender" value="M">남자
+                                <input type="radio" class="gender" id="genderF" type="button" name="memberGender" value="F">여자
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
-			                        <a href="#" class="btn mt-4 blut">SIGN UP</a>
+                              <button id="signUpBut" class="btn mt-4 blue" type="submit">SIGN UP</button>
 			                    </form>    
-                        
-                        
                       </div>
                     </div>
                   </div>
@@ -205,7 +206,17 @@
       </div>
     </div>
   </body>
-  
+
+	<c:if test="${not empty message}">
+						
+					<script>
+						// EL/JSTL 구문이 먼저 해석
+						// 문자열의 경우 따옴표가 없는 상태이니 옆에 붙여줘야함.
+						alert('${message}') // ${message}
+					</script>
+
+		</c:if>
+		
   <script src="/movieInsight/resources/js/member/login_signUp.js"></script>
-  
+  <script src="/movieInsight/resources/js/member/login.js"></script>
 </html>

@@ -36,8 +36,11 @@ public class CinemaController {
 
 		//System.out.println("cinemaList : " + cinemaList);
 		
+		System.out.println("cinemaList name =" + cinemaList.get(0).getCinemaName());
+		
 		model.addAttribute("cinemaQuery", cinemaQuery);
 		model.addAttribute("cinemaList", cinemaList);
+		
 		
 		
 		model.addAttribute("pageType", "cinema");
@@ -45,6 +48,10 @@ public class CinemaController {
         return "cinema/search-cinema";
     }
 	
+	
 
-}
+	}
+	
+
+
 

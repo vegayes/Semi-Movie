@@ -18,11 +18,22 @@
 		<result property="cinemaMaxInclude" column="CINEMA_MAX_INCLUDE" />
 		<result property="cinemaDelYN" column="CINEMA_DEL_YN" />
 		<result property="cinemaSpecialHall" column="CINEMA_SPECIAL_HALL" />
+		<result property="sumCinemaGrade" column="SUM_CINEMA_GRADE"/>
+		
+		<result property="cinemaCommentNo" column="CINEMA_EV_NO"/>
+		<result property="cinemaCommentContent" column="CINEMA_COMMENT"/>
+		<result property="cinemaCommentDate" column="CINEMA_EV_ENROLL_DATE"/>
 		<result property="cinemaGrade" column="CINEMA_GRADE"/>
+		<result property="cinemaCommentType" column="CINEMA_COMMENT_TYPE"/>
+		
 		
 
 		<result property="cinemaType" column="CINEMA_TYPE" />
 		
+
+		<result property="commentCinemaWriter" column="COMMENT_CINEMA_WRITER"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="writerProfile" column="COMMENT_MEMBER_PROFILE"/>
 
 	</resultMap>
 
@@ -70,10 +81,10 @@
   	<!--  특별관, 평점 아직 못 가져옴 -->
   	<select id = "searchCinemaList" resultMap="cinema_rm">
   		SELECT CINEMA_NO, CINEMA_NAME, CINEMA_ADDRESS, CINEMA_CONTACT,
-			CINEMA_IMG, CINEMA_LINK, CINEMA_MAX_INCLUDE 
+			CINEMA_IMG, CINEMA_LINK, CINEMA_MAX_INCLUDE,  CINEMA_SPECIAL_HALL
 		FROM "CINEMA"
-		JOIN MOVIE_STATUS USING(CINEMA_NO)
-		WHERE CINEMA_DEL_YN = 'N' AND CINEMA_TYPE ='C'
+		LEFT JOIN MOVIE_STATUS USING(CINEMA_NO)
+		WHERE CINEMA_DEL_YN = 'N'  AND (CINEMA_TYPE ='C' OR CINEMA_TYPE IS NULL) AND CINEMA_ADDRESS IS NOT NULL 
 		AND (CINEMA_NAME LIKE '%' || #{cinemaQuery} || '%'  OR CINEMA_ADDRESS LIKE '%' || #{cinemaQuery} || '% ' ) 
   	</select>
 
@@ -100,6 +111,7 @@
 			    M.MOVIE_GENRE,
 			    M.MOVIE_AGE,
 			    M.MOVIE_RUNNING_TIME,
+			    M.MOVIE_DEL_YN,
 			    LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'A' THEN C.CASTING_NAME ELSE NULL END, ' / ')
 			    WITHIN GROUP (ORDER BY C.CASTING_NAME) AS ACTOR_NAMES
 			FROM MOVIE M
@@ -108,18 +120,27 @@
 				GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, 
 				M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN)
 		WHERE MOVIE_NO = (SELECT MOVIE_NO FROM MOVIE_STATUS WHERE CINEMA_NO = #{cinemaNo})
+		AND MOVIE_DEL_YN = 'N'
   	</select>
   	
   	
   	
   	
   	<select id="selectManagerCinemaList" parameterType="Cinema" resultMap="cinema_rm" >
-  	
-  		SELECT CINEMA_NO,CINEMA_NAME,CINEMA_ADDRESS,NVL2('NULL',0,CINEMA_GRADE) CINEMA_GRADE,CINEMA_MAX_INCLUDE
-		FROM CINEMA c 
-		LEFT JOIN CINEMA_EVALUATION ce USING (CINEMA_NO)
-		WHERE CINEMA_DEL_YN = 'N'
-  	
+	 SELECT 
+	    c.CINEMA_NO,
+	    c.CINEMA_NAME,
+	    c.CINEMA_ADDRESS,
+	    NVL(ROUND(AVG(ce.CINEMA_GRADE), 1), 0) AS CINEMA_GRADE, 
+	    c.CINEMA_MAX_INCLUDE
+	FROM 
+	    CINEMA c 
+	LEFT JOIN 
+	    CINEMA_EVALUATION ce ON c.CINEMA_NO = ce.CINEMA_NO
+	WHERE 
+	    c.CINEMA_DEL_YN = 'N'
+	GROUP BY 
+	    c.CINEMA_NO, c.CINEMA_NAME, c.CINEMA_ADDRESS, c.CINEMA_MAX_INCLUDE
   	</select>
   	
   	
@@ -167,6 +188,95 @@
   	
   	</insert>
 
+	<!-- ============================ 댓글 =========================================== -->
+	<!-- 영화관 댓글 조회 -->
+	<select id = "commentCinemaList" resultMap = "cinema_rm">
+	SELECT CINEMA_EV_NO, CINEMA_NO, MEMBER_ID AS "COMMENT_CINEMA_WRITER", EVALUATION_TYPE AS CINEMA_COMMENT_TYPE , CINEMA_COMMENT, CINEMA_NAME,
+		TO_CHAR(CINEMA_EV_ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS') CINEMA_EV_ENROLL_DATE, CINEMA_GRADE, MEMBER_PROFILE AS COMMENT_MEMBER_PROFILE 
+	FROM CINEMA_EVALUATION 
+	JOIN CINEMA USING(CINEMA_NO)
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE CINEMA_DEL_YN  = 'N'
+	AND CINEMA_EV_DEL_YN = 'N' 
+	AND CINEMA_NAME = #{cinemaName}
+	ORDER BY CINEMA_EV_ENROLL_DATE DESC
+	</select>
+  	
+  	<!--  영화관 댓글 삽입 -->
+  	<insert id = "commentInsert">
+  	INSERT INTO "CINEMA_EVALUATION"
+	VALUES(SEQ_CINEMA_EV_NO.NEXTVAL, 
+			#{memberNo},
+			(SELECT CINEMA_NO FROM CINEMA WHERE CINEMA_NAME = #{cinemaName}),
+			#{cinemaCommentType},
+			#{cinemaCommentContent},
+			#{cinemaGrade},
+			SYSDATE,
+			DEFAULT)
+  	</insert>
+  	
+
+  	
+  	<select id="getCinemaNoList"  resultType = "_integer">
+      SELECT  CINEMA_NO
+      FROM CINEMA
+      WHERE CINEMA_DEL_YN = 'N' 
+      AND  (CINEMA_SPECIAL_HALL LIKE '%' || '4DX' || '%')
+  	</select>
+  	
+  
+  	<!--  영화관 댓글 삭제  -->
+  	<update id = "commentDelete">
+	  	UPDATE CINEMA_EVALUATION
+	  	SET CINEMA_EV_DEL_YN = 'Y'
+	  	WHERE CINEMA_EV_NO = ${cinemaCommentNo}
+  	</update>
+
+  	
+	<!-- 즐겨찾기 ON -->
+	<insert id = "addFavorite">
+		INSERT INTO CINEMA_LIKE 
+		VALUES(SEQ_CINEMA_LIKE_NO.NEXTVAL, #{memberNo}, (SELECT CINEMA_NO 
+														FROM CINEMA 
+														WHERE CINEMA_NAME LIKE #{cinemaName}), DEFAULT, SYSDATE)
+	</insert>
+
+	<!-- 즐겨찾기 OFF -->
+	<delete id = "delFavorite">
+		DELETE FROM CINEMA_LIKE
+		WHERE CINEMA_NO = (SELECT CINEMA_NO FROM CINEMA WHERE CINEMA_NAME LIKE #{cinemaName})
+		AND  MEMBER_NO = #{memberNo}
+	</delete>
+	
+	<!-- 즐겨찾기 조회 -->
+	<select id = "favoriteCheck" resultType = "_int">
+		SELECT COUNT(*)
+		FROM CINEMA_LIKE 
+		LEFT JOIN CINEMA  USING(CINEMA_NO)
+		WHERE CINEMA_NAME = #{cinemaName} AND MEMBER_NO = #{memberNo}
+	</select>
+  	
+  	
+  	
+  	<select id="selectCinemaComment" resultMap = "cinema_rm" >
+		SELECT *
+		FROM CINEMA_EVALUATION
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   	
   	
 

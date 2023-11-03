@@ -86,6 +86,60 @@ public class MovieDetailDAO {
 		return sqlSession.insert("movieMapper.commentInsert", movie	);
 	}
 
+
+	/** 댓글 삭제
+	 * @param movieCommentNo
+	 * @return
+	 */
+	public int commentDelete(int movieCommentNo) {
+
+		return sqlSession.update("movieMapper.commentDelete", movieCommentNo);
+	}
+
+
+
+
+
+	/** 즐겨찾기 추가
+	 * @param paramMap
+	 * @return
+	 */
+	public int addFavorite(Map<String, Integer> paramMap) {
+		return sqlSession.insert("movieMapper.addFavorite", paramMap);
+	}
+
+
+	/** 즐겨찾기 제거 
+	 * @param paramMap
+	 * @return
+	 */
+	public int delFavorite(Map<String, Integer> paramMap) {
+		return sqlSession.delete("movieMapper.delFavorite", paramMap);
+	}
+
+
+	/** 즐겨찾기 조회 
+	 * @param favoriteCheck
+	 * @return
+	 */
+	public int favoriteCheck(Map<String, Object> favoriteCheck) {
+		return sqlSession.selectOne("movieMapper.favoriteCheck", favoriteCheck);
+	}
+
+
+	/*영화에 대한 총 평점*/
+	public float sumMovieGrade(int movieNo) {
+		
+		Float sum = sqlSession.selectOne("movieMapper.sumMovieGrade", movieNo);
+		System.out.println("평점 : " + sum);
+		if (sum == null) {
+		    sum = 0.0f;
+		}
+		return sum;
+	}
+
+
+
 	
 	
 	

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter(filterName = "loginFilter", urlPatterns = {"/movieInsight/mypage/*"})
+@WebFilter(filterName = "loginFilter", urlPatterns = {"/movieInsight/*"})
 public class LoginFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException {
@@ -35,8 +35,9 @@ public class LoginFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse)response;
 		
 		HttpSession session = req.getSession();
+		 
 		
-		/*
+		/* 
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		
 		if(loginMember.getAuthority() != 2 ) { // 관리자가 아니면 메인페이지로
@@ -47,15 +48,14 @@ public class LoginFilter implements Filter {
 		*/
 		
 			System.out.println("뭐야");
+			System.out.println(session.getAttribute("loginMember"));
 		
 		if( session.getAttribute("loginMember") == null ) {
-			resp.sendRedirect("/movieInsight/movie");
-			
+			resp.sendRedirect("/");
 			System.out.println("마이페이지");
-		}
-		
-		// 4) 로그인 상태인 경우 다음 필터 또는 DispatcherServlet으로 전달
-		else {
+		} else {// 4) 로그인 상태인 경우 다음 필터 또는 DispatcherServlet으로 전달
+			
+			System.out.println("마이페이지 실행할거야");
 			chain.doFilter(request, response);	
 		}	
 	}

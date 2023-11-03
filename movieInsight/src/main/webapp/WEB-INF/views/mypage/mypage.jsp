@@ -92,8 +92,8 @@
                                  </label>
                              </div>
                  
-                             <div class = "favorite-list-container">
-                                 <table class = "favorite-list-table">
+                             <div class = "favorite-list-container" >
+                                 <table class = "favorite-list-table" id = "favorite-list-table">
                                      <thead>
                                          <tr>
                                              <th class = "favorite-list-img">list</th>
@@ -103,9 +103,8 @@
                                          </tr>
                                      </thead>
                                      
-                                     
                                      <c:forEach items = "${movieList}" var="movie">
-	                                     <tr class = "favorite-list" style = "border : 2px solid blue">
+	                                     <tr class = "favorite-list fvMovie" style = "border : 2px solid blue" id = "fvMovie">
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
@@ -115,14 +114,14 @@
 	                                         <td class = "favorite-list-title">${movie.movieTitle}</td>
 	                                         <td class = "favorite-list-date">${movie.movieLikeEnrollDate}</td>
 	                                         <td class = "favorite-list-check">
-	                                             <input type="checkbox" name ="favorite-check" id="check_btn"/>
+	                                             <input type="checkbox" name ="favorite-check" id="check_btn" data-movieNo="${movie.movieNo}"/>
 	                                             <label for="check_btn"></label>
 	                                         </td>
 	                                     </tr> 
                                      </c:forEach>
-                                     
+                           
                                      <c:forEach items = "${cinemaList}" var="cinema">
-	                                     <tr class = "favorite-list" style = "border : 2px solid red">
+	                                     <tr class = "favorite-list fvCinema" style = "border : 2px solid red"  id = "fvCinema">
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
@@ -132,124 +131,16 @@
 	                                         <td class = "favorite-list-title">${cinema.cinemaName}</td>
 	                                         <td class = "favorite-list-date">${cinema.cinemaLikeEnrollDate}</td>
 	                                         <td class = "favorite-list-check">
-	                                             <input type="checkbox" name ="favorite-check" id="check_btn"/>
+	                                             <input type="checkbox" name ="favorite-check" id="check_btn" data-cinemaNo="${cinema.cinemaNo}"/>
 	                                             <label for="check_btn"></label>
 	                                         </td>
 	                                     </tr> 
                                      </c:forEach>
-                 
-                 <!--  
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name ="favorite-check" id="check_btn"/>
-                                             <label for="check_btn"></label>
-                                         </td>
-                                     </tr>
-                 
-                 
-                                     
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" />
-                                         </td>
-                                     </tr>
-                 
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check"/>
-                                         </td>
-                                     </tr>
-                 
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" />
-                                         </td>
-                                     </tr>
-                 
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" />
-                                         </td>
-                                     </tr>
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" />
-                                         </td>
-                                     </tr>
-                 
-                                     <tr class = "favorite-list">
-                                         <td class = "favorite-list-img">
-                                             <div class = "favorite-list-img-wrapper">
-                                                 <img src="">
-                                             </div>  
-                 
-                                         </td>
-                                         <td class = "favorite-list-title">미니언즈</td>
-                                         <td class = "favorite-list-date">2023-09-27 12:00:12 </td>
-                                         <td class = "favorite-list-check">
-                                             <input type="checkbox" name = "favorite-check" id = ""/>
-                                         </td>
-                                     </tr>
-                                     -->
                                  </table>
-                                 
-                                
-                             </div>
+                            </div>
                              
                              <a class = "favorite-delet-btn-container">
-                                <div class = "red">삭제</div>
+                                <div class = "red favorite-delet-btn">삭제</div>
                              </a>                               
 
                          </div>
@@ -260,7 +151,7 @@
 					<%--1) 즐겨찾기 리스트가 없는 경우  --%>
 					
 					<%--<c:if test="${empty }">--%>
-					<div class = "favorite-list" id = "movie-favorite-container"  >
+					<div class = "favorite-list" id = "movie-favorite-container">
 						<%--1) 즐겨찾기 리스트가 없는 경우  --%>
 						<c:if test = "${empty movieList}">
 							
@@ -318,7 +209,7 @@
 				                      <div class="galleryCinema">
 				                      	<c:forEach items = "${cinemaList}" var = "cinema">
 					                        <div class="recommend-container-cinema">
-					                          <a href="/movieInsight/cinema/${cinema.cinemaName}">
+					                          <a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">
 					                    		<div class = "recommendImg-wrapper-cinema">	                    		
 						                            <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}" alt="movieTitle : ${cinema.cinemaName}">
 						                            <div class = "recommendImg-hover">${cinema.cinemaName}</div>
@@ -516,8 +407,8 @@
 
                     </div>
 
-                    <div class = "comment-list-content-container">
-                        <table class = "comment-list-table" id = "movie-comment-container">
+                    <div class = "comment-list-content-container" id = "movie-comment-container">
+                        <table class = "comment-list-table" id = "comment-list-table" >
 
 							<c:if test= "${empty commentMovie}">
 								<tr class = "comment-not-content">
@@ -528,7 +419,7 @@
 		 					
 		 					<c:if test= "${not empty commentMovie}">
 	 							<c:forEach items = "${commentMovie}" var = "commentMovie" varStatus="status">
-		                             <tr class = "comment-list-col" >
+		                             <tr class = "comment-list-col movieComment" >
 		                                <td class = "comment-list-check">
 		                                    <input type="checkbox" name = "comment-check" id = "check">
 		
@@ -537,10 +428,11 @@
 		                                <td class = "comment-list-content-no">${status.count}</td>
 		                                <td class = "comment-list-board">${commentMovie.movieTitle}</td>
 		                                <td class = "comment-list-content">${commentMovie.movieCommentContent}</td>
-		                                <td class = "comment-list-date"> ${commentMovie.movieCommentDate}</td>
+		                                <td class = "comment-list-date"> ${commentMovie.movieCommentDate} </td>
+		                                <td class = "comment-list-type" style="display:none">${commentMovie.movieCommentNo}</td>
 		                                <td class = "comment-list-edit" id = "cmPopup">
-		                                    <button>
-		                                        수정 팝업 테스트
+		                                    <button onclick="updateCommentModal(${commentMovie.movieCommentNo})">
+		                                        수정 
 		                                    </button>
 		                                </td>
 		                               
@@ -548,8 +440,9 @@
  								</c:forEach>
 		 					</c:if>
 		 				</table>		
-
- 						<table class = "comment-list-table" id = "cinema-comment-container" style = "display : none">
+					</div>
+					<div class = "comment-list-content-container" id = "cinema-comment-container" style = "display : none">
+ 						<table class = "comment-list-table">
  							
  							<c:if test= "${empty commentCinema}">
 								<tr class = "comment-not-content">
@@ -568,9 +461,9 @@
 		                                <td class = "comment-list-board">${commentCinema.cinemaName}</td>
 		                                <td class = "comment-list-content">${commentCinema.cinemaCommentContent}</td>
 		                                <td class = "comment-list-date"> ${commentCinema.cinemaCommentDate}</td>
-		                                 <td class = "comment-list-type" style="display:none">${commentCinema.cinemaCommentType}</td>
+		                                <td class = "comment-list-type" style="display:none">${commentCinema.cinemaCommentType}</td>
 		                                <td class = "comment-list-edit" id = "cmPopup">
-		                                    <button>
+		                                    <button onclick="updateCommentModalCinema(${commentCinema.cinemaCommentNo})">
 		                                        수정 
 		                                    </button>
 		                                </td>
@@ -585,7 +478,7 @@
                                 <td class = "comment-list-check">
                                     <input type="checkbox" name = "comment-All" id = "comment-del-All">
                                 </td>
-                   		        <td class = "comment-list-all-content-">전체선택</td>
+                   		        <td class = "comment-list-all-content">전체선택</td>
                                 <td class = "comment-list-board">
                                    <button class = "comment-list-del-btn">
                                         삭제
@@ -597,7 +490,7 @@
                     </div>
                 </section>
 
-                <%--  ===========================================  댓글 수정 팝업  시작  ==================================== --%>
+ <%--  ===========================================  댓글 수정 팝업  시작  ==================================== --%>
                 <div id = "comment-update-modal-box">
                     <div id = "comment-update-content">
 
@@ -614,15 +507,18 @@
                                     <tr>
                                         <th> 게시물 명 </th>
                                         <td>
+                                        	<%-- 
                                             <input type="text" readonly id = "cm-update-input-title">
+                                            --%>
                                             <!-- readonly :: 글 수정 불가하게 하기  -->
+                                             <p id = "comment-title"></p>
                                         </td>
                                     </tr>
             
                                     <tr>
                                         <th> 댓글 내용</th>
                                         <td>
-                                            <textarea type="text" autocomplete="off"  id = "cm-update-input-comment">
+                                            <textarea type="text"  autocomplete="off"  id = "cm-update-input-comment">
                                             </textarea>
                                         </td>
                                     </tr>
@@ -631,14 +527,17 @@
                                         <th> 영화평점 </th>
                                         <!-- 별점으로 표시하면 좋을 거 같음. -->
                                         <td>
-                                            <input type="number" >
+                                            <input type="number" step="0.1"  max=5 min = 0 id= "cm-update-grade" >
                                         </td>
                                     </tr>
             
                                     <tr>
                                         <th> 작성 및 수정일 </th>
                                         <td>
-                                            <input type="text" readonly > 
+                                        <%-- 
+                                        <input type="text" readonly> 
+                                        --%>
+                                           <p id = "comment-enroll-date"></p>
                                         </td>
                                     </tr>
             
@@ -649,16 +548,16 @@
                         </section>
             
                         <section class = "update-btn-container">
-                            <div class ="btn">
+                            <div class ="btn" id= "comment-update-btn">
                                 수정하기
                             </div>
-                            <div class ="btn">
+                            <div class ="btn" id = "comment-del-btn">
                                 취소하기
                             </div>
                         </section>
 
                     </div>
-                    <label  id = "cm-modal-back"></label>
+                    <label  id = "cm-modal-back" style = "background-color: red;"></label>
                 </div>   
 
 <%-- ========================================   댓글 수정 팝업 종료 =========================================--%>
@@ -802,16 +701,13 @@
 		                                </button>
 		
 		                                <button class = "member-info-option-btn red">
-		                                    회원탈퇴
+		                                    회원탈퇴 
 		                                </button>
 		                            </div>
 	                            
 							   </form>
 		                   </div>    
 	                       
-						
-
-						
 						</div>
                     </div>
                 </section>
@@ -827,6 +723,8 @@
       	<script>
 			// 로그인한 회원의 성별
 			const loginMemberGender = "${loginMember.memberGender}";
+			var memberNo = ${loginMember.memberNo};
+			
 		</script>
 
         <script src = "/movieInsight/resources/js/mypage/mypage.js"></script>		

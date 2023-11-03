@@ -17,5 +17,13 @@ public class Menu {
     private String menuImg;
     private String menuCategory;	
 	
+    // 메뉴 평점
+    private float menuGrade;
+    private int memberNo; // 평점을 준 사람
+    
+    // 판매하는 영화관
+    private String cinemaName;
+    
+    
 
 }

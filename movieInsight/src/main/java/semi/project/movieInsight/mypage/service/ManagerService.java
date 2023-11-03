@@ -6,7 +6,9 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
+import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.movie.dto.Movie;
 
 public interface ManagerService {
@@ -51,10 +53,32 @@ public interface ManagerService {
 	 * @return
 	 * @throws Exception 
 	 */
-	int updateCinema(MultipartFile cinemaImg, String webPath, String filePath, Cinema cinemaInfo) throws Exception;
+	int updateCinema(MultipartFile cinemaImg, String filePath, Cinema cinemaInfo) throws Exception;
 
 
-	int insertCinema(MultipartFile cinemaImage, String webPath, String filePath, Cinema cinemaInfo) throws Exception;
+	int insertCinema(MultipartFile cinemaImage, String filePath, Cinema cinemaInfo) throws Exception;
+
+	int insertMovie(Movie movieInfo, MultipartFile movieImage, String filePath, List<String> actorNamesList, List<String> directorNamesList) throws Exception ;
+
+	int selectMovieNo(String movieTitle);
+
+	int insertPromotion(MultipartFile image, String filePath, Map<String, Object> promotionMap) throws Exception;
+
+	int insertEvent(Map<String, Object> eventMap, MultipartFile image, String filePath) throws Exception;
+
+	int deleteEvent(String eventTitle);
+
+	int deletePromotion(String promotionType);
+
+	int insertMenu(Map<String, Object> menuMap, MultipartFile image, String filePath) throws Exception;
+
+	int updateMovie(Movie movieInfo);
+
+	int deleteMenu(int menuNo);
+
+	List<Movie> selectMovieComment(int memberNo);
+
+	List<Cinema> selectCinemaComment(int memberNo);
 
 	
 	

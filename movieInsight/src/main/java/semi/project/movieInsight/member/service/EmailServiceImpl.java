@@ -26,16 +26,16 @@ public class EmailServiceImpl implements EmailService{
 	
 
 
-
+	@Autowired
 	private EmailDAO dao;
 	
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	private String fromEmail = "cmhinst@gmail.com";
-	private String fromUsername = "수업용프로젝트";
-  //private String fromEmail = "movieinsightsemiproject@gmail.com";
-	//private String fromUsername = "세미프로젝트";
+	//private String fromEmail = "cmhinst@gmail.com";
+	//private String fromUsername = "수업용프로젝트";
+     private String fromEmail = "movieinsightsemiproject@gmail.com";
+	private String fromUsername = "세미프로젝트";
 	
     public String createAuthKey() {
         String key = "";
@@ -78,7 +78,7 @@ public class EmailServiceImpl implements EmailService{
             MimeMessage mail = mailSender.createMimeMessage();
             
             // 제목
-            String subject = "프로젝트 메일";
+            String subject = "movieInsight 이메일인증";
             
             // 문자 인코딩
             String charset = "UTF-8";
@@ -116,6 +116,8 @@ public class EmailServiceImpl implements EmailService{
         System.out.println(map);
         
         int result = dao.updateAuthKey(map);
+        
+        System.out.println(result);
         
         if(result == 0) {
         	result = dao.insertAuthKey(map);

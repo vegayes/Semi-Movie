@@ -7,7 +7,7 @@ import semi.project.movieInsight.member.dto.Member;
 public interface MemberService {
 
 	int signUp(Member inputMember);
-
+	
 	int idCheck(String id_check);
 
 
@@ -15,6 +15,7 @@ public interface MemberService {
 
 	int checkEmail(String email);
 
+	int nickCheck(String nick_check);
 
 
 

@@ -16,31 +16,41 @@
       <div class="container">
         <div class="row full-height justify-content-center">
           <div class="col-12 text-center align-self-center py-5">
-            <img src="./로고.png" style="margin: 24px auto; display: flex" />
+          <a href="/movieInsight/movie">
+        	  <img src="/movieInsight/resources/images/common/logo.png" style="margin: 24px auto; display: flex" />
+          </a>  
             <div class="section pb-5 pt-5 pt-sm-2 text-center">
               <div class="card-3d-wrap mx-auto">
                 <div class="card-3d-wrapper">
                   <div class="card-front">
                     <div class="center-wrap">
                       <div class="section text-center">
-                        <h4 class="mb-4 pb-3">Find ID</h4>
-
-                        <div class="form-group mt-2">
-                     	 	<form action="/movieInsight/find/findID" method="POST">
-	                          <input
-	                            type="email"
-	                            name="logpass"
-	                            class="form-style"
-	                            placeholder="User Email"
-	                            id="logpass"
-	                            autocomplete="off"
-	                          />
-	                          <button id="logpassCheck">인증하기</button>
-	                        </form> 
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-
-                        <a href="#" class="btn mt-4">OK</a>
+                         	<c:choose>
+                      			<c:when test="${empty message}">
+			                        <h4 class="mb-4 pb-3">Find ID</h4>
+			                        <div class="form-group mt-2">
+			                     	 	<form action="/movieInsight/find/findID" method="POST">
+				                          <input
+				                            type="email"
+				                            class="form-style"
+				                            placeholder="User Email"
+				                     		id="memberEmail" name="memberEmail"
+				                            autocomplete="off"
+				                          />
+				                          <button id="logpassCheck">인증하기</button>
+				                        </form> 
+			                          <i class="input-icon uil uil-lock-alt"></i>
+			                        </div>
+			                        <button onclick="history.back()" value="뒤로가기" class="btn mt-4">BACK</button>
+	                           	</c:when>                         	
+	                           		<c:otherwise>
+									    <h1>아이디 찾기 결과</h1>
+									    <p>${message}</p>
+									    <a href="/movieInsight/find/findID">다시 아이디 찾기</a>
+										<a href="/movieInsight/member/loginPage">로그인 페이지로</a>
+									    <c:remove var="message" scope="session"/>
+									</c:otherwise>
+                      	</c:choose>  	
                       </div>
                     </div>
                   </div>

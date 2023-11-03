@@ -90,19 +90,39 @@ function movieInfo(memberInfo) {
 
 */
 
+
 // 4) 회원 클릭하면 어떤 회원인지 정보 얻어오기
-function getMemberInfo(){
-	const memberInfoEdit = document.getElementsByClassName("edit-button");
-	console.log(memberInfoEdit);
-	for(let memNo of memberInfoEdit){
-		memNo.addEventListener("click", e => {
-				console.log("회원 클릭됨 ");
-			selectMemberNo = memNo.getAttribute("member-no");
-			
-			
-			console.log("selectMemberNo"+ selectMemberNo);
-		});
-	}
+function getMemberInfo(memberNo){
+	// 클릭하면 회원 정보, 댓글정보 가져와서 댓글 개수만큼 div같은거 만들어서 내용 넣어야됨
+    fetch("/movieInsight/managerDetail/selectMemberInfo/select?memberNo=" + memberNo )
+    .then(response => response.json())
+    .then(commentList => {
+
+      console.log(commentList);
+
+      const favoriteContainer = document.getElementById('movie-favorite-container');
+      favoriteContainer.innerHTML = '';
+
+      if (movieList.length === 0) {
+
+        const notContentDiv = document.createElement('div');
+        notContentDiv.classList.add('favorite-not-content');
+        notContentDiv.innerText = '현재 저장된 즐겨찾기가 없습니다.';
+        favoriteContainer.appendChild(notContentDiv);
+
+      } else {
+        
+
+        for (let movie of movieList) {
+        
+        }
+
+      
+      }
+    })
+    .catch(err => console.error(err));
+
+
 }
 
 

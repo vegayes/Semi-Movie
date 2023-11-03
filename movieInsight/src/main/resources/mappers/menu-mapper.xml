@@ -10,7 +10,11 @@
 		<result property="menuPrice" column="MENU_PRICE"/>
 		<result property="menuImg" column="MENU_IMG"/>
 		<result property="menuCategory" column="MENU_CATEGORY"/>
+		
+		<result property = "menuGrade" column = "MENU_GRADE"/>
+		<result property = "memberNo" column = "MEMBER_NO"/>
 	
+		<result property = "cinemaName" column = "CINEMA_NAME"/>
   </resultMap>
 
 
@@ -33,13 +37,115 @@
 		SELECT * FROM MENU m
 		WHERE MENU_CATEGORY = '스낵'
 	</select>
+	
+	<select id = "getMenuList" resultMap = "menu_rm">
+		SELECT MENU_NO, MENU_NAME, MENU_PRICE, MENU_CATEGORY
+		FROM MENU_STATUS
+		LEFT JOIN MENU USING(MENU_NO)
+		WHERE CINEMA_NO = (SELECT CINEMA_NO 
+							FROM CINEMA 
+							WHERE CINEMA_NAME LIKE #{cinemaName})				
+	</select>
 
 
 
+	<!-- 베스트 메뉴 뽑기 ( 팝콘 )  -->
+	<select id = "getBestPopCornMenu" resultMap = "menu_rm">
+		SELECT *
+		FROM (SELECT ROUND(AVG(MENU_GRADE),1) AS MENU_GRADE , MENU_NAME , MENU_CATEGORY , MENU_PRICE, MENU_IMG
+				FROM MENU_RECOMMEND
+				LEFT JOIN MENU_STATUS USING(SNACK_CINEMA_NO)
+				LEFT JOIN MENU USING(MENU_NO)
+				WHERE SNACK_CINEMA_NO IN (SELECT SNACK_CINEMA_NO
+											FROM MENU_STATUS 
+											WHERE CINEMA_NO = (SELECT CINEMA_NO FROM CINEMA WHERE CINEMA_NAME LIKE #{cinemaName})) 
+											AND MENU_CATEGORY = '팝콘'
+				GROUP BY SNACK_CINEMA_NO, MENU_NAME, MENU_CATEGORY,MENU_PRICE, MENU_IMG
+				ORDER BY MENU_GRADE DESC, MENU_NAME)	
+		WHERE ROWNUM =1
+	</select>
+	
+	<!-- 베스트 메뉴 뽑기 ( 음료 )  -->
+	<select id = "getBestDrinkMenu" resultMap = "menu_rm">
+		SELECT *
+		FROM (SELECT ROUND(AVG(MENU_GRADE),1) AS MENU_GRADE , MENU_NAME , MENU_CATEGORY , MENU_PRICE, MENU_IMG
+				FROM MENU_RECOMMEND
+				LEFT JOIN MENU_STATUS USING(SNACK_CINEMA_NO)
+				LEFT JOIN MENU USING(MENU_NO)
+				WHERE SNACK_CINEMA_NO IN (SELECT SNACK_CINEMA_NO
+											FROM MENU_STATUS 
+											WHERE CINEMA_NO = (SELECT CINEMA_NO FROM CINEMA WHERE CINEMA_NAME LIKE #{cinemaName})) 
+											AND MENU_CATEGORY = '음료'
+				GROUP BY SNACK_CINEMA_NO, MENU_NAME, MENU_CATEGORY,MENU_PRICE, MENU_IMG
+				ORDER BY MENU_GRADE DESC, MENU_NAME)	
+		WHERE ROWNUM =1
+	</select>	
+
+	<!-- 베스트 메뉴 뽑기 ( 스낵 )  -->
+	<select id = "getBestSnackMenu" resultMap = "menu_rm">
+		SELECT *
+		FROM (SELECT ROUND(AVG(MENU_GRADE),1) AS MENU_GRADE , MENU_NAME , MENU_CATEGORY , MENU_PRICE, MENU_IMG
+				FROM MENU_RECOMMEND
+				LEFT JOIN MENU_STATUS USING(SNACK_CINEMA_NO)
+				LEFT JOIN MENU USING(MENU_NO)
+				WHERE SNACK_CINEMA_NO IN (SELECT SNACK_CINEMA_NO
+											FROM MENU_STATUS 
+											WHERE CINEMA_NO = (SELECT CINEMA_NO FROM CINEMA WHERE CINEMA_NAME LIKE #{cinemaName})) 
+											AND MENU_CATEGORY = '스낵'
+				GROUP BY SNACK_CINEMA_NO, MENU_NAME, MENU_CATEGORY,MENU_PRICE, MENU_IMG
+				ORDER BY MENU_GRADE DESC, MENU_NAME)	
+		WHERE ROWNUM =1
+	</select>
 
 
 
+	<!-- 관리자가 메뉴를 추가 -->
+  	<insert id="insertMenu" parameterType="java.util.Map">
+  		INSERT INTO MENU VALUES
+  		(SEQ_MENU_NO.NEXTVAL, #{menu.menuName}, #{menu.menuPrice}, #{menu.menuImg}, #{menu.menuCategory})
+  	</insert>
+	
 
+	<select id="selectMenuNo" resultType = "_int">
+		SELECT MENU_NO
+		FROM MENU
+		WHERE MENU_NAME = #{menu.menuName}
+	</select>
+
+
+
+	<!-- 메뉴-영화관 테이블에 삽입 -->
+	<!--삽입 메뉴 상태 -->
+	<insert id="insertMenuStatus">
+		INSERT INTO MENU_STATUS (SNACK_CINEMA_NO, CINEMA_NO, MENU_NO)
+	    SELECT SEQ_SNACK_CINEMA_NO.NEXTVAL, A.CINEMA_NO, A.MENU_NO
+	    FROM (
+	        <foreach collection="cinemaNoList" item="cinemaNo" separator=" UNION ALL ">
+	         	SELECT  #{cinemaNo} as CINEMA_NO, #{menuNo} as MENU_NO
+	            FROM DUAL
+	        </foreach>
+	    ) A
+	</insert>
+
+	<delete id="deleteMenu">
+		DELETE FROM MENU m
+		WHERE MENU_NO  = #{menuNo}
+	</delete>
+
+
+	
+	
+	<!--  
+	<insert id = "insertMenuGrade">
+	INSERT INTO "MENU_RECOMMEND"
+	VALUES (SEQ_MENU_RC_NO.NEXTVAL,(SELECT SNACK_CINEMA_NO 
+									FROM MENU_STATUS ms 
+									LEFT JOIN MENU USING(MENU_NO)
+									WHERE MENU_NAME = #{menuName} AND CINEMA_NO = (SELECT CINEMA_NO 
+																						FROM CINEMA 
+																						WHERE CINEMA_NAME LIKE #{cinemaName)), #{memberNo}, #{menuGrade} )
+	</insert> 
+	-->
 
 
 

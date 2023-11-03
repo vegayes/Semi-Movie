@@ -1,28 +1,58 @@
 
+    
+const checkObj = {
+    "memberIdd" : false,
+    "memberPw" : false,
+    "memberPwConfirm" : false,
+    "memberNickname" : false,
+    "authKey" : false,
+    "memberGender" : false
+};
+
+ 
+
+
+
 
 // 중복 확인 버튼에 대한 클릭 이벤트 핸들러를 등록
 document.getElementById("idCheck").addEventListener("click", function() {
-    // 아이디 입력 필드의 값을 가져옴
-    var idInput = document.getElementById("member_Id");
-    var idValue = idInput.value;
-    
-    // 입력 필드가 비어 있는지 확인
-    if (!idValue) {
-        showMessage("아이디를 입력해주세요");
-        return; // 입력 필드가 비어 있으면 중복 확인을 수행하지 않음
-    }
-    
-    // 여기에서 중복 확인을 수행하고, 결과를 result 변수에 할당
-    // result가 서버에서 받아온 중복 확인 결과라고 가정
-    var result = result;
-    
-    // 결과에 따라 메시지를 표시
-    if (result === 1) {
-        showMessage("중복된 아이디입니다.");
-    } else {
-        showMessage("사용 가능한 아이디입니다.");
-    }
+ 	  	// 아이디 입력 필드의 값을 가져옴
+ 	  	// 로그인과 회원가입 페이지가 같아서 memberId 다르게함
+		 const memberId = document.getElementById("member_Id");
+		 const idValue = memberId.value;
+		   
+		    
+	    // 입력 필드가 비어 있는지 확인
+	    if (!idValue) {
+	        showMessage("아이디를 입력해주세요");
+	      	checkObj.memberIdd = false;
+	        return; // 입력 필드가 비어 있으면 중복 확인을 수행하지 않음
+	    }
+	
+	    
+	 	fetch("/movieInsight/member/idCheck?id_check="+memberId.value)
+		.then(res => res.json())
+		.then(result => {
+	    
+	    // 여기에서 중복 확인을 수행하고, 결과를 result 변수에 할당
+	    // result가 서버에서 받아온 중복 확인 결과라고 가정
+	    var result = result;
+	    
+	    // 결과에 따라 메시지를 표시
+	    if (result === 1) {
+	        showMessage("중복된 아이디입니다.");
+	    } else {
+	        showMessage("사용 가능한 아이디입니다.");
+	        checkObj.memberIdd= true;
+	        console.log("checkObj.memberId set to true");
+	    }
+
+
+    })
+
 });
+
+
 
 // 메시지를 표시하는 함수
 function showMessage(message) {
@@ -31,14 +61,7 @@ function showMessage(message) {
     messageDiv.textContent = message;
 }
 
-    
-const checkObj = {
-    "memberEmail" : false,
-    "memberPw" : false,
-    "memberPwConfirm" : false,
-    "memberNickname" : false,
-    "authKey" :false
-};
+
 
 
 // 비밀번호/비밀번호 확인 유효성 검사
@@ -119,6 +142,7 @@ memberPwConfirm.addEventListener('input', ()=>{
             pwMessage.classList.add("confirm");
             pwMessage.classList.remove("error");
             checkObj.memberPwConfirm = true;
+            console.log("checkObj.memberPw set to true");
             
         } else{ // 다를 경우
             pwMessage.innerText = "비밀번호가 일치하지 않습니다";
@@ -287,101 +311,131 @@ checkAuthKeyBtn.addEventListener("click", function(){
 
 });
 
-// 회원 가입 form태그가 제출 되었을 때
-document.getElementById("inputMember").addEventListener("submit", e=>{
-
-    // checkObj에 모든 value가 true인지 검사
-
-    // (배열용 for문)
-    // for ... of : 향상된 for문
-	// -> iterator(반복자) 속성을 지닌 배열, 유사 배열 사용 가능
-    
-    // (객체용 for문)
-    // ** for ... in 구문 ***
-    // -> JS 객체가 가지고 있는 key를 순서대로 하나씩 꺼내는 반복문
-
-    for(let key in checkObj){
-
-        if(!checkObj[key]){ // 각 key에 대한 value(true/false)를 얻어와
-                            // false인 경우 == 유효하지 않다!
-
-            switch(key){
-            case "memberEmail": 
-                alert("이메일이 유효하지 않습니다"); break;
-
-            case "memberPw": 
-                alert("비밀번호가 유효하지 않습니다"); break;
-
-            case "memberPwConfirm":
-                alert("비밀번호가 확인되지 않았습니다"); break;
-            
-            case "memberNickname" : 
-                alert("닉네임이 유효하지 않습니다"); break;
-            }
-
-            // 유효하지 않은 input 태그로 focus 이동
-            // - key를 input의 id와 똑같이 설정했음!
-            document.getElementById(key).focus();
-
-            e.preventDefault(); // form 태그 기본 이벤트 제거
-            return; // 함수 종료
-        }
-    }
-});
 
 
 // 닉네임 유효성 검사
-const memberNickname = document.getElementById("memberNickname");
+const memberNickname = document.getElementById("member_Nickname");
 const nickMessage = document.getElementById('nickMessage');
 
 // 닉네임이 입력이 되었을 때
-memberNickname.addEventListener("input", ()=>{
-
+memberNickname.addEventListener("input", () => {
     // 닉네임 입력이 되지 않은 경우
-    if(memberNickname.value.trim() == ''){
-        nickMessage.innerText = "한글,영어,숫자로만 2~10글자";
+    if (memberNickname.value.trim() == '') {
+        nickMessage.innerText = "한글, 영어, 숫자로만 2~10글자";
         nickMessage.classList.remove("confirm", "error");
         checkObj.memberNickname = false;
-        memberNickname.value = ""; 
+        memberNickname.value = "";
         return;
     }
 
     // 정규표현식으로 유효성 검사
     const regEx = /^[가-힣\w\d]{2,10}$/;
 
-    if(regEx.test(memberNickname.value)){// 유효
+    if (regEx.test(memberNickname.value)) { // 유효
+        fetch("/movieInsight/member/nickCheck?nick_check=" + memberNickname.value)
+            .then(resp => resp.text()) // 응답 객체를 text로 파싱(변환)
+            .then(count => {
+                if (count == 0) { // 중복 아닌 경우
+                    nickMessage.innerText = "사용 가능한 닉네임 입니다";
+                    nickMessage.classList.add("confirm");
+                    nickMessage.classList.remove("error");
+                    checkObj.memberNickname = true;
+                } else { // 중복인 경우
+                    nickMessage.innerText = "이미 사용중인 닉네임 입니다";
+                    nickMessage.classList.add("error");
+                    nickMessage.classList.remove("confirm");
+                    checkObj.memberNickname = false;
+                }
+            })
+            .catch(err => console.log(err));
 
-        fetch("/dupCheck/nickname?nickname="+memberNickname.value)
-        .then(resp => resp.text()) // 응답 객체를 text로 파싱(변환)
-        .then(count => {
-
-            if(count == 0){ // 중복 아닌 경우
-                nickMessage.innerText = "사용 가능한 닉네임 입니다";
-                nickMessage.classList.add("confirm");
-                nickMessage.classList.remove("error");
-                checkObj.memberNickname = true;
-                
-            }else{ // 중복인 경우
-                nickMessage.innerText = "이미 사용중인 닉네임 입니다";
-                nickMessage.classList.add("error");
-                nickMessage.classList.remove("confirm");
-                checkObj.memberNickname = false;
-            }
-        })
-        .catch(err => console.log(err));
-
-        
-
-
-    } else{ // 무효
+    } else { // 무효
         nickMessage.innerText = "닉네임 형식이 유효하지 않습니다";
         nickMessage.classList.add("error");
         nickMessage.classList.remove("confirm");
         checkObj.memberNickname = false;
     }
 
+    // 에러 메시지를 3초 후에 지우는 로직 추가
+    setTimeout(() => {
+        nickMessage.innerText = "";
+    }, 3000); // 3초 후에 에러 메시지를 지웁니다.
 });
     
+
+// 버튼 요소를 가져옵니다.
+const maleButton = document.getElementById("genderM");
+const femaleButton = document.getElementById("genderF");
+
+maleButton.addEventListener("click", function() {
+    // 클릭된 버튼의 텍스트 색상을 파란색으로 변경
+    maleButton.style.color = "blue";
+    femaleButton.style.color = "";
+    
+    // checkObj 객체의 gender 속성을 true로 설정
+    checkObj.membergender = true;
+});
+
+femaleButton.addEventListener("click", function() {
+    // 클릭된 버튼의 텍스트 색상을 파란색으로 변경
+    femaleButton.style.color = "blue";
+    maleButton.style.color = "";
+    
+    // checkObj 객체의 gender 속성을 true로 설정
+    checkObj.membergender = true;
+});
+
+maleButton.addEventListener("click", function() {
+    checkObj.memberGender = true;
+    // 다른 버튼의 memberGender는 false로 설정 (둘 중 하나만 true가 되도록)
+    femaleButton.memberGender = false;
+});
+
+femaleButton.addEventListener("click", function() {
+    checkObj.memberGender = true;
+    // 다른 버튼의 memberGender는 false로 설정 (둘 중 하나만 true가 되도록)
+    maleButton.memberGender = false;
+});
+	
+
+    
+
+document.getElementById("signUpFrm").addEventListener("submit", e => {
+    for (let key in checkObj) {
+        if (!checkObj[key]) {
+            switch (key) {
+                case "memberIdd":
+                    alert("아이디가 유효하지 않습니다");
+                    break;
+
+                case "memberPw":
+                    alert("비밀번호가 유효하지 않습니다");
+                    break;
+
+                case "memberPwConfirm":
+                    alert("비밀번호가 확인되지 않았습니다");
+                    break;
+
+                case "memberNickname":
+                    alert("닉네임이 유효하지 않습니다");
+                    break;
+
+                case "memberGender":
+                    alert("성별을 선택해주세요");
+                    break;
+            }
+
+            // 유효하지 않은 input 태그로 focus 이동
+            document.getElementById(key).focus();
+
+            e.preventDefault(); // form 태그 기본 이벤트 제거
+            return; // 함수 종료
+        }
+
+    }
+
+
+});
     
     
 

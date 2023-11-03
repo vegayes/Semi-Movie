@@ -26,11 +26,113 @@ main{
     align-items: center;
 }
 
-main>div{
 
-    margin: 50px 0px;
-    width: 1650px;
+/* =========================================================== */
+ 
+.movieForm{
+height: 25%;
+width: 80%;
+display: flex;
+margin-bottom: 50px;
+} 
+
+.movieForm_img{
+flex-basis: 45%;
+background-size: 100% 100%;
 }
+
+
+#movieForm-content{
+    width: 50%;
+    margin-left: 3%;
+    background-color: #383B3E;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#movieForm-content > textarea {
+    width: 80%;
+    height: 35%;
+    font-size: 15px;
+    margin-left: 10%;
+}
+
+.movieForm_summary_title{
+	height : 5%;
+    padding: 0 30px;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.movieForm_title {
+    flex-basis: 10%;
+}
+
+.movieForm_title > input {
+    margin-top: 3%;
+    margin-left: 10%; 
+    height: 90%;
+}
+
+
+.movieForm_img img{
+   	width: 100%;
+   	height: 90%;
+}
+
+
+.movieForm_description{
+    height: 50%;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.movieFormGenre {
+    flex-basis: 20%;
+    display: flex;
+    font-weight : bold;
+   justify-content: center;
+}
+
+.movieFormGenre > input{
+    flex-basis: 40%;
+    height: 70%;
+    margin: 15px;
+}
+
+
+.movieFormCasting {
+    flex-basis: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.movieFormCasting > input{
+    flex-basis: 25%;
+    margin: 10px;
+}
+
+.movieFormAge {
+    flex-basis: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.movieFormAge > input{
+    flex-basis: 40%;
+    margin: 10px;
+}
+
+
+.movieForm_description > button {
+    flex-basis: 10%;
+}
+
+
+/* ==================================================================================================================== */
 
 
 .movie{
@@ -41,9 +143,10 @@ main>div{
 
 
 .movie_img{
-    width: 40%;
-    background-size: 100% 100%;
+	width: 40%;
+   background-size: 100% 100%;
 }
+
 
 .movie_img img{
    	width: 100%;
@@ -51,26 +154,51 @@ main>div{
 }
 
 
-.movie>div:nth-child(2){
-    width: 70%;
+#movie-content{
+	width: 70%;
     margin-left: 3%;
     background-color: #383B3E;
+    
 }
+
+
+
 
 .movie_title{
     display: flex;
     height: 20%;
 }
 
-#star {
-    color: white; 
-    transition: color 0.3s; 
-    font-size: 50px;
-    margin-top: 43%;
-    margin-left: 25%;
+
+
+star{
+	display:flex;
+	justify-content: center;
+    align-items: center;
 }
 
-#star:hover {
+
+
+
+
+.movie_title > input {
+    margin-top: 3%;
+    margin-left: 10%; 
+    height: 50%;
+    flex-basis: 70%;
+}
+
+#favoriteStar {
+    color: white; 
+    transition: color 0.3s; 
+    font-size: 60px;
+   	display:flex;
+	justify-content: center;
+    align-items: center;
+     margin-top: 43%; 
+}
+
+#favoriteStar:hover {
     color: blue;
 }
 
@@ -126,6 +254,8 @@ main>div{
 
 }
 
+
+
 .movie_description{
     height: 40%;
     display: flex;
@@ -134,12 +264,20 @@ main>div{
 }
 
 
-.movie_description>div{
-    flex: 1;
+
+
+.movie_description > div{
     display: flex;
-    flex-direction: column;
-    padding-left: 5%;
+    flex: 1;
+    flex-direction : column;
+    padding-left : 5%;
     font-weight : bold;
+}
+
+.movie_description > span {
+    display: flex;
+    height: 20%;
+    justify-content: space-around;
 }
 
 .movie_description>div>div{
@@ -147,7 +285,17 @@ main>div{
     flex: 1;
     align-items: center;
     font-weight : bold;
-   
+}
+
+
+.movie_description > span > input{
+    flex-basis: 40%;
+    margin: 10px;
+}
+
+.movie_description>div>input{
+    height: 15%;
+    margin: 1%;
 }
 
 .movie_description>div>div{
@@ -819,17 +967,6 @@ main>div{
     height: 20%;
 }
 
-#star {
-    color: white; 
-    transition: color 0.3s; 
-    font-size: 50px;
-    margin-top: 43%;
-    margin-left: 25%;
-}
-
-#star:hover {
-    color: blue;
-}
 
 .star-clicked {
     color: purple;
@@ -1306,7 +1443,7 @@ main>div{
 }
 
 #submit{
-    background-image: url(img/list.png)	
+    background-image: url(img/list.png);
     background-repeat: no-repeat;/* 배경 이미지 1개 */
     background-position: center;
     background-color: #383B3E;
@@ -1381,7 +1518,7 @@ main>div{
     position: relative;
     overflow: hidden;
     height: 90%;
-    padding: 2%;
+    padding: 2% 5%;
     width: 100%;
 
 }
@@ -1445,7 +1582,7 @@ main>div{
 
 .recommendImg-wrapper{
 	height: 200px;
-    width: 330px;
+    width: 260px;
     overflow : hidden;	
     
     border : 2px solid white;
@@ -1454,6 +1591,7 @@ main>div{
 	display : flex;
     justify-content: center;
     align-items: center;
+    padding-top : 40px;
     
     position: relative;
 }
@@ -1474,9 +1612,7 @@ main>div{
 }
 
 .recommendImg-wrapper img {
-	
-	heigth : 100%;
-	width : 100%;
+	width :100%;
 
     margin-top: 0;
 }
@@ -1584,7 +1720,7 @@ main>div{
 }
 
 
-.editBtn {
+    .editBtn {
     background-color: #383B3E;
     color: rgb(195, 195, 250);
     border: none;
@@ -1594,17 +1730,16 @@ main>div{
     font-size: 16px; 
 	margin: 0px;
     margin-right: 30px;
-}
+    }
 
-.deletBtn { 
-    background-color: #383B3E;
-    color: rgb(170, 170, 248);
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    margin: 0px;
-    margin-right: 10px;
-}
-
+    .deletBtn { 
+        background-color: #383B3E;
+        color: rgb(170, 170, 248);
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px; 
+        cursor: pointer; 
+        font-size: 16px; 
+        margin: 0px;
+        margin-right: 10px;
+    }

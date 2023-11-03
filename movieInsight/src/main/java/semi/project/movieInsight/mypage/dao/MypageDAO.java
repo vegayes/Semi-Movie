@@ -82,6 +82,46 @@ public class MypageDAO {
 		return sqlSession.update("mypageMapper.updateInfo", updateMember);
 	}
 
+	/** 영화 댓글 팝업 조회 
+	 * @param commentNo
+	 * @return
+	 */
+	public Movie selectMovieComment(int commentNo) {
+		return sqlSession.selectOne("mypageMapper.selectMovieComment", commentNo);
+	}
+
+	/** 영화 댓글 수정 
+	 * @param movie
+	 * @return
+	 */
+	public int updateMovieComment(Movie movie) {
+		return sqlSession.update("mypageMapper.updateMovieComment", movie);
+	}
+
+	/** 영화관 댓글 팝업 조회 
+	 * @param cinemaCommentNo
+	 * @return
+	 */
+	public Cinema selectCinemaComment(int cinemaCommentNo) {
+		return sqlSession.selectOne("mypageMapper.selectCinemaComment", cinemaCommentNo);
+	}
+
+	/** 영화관 댓글 팝업 수정 
+	 * @param cinema
+	 * @return
+	 */
+	public int updateCinemaComment(Cinema cinema) {
+		return sqlSession.update("mypageMapper.updateCinemaComment", cinema);
+	}
+
+	/** 즐겨찾기 영화 삭제 
+	 * @param favoriteDelMovie
+	 * @return
+	 */
+	public int delFavoriteMovie(Map<String, Object> favoriteDelMovie) {
+		return sqlSession.delete("mypageMapper.delFavoriteMovie", favoriteDelMovie);
+	}
+
 
 
 	

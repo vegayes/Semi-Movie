@@ -11,7 +11,7 @@
         prevEl: ".main-1-p", // 이번 버튼 클래스명
       },
     });
-    new Swiper(".main-2", {
+   new Swiper(".main-2", {
       slidesPerView: "auto",
       spaceBetween: 24,
       loop: true,
@@ -107,54 +107,25 @@
         prevEl: ".main-9-p", // 이번 버튼 클래스명
       },
     });
-
-    new Swiper(".swiper-ls-1", {
+    
+     new Swiper(".main-10", {
       slidesPerView: "auto",
       spaceBetween: 24,
       loop: true,
+      loopedSlidesLimit: false,
+      slideToClickedSlide: true,
+      loopedSlides: 1,
       navigation: {
-        nextEl: ".ls-1-n", // 다음 버튼 클래스명
-        prevEl: ".ls-1-p", // 이번 버튼 클래스명
-      },
-      pagination: {
-        el: ".ls-1-pa",
-        type: "bullets",
+        nextEl: ".main-10-n", // 다음 버튼 클래스명
+        prevEl: ".main-10-p", // 이번 버튼 클래스명
       },
     });
 
-    new Swiper(".swiper-ls-2", {
-      slidesPerView: "auto",
-      spaceBetween: 24,
-      loop: true,
-      // navigation: {
-      //   nextEl: ".ls-2-n", // 다음 버튼 클래스명
-      //   prevEl: ".ls-2-p", // 이번 버튼 클래스명
-      // },
-    });
 
-    new Swiper(".swiper-ls-3", {
-      slidesPerView: "auto",
-      spaceBetween: 24,
-      loop: true,
-      navigation: {
-        nextEl: ".ls-3-n", // 다음 버튼 클래스명
-        prevEl: ".ls-3-p", // 이번 버튼 클래스명
-      },
-      pagination: {
-        el: ".ls-3-pa",
-        type: "bullets",
-      },
-    });
 
-    new Swiper(".swiper-center", {
-      slidesPerView: "auto",
-      spaceBetween: 24,
-      loop: true,
-      navigation: {
-        nextEl: ".center-n", // 다음 버튼 클래스명
-        prevEl: ".center-p", // 이번 버튼 클래스명
-      },
-    });
+
+
+   
 
 
 
@@ -248,3 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
     swiperMenu.slideNext();
   }, 4500);
 });
+
+
+
+

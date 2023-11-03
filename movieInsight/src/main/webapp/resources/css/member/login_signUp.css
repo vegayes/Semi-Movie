@@ -6,7 +6,7 @@
         font-weight: 300;
         font-size: 15px;
         line-height: 1.7;
-        color: #c4c3ca;
+        color: white;
         background-color: #1f2029;
         overflow-x: hidden;
       }
@@ -174,7 +174,7 @@
         line-height: 22px;
         letter-spacing: 0.5px;
         outline: none;
-        color: #c4c3ca;
+        color: #black;
         background-color: white;
         border: none;
         -webkit-transition: all 200ms linear;
@@ -324,6 +324,7 @@
         border-radius: 15px;
         border: 0;
         padding: 8px 16px;
+        color: bule;
       }
 
       p.mb-0.mt-4.text-center {
@@ -349,10 +350,62 @@
        #messageDiv_1 {
       	color: blue;
       	font-weight: bold;
+        margin: 0;
+        padding: 0;
+        font-size: 10px;
       }
       
       #messageDiv_2 {
       	color: blue;
       	font-weight: bold;
+        margin: 0;
+        padding: 0;
+        font-size: 10px;
       }
       
+      #nickMessage {
+        font-size: 10px;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+      }
+
+      #emailMessage {
+        font-size: 10px;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+      }
+
+      #authKeyMessage {
+        font-size: 10px;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        color: #1e1eaa;
+      }
+
+      .signUp-input-area {
+        display: flex;
+        height: 19px;
+        margin: 0;
+        padding: 0px;
+        border-radius: 40px;
+      }
+
+      #checkAuthKeyBtn {
+        height: 10%;
+        font-size: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+   		form input {
+   	 color: black !important;
+		}
+		
+		.gender {
+		color: black;
+		}
+		

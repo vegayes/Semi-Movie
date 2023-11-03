@@ -4,6 +4,7 @@ package semi.project.movieInsight.mypage.controller;
 
 import java.nio.file.spi.FileSystemProvider;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -91,11 +94,9 @@ public class MypageController {
 		            	System.out.println("===== 로그인한 번호와 쿠키의 번호가 일치한 경우 =====");
 		            	
 			            System.out.println("리스트 저장 : " + visitInfoList);
-   	
+	            		
 		            	
 		            }
-		            
-		            
 		            
 //		            if(visitInfo[0].equals(loginMember.getMemberId())) {
 		            	
@@ -128,6 +129,7 @@ public class MypageController {
 		model.addAttribute("commentCinema", selectCommentCinema);
 		
 		
+		model.addAttribute("loginMember", loginMember);
 		
 		
 		return "mypage/mypage";
@@ -217,6 +219,8 @@ public class MypageController {
 			System.out.println("입력한 닉네임 " + updateMember.getMemberNickname());
 			System.out.println("입력한 성별 " + updateMember.getMemberGender());
 			
+			System.out.println("일치 확인" + updateMember.getMemberNickname().equals(loginMember.getMemberNickname()));
+			
 			if(updateMember.getMemberNickname().equals(loginMember.getMemberNickname()) || updateMember.getMemberGender().equals(loginMember.getMemberGender())) {
 				
 				result = 0;
@@ -287,7 +291,120 @@ public class MypageController {
 	
 	// 탈퇴 
 	
+	
+	
+	
+	
+	
+	// 댓글 수정후 마이페이지에서 조회 
+	@ResponseBody
+	@GetMapping(value = "/comment/select", produces = "application/json; charset=UTF-8")
+	public List<Movie> selectMyMovieComment(int memberNo) {
+		System.out.println("댓글 조회 비동기 :" +  memberNo);
 		
+		return service.selectCommentMovie(memberNo);
+	}	
+	
+	
+	// 댓글 수정 팝업 내용 조회하기 (영화)
+	@ResponseBody
+	@GetMapping(value = "/comment", produces = "application/json; charset=UTF-8")
+	public Movie selectMovieComment(int commentNo) {
+		System.out.println("댓글 조회 비동기 :" +  commentNo);
+		
+		return service.selectMovieComment(commentNo);
+	}
+	
+	
+	// 댓글 수정 팝업 내용 조회하기 (영화관)
+	@ResponseBody
+	@GetMapping(value = "/comment2", produces = "application/json; charset=UTF-8")
+	public Cinema selectCinemaComment(int cinemaCommentNo) {
+		System.out.println("댓글 조회 비동기 :" +  cinemaCommentNo);
+		
+		return service.selectCinemaComment(cinemaCommentNo);
+	}
+	
+	
+	// 댓글 수정 팝업에서 진행하기
+	@ResponseBody
+	@GetMapping(value ="/comment/update", produces = "application/json; charset=UTF-8")
+	public int updateMovieComment(String movieCommentContent, float movieGrade , int movieCommentNo , Movie movie) {
+		
+		System.out.println("머야");
+		 
+		System.out.println("댓글 NO 수정 조회 비동기 :" +  movieCommentNo);
+		System.out.println("댓글 내용 수정 조회 비동기 :" +  movieCommentContent);
+		System.out.println("댓글 평점 수정 조회 비동기 :" +  movieGrade);
+		
+		movie.setMovieCommentNo(movieCommentNo);
+		movie.setMovieGrade(movieGrade);
+		movie.setMovieCommentContent(movieCommentContent);
+		
+		return service.updateMovieComment(movie);
+	}
+	
+	// 댓글 수정 팝업에서 진행하기
+	@ResponseBody
+	@GetMapping(value ="/comment2/update", produces = "application/json; charset=UTF-8")
+	public int updateCinemaComment(String cinemaCommentContent, float cinemaGrade , int cinemaCommentNo , Cinema cinema) {
+		
+		System.out.println("머야");
+		 
+		System.out.println("댓글 NO 수정 조회 비동기 :" +  cinemaCommentNo);
+		System.out.println("댓글 내용 수정 조회 비동기 :" +  cinemaCommentContent);
+		System.out.println("댓글 평점 수정 조회 비동기 :" +  cinemaGrade);
+		
+		cinema.setCinemaCommentNo(cinemaCommentNo);
+		cinema.setCinemaGrade(cinemaGrade);
+		cinema.setCinemaCommentContent(cinemaCommentContent);
+		
+		return service.updateCinemaComment(cinema);
+	}
+	
+	// 즐겨찾기 팝업에서 조회 하기 ( ajax 영화 ) 
+	@ResponseBody
+	@GetMapping(value ="/like/select", produces = "application/json; charset=UTF-8")
+	public List<Movie> selectFvMovie(int memberNo){
+		
+		System.out.println("비동기 조회 : " + memberNo);
+		
+		return service.selectLikeMovie(memberNo);
+	}
+		
+	
+	// 즐겨찾기 팝업에서 삭제하기 (영화) 	
+	@ResponseBody
+	@PostMapping(value = "/like/del", produces = "application/json; charset=UTF-8" )
+	public int delMovieComment(@RequestBody Map<String, List<Integer>> requestBody, // "delMovie" 의 key로 들어가 있음. 
+								@SessionAttribute("loginMember") Member loginMember) {
+				
+	
+		Map<String, Object> favoriteDelMovie = new HashMap<String , Object>();
+		favoriteDelMovie.put("delMovieNo", requestBody.get("delMovie"));
+		favoriteDelMovie.put("memberNo", loginMember.getMemberNo());
+		
+	    return service.delFavoriteMovie(favoriteDelMovie);
+	}
+	
+	// 즐겨찾기 삭제 후 마이페이지에서 다시 조회 (영화) 
+	@ResponseBody
+	@GetMapping(value = "/favorite/select", produces = "application/json; charset=UTF-8")
+	public List<Movie> selectMyMovieFavorite(int memberNo) {
+		System.out.println("즐겨찾기 조회 비동기 :" +  memberNo);
+		
+		return service.selectLikeMovie(memberNo);
+	}	
+	
+	// 즐겨찾기 삭제 후 마이페이지에서 다시 조회 (영화관) 	
+	@ResponseBody
+	@GetMapping(value = "/favorite/select/cinema", produces = "application/json; charset=UTF-8")
+	public List<Cinema> selectMyCinemaFavorite(int memberNo) {
+		System.out.println("즐겨찾기 조회 비동기 :" +  memberNo);
+		
+		return service.selectLikeCinema(memberNo);
+	}	
+	
 	
 
 }

@@ -13,13 +13,15 @@ public class MemberDAO {
 	private SqlSessionTemplate sqlSession;
 
 	public int signUp(Member inputMember) {
+		
+		System.out.println(inputMember);
 	
 		return sqlSession.insert("memberMapper.signUp", inputMember);
 	}
-
-	public int idCheck(String id_check) {
 	
-		return sqlSession.selectOne("memberMapper.checkId",id_check);
+	public int idCheck(String memberId) {
+		
+		return sqlSession.selectOne("memberMapper.checkId",memberId);
 	}
 
 
@@ -38,6 +40,11 @@ public class MemberDAO {
 	
 		return sqlSession.selectOne("memberMapper.checkEmail", email);
 
+	}
+
+	public int nickCheck(String nick_check) {
+		
+		return sqlSession.selectOne("memberMapper.checkNick", nick_check);
 	}
 
 	

@@ -14,7 +14,7 @@
 
         <div class="admin-menu">
             <ul>
-                <li class="admin-list"><a href="#">회원 관리</a></li> 
+                <li class="admin-list"><a href="/movieInsight/manager/member">회원 관리</a></li> 
                 <li class="admin-list"><a href="/movieInsight/manager/movie">영화</a></li>               
                 <li class="admin-list"><a href="/movieInsight/manager/cinema">영화관</a></li>
                 <li class="admin-list"><a href="/movieInsight/manager/menu">메뉴</a></li>
