@@ -239,7 +239,7 @@
                <section class="block_body">
                	 <div class="combody">
                 	
-                    <table class = "comment-list-table"  id = "comment-list-table">
+                    <table class = "comment-list-table"  id = "comment-list-table-facility">
 	                	<c:forEach items = "${commentCinemaList}" var="facility">
 	                		<c:if test ="${facility.cinemaCommentType eq '시설'}">
 	                			<tr class = "comment-grade-tr">
@@ -309,7 +309,7 @@
                 </section>
                <section class="block_body">
                 <div class="combody">
-                    <table class = "comment-list-table"  id = "comment-list-table">
+                    <table class = "comment-list-table"  id = "comment-list-table-good">
 	                	<c:forEach items = "${commentCinemaList}" var="comment">
 	                		
 	                		<c:if test ="${comment.cinemaCommentType eq '친절도'}">
@@ -375,7 +375,7 @@
           </section>
             <fieldset class="commentForm">
                 <form id="facilityForm">
-                    <div style = "border : 2px solid blue">
+                    <div>
                         <input type="text" placeholder= "직원 친절도 평가 입력...." id = "commentContent">
                     </div>
                     <div>
@@ -583,7 +583,7 @@
     <script>
         const cinemaName = "${cinemaInfo.cinemaName}"
         const memberNo = "${sessionScope.loginMember.memberNo}";
-        
+        const memberId = "${sessionScope.loginMember.memberId}";
     </script>
 
     <script src="/movieInsight/resources/js/cinema/cinema-detail-page.js"></script>

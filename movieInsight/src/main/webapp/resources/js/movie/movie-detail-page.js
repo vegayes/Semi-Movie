@@ -49,7 +49,7 @@ function selectMovieCommentList() {
                 const gradeTr = document.createElement('tr');
                 gradeTr.classList.add('comment-grade-tr');
                 const gradeTd = document.createElement('td');
-                gradeTd.innerText = `평점 ${comment.cinemaGrade}`;
+                gradeTd.innerText = `평점 ${comment.movieGrade}`;
                 gradeTr.appendChild(gradeTd);
 
                 const contentTr = document.createElement('tr');
@@ -68,20 +68,22 @@ function selectMovieCommentList() {
 
                 const idTd = document.createElement('td');
                 idTd.classList.add('comment-list-id');
-                idTd.innerText = `${comment.commentCinemaWriter} : `;
+                idTd.innerText = `${comment.commentMovieWriter} : `;
 
                 const contentTd = document.createElement('td');
                 contentTd.classList.add('comment-list-content', 'comment-content');
-                contentTd.innerText = comment.cinemaCommentContent;
+                contentTd.innerText = comment.movieCommentContent;
 
                 const dateTd = document.createElement('td');
                 dateTd.classList.add('comment-list-date');
-                dateTd.innerText = comment.cinemaCommentDate;
+                dateTd.innerText = comment.movieCommentDate;
 
                 const editTd = document.createElement('td');
                 editTd.classList.add('comment-list-edit');
-
-                if (comment.commentMovieWriter === memberNo) {
+                
+                console.log("memberid :" + memberId);
+                console.log("commentWriter :" + comment.commentMovieWriter);
+                if (comment.commentMovieWriter === memberId) {
                     const editBtn = document.createElement('button');
                     editBtn.classList.add('editBtn');
                     editBtn.innerText = '수정';
@@ -190,13 +192,11 @@ function deleteComment(movieCommentNo){
 }
 
 
-// 댓글 수정 (아직 안함) 
-function updateComment(commentNo, btn){
+// 댓글 수정 (아직 안함) btn이 왜 있었지?
+function updateComment(commentNo){
 
     // 새로 작성된 댓글 내용 얻어오기
     const commentContent = btn.parentElement.previousElementSibling.value;
-
-
     fetch("/commnet/update?commentContent="+commentContent + "&commentNo="+commentNo)
     .then(resp => resp.text())
     .then(result => {
@@ -288,7 +288,7 @@ if(document.getElementById("star")) {
         if (!clicked) {
             star.style.color = 'yellow'; // 마우스를 올렸을 때 파란색으로 변경
         } else {
-            star.style.color = 'yellow'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
+            star.style.color = 'white'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
         }
     });
     

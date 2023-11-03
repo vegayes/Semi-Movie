@@ -136,9 +136,9 @@ if(document.getElementById("favoriteStar")) {
   
   favoriteStar.addEventListener("mouseenter", function () {
       if (!clicked) {
-        favoriteStar.style.color = 'white'; // 마우스를 올렸을 때 파란색으로 변경
+        favoriteStar.style.color = 'yellow'; // 마우스를 올렸을 때 파란색으로 변경
       } else {
-        favoriteStar.style.color = 'yellow'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
+        favoriteStar.style.color = 'white'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
       }
   });
   
@@ -187,102 +187,28 @@ if (document.getElementById("fileInput")) {
 }
 
 
-// 댓글 AJAX 조회 
-/*
-function selectCinemaCommentList() {
-    fetch("/movieInsight/cinemaDetail/comment/select?cinemaName=" + cinemaName)
-        .then(response => response.json()) 
-        .then(list => {
-        console.log(list);
-    
-        const commentListTable = document.getElementById('comment-list-table');
-        commentListTable.innerHTML = ''; // 기존 테이블 내용 초기화
-    
-        for(let [index, fv] of list.entries()){
-            const fvRow = document.createElement("tr");
-            fvRow.classList.add("comment-list-col", "movieComment"); // 기존에 있던 클래스 추가
-    
-            const checkTd = document.createElement("td");
-            checkTd.classList.add("comment-list-check");
-            const checkbox = document.createElement("input");
-            checkbox.setAttribute("type", "checkbox");
-            checkbox.setAttribute("name", "comment-check");
-            checkbox.id = `check_${index}`; // 고유한 ID 부여
-            const label = document.createElement("label");
-            label.setAttribute("for", `check_${index}`);
-    
-            checkTd.appendChild(checkbox);
-            checkTd.appendChild(label);
-    
-            const contentNoTd = document.createElement("td");
-            contentNoTd.classList.add("comment-list-content-no");
-            contentNoTd.innerText = index + 1;
-    
-            const titleTd = document.createElement("td");
-            titleTd.classList.add("comment-list-board");
-            titleTd.innerText = fv.movieTitle;
-    
-            const contentTd = document.createElement("td");
-            contentTd.classList.add("comment-list-content");
-            contentTd.innerText = fv.movieCommentContent;
-    
-            const dateTd = document.createElement("td");
-            dateTd.classList.add("comment-list-date");
-            dateTd.innerText = fv.movieCommentDate;
-    
-            const typeTd = document.createElement("td");
-            typeTd.classList.add("comment-list-type");
-            typeTd.style.display = 'none';
-            typeTd.innerText = fv.movieCommentNo;
-    
-            const editTd = document.createElement("td");
-            editTd.classList.add("comment-list-edit");
-            const editButton = document.createElement("button");
-            editButton.innerText = "수정";
-            editButton.onclick = function() {
-            updateCommentModal(fv.movieCommentNo);
-            };
-    
-            editTd.appendChild(editButton);
-    
-            fvRow.appendChild(checkTd);
-            fvRow.appendChild(contentNoTd);
-            fvRow.appendChild(titleTd);
-            fvRow.appendChild(contentTd);
-            fvRow.appendChild(dateTd);
-            fvRow.appendChild(typeTd);
-            fvRow.appendChild(editTd);
-    
-            commentListTable.appendChild(fvRow);
-        }
-    
-        })
-        .catch(err => console.log(err));
-    }
-      */
-
-    // 안된다구..
-function selectCinemaCommentList() {
+// 댓글 AJAX 조회
+function selectFacilityCommentList() {
     fetch("/movieInsight/cinemaDetail/comment/select?cinemaName=" + cinemaName)
         .then(response => response.json()) 
         .then(list => {
             console.log(list);
-
-            const commentListTable = document.getElementById('comment-list-table');
+            console.log("그만하고싶은데 좀 나와주겠니?");
+            const commentListTable = document.getElementById('comment-list-table-facility');
             commentListTable.innerHTML = ''; // 기존 테이블 내용 초기화
-            console.log("왜 없애지도 못하는거지??");
+
             for (let comment of list) {
-                if (comment.cinemaCommentType === '친절도') {
+                if(comment.cinemaCommentType === '시설'){
                     const gradeTr = document.createElement('tr');
                     gradeTr.classList.add('comment-grade-tr');
                     const gradeTd = document.createElement('td');
                     gradeTd.innerText = `평점 ${comment.cinemaGrade}`;
                     gradeTr.appendChild(gradeTd);
-
+    
                     const contentTr = document.createElement('tr');
                     contentTr.classList.add('comment-content-tr');
-                    contentTr.style.border = '2px solid blue';
-
+                    contentTr.style.border = '2px solid red';
+    
                     const imgTd = document.createElement('td');
                     imgTd.classList.add('comment-img');
                     const writerImgWrapper = document.createElement('div');
@@ -292,32 +218,32 @@ function selectCinemaCommentList() {
                     writerImg.setAttribute('src', imgSrc);
                     writerImgWrapper.appendChild(writerImg);
                     imgTd.appendChild(writerImgWrapper);
-
+    
                     const idTd = document.createElement('td');
                     idTd.classList.add('comment-list-id');
                     idTd.innerText = `${comment.commentCinemaWriter} : `;
-
+    
                     const contentTd = document.createElement('td');
                     contentTd.classList.add('comment-list-content', 'comment-content');
                     contentTd.innerText = comment.cinemaCommentContent;
-
+    
                     const dateTd = document.createElement('td');
                     dateTd.classList.add('comment-list-date');
                     dateTd.innerText = comment.cinemaCommentDate;
-
+    
                     const editTd = document.createElement('td');
                     editTd.classList.add('comment-list-edit');
-
-                    if (comment.commentCinemaWriter === memberNo) {
-                        consoel.log("멤버 같은지 확인 했음. 너 작성자구나?");
+                    
+                    console.log("memberid :" + memberId);
+                    console.log("commentWriter :" + comment.commentCinemaWriter);
+                    if (comment.commentCinemaWriter === memberId) {
                         const editBtn = document.createElement('button');
                         editBtn.classList.add('editBtn');
                         editBtn.innerText = '수정';
                         editBtn.onclick = function() {
-                            // 수정 버튼 클릭 시 동작하는 함수 호출
                             updateCommentModal(comment.cinemaCommentNo);
                         };
-
+    
                         const deleteBtn = document.createElement('button');
                         deleteBtn.classList.add('deleteBtn');
                         deleteBtn.innerText = '삭제';
@@ -325,31 +251,133 @@ function selectCinemaCommentList() {
                             // 삭제 버튼 클릭 시 동작하는 함수 호출
                             deleteComment(comment.cinemaCommentNo);
                         };
-
+    
                         editTd.appendChild(editBtn);
                         editTd.appendChild(deleteBtn);
                     }
-
+    
                     contentTr.appendChild(imgTd);
                     contentTr.appendChild(idTd);
                     contentTr.appendChild(contentTd);
                     contentTr.appendChild(dateTd);
                     contentTr.appendChild(editTd);
-
+    
                     commentListTable.appendChild(gradeTr);
                     commentListTable.appendChild(contentTr);
+
                 }
+
             }
         })
         .catch(err => console.log(err));
 }
-    
 
-      
+// 몰라 똑같은 코드 반복적이게 써.. 
+function selectGoodCommentList() {
+    fetch("/movieInsight/cinemaDetail/comment/select?cinemaName=" + cinemaName)
+        .then(response => response.json()) 
+        .then(list => {
+            console.log(list);
+            console.log("그만하고싶은데 좀 나와주겠니?");
+            const commentListTable = document.getElementById('comment-list-table-good');
+            commentListTable.innerHTML = ''; // 기존 테이블 내용 초기화
 
+            for (let comment of list) {
+                if(comment.cinemaCommentType === '친절도'){
+                    const gradeTr = document.createElement('tr');
+                    gradeTr.classList.add('comment-grade-tr');
+                    const gradeTd = document.createElement('td');
+                    gradeTd.innerText = `평점 ${comment.cinemaGrade}`;
+                    gradeTr.appendChild(gradeTd);
+                
+                    const contentTr = document.createElement('tr');
+                    contentTr.classList.add('comment-content-tr');
+                    contentTr.style.border = '2px solid red';
+                
+                    const imgTd = document.createElement('td');
+                    imgTd.classList.add('comment-img');
+                    const writerImgWrapper = document.createElement('div');
+                    writerImgWrapper.classList.add('comment-writer-img-wrapper');
+                    const imgSrc = comment.writerProfile ? `/movieInsight/resources/images/member/${comment.writerProfile}` : '/movieInsight/resources/images/member/기본이미지.png';
+                    const writerImg = document.createElement('img');
+                    writerImg.setAttribute('src', imgSrc);
+                    writerImgWrapper.appendChild(writerImg);
+                    imgTd.appendChild(writerImgWrapper);
+                
+                    const idTd = document.createElement('td');
+                    idTd.classList.add('comment-list-id');
+                    idTd.innerText = `${comment.commentCinemaWriter} : `;
+                
+                    const contentTd = document.createElement('td');
+                    contentTd.classList.add('comment-list-content', 'comment-content');
+                    contentTd.innerText = comment.cinemaCommentContent;
+                
+                    const dateTd = document.createElement('td');
+                    dateTd.classList.add('comment-list-date');
+                    dateTd.innerText = comment.cinemaCommentDate;
+                
+                    const editTd = document.createElement('td');
+                    editTd.classList.add('comment-list-edit');
+                    
+                    console.log("memberid :" + memberId);
+                    console.log("commentWriter :" + comment.commentCinemaWriter);
+                    if (comment.commentCinemaWriter === memberId) {
+                        const editBtn = document.createElement('button');
+                        editBtn.classList.add('editBtn');
+                        editBtn.innerText = '수정';
+                        editBtn.onclick = function() {
+                            updateCommentModal(comment.cinemaCommentNo);
+                        };
+                
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.classList.add('deleteBtn');
+                        deleteBtn.innerText = '삭제';
+                        deleteBtn.onclick = function() {
+                            // 삭제 버튼 클릭 시 동작하는 함수 호출
+                            deleteComment(comment.cinemaCommentNo);
+                        };
+                
+                        editTd.appendChild(editBtn);
+                        editTd.appendChild(deleteBtn);
+                    }
+                
+                    contentTr.appendChild(imgTd);
+                    contentTr.appendChild(idTd);
+                    contentTr.appendChild(contentTd);
+                    contentTr.appendChild(dateTd);
+                    contentTr.appendChild(editTd);
+                
+                    commentListTable.appendChild(gradeTr);
+                    commentListTable.appendChild(contentTr);
+                
+                
+                }
 
+            }
+        })
+        .catch(err => console.log(err));
+}
 
+// ajax 진행 후 등급 초기화 
+function resetGrade(gradeType) {
+    grades[gradeType] = 0;
 
+    if (gradeType === 'facility') {
+        facilityGrade = 0;
+    } else if (gradeType === 'comment') {
+        commentGrade = 0;
+    } else if (gradeType === 'menu') {
+        menuGrade = 0;
+    }
+
+    // 등급 아이콘 초기화
+    const thumbs = document.querySelectorAll(`.${gradeType}Grade`);
+    thumbs.forEach(thumb => {
+        thumb.classList.remove('fas');
+        thumb.classList.add('far');
+        thumb.style.color = '';
+    });
+}
 
 /* 댓글  (시설, 친절도) */ 
 
@@ -404,16 +432,6 @@ for(let i = 0; i < addComment.length; i++){
             return;
         }
 
-        console.log(cinemaCommentType );
-        console.log(typeof commentContent);
-        console.log(typeof commentValue);
-        console.log(commentValue);
-
-        console.log(typeof cinemaName + cinemaName);
-        console.log(typeof cinemaGrade);
-        console.log(typeof cinemaCommentType);
-
-    
         // 4) AJAX를 이용해서 댓글 내용 DB에 저장(INSERT)
         fetch("/movieInsight/cinemaDetail/comment/insert?commentValue="+commentValue + "&cinemaName="+cinemaName + "&cinemaGrade=" + cinemaGrade + "&cinemaCommentType=" + cinemaCommentType)
         .then(resp => resp.text())
@@ -421,11 +439,24 @@ for(let i = 0; i < addComment.length; i++){
             if(result > 0){ // 등록 성공
                 alert("댓글이 등록되었습니다.");
 
-    
                 commentContent[i].value = ""; // 작성했던 댓글 삭제
+
+                selectFacilityCommentList();
+                selectGoodCommentList();
+
+
+                // .facilityGrade 클래스를 가진 요소들을 초기화
+                const facilityGradeIcons = document.querySelectorAll('.facilityGrade');
+                facilityGradeIcons.forEach(icon => icon.classList.remove('fas', 'far'));
+                facilityGradeIcons.forEach(icon => icon.classList.add('far'));
+
+                // 시설 등급 초기화
+                resetGrade('facility');
+                resetGrade('comment');
+                resetGrade('menu');
+
                 
-                console.log("요");
-                selectCinemaCommentList();
+                
     
             } else { // 실패
                 alert("댓글 등록에 실패했습니다...");
@@ -450,7 +481,8 @@ function deleteComment(cinemaCommentNo){
             if(result > 0){
                
                 alert("삭제되었습니다");
-                selectCinemaCommentList();
+                selectFacilityCommentList();
+                selectGoodCommentList();
 
             }else{
                 alert("삭제 실패");
@@ -463,8 +495,8 @@ function deleteComment(cinemaCommentNo){
 
   
     
-// 댓글 수정 (아직 안함) 
-function updateComment(commentNo, btn){
+// 댓글 수정 (아직 안함) btn이 왜 있었지?
+function updateComment(commentNo){
 
     // 새로 작성된 댓글 내용 얻어오기
     const commentContent = btn.parentElement.previousElementSibling.value;

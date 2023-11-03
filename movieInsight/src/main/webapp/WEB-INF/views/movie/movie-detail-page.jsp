@@ -289,7 +289,7 @@
 	                		<tr class = "comment-grade-tr">
 	                			<td>평점 ${comment.movieGrade}</td>
 	                		</tr>
-	                		<tr class = "comment-content-tr" style = "border : 2px solid blue">
+	                		<tr class = "comment-content-tr">
 	                			 <td class = "comment-img">
                                       <div class = "comment-writer-img-wrapper">
                                       	<c:if test = "${empty comment.writerProfile}">
@@ -379,6 +379,7 @@
     <script>
         const movieNo = "${movieInfo.movieNo}"
         const memberNo = "${sessionScope.loginMember.memberNo}";
+        const memberId = "${sessionScope.loginMember.memberId}";
     </script>
 
     <script src="/movieInsight/resources/js/movie/movie-detail-page.js"></script>
