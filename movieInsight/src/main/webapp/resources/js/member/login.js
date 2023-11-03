@@ -8,7 +8,7 @@ if(loginFrm != null){
     // 로그인 시도를 할 때
     loginFrm.addEventListener("submit", e => {
 
-        // 이메일이 입력되지 않은 경우
+        // 아이디가 입력되지 않은 경우
         // 문자열.trim() : 문자열 좌우 공백 제거
         if(memberId.value.trim().length == 0){
             alert("아이디를 입력해주세요.");

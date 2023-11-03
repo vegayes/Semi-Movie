@@ -1,7 +1,7 @@
 
     
 const checkObj = {
-    "memberId" : false,
+    "memberIdd" : false,
     "memberPw" : false,
     "memberPwConfirm" : false,
     "memberNickname" : false,
@@ -25,7 +25,7 @@ document.getElementById("idCheck").addEventListener("click", function() {
 	    // 입력 필드가 비어 있는지 확인
 	    if (!idValue) {
 	        showMessage("아이디를 입력해주세요");
-	      	checkObj.memberId = false;
+	      	checkObj.memberIdd = false;
 	        return; // 입력 필드가 비어 있으면 중복 확인을 수행하지 않음
 	    }
 	
@@ -43,7 +43,7 @@ document.getElementById("idCheck").addEventListener("click", function() {
 	        showMessage("중복된 아이디입니다.");
 	    } else {
 	        showMessage("사용 가능한 아이디입니다.");
-	        checkObj.memberId = true;
+	        checkObj.memberIdd= true;
 	        console.log("checkObj.memberId set to true");
 	    }
 
@@ -407,7 +407,7 @@ document.getElementById("signUpFrm").addEventListener("submit", e => {
     for (let key in checkObj) {
         if (!checkObj[key]) {
             switch (key) {
-                case "memberId":
+                case "memberIdd":
                     alert("아이디가 유효하지 않습니다");
                     break;
 
