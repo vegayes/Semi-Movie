@@ -8,8 +8,8 @@
 		<title>Admin-Menu</title>
 		
 		<link rel="stylesheet" href = "/movieInsight/resources/css/manager/manager-menu.css">
-
 		<link rel="stylesheet" href = "/movieInsight/resources/css/manager/menu_update_popup.css">
+
 
         <script src="https://kit.fontawesome.com/ac58eafae7.js" crossorigin="anonymous"></script>
 		
@@ -68,7 +68,7 @@
 
                                         <td class = "menu-del">
                                             <div>
-                                                <a href="/movieInsight/managerDetail/deleteMenu/%ED%8C%9D%EC%BD%98/${popcorn.menuNo}" class="delete-button">삭제</a>
+                                                <a href="/movieInsight/managerDetail/deleteMenu/${popcorn.menuNo}" class="delete-button">삭제</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -115,7 +115,7 @@
 
                                         <td class = "menu-del">
                                             <div>
-                                                <a href="/movieInsight/managerDetail/deleteMenu/%EC%9D%8C%EB%A3%8C/${drink.menuNo}" class="delete-button">삭제</a>
+                                                <a href="/movieInsight/managerDetail/deleteMenu/${drink.menuNo}" class="delete-button">삭제</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -163,7 +163,7 @@
 
                                         <td class = "menu-del">
                                             <div>
-                                                <a href="/movieInsight/managerDetail/deleteMenu/EC%8A%A4%EB%82%B5/${snack.menuNo}" class="delete-button">삭제</a>
+                                                <a href="/movieInsight/managerDetail/deleteMenu/${snack.menuNo}" class="delete-button">삭제</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -358,8 +358,17 @@
 	</script>
 
 
+        
+        <c:if test="${not empty message}">
+                
+            <script>
+                // EL/JSTL 구문이 먼저 해석
+                // 문자열의 경우 따옴표가 없는 상태이니 옆에 붙여줘야함.
+                alert('${message}') // ${message}
+            </script>
 
-    </script>
+        </c:if>
+
 
 	
         <script src ="/movieInsight/resources/js/manager/manager-menu.js"></script>

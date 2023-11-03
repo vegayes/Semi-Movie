@@ -113,6 +113,8 @@
 	</select>
 
 
+
+	<!-- 메뉴-영화관 테이블에 삽입 -->
 	<!--삽입 메뉴 상태 -->
 	<insert id="insertMenuStatus">
 		INSERT INTO MENU_STATUS (SNACK_CINEMA_NO, CINEMA_NO, MENU_NO)
@@ -124,6 +126,13 @@
 	        </foreach>
 	    ) A
 	</insert>
+
+	<delete id="deleteMenu">
+		DELETE FROM MENU m
+		WHERE MENU_NO  = #{menuNo}
+	</delete>
+
+
 	
 	
 	<!--  

@@ -66,13 +66,19 @@ public interface ManagerService {
 
 	int insertEvent(Map<String, Object> eventMap, MultipartFile image, String filePath) throws Exception;
 
-	int deleteEvent(int eventPRNo);
+	int deleteEvent(String eventTitle);
 
-	int deletePromotion(int promotionNo);
+	int deletePromotion(String promotionType);
 
 	int insertMenu(Map<String, Object> menuMap, MultipartFile image, String filePath) throws Exception;
 
 	int updateMovie(Movie movieInfo);
+
+	int deleteMenu(int menuNo);
+
+	List<Movie> selectMovieComment(int memberNo);
+
+	List<Cinema> selectCinemaComment(int memberNo);
 
 	
 	

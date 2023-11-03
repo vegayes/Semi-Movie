@@ -55,6 +55,7 @@
 		FROM MEMBER
 	</select>
 	
+	
 	<!-- 관리자- 회원정보 수 찾기 -->
 	<select id = "selectMemberCount" resultType = "_int">
 		SELECT COUNT(*)
@@ -80,6 +81,20 @@
 	</select>
 	
 	
+
+
+	
+
+	<select id="selectCinemaComment">
+	
+	
+	
+	</select>
+
+
+
+
+
 
 
 

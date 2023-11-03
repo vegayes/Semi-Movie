@@ -64,7 +64,7 @@
 	                                    </td>
 	                                    <td class = "event-del">
 	                                        <div>
-	                                            <a href="/movieInsight/managerDetail/deletePromotion/${promotion.promotionNo}" class="delete-button">삭제</a>
+	                                            <a href="/movieInsight/managerDetail/deletePromotion/${promotion.promotionType}" class="delete-button">삭제</a>
 	                                        </div>
 	                                    </td>
 	                                </tr>
@@ -101,7 +101,7 @@
 	                                   
 	                                    <td class = "event-del">
 	                                        <div>
-	                                            <a href="/movieInsight/managerDetail/deleteEvent/${event.eventPRNo}" class="delete-button">삭제</a>
+	                                            <a href="/movieInsight/managerDetail/deleteEvent/${event.eventTitle}" class="delete-button">삭제</a>
 	                                        </div>
 	                                    </td>
 	                                </tr>

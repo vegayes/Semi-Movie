@@ -87,6 +87,7 @@
 	
 	                            </tr>
 	                        </thead>
+
 	                        <tbody>
 	                            <tr>
 	                                <td class = "popup-member-comment-no">
@@ -109,158 +110,7 @@
 	    
 	                            </tr>
 	
-	                            <tr>
-	                                <td class = "popup-member-comment-no">
-	                                    2
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-content">
-	                                    댓글 내용1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-date">
-	                                    댓글 작성일1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-del-YN">
-	                                    X
-	                                </td>
-	    
-	    
-	    
-	                            </tr>
-	
-	
-	                            <tr>
-	                                <td class = "popup-member-comment-no">
-	                                    3
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-content">
-	                                    댓글 내용1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-date">
-	                                    댓글 작성일1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-del-YN">
-	                                    X
-	                                </td>
-	    
-	    
-	    
-	                            </tr>
-	
-	
-	                            <tr>
-	                                <td class = "popup-member-comment-no">
-	                                    4
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-content">
-	                                    댓글 내용1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-date">
-	                                    댓글 작성일1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-del-YN">
-	                                    X
-	                                </td>
-	    
-	    
-	    
-	                            </tr>
-	
-	                            <tr>
-	                                <td class = "popup-member-comment-no">
-	                                    5
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-content">
-	                                    댓글 내용1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-date">
-	                                    댓글 작성일1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-del-YN">
-	                                    X
-	                                </td>
-	    
-	    
-	    
-	                            </tr>
-	
-	
-	                            <tr>
-	                                <td class = "popup-member-comment-no">
-	                                    6
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-content">
-	                                    댓글 내용1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-date">
-	                                    댓글 작성일1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-del-YN">
-	                                    X
-	                                </td>
-	    
-	    
-	    
-	                            </tr>
-	
-	                            <tr>
-	                                <td class = "popup-member-comment-no">
-	                                    7
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-content">
-	                                    댓글 내용1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-date">
-	                                    댓글 작성일1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-del-YN">
-	                                    X
-	                                </td>
-	    
-	    
-	    
-	                            </tr>
-	
-	
-	                            <tr>
-	                                <td class = "popup-member-comment-no">
-	                                    8
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-content">
-	                                    댓글 내용1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-date">
-	                                    댓글 작성일1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-del-YN">
-	                                    X
-	                                </td>
-	    
-	    
-	    
-	                            </tr>
-	                            
-	    
+	                          
 	                           
 	                        </tbody>
 	                     
@@ -315,7 +165,7 @@
 		            
 		          
 		            <div class="member-buttons">
-		                <div class="edit-button" member-no="${member.memberNo}" onclick ="getMemberInfo()")>
+		                <div class="edit-button" onclick ="getMemberInfo(${member.memberNo})">
 		                		조회
 		                </div>
 		                <div class="delete-button">
