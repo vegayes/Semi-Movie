@@ -239,15 +239,14 @@
 
 			</div>
 
-			<section class="movie_list swiper main-1">
+			<section class="movie_list swiper main-10">
 				<span class="section_title">User 맞춤 영상</span>
 				<ul class="movie_list swiper-wrapper">
-					<c:forEach var="movie" items="${movieList}">
-						<li class="movie_item swiper-slide">
-						<a href="/movieInsight/movie/detail?movieNo=4{movie.movieNo}"> <span
+					<c:forEach var="userPref" items="${userPrefMovies}">
+						<li class="movie_item swiper-slide"><a
+							href="/movieInsight/movie/${userPref.movieNo}"> <span
 								class="detail_text">상세보기</span>
-						</a> <img
-							src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+						</a> <img src="/movieInsight/resources/images/movie/${action.movieImg}"
 							width="100%" height="100%" style="object-fit: cover" /></li>
 					</c:forEach>
 				</ul>
@@ -256,15 +255,15 @@
 				<div class="swiper-button-prev main-1-p"></div>
 				<div class="swiper-button-next main-1-n"></div>
 			</section>
+			
 			<section class="movie_list swiper main-2">
 				<span class="section_title">최신순</span>
 				<ul class="movie_list swiper-wrapper">
-					<c:forEach var="movie" items="${movieList}">
+				<c:forEach var="latest" items="${latestMovies}">
 						<li class="movie_item swiper-slide"><a
-							href="/movieInsight/movie/${movie.movieNo}"> <span
+							href="/movieInsight/movie/${latest.movieNo}"> <span
 								class="detail_text">상세보기</span>
-						</a> <img
-							src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+						</a> <img src="/movieInsight/resources/images/movie/${latest.movieImg}"
 							width="100%" height="100%" style="object-fit: cover" /></li>
 					</c:forEach>
 				</ul>
@@ -273,15 +272,15 @@
 				<div class="swiper-button-prev main-2-p"></div>
 				<div class="swiper-button-next main-2-n"></div>
 			</section>
+			
 			<section class="movie_list swiper main-3">
 				<span class="section_title">인기순</span>
 				<ul class="movie_list swiper-wrapper">
-					<c:forEach var="movie" items="${movieList}">
+					<c:forEach var="popular" items="${popularMovies}">
 						<li class="movie_item swiper-slide"><a
-							href="/movieInsight/movie/${movie.movieNo}"> <span
+							href="/movieInsight/movie/${popular.movieNo}"> <span
 								class="detail_text">상세보기</span>
-						</a> <img
-							src="/movieInsight/resources/images/movie/home-page/${movie.genre}/${movie.movieThumbnail}"
+						</a> <img src="/movieInsight/resources/images/movie/${action.movieImg}"
 							width="100%" height="100%" style="object-fit: cover" /></li>
 					</c:forEach>
 				</ul>
@@ -290,6 +289,7 @@
 				<div class="swiper-button-prev main-3-p"></div>
 				<div class="swiper-button-next main-3-n"></div>
 			</section>
+			
 			<section class="movie_list swiper main-4">
 				<span class="section_title">액션</span>
 
@@ -336,6 +336,7 @@
 					</c:forEach>
 
 				</ul>
+				
 
 				<!-- If we need navigation buttons -->
 				<div class="swiper-button-prev main-6-p"></div>
@@ -375,28 +376,45 @@
 				<div class="swiper-button-prev main-8-p"></div>
 				<div class="swiper-button-next main-8-n"></div>
 			</section>
-			<section class="movie_list swiper main-9">
+		<section class="movie_list swiper main-9">
 				<span class="section_title">애니메이션</span>
 				<ul class="movie_list swiper-wrapper">
 					<c:forEach var="animation" items="${animationMovies}">
 						<li class="movie_item swiper-slide"><a
 							href="/movieInsight/movie/${animation.movieNo}"> <span
 								class="detail_text">상세보기</span>
-						</a> <img src="/movieInsight/resources/images/movie/${animation.movieImg}"
+						</a> <img
+							src="/movieInsight/resources/images/movie/${animation.movieImg}"
 							width="100%" height="100%" style="object-fit: cover" /></li>
 					</c:forEach>
 				</ul>
-
 				<!-- If we need navigation buttons -->
 				<div class="swiper-button-prev main-9-p"></div>
 				<div class="swiper-button-next main-9-n"></div>
 			</section>
-		</div>
-
+			
+			<section class="movie_list swiper main-9">
+				<span class="section_title">호러</span>
+				<ul class="movie_list swiper-wrapper">
+					<c:forEach var="horror" items="${horrorMovies}">
+						<li class="movie_item swiper-slide"><a
+							href="/movieInsight/movie/${horror.movieNo}"> <span
+								class="detail_text">상세보기</span>
+						</a> <img
+							src="/movieInsight/resources/images/movie/${horror.movieImg}"
+							width="100%" height="100%" style="object-fit: cover" /></li>
+					</c:forEach>
+				</ul>
+				<!-- If we need navigation buttons -->
+				<div class="swiper-button-prev main-9-p"></div>
+				<div class="swiper-button-next main-9-n"></div>
+			</section>
+			
+	   
+     </div>
 		<aside>
 			<div class="side-banner">
-				<a href="/movieInsight/resources/css/cinema/cinema-homepage.jsp/">
-					<img
+				<a href="/cinema"> <img
 					src="/movieInsight/resources/images/movie/home-page/홈페이지로고/4.png"
 					width="100%" />
 				</a>

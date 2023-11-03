@@ -44,6 +44,7 @@ public class MainController {
 	 @GetMapping("/movie")
 	    public String getMovies(Model model) {
 	        // 다양한 장르의 영화를 조회합니다.
+		     
 	        List<Movie> popularMovies = movieService.findMoviesByCategory("인기순");
 	        List<Movie> actionMovies = movieService.findMoviesByCategory("액션");
 	        List<Movie> crimeMovies = movieService.findMoviesByCategory("범죄");
@@ -51,9 +52,12 @@ public class MainController {
 	        List<Movie> sfMovies = movieService.findMoviesByCategory("SF");
 	        List<Movie> comedyMovies = movieService.findMoviesByCategory("코미디");
 	        List<Movie> romanceMovies = movieService.findMoviesByCategory("로맨스");
-            
+	        List<Movie> latestMovies = movieService.findMoviesByCategory("최신순");
+	        List<Movie> userPrefMovies = movieService.findMoviesByCategory("user 맞춤 영상");
+	        List<Movie> horrorMovies = movieService.findMoviesByCategory("호러");
 	        
-	        
+
+	        model.addAttribute("horrorMovies", horrorMovies);
 	        model.addAttribute("popularMovies", popularMovies);
 	        model.addAttribute("actionMovies", actionMovies);
 	        model.addAttribute("crimeMovies", crimeMovies);
@@ -61,6 +65,8 @@ public class MainController {
 	        model.addAttribute("sfMovies", sfMovies);
 	        model.addAttribute("comedyMovies", comedyMovies);
 	        model.addAttribute("romanceMovies", romanceMovies);
+	        model.addAttribute("latestMovies", latestMovies);
+	        model.addAttribute("userPrefMovies", userPrefMovies);
 	        
 	        
 	        System.out.println("범죄 : " + crimeMovies);
@@ -80,12 +86,15 @@ public class MainController {
 		
 		return "cinema/cinema-homepage";
 	}
-	
+
+
+	}
 
 
 
+
 	
 	
-}
+
 
 

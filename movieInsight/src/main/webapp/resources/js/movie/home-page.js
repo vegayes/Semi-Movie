@@ -11,7 +11,7 @@
         prevEl: ".main-1-p", // 이번 버튼 클래스명
       },
     });
-    new Swiper(".main-2", {
+   new Swiper(".main-2", {
       slidesPerView: "auto",
       spaceBetween: 24,
       loop: true,
@@ -107,6 +107,23 @@
         prevEl: ".main-9-p", // 이번 버튼 클래스명
       },
     });
+    
+     new Swiper(".main-10", {
+      slidesPerView: "auto",
+      spaceBetween: 24,
+      loop: true,
+      loopedSlidesLimit: false,
+      slideToClickedSlide: true,
+      loopedSlides: 1,
+      navigation: {
+        nextEl: ".main-10-n", // 다음 버튼 클래스명
+        prevEl: ".main-10-p", // 이번 버튼 클래스명
+      },
+    });
+
+
+
+
 
     new Swiper(".swiper-ls-1", {
       slidesPerView: "auto",
