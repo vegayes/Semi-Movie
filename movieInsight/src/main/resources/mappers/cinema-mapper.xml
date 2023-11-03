@@ -231,7 +231,28 @@
   	</update>
 
   	
-  	
+	<!-- 즐겨찾기 ON -->
+	<insert id = "addFavorite">
+		INSERT INTO CINEMA_LIKE 
+		VALUES(SEQ_CINEMA_LIKE_NO.NEXTVAL, #{memberNo}, (SELECT CINEMA_NO 
+														FROM CINEMA 
+														WHERE CINEMA_NAME LIKE #{cinemaName}), DEFAULT, SYSDATE)
+	</insert>
+
+	<!-- 즐겨찾기 OFF -->
+	<delete id = "delFavorite">
+		DELETE FROM CINEMA_LIKE
+		WHERE CINEMA_NO = (SELECT CINEMA_NO FROM CINEMA WHERE CINEMA_NAME LIKE #{cinemaName})
+		AND  MEMBER_NO = #{memberNo}
+	</delete>
+	
+	<!-- 즐겨찾기 조회 -->
+	<select id = "favoriteCheck" resultType = "_int">
+		SELECT COUNT(*)
+		FROM CINEMA_LIKE 
+		LEFT JOIN CINEMA  USING(CINEMA_NO)
+		WHERE CINEMA_NAME = #{cinemaName} AND MEMBER_NO = #{memberNo}
+	</select>
   	
   	
   	

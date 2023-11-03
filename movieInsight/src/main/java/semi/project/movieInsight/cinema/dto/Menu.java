@@ -17,5 +17,7 @@ public class Menu {
     private String menuImg;
     private String menuCategory;	
 	
+    // 메뉴 평점
+    private float menuGrade;
 
 }

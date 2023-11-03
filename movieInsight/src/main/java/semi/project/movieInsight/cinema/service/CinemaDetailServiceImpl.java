@@ -1,6 +1,7 @@
 package semi.project.movieInsight.cinema.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,6 +78,52 @@ public class CinemaDetailServiceImpl implements CinemaDetailService {
 	@Override
 	public int delete(int cinemaCommentNo) {
 		return dao.delete(cinemaCommentNo);
+	}
+
+
+
+	/**
+	 * 즐겨찾기 여부 확인
+	 */
+	@Override
+	public int favoriteCheck(Map<String, Object> favoriteCheck) {
+		return dao.favoriteCheck(favoriteCheck);
+	}
+
+
+	/**
+	 * 즐겨찾기 추가 및 삭제
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updatefavorite(Map<String, Object> paramMap) {
+		int check = (int)paramMap.get("check"); 
+		
+		System.out.println("check :" + check);
+		
+		int result = 0;
+		
+		if(check == 0) {
+			result = dao.addFavorite(paramMap);
+
+		}else {
+			result = dao.delFavorite(paramMap);
+		}
+		
+		if(result == 0) return -1;
+		
+		
+		return result;
+	}
+
+
+
+	/**
+	 * 베스트 메뉴 가져오기
+	 */
+	@Override
+	public Map<String, Menu> getBestMenu(String cinemaName) {
+		return dao.getBestMenu(cinemaName);
 	}
 
 

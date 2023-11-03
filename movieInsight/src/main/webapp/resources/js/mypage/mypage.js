@@ -380,6 +380,51 @@ function refreshFavoriteList() {
     .catch(err => console.error(err));
 }
 
+// 영화관 즐겨찾기 ajax 조회
+function refreshFavoriteCinemaList() {
+  fetch("/movieInsight/mypage/favorite/select/cinema?memberNo=" + memberNo)
+      .then(response => response.json())
+      .then(cinemaList => {
+          const galleryContainer = document.querySelector('.galleryCinema');
+          galleryContainer.innerHTML = '';
+
+          if (cinemaList.length === 0) {
+              const notContentDiv = document.createElement('div');
+              notContentDiv.classList.add('favorite-not-content');
+              notContentDiv.innerText = '현재 저장된 즐겨찾기가 없습니다.';
+              galleryContainer.appendChild(notContentDiv);
+          } else {
+              for (let cinema of cinemaList) {
+                  const recommendContainer = document.createElement('div');
+                  recommendContainer.classList.add('recommend-container-cinema');
+
+                  const link = document.createElement('a');
+                  link.href = `/movieInsight/cinemaDetail/${cinema.cinemaName}`;
+
+                  const recommendImgWrapper = document.createElement('div');
+                  recommendImgWrapper.classList.add('recommendImg-wrapper-cinema');
+
+                  const img = document.createElement('img');
+                  img.src = `/movieInsight/resources/images/cinema/${cinema.cinemaImg}`;
+                  img.alt = `movieTitle : ${cinema.cinemaName}`;
+
+                  const recommendImgHover = document.createElement('div');
+                  recommendImgHover.classList.add('recommendImg-hover');
+                  recommendImgHover.innerText = cinema.cinemaName;
+
+                  recommendImgWrapper.appendChild(img);
+                  recommendImgWrapper.appendChild(recommendImgHover);
+
+                  link.appendChild(recommendImgWrapper);
+                  recommendContainer.appendChild(link);
+                  galleryContainer.appendChild(recommendContainer);
+              }
+          }
+      })
+      .catch(err => console.error(err));
+}
+
+
 
 
 // 영화 즐겨찾기 팝업 조회 (ajax) 
@@ -487,6 +532,8 @@ document.querySelector(".favorite-delet-btn").addEventListener("click", function
               if(result > 0){
                 alert("즐겨찾기 삭제 완료하였습니다.");
                 refreshFavoriteList();
+                refreshFavoriteCinemaList();
+
                 modalClose();
 
               }else{
