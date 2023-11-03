@@ -111,6 +111,7 @@
 			    M.MOVIE_GENRE,
 			    M.MOVIE_AGE,
 			    M.MOVIE_RUNNING_TIME,
+			    M.MOVIE_DEL_YN,
 			    LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'A' THEN C.CASTING_NAME ELSE NULL END, ' / ')
 			    WITHIN GROUP (ORDER BY C.CASTING_NAME) AS ACTOR_NAMES
 			FROM MOVIE M
@@ -254,6 +255,27 @@
 		LEFT JOIN CINEMA  USING(CINEMA_NO)
 		WHERE CINEMA_NAME = #{cinemaName} AND MEMBER_NO = #{memberNo}
 	</select>
+  	
+  	
+  	
+  	<select id="selectCinemaComment" resultMap = "cinema_rm" >
+		SELECT *
+		FROM CINEMA_EVALUATION
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   	
   	
   	

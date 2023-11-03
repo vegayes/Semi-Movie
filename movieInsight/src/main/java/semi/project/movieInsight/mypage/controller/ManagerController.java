@@ -44,7 +44,7 @@ public class ManagerController {
 	
 	public String managerCheck( Member loginMember, String direction) {
 		
-		System.out.println("loginMember : " + loginMember);
+		
 		if( loginMember == null  ||   loginMember.getMemberNo() != 12 ) {
 			
 			return "redirect:/";

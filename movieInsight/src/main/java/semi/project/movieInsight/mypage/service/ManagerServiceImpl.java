@@ -301,15 +301,15 @@ public class ManagerServiceImpl implements ManagerService{
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int deleteEvent(int eventPRNo) {
+	public int deleteEvent(String eventTitle) {
 
-		 int result = dao.deleteEvent(eventPRNo);
+		 int result = dao.deleteEvent(eventTitle);
 
 		    if (result > 0) {
 		        return result;
 		    } else {
 		       
-		        throw new RuntimeException("event deletion failed for cinemaNo: " + eventPRNo);
+		        throw new RuntimeException("event deletion failed for cinemaNo: " + eventTitle);
 		    }
 	}
 
@@ -319,15 +319,15 @@ public class ManagerServiceImpl implements ManagerService{
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int deletePromotion(int promotionNo) {
+	public int deletePromotion(String promotionType) {
 
-		 int result = dao.deletePromotion(promotionNo);
+		 int result = dao.deletePromotion(promotionType);
 
 		    if (result > 0) {
 		        return result;
 		    } else {
 		       
-		        throw new RuntimeException("promotion deletion failed for promotionNo: " + promotionNo);
+		        throw new RuntimeException("promotion deletion failed for promotionNo: " + promotionType);
 		    }
 	}
 
@@ -359,6 +359,41 @@ public class ManagerServiceImpl implements ManagerService{
 		return result;
 		
 	}
+
+	
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public int deleteMenu(int menuNo) {
+		
+		int result = dao.deleteMenu(menuNo);
+		
+		if(result > 0) { 
+			
+			return result;
+			
+		}else {
+			
+			 throw new RuntimeException("deleteMenu delete failed ");
+		}
+		
+	}
+
+	
+	// 영화, 영화관 댓글목록 가져오는 메서드
+	@Override
+	public List<Movie> selectMovieComment(int memberNo) {
+		
+		return dao.selectMovieComment(memberNo);
+	}
+
+	@Override
+	public List<Cinema> selectCinemaComment(int memberNo) {
+		
+		return dao.selectCinemaComment(memberNo);
+	}
+
+	
+	
 
 	
 	

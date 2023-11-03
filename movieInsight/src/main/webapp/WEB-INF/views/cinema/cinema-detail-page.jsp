@@ -148,7 +148,7 @@
                                 </c:choose>   
                             </div>
 
-                            <c:if test="${loginMember.memberNo == 12}">
+                            <c:if test="${loginMember.memberNo == 12 && not empty cinemaInfo}">
                                 <div>
                                     <button type="submit" id="updateButton" name="update" style="color: black;">수정하기</button>
                                 </div>

@@ -85,7 +85,7 @@
             
             <%-- *************** 관리자 페이지에서 수정 버튼 눌렀을 때 ************************--%>
             <c:when test="${loginMember.memberNo == 12}">
-                <form action="/movieInsight/managerDetail/updateMovie/${movieInfo.movieNo}" method="POST" encType="multipart/form-data" class="movie">
+                <form action="/movieInsight/managerDetail/updateMovie/${movieInfo.movieNo}" method="POST" encType="multipart/form-data" class="movieForm">
                     <div class="movieForm_img">
                         <img src="/movieInsight/resources/images/movie/${movieInfo.movieImg}" id="movieImg">
                         <input type="file" name="movieImage"  id="fileInput" accept="image/*">
@@ -116,7 +116,7 @@
                                         <input type="text" name="movieRunningTime" value="${movieInfo.movieRunningTime}">
                                     </div>
                                 </div>
-                                <button type="submit" style="color: black;" id="insertButton" name="insert">등록하기</button>
+                                <button type="submit" style="color: black;" id="insertButton" name="insert">수정하기</button>
                             </div>
                         </div>
                     </div>
