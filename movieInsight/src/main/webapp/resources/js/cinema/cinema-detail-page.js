@@ -129,14 +129,14 @@ if(document.getElementById("favoriteStar")) {
       if (clicked) {
         favoriteStar.style.color = 'white'; // 클릭 후 다시 하얀색으로 변경
       } else {
-        favoriteStar.style.color = 'yellow'; // 클릭 시 색상을 보라색으로 변경
+        favoriteStar.style.color = '#ffee32'; // 클릭 시 색상을 보라색으로 변경
       }
       clicked = !clicked;
   });
   
   favoriteStar.addEventListener("mouseenter", function () {
       if (!clicked) {
-        favoriteStar.style.color = 'yellow'; // 마우스를 올렸을 때 파란색으로 변경
+        favoriteStar.style.color = 'white'; // 마우스를 올렸을 때 파란색으로 변경
       } else {
         favoriteStar.style.color = 'white'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
       }
@@ -245,7 +245,7 @@ function selectFacilityCommentList() {
                         };
     
                         const deleteBtn = document.createElement('button');
-                        deleteBtn.classList.add('deleteBtn');
+                        deleteBtn.classList.add('deletBtn');
                         deleteBtn.innerText = '삭제';
                         deleteBtn.onclick = function() {
                             // 삭제 버튼 클릭 시 동작하는 함수 호출
@@ -330,7 +330,7 @@ function selectGoodCommentList() {
                         };
                 
                         const deleteBtn = document.createElement('button');
-                        deleteBtn.classList.add('deleteBtn');
+                        deleteBtn.classList.add('deletBtn');
                         deleteBtn.innerText = '삭제';
                         deleteBtn.onclick = function() {
                             // 삭제 버튼 클릭 시 동작하는 함수 호출
@@ -357,6 +357,106 @@ function selectGoodCommentList() {
         })
         .catch(err => console.log(err));
 }
+
+console.log("평점 : " + cinemaRating);
+
+/*
+document.addEventListener('DOMContentLoaded', function() {
+    var grade = cinemaRating; // 평점
+    var fullIcons = Math.floor(grade); //정수
+    var partialIconPercentage = Math.floor(grade % 1 * 100);  // 소수
+    var padding = 15;
+
+    console.log(fullIcons);
+    console.log(partialIconPercentage);
+
+    // 정수
+    for (var i = 0; i < fullIcons; i++) {
+        var icon = document.createElement('i');
+        icon.classList.add('fa-solid', 'fa-crown', 'filled' , 'grade-container-i');
+        document.querySelector('.grade-color').appendChild(icon);
+    }
+
+    // 소수점
+    if (partialIconPercentage > 0) {
+        var partialIcon = document.createElement('i');
+        partialIcon.classList.add('fa-solid', 'fa-crown', 'filled' , 'grade-container-i');
+        partialIcon.style.clipPath = 'polygon(0% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 100%, 0% 100%)';        document.querySelector('.grade-container').appendChild(partialIcon);
+        document.querySelector('.grade-color').appendChild(partialIcon);
+    }
+});
+
+*/
+
+document.addEventListener('DOMContentLoaded', function() {
+    var grade = cinemaRating; // 평점
+    var fullIcons = Math.floor(grade); //정수
+    var partialIconPercentage = Math.floor(grade % 1 * 100);  // 소수
+
+    // 정수
+    for (var i = 0; i < fullIcons; i++) {
+        var icon = document.createElement('i');
+        icon.classList.add('fa-solid', 'fa-crown', 'filled' , 'grade-container-i');
+        document.querySelector('.grade-color').appendChild(icon);
+    }
+
+    // 소수점
+    if (partialIconPercentage > 0) {
+        var partialIcon = document.createElement('i');
+        partialIcon.classList.add('fa-solid', 'fa-crown', 'filled' , 'grade-container-i');
+        partialIcon.style.clipPath = 'polygon(0% 0%, ' + partialIconPercentage + '% 0%, ' + partialIconPercentage + '% 100%, 0% 100%)';
+        document.querySelector('.grade-color').appendChild(partialIcon);
+    }
+});
+
+
+// 영화관 아이콘
+function updateGradeIcons(grade) {
+    var fullIcons = Math.floor(grade); //정수
+    var partialIconPercentage = Math.floor(grade % 1 * 100);  // 소수
+    var padding = 15;
+
+    var gradeContainer = document.querySelector('.grade-color');
+    gradeContainer.innerHTML = ''; // 기존의 아이콘을 모두 제거
+
+    // 정수 
+    for (var i = 0; i < fullIcons; i++) {
+        var icon = document.createElement('i');
+        icon.classList.add('fa-solid', 'fa-crown', 'filled', 'grade-container-i');
+        gradeContainer.appendChild(icon);
+    }
+
+    // 소수
+    if (partialIconPercentage > 0) {
+        var partialIcon = document.createElement('i');
+        partialIcon.classList.add('fa-solid', 'fa-crown', 'filled', 'grade-container-i');
+        partialIcon.style.clipPath = 'polygon(0% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 100%, 0% 100%)';
+        gradeContainer.appendChild(partialIcon);
+    }
+}
+
+
+// 영화관 평점 ajax
+function selectCinemaGradeUpdate() {
+    fetch("/movieInsight/cinemaDetail/update/grade?cinemaName=" + cinemaName)
+    .then(response => response.json()) 
+    .then(cinema => {
+        console.log(cinema);
+        console.log(cinema.sumCinemaGrade);
+
+        const gradeElement = document.getElementById('grade');
+
+        if (gradeElement) {
+            gradeElement.textContent = `평점 : ${cinema.sumCinemaGrade}`;
+            updateGradeIcons(cinema.sumCinemaGrade); // 아이콘 색 업데이트
+        } else {
+            console.error("Element with id 'grade' not found.");
+        }
+    })
+    .catch(err => console.error(err));
+}
+
+
 
 // ajax 진행 후 등급 초기화 
 function resetGrade(gradeType) {
@@ -443,7 +543,7 @@ for(let i = 0; i < addComment.length; i++){
 
                 selectFacilityCommentList();
                 selectGoodCommentList();
-
+                selectCinemaGradeUpdate();
 
                 // .facilityGrade 클래스를 가진 요소들을 초기화
                 const facilityGradeIcons = document.querySelectorAll('.facilityGrade');
@@ -521,6 +621,173 @@ function updateComment(commentNo){
 
 }
 
+/*
+// 베스트 메뉴 다시 조회 (ajax) 
+document.addEventListener('DOMContentLoaded', function() {
+    function selectBestMenuList() {
+        fetch("/movieInsight/cinemaDetail/menu/select?cinemaName=" + cinemaName)
+            .then(response => response.json()) 
+            .then(bestMenu => {
+                const popcornDiv = document.querySelector('.popcorn');
+                const beverageDiv = document.querySelector('.beverage');
+                const snackDiv = document.querySelector('.snack');
+
+                const createMenuDiv = (menu, menuCategory) => {
+                    const menuWrapper = document.createElement('div');
+                    menuWrapper.classList.add('menu-wrapper');
+                    const img = document.createElement('img');
+                    img.src = `/movieInsight/resources/images/menu/${menu.menuCategory}/${menu.menuImg}`;
+                    img.id = `img_${menuCategory}`;
+                    menuWrapper.appendChild(img);
+
+                    const nameDiv = document.createElement('div');
+                    nameDiv.innerText = `이름 : ${menu.menuName}`;
+
+                    const priceDiv = document.createElement('div');
+                    priceDiv.innerText = `가격 : ${menu.menuPrice}원`;
+
+                    const scoreDiv = document.createElement('div');
+                    scoreDiv.classList.add(`score_${menuCategory}`);
+                    scoreDiv.innerHTML = `${menu.menuGrade} 
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>`;
+
+                    const menuDiv = document.createElement('div');
+                    menuDiv.classList.add('menu');
+                    menuDiv.appendChild(menuWrapper);
+                    menuDiv.appendChild(nameDiv);
+                    menuDiv.appendChild(priceDiv);
+                    menuDiv.appendChild(scoreDiv);
+
+                    return menuDiv;
+                };
+
+                popcornDiv.innerHTML = '';
+                beverageDiv.innerHTML = '';
+                snackDiv.innerHTML = '';
+
+                if (bestMenu.bestPopCorn === null) {
+                    const noPopCornDiv = document.createElement('div');
+                    noPopCornDiv.innerHTML = '<h1>아직 등록된 팝콘 평점이 존재하지 않습니다.</h1><h1>팝콘에 대한 평점을 남겨주세요!!</h1>';
+                    popcornDiv.appendChild(noPopCornDiv);
+                } else {
+                    const menuDiv = createMenuDiv(bestMenu.bestPopCorn, 'popcorn');
+                    popcornDiv.appendChild(menuDiv);
+                }
+
+                if (bestMenu.bestDrink === null) {
+                    const noDrinkDiv = document.createElement('div');
+                    noDrinkDiv.innerHTML = '<h1>아직 등록된 음료 평점이 존재하지 않습니다.</h1><h1>음료에 대한 평점을 남겨주세요!!</h1>';
+                    beverageDiv.appendChild(noDrinkDiv);
+                } else {
+                    const menuDiv = createMenuDiv(bestMenu.bestDrink, 'beverage');
+                    beverageDiv.appendChild(menuDiv);
+                }
+
+                if (bestMenu.bestSnack === null) {
+                    const noSnackDiv = document.createElement('div');
+                    noSnackDiv.innerHTML = '<h1>아직 등록된 스낵 평점이 존재하지 않습니다.</h1><h1>스낵에 대한 평점을 남겨주세요!!</h1>';
+                    snackDiv.appendChild(noSnackDiv);
+                } else {
+                    const menuDiv = createMenuDiv(bestMenu.bestSnack, 'snack');
+                    snackDiv.appendChild(menuDiv);
+                }
+            })
+            .catch(err => console.log(err));
+    }
+
+    const button = document.getElementById('menuCommentSubmit'); // 버튼의 ID를 여기에 넣으세요
+    button.addEventListener('click', selectBestMenuList);
+});
+*/
+
+
+/*
+// 메뉴 ajax 갱신 시간 남으면 할게요;. 
+function selectBestMenuList() {
+    fetch("/movieInsight/cinemaDetail/menu/select?cinemaName=" + cinemaName)
+        .then(response => response.json()) 
+        .then(bestMenu => {
+            const recommendedMenuDiv = document.querySelector('.recommended_menu');
+            recommendedMenuDiv.innerHTML = '';
+
+            const popcornDiv = document.querySelector('.popcorn');
+            const beverageDiv = document.querySelector('.beverage');
+            const snackDiv = document.querySelector('.snack');
+
+            const createMenuDiv = (menu, menuCategory) => {
+                const menuWrapper = document.createElement('div');
+                menuWrapper.classList.add('menu-wrapper');
+                const img = document.createElement('img');
+                img.src = `/movieInsight/resources/images/menu/${menu.menuCategory}/${menu.menuImg}`;
+                img.id = `img_${menuCategory}`;
+                menuWrapper.appendChild(img);
+            
+                const nameDiv = document.createElement('div');
+                nameDiv.innerText = `이름 : ${menu.menuName}`;
+            
+                const priceDiv = document.createElement('div');
+                priceDiv.innerText = `가격 : ${menu.menuPrice}원`;
+            
+                const scoreDiv = document.createElement('div');
+                scoreDiv.classList.add(`score_${menuCategory}`);
+                scoreDiv.innerHTML = `${menu.menuGrade} 
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>`;
+            
+                const menuDiv = document.createElement('div');
+                menuDiv.classList.add('menu');
+                menuDiv.appendChild(menuWrapper);
+                menuDiv.appendChild(nameDiv);
+                menuDiv.appendChild(priceDiv);
+                menuDiv.appendChild(scoreDiv);
+            
+                return menuDiv;
+            };
+            
+
+            popcornDiv.innerHTML = '';
+            beverageDiv.innerHTML = '';
+            snackDiv.innerHTML = '';
+
+            if (bestMenu.bestPopCorn === null) {
+                const noPopCornDiv = document.createElement('div');
+                noPopCornDiv.innerHTML = '<h1>아직 등록된 팝콘 평점이 존재하지 않습니다.</h1><h1>팝콘에 대한 평점을 남겨주세요!!</h1>';
+                popcornDiv.appendChild(noPopCornDiv);
+            } else {
+                const menuDiv = createMenuDiv(bestMenu.bestPopCorn, 'popcorn');
+                popcornDiv.appendChild(menuDiv);
+            }
+
+            if (bestMenu.bestDrink === null) {
+                const noDrinkDiv = document.createElement('div');
+                noDrinkDiv.innerHTML = '<h1>아직 등록된 음료 평점이 존재하지 않습니다.</h1><h1>음료에 대한 평점을 남겨주세요!!</h1>';
+                beverageDiv.appendChild(noDrinkDiv);
+            } else {
+                const menuDiv = createMenuDiv(bestMenu.bestDrink, 'beverage');
+                beverageDiv.appendChild(menuDiv);
+            }
+
+            if (bestMenu.bestSnack === null) {
+                const noSnackDiv = document.createElement('div');
+                noSnackDiv.innerHTML = '<h1>아직 등록된 스낵 평점이 존재하지 않습니다.</h1><h1>스낵에 대한 평점을 남겨주세요!!</h1>';
+                snackDiv.appendChild(noSnackDiv);
+            } else {
+                const menuDiv = createMenuDiv(bestMenu.bestSnack, 'snack');
+                snackDiv.appendChild(menuDiv);
+            }
+        })
+        .catch(err => console.log(err));
+}
+
+*/
+
 
 // 메뉴 댓글(댓글 내용은 없음 )
 const menuComment  = document.getElementById("menuCommentSubmit");
@@ -564,14 +831,20 @@ menuComment.addEventListener("click", e => {
         if(result > 0){ // 등록 성공
             alert("메뉴 평점이 등록되었습니다.");
 
-            cselectMenu.value = ""; // 작성했던 댓글 삭제
+            const selectMenu = document.getElementById('menuSelect');
+            selectMenu.value = ''; 
 
+            // selectBestMenuList();
 
+            selectCinemaGradeUpdate();
 
             const commentGradeIcons = document.querySelectorAll('.menuGrade');
             commentGradeIcons.forEach(icon => icon.classList.remove('fas', 'far'));
             commentGradeIcons.forEach(icon => icon.classList.add('far'));
-
+            
+            // menuGrade를 0으로 초기화
+            menuGrade = 0;
+        
             // 시설 등급 초기화
             resetGrade('menu');
 

@@ -66,9 +66,9 @@
 			              	</form>	                    	
 	                   		 <div class = "main-sort">
 		                   	 	<%-- ③ a 태그 입력하기 진행하기! main페이지로 이동할 수 있게 --%>
-			                    <a href ="#">#인기순</a>
-			                    <a href ="#">#최신순</a>
-			                    <a href ="#">#장르별</a>
+			                    <a href ="/movieInsight/movie/search/orderBy?query=인기순">#인기순</a>
+			                    <a href ="/movieInsight/movie/search/orderBy?query=최신순">#최신순</a>
+			                    <a href ="/movieInsight/movie/search/orderBy?query=장르별">#장르별</a>
 			                 </div>
 		                </c:when>
 		                <%-- 1-2)영화관 메인 페이지의 경우 --%>

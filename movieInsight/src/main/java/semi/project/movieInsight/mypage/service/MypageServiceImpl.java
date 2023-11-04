@@ -196,6 +196,33 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 
+	/**
+	 * 탈퇴 
+	 */
+	@Override
+	public int secession(int memberNo) {
+		return dao.secession(memberNo);
+	}
+
+
+	/**
+	 * 방문기록 (영화) 
+	 */
+	@Override
+	public List<Movie> visitMovie(int memberNo) {
+		return dao.visitMovie(memberNo);
+	}
+
+
+	/**
+	 * 방문기록 삭제 
+	 */
+	@Override
+	public int delVisit(int visitNo) {
+		return dao.delVisit(visitNo);
+	}
+
+
 
 
 

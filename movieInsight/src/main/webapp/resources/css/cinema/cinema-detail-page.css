@@ -27,8 +27,10 @@ main{
 
 
 #cinema-form{
-  
+  /*
    width: 90%;
+   */
+   width  : 100%;
    height: 11.5%;
    margin: 3% 0;
    background-color: #383B3E;
@@ -48,24 +50,31 @@ main{
     width: 100%;
     display: flex;
     background-color: #6A5A56;
+  
     
 }
 
 
-
-.cinema>div{
+/*
+.cinema>div{f
     flex: 1;
 
 
 }
 
-
+*/
 
 
 .cinema>div:nth-child(1){
- display: flex;
- justify-content: center;
- align-items: center;
+	/*
+	width: 80%;
+	*/
+	
+	 flex-basis: 50%;
+	 
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
 
 }
 
@@ -79,7 +88,10 @@ main{
 
 .cinema>div:nth-child(2){
     
-    margin-right: 3%;
+    flex-basis: 50%;
+    
+    display : flex;
+    flex-direction: column;
    
    }
    
@@ -87,30 +99,27 @@ main{
 
 
 
-.cinema>div:nth-child(2)>.cinema_title{
-
+.cinema_title{
+    flex-basis: 20%;
+    /*
     height: 20%;
+    */
     display: flex;
-	
-	border : 2px solid red;
-
 
 }
 
 
 star{
-	display:flex;
+    width: 10%;
+    display:flex;
 	justify-content: center;
     align-items: center;
 }
 
-.star-clicked {
-    color: purple;
-}
 
 
 #favoriteStar {
-    color: yellow; 
+    color: white; 
     transition: color 0.3s; 
     font-size: 60px;
    	display:flex;
@@ -128,8 +137,9 @@ star{
 
 .cinema_title>div:nth-child(2){
 
-    width: 60%;
+    width: 50%;
     display: flex;
+    padding : 10px;
     justify-content: flex-start;
     align-items: center;
     font-size: 45px;
@@ -140,35 +150,38 @@ star{
 
 .cinema_title>div:nth-child(3){
 
-    width: 30%;
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 
-
+/* 평점 때문에 지움
 .cinema_title>div:nth-child(3)>div{
 
     margin-left: 3.5%;
 
 }
 
+*/
 
 
 
 
-
-
-.cinema>div:nth-child(2)>.cinema_description{
-
-    height: 60%;
+.cinema_description{
+    flex-basis: 70%;
+    /*
+    height: 70%;
+    */
     background-color: #FFF2F2;
     margin-top: 5%;
+    margin-right: 5%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 15%;
+    padding: 5%;
     color: black;
     font-size: 1.3rem;
     font-weight: 600;
@@ -179,8 +192,11 @@ star{
 
 .cinema_description>div>div{
 
-    padding-bottom: 5%;
+    padding-bottom: 3%;
     /* 줄 간격 */
+    
+    font-size : 25px;
+    
 
 }
 
@@ -191,14 +207,15 @@ star{
 .cinema_description>div>div a{
 
     text-decoration-line: none;
-         color: mediumpurple
-    
-    
+    color: mediumpurple
     
 }
 
 
-
+.comment-grade-tr{
+	font-size : 20px;
+	padding-left : 30px;
+}
 
 
 
@@ -839,7 +856,6 @@ star{
 
     height: 15%;
     display: flex;
-	border : 2px solid red;
 
     background-color: #383B3E;
 
@@ -854,7 +870,6 @@ star{
     height: 100%;
     margin-left: 6%;
     width: 100%;
-    border : 2px solid red;
 
 }
 
@@ -873,7 +888,7 @@ star{
 }
 
 
-#menuForm #menu{
+#menuSelect{
     margin-top: 0.5%;
     margin-left: 2%;
     margin-right: 2%;
@@ -1047,4 +1062,31 @@ star{
     margin-left : 10px;
     
     cursor : pointer;
+}
+
+
+.grade-container{
+	
+    display : flex; 
+    flex-direction: column;
+}
+
+#grade {
+	padding-right : 20px;
+    font-size : 30px;
+}
+
+.grade-color{
+	display : flex;
+	justify-content: start;
+    align-items: center;
+}
+
+.grade-container i{
+	font-size : 40px;
+	margin-right : 15px;
+}
+
+.filled{
+	color : #ffc53a;
 }

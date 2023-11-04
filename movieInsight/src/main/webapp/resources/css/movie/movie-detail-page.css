@@ -3,6 +3,9 @@
     box-sizing: border-box;
 }
 */
+
+  
+
 body{
     margin: 0;
     padding: 0;
@@ -172,12 +175,11 @@ background-size: 100% 100%;
 
 
 star{
-	display:flex;
+    width: 10%;
+    display:flex;
 	justify-content: center;
     align-items: center;
 }
-
-
 
 
 
@@ -199,12 +201,9 @@ star{
 }
 
 #favoriteStar:hover {
-    color: blue;
+    color: white;
 }
 
-.star-clicked {
-    color: purple;
-}
 
 .movie_title>div:nth-child(1){
     width: 10%;
@@ -222,8 +221,9 @@ star{
 }
 
 .movie_title>div:nth-child(3){
-    width: 30%;
+    width: 40%;
     display: flex;
+    padding-top : 20px;
 
 }
 
@@ -433,7 +433,7 @@ star{
 }
 
 .cinemaList-url > a > p {
-	color : #43aa8b;
+	color : #fce6ff;
 }
 
 
@@ -499,7 +499,6 @@ star{
     width: auto;
     display: flex;
     
-    border : 2px solid yellow;
 }
 
 .comb1 img {
@@ -652,7 +651,6 @@ star{
     height: 15%;
     border: none;
     
-    border : 2px solid red;
 
 }
 
@@ -988,7 +986,7 @@ main>div{
 }
 
 .movie_title>div:nth-child(3){
-    width: 30%;
+    width: 40%;
     display: flex;
 
 }
@@ -1086,6 +1084,22 @@ main>div{
 
     background-color: #474C50;
 }
+
+.selectCinemaList-Container::-webkit-scrollbar{
+    width: 15px;
+    /* padding-right : 20px;/ */
+}
+
+.selectCinemaList-Container::-webkit-scrollbar{
+    background: #474C50;
+}
+
+.selectCinemaList-Container::-webkit-scrollbar-thumb{
+    height: 15%;
+    background-color:#d2466f;
+    border-radius: 10px;
+}
+
 
 .line1 {
     height: 162px;
@@ -1636,6 +1650,11 @@ main>div{
     
 }
 
+.comment-grade-tr{
+	font-size : 20px;
+	padding-left : 30px;
+}
+
 
 .comment-list-table tr{
     flex-basis: 100%;
@@ -1720,26 +1739,57 @@ main>div{
 }
 
 
-    .editBtn {
+.editBtn {
+background-color: #383B3E;
+color: rgb(195, 195, 250);
+border: none;
+border-radius: 10px;
+padding: 10px 20px; 
+cursor: pointer; 
+font-size: 16px; 
+margin: 0px;
+margin-right: 30px;
+}
+
+.deletBtn { 
     background-color: #383B3E;
-    color: rgb(195, 195, 250);
+    color: rgb(170, 170, 248);
     border: none;
     border-radius: 10px;
     padding: 10px 20px; 
     cursor: pointer; 
     font-size: 16px; 
-	margin: 0px;
-    margin-right: 30px;
-    }
+    margin: 0px;
+    margin-right: 10px;
+}
 
-    .deletBtn { 
-        background-color: #383B3E;
-        color: rgb(170, 170, 248);
-        border: none;
-        border-radius: 10px;
-        padding: 10px 20px; 
-        cursor: pointer; 
-        font-size: 16px; 
-        margin: 0px;
-        margin-right: 10px;
-    }
+.grade-container{
+	
+    display : flex; 
+    flex-direction: column;
+}
+
+#grade {
+	padding-right : 20px;
+    font-size : 30px;
+}
+
+.grade-color{
+	display : flex;
+	justify-content: start;
+	align-items: center;	
+}
+
+.grade-container i{
+	font-size : 55px;
+	margin-right : 20px;
+}
+
+.grade-container-member{
+	font-size : 25px;
+	margin-right : 20px;
+}
+
+.filled{
+	color : #ffc53a;
+}

@@ -73,6 +73,16 @@ public class MovieServiceimpl implements MovieService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+	/**
+	 * header의 정렬 클릭 시 
+	 */
+	@Override
+	public List<Movie> orderByMovieList(String query) {
+		return dao.orderByMovieList(query);
+	}
  
 	
 

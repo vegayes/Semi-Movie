@@ -265,7 +265,26 @@
 	</select>
   	
   	
-  	
+  	<!--  영화관 평점 ( 메뉴, 시설, 친절도)  -->
+  	<select id = "sumCinemaGrade"  resultType = "_float">
+		SELECT 
+		<![CDATA[
+		    CASE 
+		        WHEN NVL(AVG(CINEMA_GRADE), 0) = 0 AND NVL(AVG(MENU_GRADE), 0) <> 0 THEN ROUND(NVL(AVG(MENU_GRADE), 0),1)
+		        WHEN NVL(AVG(CINEMA_GRADE), 0) <> 0 AND NVL(AVG(MENU_GRADE), 0) = 0 THEN ROUND(NVL(AVG(CINEMA_GRADE), 0),1)
+		        ELSE ROUND((NVL(AVG(CINEMA_GRADE), 0) + NVL(AVG(MENU_GRADE), 0)) / 2, 1)
+		    END AS SUM_CINEMA_GRADE
+		]]>
+		FROM CINEMA
+		     LEFT JOIN CINEMA_EVALUATION USING(CINEMA_NO)
+		     LEFT JOIN MENU_STATUS USING(CINEMA_NO)
+		     LEFT JOIN MENU_RECOMMEND USING(SNACK_CINEMA_NO)
+		WHERE CINEMA_EV_DEL_YN ='N'
+		GROUP BY CINEMA_NO
+		HAVING CINEMA_NO = (SELECT CINEMA_NO
+			  					   FROM CINEMA 
+			  					   WHERE CINEMA_NAME = #{cinemaName})  
+  	</select>
   	
   	
   	

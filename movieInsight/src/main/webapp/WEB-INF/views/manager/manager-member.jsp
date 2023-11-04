@@ -134,8 +134,10 @@
 	    <div class="member-search">
 	        <input type="text" placeholder="회원 검색" id = "searchMember">
 	        <br><br><br>
-	        <span>총 회원 수 : ${memberCount}명</span> <span>현재 접속자 수 : ###명</span><br>
-	      
+	        <span>총 회원 수 : ${memberCount}명</span> 
+	        <!--  
+	        <span>현재 접속자 수 : ###명</span><br>
+	      	-->
 	    </div>
 	        
 	        

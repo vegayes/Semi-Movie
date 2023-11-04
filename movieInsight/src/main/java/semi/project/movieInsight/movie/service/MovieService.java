@@ -25,6 +25,12 @@ public interface MovieService {
 
 	Movie selectMovie(int movieNo);
 
+	/** header의 인기순 누르면 검색 창 페이지로 넘어감.
+	 * @param query
+	 * @return
+	 */
+	List<Movie> orderByMovieList(String query);
+
 	
 
 

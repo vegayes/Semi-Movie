@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import semi.project.movieInsight.cinema.dao.CinemaDAO;
+import semi.project.movieInsight.cinema.dao.CinemaDetailDAO;
 import semi.project.movieInsight.cinema.dto.Cinema;
 
 @Service
@@ -15,6 +16,8 @@ public class CinemaServiceimpl implements CinemaService {
 	@Autowired
 	private CinemaDAO dao;
 	
+	@Autowired
+	private CinemaDetailDAO gradeDao;
 	
 	/**
 	 *	영화관 검색결과 조회
@@ -32,6 +35,14 @@ public class CinemaServiceimpl implements CinemaService {
 	public List<Cinema> selectManagerCinemaList() {
 		
 		return dao.selectManagerCinemaList();
+	}
+
+	/**
+	 * 평점 가져오기
+	 */
+	@Override
+	public float cinemaGrade(String cinemaName) {
+		return gradeDao.sumCinemaGrade(cinemaName);
 	}
 
 }

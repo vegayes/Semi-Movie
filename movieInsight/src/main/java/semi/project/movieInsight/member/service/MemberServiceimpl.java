@@ -76,9 +76,9 @@ public class MemberServiceimpl implements MemberService{
 //			
 //			
 //		} 
-		System.out.println("loginMember : "+loginMember.getMemberPw());
-		
-		System.out.println(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw()));
+//		System.out.println("loginMember : "+loginMember.getMemberPw());
+//		
+//		System.out.println(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw()));
 	
 		
 		

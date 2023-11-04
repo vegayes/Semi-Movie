@@ -135,17 +135,17 @@
 
 	
 	
-	<!--  
+ 	<!-- 메뉴평점 삽입 -->
 	<insert id = "insertMenuGrade">
 	INSERT INTO "MENU_RECOMMEND"
 	VALUES (SEQ_MENU_RC_NO.NEXTVAL,(SELECT SNACK_CINEMA_NO 
-									FROM MENU_STATUS ms 
+									FROM MENU_STATUS  
 									LEFT JOIN MENU USING(MENU_NO)
 									WHERE MENU_NAME = #{menuName} AND CINEMA_NO = (SELECT CINEMA_NO 
 																						FROM CINEMA 
-																						WHERE CINEMA_NAME LIKE #{cinemaName)), #{memberNo}, #{menuGrade} )
+																						WHERE CINEMA_NAME LIKE #{cinemaName})), #{memberNo}, #{menuGrade} )
 	</insert> 
-	-->
+
 
 
 

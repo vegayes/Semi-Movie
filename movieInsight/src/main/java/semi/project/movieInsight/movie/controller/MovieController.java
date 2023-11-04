@@ -70,7 +70,31 @@ public class MovieController {
     
     
 	
+	/** header의 정렬 클릭 시 
+	 * @param movieQuery
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@GetMapping("/search/orderBy")
+    public String orderByMovie(String query, Model model,HttpServletRequest request) {
+		
+		System.out.println("orderBy 페이지 들어옴");
+		
+		System.out.println("query : " + query);
+		
+		
+		// 검색한 영화 목록 조회 서비스 호출
+		List<Movie> movieList = service.orderByMovieList(query);
 
+		
+		model.addAttribute("movieQuery", query);
+		model.addAttribute("movieList", movieList);
+
+		model.addAttribute("pageType", "movie");
+		
+        return "movie/search-movie";
+    }
 	
 	
 	

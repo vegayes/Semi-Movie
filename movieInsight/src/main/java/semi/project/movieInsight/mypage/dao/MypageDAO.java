@@ -122,6 +122,30 @@ public class MypageDAO {
 		return sqlSession.delete("mypageMapper.delFavoriteMovie", favoriteDelMovie);
 	}
 
+	/** 탈퇴
+	 * @param memberNo
+	 * @return
+	 */
+	public int secession(int memberNo) {
+		return sqlSession.update("mypageMapper.secession", memberNo);
+	}
+
+	/** 방문기록
+	 * @param memberNo
+	 * @return
+	 */
+	public List<Movie> visitMovie(int memberNo) {
+		return sqlSession.selectList("mypageMapper.visitMovie", memberNo);
+	}
+
+	/** 방문기록 삭제
+	 * @param visitNo
+	 * @return
+	 */
+	public int delVisit(int visitNo) {
+		return sqlSession.delete("mypageMapper.delVisit", visitNo);
+	}
+
 
 
 	

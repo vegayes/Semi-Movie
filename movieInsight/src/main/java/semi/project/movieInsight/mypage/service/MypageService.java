@@ -98,6 +98,24 @@ public interface MypageService {
 	 */
 	int delFavoriteMovie(Map<String, Object> favoriteDelMovie);
 
+	/** 탈퇴 
+	 * @param memberNo
+	 * @return
+	 */
+	int secession(int memberNo);
+
+	/** 방문기록
+	 * @param memberNo
+	 * @return
+	 */
+	List<Movie> visitMovie(int memberNo);
+
+	/** 방문기록 삭제
+	 * @param visitNo
+	 * @return
+	 */
+	int delVisit(int visitNo);
+
 
 
 	
@@ -108,16 +126,6 @@ public interface MypageService {
 	// 방문기록 삭제 
 	
 	
-	
-	
-	
-	// + 원래 설정된 성별 체크된 상태 유지
-
-
-
-
-
-
 
 	
 

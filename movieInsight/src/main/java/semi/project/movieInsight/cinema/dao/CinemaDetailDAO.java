@@ -133,14 +133,27 @@ public class CinemaDetailDAO {
 	 * @return
 	 */
 	public int insertMenuGrade(Menu menu) {
-		sqlSession.insert("menuMapper.insertMenuGrade", menu);
 		
 		System.out.println(menu.getMenuName());
 		System.out.println(menu.getCinemaName());
 		System.out.println(menu.getMemberNo());
 		System.out.println(menu.getMenuGrade());
 		
-		return 0;
+		return sqlSession.insert("menuMapper.insertMenuGrade", menu);
+	}
+
+
+	/** 영화관 평점
+	 * @param cinemaName
+	 * @return
+	 */
+	public float sumCinemaGrade(String cinemaName) {
+		
+		float sum = sqlSession.selectOne("cinemaMapper.sumCinemaGrade",cinemaName);
+		
+		System.out.println(sum);
+		
+		return sum;
 	}
 	
 

@@ -27,6 +27,7 @@
 		<result property="movieGrade" column="MOVIE_GRADE"/>
 
 		<result property="commentMovieWriter" column="COMMENT_MOVIE_WRITER"/>
+		<result property="visitNo" column="VISIT_NO"/>
 
 	</resultMap>
 	
@@ -171,13 +172,57 @@
   	
   	<!-- 즐겨찾기 삭제하기 -->
   	<delete id = "delFavoriteMovie">
-	 DELETE FROM MOVIE_LIKE 
-	 WHERE MOVIE_NO IN
-  	<foreach collection="delMovieNo" item="movieNo" open="(" separator="," close=")">
-   	 #{movieNo}
- 	 </foreach>
- 	 AND  MEMBER_NO = #{memberNo}	
+		 DELETE FROM MOVIE_LIKE 
+		 WHERE MOVIE_NO IN
+	  	<foreach collection="delMovieNo" item="movieNo" open="(" separator="," close=")">
+	   	 #{movieNo}
+	 	 </foreach>
+	 	 AND  MEMBER_NO = #{memberNo}	
   	</delete>
+  	
+  	
+  	
+  	
+  	<!-- 회원 탈퇴하기  -->
+  	<update id = "secession">
+		 UPDATE "MEMBER" 
+		 SET MEMBER_DEL_YN ='Y'
+		 WHERE MEMBER_NO = #{memberNo}
+  	</update>
+  	
+  	
+  	
+  	<!-- 방문기록 -->
+  	<!-- 추가 시 있는 지 확인 -->
+	<select id = "visitCheck" resultType = "_int">
+		SELECT COUNT(*)
+		FROM VISIT 
+		WHERE MEMBER_NO = #{memberNo} AND MOVIE_NO = #{movieNo}
+	</select>  	
+  	<!-- 있을 경우 방문 시간만 다시 지정  -->
+  	<update id = "visitUpdate" >
+	  	UPDATE VISIT SET VISIT_DATE  = SYSDATE 
+		WHERE MEMBER_NO = #{memberNo} AND MOVIE_NO = #{movieNo}
+  	</update>
+  	<!--  방문기록이 없을 경우 추가  -->
+  	<insert id = "visitInsert">
+	  	INSERT INTO VISIT 
+	  	VALUES(SEQ_VISIT_NO.NEXTVAL, #{memberNo}, #{movieNo}, SYSDATE)
+  	</insert>
+  	<!--  방문기록 조회  -->
+  	<select id = "visitMovie" resultMap = "movie_rm">
+	  	SELECT MOVIE_NO , MOVIE_TITLE , MOVIE_IMG , MOVIE_SUMMARY ,VISIT_NO
+		FROM VISIT
+		LEFT JOIN MOVIE USING(MOVIE_NO)
+		WHERE MOVIE_DEL_YN ='N' AND MEMBER_NO = #{memberNo}
+		ORDER BY VISIT_DATE DESC
+  	</select>
+
+	<!--  방문기록 삭제  -->
+	<delete id="delVisit">
+		 DELETE FROM VISIT 
+		 WHERE VISIT_NO = #{visitNo}	
+	</delete>
 	
 </mapper>
 
