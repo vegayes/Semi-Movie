@@ -170,7 +170,7 @@ function modalOpen(){
     });
 
    cinemaListRows.forEach(function(row) {
-    row.style.display = 'flex'; // 해당 <tr> 요소를 다시 보여줌
+      row.style.display = 'flex'; // 해당 <tr> 요소를 다시 보여줌
     });
 
   }
@@ -380,6 +380,8 @@ function refreshFavoriteList() {
     .catch(err => console.error(err));
 }
 
+
+
 // 영화관 즐겨찾기 ajax 조회
 function refreshFavoriteCinemaList() {
   fetch("/movieInsight/mypage/favorite/select/cinema?memberNo=" + memberNo)
@@ -501,7 +503,6 @@ function selectFvMovie(){
 };
 
 
-
 document.querySelector(".favorite-delet-btn").addEventListener("click", function() {
 
   var checkedItems = document.querySelectorAll('input[name="favorite-check"]:checked');
@@ -527,14 +528,17 @@ document.querySelector(".favorite-delet-btn").addEventListener("click", function
           .then(result => {
               console.log(result);
 
-              selectFvMovie();
+              // selectFvMovie();
 
               if(result > 0){
                 alert("즐겨찾기 삭제 완료하였습니다.");
                 refreshFavoriteList();
                 refreshFavoriteCinemaList();
 
-                modalClose();
+                // modalClose();
+
+                var movieModal = document.querySelector('.movieModal');
+                movieModal.style.display = "none";
 
               }else{
                 alert("즐겨찾기 삭제 실패했습니다.")
@@ -1075,8 +1079,26 @@ divCheckboxes.forEach((divCheckbox) => {
 
 
 
+// 6) 회원 탈퇴
+const SecessionBtn = document.getElementById("memberSecession");
 
+SecessionBtn.addEventListener("click", function(event) {
+  event.preventDefault(); // 폼태그 동작 X 
+  console.log("memberNo : " + memberNo)
 
+  fetch("/movieInsight/mypage/secession?memberNo="+memberNo)
+  .then(resp => resp.json()) 
+  .then(count => {
+
+      if(count == 0){ // 실패
+        alert("탈퇴 진행 중 오류가 발생하였습니다.");
+      }else{ 
+        alert("탈퇴가 완료 되었습니다.\n 다음에 또 방문해주세요~!");
+        location.href =  location.origin + "/movieInsight/movie";
+      }
+  })
+  .catch(err => console.log(err));
+});
 
 
 
@@ -1379,6 +1401,105 @@ if (galleryCinema && prevButtonCinema && nextButtonCinema) {
     galleryCinema.style.transform = `translateX(-${scrollPositionCinema}px)`;
   });
 }
+
+
+/******************************************************************************************* */
+// 방문기록 삭제 ajax 조회
+function selectVisit(){
+  fetch("/movieInsight/mypage/visit/select?memberNo=" + memberNo)
+  .then(response => response.json()) 
+  .then(list => {
+      console.log(list);
+
+      // 기존의 visit-history-content 엘리먼트를 선택
+      const visitHistoryContent = document.querySelector('.visit-history-content');
+
+      // visit-history-content 엘리먼트의 내용을 지움
+      visitHistoryContent.innerHTML = '';
+
+      // list에서 가져온 데이터로 새로운 엘리먼트를 생성하고 추가
+      for(let visit of list){
+          const visitHistoryList = document.createElement("tr");
+          visitHistoryList.classList.add("visit-history-list");
+
+          const historyImgContainer = document.createElement("td");
+          historyImgContainer.classList.add("history-img-container");
+
+          const img = document.createElement("img");
+          img.src = "/movieInsight/resources/images/movie/" + visit.movieImg;
+
+          const historyContentContainer = document.createElement("td");
+          historyContentContainer.classList.add("history-content-container");
+
+          const h1 = document.createElement("h1");
+          h1.innerText = visit.movieTitle;
+
+          const p = document.createElement("p");
+          p.innerText = visit.movieSummary;
+
+          const historyDelBtn = document.createElement("td");
+          historyDelBtn.classList.add("history-del-btn");
+
+          const delBtnDiv = document.createElement("div");
+          delBtnDiv.onclick = function() {
+              delVisit(visit.visitNo);
+          }
+          delBtnDiv.innerText = "삭제";
+
+          // 엘리먼트들을 추가
+          historyImgContainer.appendChild(img);
+          historyContentContainer.appendChild(h1);
+          historyContentContainer.appendChild(p);
+          historyDelBtn.appendChild(delBtnDiv);
+
+          visitHistoryList.appendChild(historyImgContainer);
+          visitHistoryList.appendChild(historyContentContainer);
+          visitHistoryList.appendChild(historyDelBtn);
+
+          // 새로운 엘리먼트를 visit-history-content에 추가
+          visitHistoryContent.appendChild(visitHistoryList);
+      }
+
+  })
+  .catch(err => console.log(err));
+};
+
+
+// 방문기록 삭제
+function delVisit(visitNo){
+  fetch("/movieInsight/mypage/visit/del?visitNo=" + visitNo)
+  .then(response => response.json()) 
+  .then(check => {
+      console.log(check);
+      
+      if(check){
+        alert("방문기록이 삭제되었습니다.");
+        selectVisit();
+      }else{
+        alert("방문기록 삭제 중 오류가 발생하였습니다.")
+      }
+  })
+  .catch(err => console.log(err));
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

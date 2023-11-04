@@ -75,6 +75,13 @@ public interface MovieDetailService {
 	 */
 	int favoriteCheck(Map<String, Object> favoriteCheck);
 
+	/** 방문기록 남기기
+	 * @param memberNo
+	 * @param movieNo
+	 * @return
+	 */
+	int visitMovie(int memberNo, int movieNo);
+
 
 	
 

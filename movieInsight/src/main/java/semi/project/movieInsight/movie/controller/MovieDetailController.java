@@ -150,8 +150,15 @@ public class MovieDetailController {
 //			 CookieUrlClass.setCookieUrl(request, response, loginMember.getMemberId(), Integer.toString(movieNo));
 
 
-			 
-			 
+				
+				
+			 // 방문기록 남기기 
+			if(loginMember != null) {
+				int visit = service.visitMovie(loginMember.getMemberNo(), movieNo);
+				
+				System.out.println("방문기록 : " + visit);
+			}
+
 			 
 			 
 		return "movie/movie-detail-page";

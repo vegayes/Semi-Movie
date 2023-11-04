@@ -47,8 +47,8 @@
 	                    	</c:if>
 							                       
 	                    	<%-- 누르적이 있는 경우 --%>
-	                    	<c:if test="${not empty favorite}">             
-		                        <i class="fa-solid fa-star" id="favoriteStar"></i>  
+	                    	<c:if test="${not empty favorite}" >             
+		                        <i class="fa-solid fa-star" id="favoriteStar" style = "color : #ffee32"></i>  
 	                    	</c:if>
                                     
                         </div>                
@@ -65,13 +65,10 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
-                        <div>
-                            <div> <%-- 평점 --%>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
+                        
+                        <div class = "grade-container"> <%-- 평점 --%>
+                            <p id="grade">평점 : ${cinemaInfo.sumCinemaGrade}</p>
+                            <div class = "grade-color">
                             </div>
                         </div>
                     </div>
@@ -195,7 +192,7 @@
                 <c:when test="${empty movieList}">
 
                     <div class = "screening_movie_detail"  id = "none-list">
-                        <h1>검색결과가 존재하지 않습니다.</h1>
+                        검색결과가 존재하지 않습니다.
                     </div>
 
                 </c:when>
@@ -245,7 +242,7 @@
 	                			<tr class = "comment-grade-tr">
 		                			<td>평점 ${facility.cinemaGrade}</td>
 		                		</tr>
-		                		<tr class = "comment-content-tr" style = "border : 2px solid blue">
+		                		<tr class = "comment-content-tr" >
 		                			 <td class = "comment-img">
 	                                      <div class = "comment-writer-img-wrapper">
 	                                      	<c:if test = "${empty facility.writerProfile}">
@@ -316,7 +313,7 @@
 	                			<tr class = "comment-grade-tr">
 		                			<td>평점 ${comment.cinemaGrade}</td>
 		                		</tr>
-		                		<tr class = "comment-content-tr" style = "border : 2px solid blue">
+		                		<tr class = "comment-content-tr" >
 		                			 <td class = "comment-img">
 	                                      <div class = "comment-writer-img-wrapper">
 	                                      	<c:if test = "${empty comment.writerProfile}">
@@ -524,7 +521,7 @@
 
             <div class="comment" >
                 <div class = "menuFromContainer">
-                    <form action="/movieInsight/cinemaDetail/menu/insert" method="POST" encType="multipart/form-data" id="updateform"id="menuForm">
+                    <form action="/movieInsight/cinemaDetail/menu/insert" method="POST" encType="multipart/form-data" id="menuForm">
                         <label for="menuSelect">해당 극장 메뉴</label>
                         <select id="menuSelect" name="menu">
                             <option value="" disabled selected>목록</option>
@@ -583,6 +580,8 @@
         const cinemaName = "${cinemaInfo.cinemaName}"
         const memberNo = "${sessionScope.loginMember.memberNo}";
         const memberId = "${sessionScope.loginMember.memberId}";
+
+        var cinemaRating = "${cinemaInfo.sumCinemaGrade}"
     </script>
 
     <script src="/movieInsight/resources/js/cinema/cinema-detail-page.js"></script>

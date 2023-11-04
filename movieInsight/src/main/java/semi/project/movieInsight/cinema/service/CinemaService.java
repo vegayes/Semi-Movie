@@ -21,4 +21,12 @@ public interface CinemaService {
 	List<Cinema> selectManagerCinemaList();
 
 
+
+	/** 평점 가져오기
+	 * @param cinemaName
+	 * @return
+	 */
+	float cinemaGrade(String cinemaName);
+
+
 }

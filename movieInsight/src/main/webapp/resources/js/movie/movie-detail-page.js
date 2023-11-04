@@ -34,7 +34,95 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// 평점 색칠하기
+/*
+function colorStarsBasedOnRating(rating) {
+    // var starIcons = document.querySelectorAll('.fa-clapperboard'); 
 
+   
+    starIcons.forEach(function(star, index) {
+        var decimalPart = rating - index;
+        
+        if (decimalPart >= 1) {
+            star.classList.add('filled');
+        } else if (decimalPart > 0) {
+            star.style.width = (decimalPart * 100) + '%';
+            star.classList.add('filled');
+        }
+    });
+
+    
+ //______________________________________________________________________________________________
+    var iconElements = document.querySelectorAll('.fa-clapperboard'); // 아이콘을 나타내는 클래스명으로 변경해주세요
+    var integerPart = Math.floor(rating); // 평점의 정수 부분을 얻습니다.
+    var decimalPart = rating - integerPart; // 평점의 소수 부분을 얻습니다.
+
+    // 정수 부분까지의 아이콘을 순차적으로 색칠합니다.
+    for (var i = 0; i < integerPart; i++) {
+        iconElements[i].style.width = '100%';
+    }
+
+    // 소수 부분이 있는 경우 해당 아이콘의 배경 색상을 변경합니다.
+    if (decimalPart > 0) {
+        var nextIndex = integerPart; // 다음 아이콘의 인덱스는 정수 부분의 끝입니다.
+        iconElements[nextIndex].style.color = 'gold'; // 색상을 노란색으로 설정
+    }
+}
+*/
+
+console.log("평점 : " + movieRating);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var grade = movieRating; // 평점
+    var fullIcons = Math.floor(grade); //정수
+    var partialIconPercentage = Math.floor(grade % 1 * 100);  // 소수
+
+    console.log(fullIcons);
+    console.log(partialIconPercentage);
+
+    // 정수
+    for (var i = 0; i < fullIcons; i++) {
+        var icon = document.createElement('i');
+        icon.classList.add('fa-solid', 'fa-clapperboard', 'filled' , 'grade-container-i');
+        document.querySelector('.grade-color').appendChild(icon);
+    }
+
+    // 소수점
+    if (partialIconPercentage > 0) {
+        var partialIcon = document.createElement('i');
+        partialIcon.classList.add('fa-solid', 'fa-clapperboard', 'filled' , 'grade-container-i');
+        partialIcon.style.clipPath = 'polygon(0% 0%, ' + partialIconPercentage + '% 0%, ' + partialIconPercentage + '% 100%, 0% 100%)';
+        document.querySelector('.grade-color').appendChild(partialIcon);
+    }
+});
+
+// 영화 아이콘
+function updateGradeIcons(grade) {
+    var fullIcons = Math.floor(grade); //정수
+    var partialIconPercentage = Math.floor(grade % 1 * 100);  // 소수
+    var padding = 20;
+
+    var gradeContainer = document.querySelector('.grade-color');
+    gradeContainer.innerHTML = ''; // 기존의 아이콘을 모두 제거
+
+    // 정수 
+    for (var i = 0; i < fullIcons; i++) {
+        var icon = document.createElement('i');
+        icon.classList.add('fa-solid', 'fa-clapperboard', 'filled', 'grade-container-i');
+        gradeContainer.appendChild(icon);
+    }
+
+    // 소수
+    if (partialIconPercentage > 0) {
+        var partialIcon = document.createElement('i');
+        partialIcon.classList.add('fa-solid', 'fa-clapperboard', 'filled', 'grade-container-i');
+        partialIcon.style.clipPath = 'polygon(0% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 100%, 0% 100%)';
+        gradeContainer.appendChild(partialIcon);
+    }
+}
+
+// 영화 평점 ajax
 function selectMovieGradeUpdate() {
     fetch("/movieInsight/movie/update/grade?movieNo=" + movieNo)
     .then(response => response.json()) 
@@ -46,6 +134,7 @@ function selectMovieGradeUpdate() {
 
         if (gradeElement) {
             gradeElement.textContent = `평점 : ${movie.sumMovieGrade}`;
+            updateGradeIcons(movie.sumMovieGrade); // 아이콘 색 업데이트
         } else {
             console.error("Element with id 'grade' not found.");
         }
@@ -53,6 +142,53 @@ function selectMovieGradeUpdate() {
     .catch(err => console.error(err));
 }
 
+
+function updateComment(commentNo) {
+    var commentContentElement = document.querySelector('.comment-content-tr:nth-child(' + commentNo + ') .comment-list-content');
+    var commentContent = commentContentElement.innerText;
+    var inputElement = document.createElement('input');
+    inputElement.type = 'text';
+    inputElement.value = commentContent;
+    commentContentElement.innerHTML = '';
+    commentContentElement.appendChild(inputElement);
+}
+
+
+// 영화 각 평점  아이콘
+function memberGrade(grade) {
+    var fullIcons = Math.floor(grade); //정수
+    var partialIconPercentage = Math.floor(grade % 1 * 100);  // 소수
+    var padding = 20;
+
+    var gradeContainer = document.querySelector('.memberGrade');
+    gradeContainer.innerHTML = ''; // 기존의 아이콘을 모두 제거
+
+    // 정수 
+    for (var i = 0; i < fullIcons; i++) {
+        var icon = document.createElement('i');
+        icon.classList.add('fa-solid', 'fa-clapperboard', 'filled', 'grade-container-member');
+        gradeContainer.appendChild(icon);
+    }
+
+    // 소수
+    if (partialIconPercentage > 0) {
+        var partialIcon = document.createElement('i');
+        partialIcon.classList.add('fa-solid', 'fa-clapperboard', 'filled', 'grade-container-member');
+        partialIcon.style.clipPath = 'polygon(0% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 100%, 0% 100%)';
+        gradeContainer.appendChild(partialIcon);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var memberGrades = document.querySelectorAll('.memberGrade');
+
+    memberGrades.forEach(function(gradeElement) {
+        var grade = gradeElement.getAttribute('data-movieGrade');
+        memberGrade(grade, gradeElement);
+    });
+});
+
+  
 
 
 
@@ -113,7 +249,7 @@ function selectMovieCommentList() {
                     };
 
                     const deleteBtn = document.createElement('button');
-                    deleteBtn.classList.add('deleteBtn');
+                    deleteBtn.classList.add('deletBtn');
                     deleteBtn.innerText = '삭제';
                     deleteBtn.onclick = function() {
                         // 삭제 버튼 클릭 시 동작하는 함수 호출
@@ -232,7 +368,7 @@ function deleteComment(movieCommentNo){
     }
 }
 
-
+/*
 // 댓글 수정 (아직 안함) btn이 왜 있었지?
 function updateComment(commentNo){
 
@@ -252,7 +388,7 @@ function updateComment(commentNo){
     .catch(err => console.log(err));
 
 }
-
+*/
 
 // 즐겨찾기 버튼이 클릭 되었을 때
 const favoriteStar = document.getElementById("favoriteStar");
@@ -321,14 +457,14 @@ if(document.getElementById("star")) {
         if (clicked) {
             star.style.color = 'white'; // 클릭 후 다시 하얀색으로 변경
         } else {
-            star.style.color = 'yellow'; // 클릭 시 색상을 보라색으로 변경
+            star.style.color = '#ffee32'; // 클릭 시 색상을 보라색으로 변경
         }
         clicked = !clicked;
     });
     
     star.addEventListener("mouseenter", function () {
         if (!clicked) {
-            star.style.color = 'yellow'; // 마우스를 올렸을 때 파란색으로 변경
+            star.style.color = 'white'; // 마우스를 올렸을 때 파란색으로 변경
         } else {
             star.style.color = 'white'; // 클릭한 상태에서 마우스를 올렸을 때 보라색으로 변경
         }

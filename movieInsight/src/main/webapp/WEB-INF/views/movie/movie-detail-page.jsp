@@ -135,32 +135,32 @@
             </c:when>
             <%-- *************** 일반 회원이 영화 조회할 때 ************************--%>
             <c:otherwise>
-                <div class="movie" style = "border : 2px solid red;">
+                <div class="movie">
                     <div class="movie_img">
                         <img src="/movieInsight/resources/images/movie/${movieInfo.movieImg}">
                     </div>
                     <div>
                         <div class="movie_title">
-                            <div class="star">
+                            <div class="star" id = "star">
                                    
 		                    	<c:if test="${empty favorite}">             
 			                        <i class="fa-regular fa-star" id = "favoriteStar"></i>
 		                    	</c:if>
 								                       
 		                    	<%-- 누르적이 있는 경우 --%>
-		                    	<c:if test="${not empty favorite}">             
-			                        <i class="fa-solid fa-star" id="favoriteStar"></i>  
+		                    	<c:if test="${not empty favorite}" >             
+			                        <i class="fa-solid fa-star" id="favoriteStar" style = "color : #ffee32"></i>  
 		                    	</c:if>
                                      
                             </div>
                             <div>${movieInfo.movieTitle}</div>
-                            <div style = "display : flex;  justify-content: center; align-items: center;"> <%-- 평점 --%>
-                               <h1 id="grade">평점 : ${movieInfo.sumMovieGrade}</h1>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
+                            <div class = "grade-container"> <%-- 평점 --%>
+                               <p id="grade">평점 : ${movieInfo.sumMovieGrade}</p>
+                               <div class = "grade-color">
+                                 <c:if test ="${movieinfo.sumMovieGrade == 0}">
+                                 	평점을 남겨주세요
+                                 </c:if>
+                               </div>
                             </div>
                         </div>
                          <h2 class = "movie_summary_title">줄거리</h2>  
@@ -294,12 +294,15 @@
        
         <div class="comment" id="commentScroll">
             <div class="comhead"><h1 id="comment">comment</h1></div>
-                <div class="combody" style = "border:2px solid red">
+                <div class="combody">
                 	<table class = "comment-list-table" id = "comment-list-table" >
 	                	<c:forEach items = "${commentMovieList}" var="comment">
 	                		
 	                		<tr class = "comment-grade-tr">
-	                			<td>평점 ${comment.movieGrade}</td>
+	                			<td>평점 <span data-movieGrade="${comment.movieGrade}">${comment.movieGrade}</span>
+	                				<div class = "memberGrade" >
+                               		</div>
+	                			</td>
 	                		</tr>
 	                		<tr class = "comment-content-tr">
 	                			 <td class = "comment-img">
@@ -392,6 +395,8 @@
         const movieNo = "${movieInfo.movieNo}"
         const memberNo = "${sessionScope.loginMember.memberNo}";
         const memberId = "${sessionScope.loginMember.memberId}";
+        
+       var movieRating = "${movieInfo.sumMovieGrade}";
     </script>
 
     <script src="/movieInsight/resources/js/movie/movie-detail-page.js"></script>

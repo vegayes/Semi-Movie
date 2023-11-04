@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -76,6 +77,10 @@ public class MypageController {
 		model.addAttribute("cinemaList", selectLikeCinema);
 		
 		// 3)방문기록 목록 조회
+		List<Movie> visitMovie = service.visitMovie(loginMember.getMemberNo());
+		model.addAttribute("visitMovie", visitMovie);
+		
+		
 		Cookie[] cookies = request.getCookies();
 
 		if (cookies != null) {
@@ -110,14 +115,11 @@ public class MypageController {
 		            	 * 쿠키 값 -> 최신 순서대로 저장 가능 ex) 2_3_4 경우 (2가 가장 예전에 방문한 페이지, 4가 가장 최근에 방문한 페이지)
 		            	 */
 		            	//==========================================================================================
-		            	
-		            	
-		            	
-		            
-		            
 		        }
 		    }
 		}
+		
+		
 		
 		// 4) 영화 댓글 목록 조회 
 		List<Movie> selectCommentMovie = service.selectCommentMovie(loginMember.getMemberNo());
@@ -130,6 +132,7 @@ public class MypageController {
 		
 		
 		model.addAttribute("loginMember", loginMember);
+		
 		
 		
 		return "mypage/mypage";
@@ -331,8 +334,6 @@ public class MypageController {
 	@GetMapping(value ="/comment/update", produces = "application/json; charset=UTF-8")
 	public int updateMovieComment(String movieCommentContent, float movieGrade , int movieCommentNo , Movie movie) {
 		
-		System.out.println("머야");
-		 
 		System.out.println("댓글 NO 수정 조회 비동기 :" +  movieCommentNo);
 		System.out.println("댓글 내용 수정 조회 비동기 :" +  movieCommentContent);
 		System.out.println("댓글 평점 수정 조회 비동기 :" +  movieGrade);
@@ -404,6 +405,61 @@ public class MypageController {
 		
 		return service.selectLikeCinema(memberNo);
 	}	
+	
+	
+	
+	/** 회원탈퇴
+	 * @param memberNo
+	 * @param status
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping(value = "/secession", produces = "application/json; charset=UTF-8")
+	public int secession(int memberNo, SessionStatus status) {
+		System.out.println("탈퇴 :" +  memberNo);
+		
+		int result = service.secession(memberNo);
+		
+		if(result > 0 ) { // 성공
+			System.out.println("탈퇴 함.");
+			status.setComplete();
+			result  = 1;
+		}else {
+			result = 0;
+		}
+		return result;
+	}
+	
+	
+	
+	/** 방문기록 삭제
+	 * @param memberNo
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping(value = "/visit/del", produces = "application/json; charset=UTF-8")
+	public int delVisit(int visitNo) {
+		return service.delVisit(visitNo);
+	}
+	
+	
+	/** 방문기록 조회 
+	 * @param visitNo
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping(value = "/visit/select", produces = "application/json; charset=UTF-8")
+	public List<Movie> selectVisit(int memberNo) {
+		
+		System.out.println("방문기록 조회 들어옴");
+		
+		return service.visitMovie(memberNo);
+	}
+	
+	
+	
+	
+	
 	
 	
 

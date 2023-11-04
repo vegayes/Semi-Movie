@@ -24,7 +24,16 @@ public class CinemaDetailServiceImpl implements CinemaDetailService {
 	@Override
 	public Cinema selectCinemaInfo(String cinemaName) {
 		
-		return dao.selectCinemaInfo(cinemaName);
+		// 1) 영화관에 대한 정보 가져오기
+		Cinema cinemaInfo =  dao.selectCinemaInfo(cinemaName);
+		
+		float sumCinemaGrade = dao.sumCinemaGrade(cinemaName);
+		
+		System.out.println("총 평점 : " + sumCinemaGrade);
+		
+		cinemaInfo.setSumCinemaGrade(sumCinemaGrade);
+		
+		return cinemaInfo;
 	}
 
 
@@ -38,7 +47,7 @@ public class CinemaDetailServiceImpl implements CinemaDetailService {
 
 
 	/**
-	 * 영화관 댓글 조회 ㄴ
+	 * 영화관 댓글 조회 
 	 */
 	@Override
 	public List<Cinema> commentCinemaList(String cinemaName) {

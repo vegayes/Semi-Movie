@@ -246,128 +246,22 @@
 
                          <div class = "visit-history-content">
                             <table>     
-
-                                <tr class = "visit-history-list">
-                                    <td class = "history-img-container">
-                                        <img src = "">
-                                    </td>
-                                    <td class = "history-content-container">
-                                        <h1> 인사이드 아웃</h1>
-                                        <!-- ④ 줄거리 더 많이 쓰이게되면, ....으로 표시-->
-                                        <p>그러나 부모님과 함께 샌프란시스코로 이사하면서 그녀의 삶은 완전히 뒤바뀐다. 기쁨은 이런 큰 변화 속에서 라일리의 감정을 잘 다스리려고 노력한다. 그러나, 이사로 인한 스트레스로 슬픔이 나타나고 만다. 라일리의 기분을 위해 고군분투하던 기쁨과 슬픔은 먼 곳에 떨어져 버리고 결국 라일리의 감정 컨트롤 본부에는 악감정만이 남게 된다.</p>
-                                    </td>
-                                    <td class = "history-del-btn">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr class = "visit-history-list">
-                                    <td class = "history-img-container">
-                                        <img src = "">
-                                    </td>
-                                    <td class = "history-content-container">
-                                        <h1> 미니언즈</h1>
-                                        <!-- ④ 줄거리 더 많이 쓰이게되면, ....으로 표시-->
-                                        <p>각자 색다른 매력을 지닌 미니언 케빈, 스튜어트와 밥은 갑작스럽게 새로운 보스를 찾아야 하는 상황에 처 하니 그들은 함께 슈퍼배드 원정대를 결성 한다. 그리고 머지 않아 여성 슈퍼 악당 스칼렛을 만나 그녀의 미션을 수행하고자 나선다.</p>
-                                    </td>
-                                    <td class = "history-del-btn">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr class = "visit-history-list">
-                                    <td class = "history-img-container">
-                                        <img src = "">
-                                    </td>
-                                    <td class = "history-content-container">
-                                        <h1> 주토피아</h1>
-                                        <!-- ④ 줄거리 더 많이 쓰이게되면, ....으로 표시-->
-                                        <p>토끼 종족 최초로 경찰이 된 열정 넘치는 주디는 덩치가 큰 육식 동물들 사이에서 경찰로 활약하기 위해 애쓴다. 그러던 어느 날, 주토피아에 의문의 연쇄 실종 사건이 발생하고 능글맞은 사기꾼 여우 닉과 함께 48시간 안에 사건을 해결하기 위해 이곳저곳을 돌아다니며 고군분투한다.</p>
-                                    </td>
-                                    <td class = "history-del-btn">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-    
-
-                                <tr class = "visit-history-list">
-                                    <td class = "history-img-container">
-                                        <img src = "">
-                                    </td>
-                                    <td class = "history-content-container">
-                                        <h1> 엘리멘탈</h1>
-                                        <!-- ④ 줄거리 더 많이 쓰이게되면, ....으로 표시-->
-                                        <p>각양각색의 원소들이 살아가는 엘리멘트 시티, 지하철에서 우연히 마주친 앰버와 웨이드는 정반대 종족인 서로에게 끌린다.</p>
-                                     </td>
-                                    <td class = "history-del-btn">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr class = "visit-history-list">
-                                    <td class = "history-img-container">
-                                        <img src = "">
-                                    </td>
-                                    <td class = "history-content-container">
-                                        <h1> 미니언즈</h1>
-                                        <!-- ④ 줄거리 더 많이 쓰이게되면, ....으로 표시-->
-                                        <p>각자 색다른 매력을 지닌 미니언 케빈, 스튜어트와 밥은 갑작스럽게 새로운 보스를 찾아야 하는 상황에 처 하니 그들은 함께 슈퍼배드 원정대를 결성 한다. 그리고 머지 않아 여성 슈퍼 악당 스칼렛을 만나 그녀의 미션을 수행하고자 나선다.</p>
-                                    </td>
-                                    <td class = "history-del-btn">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr class = "visit-history-list">
-                                    <td class = "history-img-container">
-                                        <img src = "">
-                                    </td>
-                                    <td class = "history-content-container">
-                                        <h1> 주토피아</h1>
-                                        <!-- ④ 줄거리 더 많이 쓰이게되면, ....으로 표시-->
-                                        <p>토끼 종족 최초로 경찰이 된 열정 넘치는 주디는 덩치가 큰 육식 동물들 사이에서 경찰로 활약하기 위해 애쓴다. 그러던 어느 날, 주토피아에 의문의 연쇄 실종 사건이 발생하고 능글맞은 사기꾼 여우 닉과 함께 48시간 안에 사건을 해결하기 위해 이곳저곳을 돌아다니며 고군분투한다.</p>
-                                    </td>
-                                    <td class = "history-del-btn">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-    
-
-                                <tr class = "visit-history-list">
-                                    <td class = "history-img-container">
-                                        <img src = "">
-                                    </td>
-                                    <td class = "history-content-container">
-                                        <h1> 엘리멘탈</h1>
-                                        <!-- ④ 줄거리 더 많이 쓰이게되면, ....으로 표시-->
-                                        <p>각양각색의 원소들이 살아가는 엘리멘트 시티, 지하철에서 우연히 마주친 앰버와 웨이드는 정반대 종족인 서로에게 끌린다.</p>
-                                     </td>
-                                    <td class = "history-del-btn">
-                                        <div>
-                                            삭제
-                                        </div>
-                                    </td>
-                                </tr>
-                               
-
-
-                               
+                                <c:forEach items = "${visitMovie}" var="visit">
+	                                <tr class = "visit-history-list">
+	                                    <td class = "history-img-container">
+	                                        <img src = "/movieInsight/resources/images/movie/${visit.movieImg}">
+	                                    </td>
+	                                    <td class = "history-content-container">
+	                                        <h1> ${visit.movieTitle}</h1>
+	                                        <p>${visit.movieSummary}</p>
+	                                    </td>
+	                                    <td class = "history-del-btn" onclick="delVisit(${visit.visitNo})">
+	                                        <div>
+	                                            삭제
+	                                        </div>
+	                                    </td>
+	                                </tr>
+                                </c:forEach>                
                             </table>
                         </div>
 
@@ -431,7 +325,7 @@
 		                                <td class = "comment-list-date"> ${commentMovie.movieCommentDate} </td>
 		                                <td class = "comment-list-type" style="display:none">${commentMovie.movieCommentNo}</td>
 		                                <td class = "comment-list-edit" id = "cmPopup">
-		                                    <button onclick="updateCommentModal(${commentMovie.movieCommentNo})">
+		                                    <button onclick="updateCommentModal(${commentMovie.movieCommentNo})" id = "updateCommentBtn">
 		                                        수정 
 		                                    </button>
 		                                </td>
@@ -463,7 +357,7 @@
 		                                <td class = "comment-list-date"> ${commentCinema.cinemaCommentDate}</td>
 		                                <td class = "comment-list-type" style="display:none">${commentCinema.cinemaCommentType}</td>
 		                                <td class = "comment-list-edit" id = "cmPopup">
-		                                    <button onclick="updateCommentModalCinema(${commentCinema.cinemaCommentNo})">
+		                                    <button onclick="updateCommentModalCinema(${commentCinema.cinemaCommentNo})" id = "updateCommentBtn">
 		                                        수정 
 		                                    </button>
 		                                </td>
@@ -700,7 +594,7 @@
 		                                    수정하기
 		                                </button>
 		
-		                                <button class = "member-info-option-btn red">
+		                                <button class = "member-info-option-btn red" id = "memberSecession">
 		                                    회원탈퇴 
 		                                </button>
 		                            </div>
@@ -723,7 +617,8 @@
       	<script>
 			// 로그인한 회원의 성별
 			const loginMemberGender = "${loginMember.memberGender}";
-			var memberNo = ${loginMember.memberNo};
+			const memberNo = ${loginMember.memberNo};
+            
 			
 		</script>
 

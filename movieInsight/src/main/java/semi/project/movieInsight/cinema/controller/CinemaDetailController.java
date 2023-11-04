@@ -122,13 +122,13 @@ public class CinemaDetailController {
 	
 	
 	
-	// 시설만족도,직원친절도,메뉴 추천 조회
+	// 시설만족도,직원친절도,메뉴 추천 조회 O
 	
-	// 로그인 회원만 댓글 입력 가능하게
+	// 로그인 회원만 댓글 입력 가능하게 O
 	
-	// 댓글 평점 입력
+	// 댓글 평점 입력 O
 	
-	// 메뉴 추천 점수순으로 업데이트
+	// 메뉴 추천 점수순으로 업데이트 O
 	
 	
 	
@@ -219,11 +219,32 @@ public class CinemaDetailController {
 		menu.setMenuGrade(menuGrade);
 		menu.setCinemaName(cinemaName);
 		menu.setMemberNo(loginMember.getMemberNo());
-		
-		int result = service.insertMenuGrade(menu);
-		
-		System.out.println("result : " + result);
-		return 0;
+	
+		return service.insertMenuGrade(menu);
 	} 	
+	
+	
+	
+	@ResponseBody
+	@GetMapping(value = "/menu/select", produces = "application/json; charset=UTF-8")
+	public Map<String,Menu>  selectBestMenuList( String cinemaName) {
+		
+		Map<String,Menu> result = service.getBestMenu(cinemaName);
+		
+		System.out.println("비동기 조회 " + result);
+		
+		return result;
+	}	
+	
+	
+	// 평점 수정되는 것 조회 
+	@ResponseBody
+	@GetMapping(value = "/update/grade", produces = "application/json; charset=UTF-8")
+	public Cinema updateGrade(String cinemaName) {
+		return service.selectCinemaInfo(cinemaName);
+	}
+	
+	
+	
 	
 }

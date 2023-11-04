@@ -139,6 +139,31 @@ public class MovieDetailDAO {
 	}
 
 
+	/** 방문기록 남기기
+	 * @param visitInfo
+	 * @return
+	 */
+	public int visitMovie(Map<String, Object> visitInfo) {
+		
+		// 방문기록이 있는지 확인
+		int visitCheck = sqlSession.selectOne("mypageMapper.visitCheck",visitInfo);
+		
+		int result = 0; 
+		
+		if(visitCheck > 0 ) {
+			// 방문기록에 있으면 수정 
+			System.out.println("방문했음");
+			result = sqlSession.update("mypageMapper.visitUpdate",visitInfo);
+		}else {
+			// 방문기록에 없으면 추가
+			System.out.println("방문 안했음");
+			result = sqlSession.insert("mypageMapper.visitInsert",visitInfo);
+		}
+		
+		return result;
+	}
+
+
 
 	
 	

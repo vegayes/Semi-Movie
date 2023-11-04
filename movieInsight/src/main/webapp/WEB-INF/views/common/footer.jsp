@@ -29,6 +29,7 @@
 		    </div>
 		    <div class="footer-content">
 		        <p>Copyright &copy; 2023 MovieInsight Institute E-Class</p>
+		        <p><a href="movieinsightsemiproject@gmail.com" style = "color : #fdffb6">movieinsightsemiproject@gmail.com</a></p>
 				<a href="#">프로젝트 소개</a>
 		        <span>|</span>
 		        <a href="/movieInsight/policy#tos">이용약관</a>

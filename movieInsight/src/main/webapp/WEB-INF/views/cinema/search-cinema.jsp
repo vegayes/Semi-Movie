@@ -73,7 +73,7 @@
 				                            <h1>영화관 평점</h1>
 				                            <div class = "content-box">
 				                                <p>
-				                                    평점 (이것도 아직 못가져옴)
+				                                    평점 : ${cinema.sumCinemaGrade}
 				                                </p>
 				                            </div>
 				                        </div>

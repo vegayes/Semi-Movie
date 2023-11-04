@@ -1,5 +1,6 @@
 package semi.project.movieInsight.movie.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -147,6 +148,20 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 	@Override
 	public int favoriteCheck(Map<String, Object> favoriteCheck) {
 		return dao.favoriteCheck(favoriteCheck);
+	}
+
+	/**
+	 * 방문기록 남기기 
+	 */
+	@Override
+	public int visitMovie(int memberNo, int movieNo) {
+		
+		Map<String,Object> visitInfo = new HashMap<String, Object>();
+		
+		visitInfo.put("memberNo", memberNo);
+		visitInfo.put("movieNo", movieNo);
+		
+		return dao.visitMovie(visitInfo);
 	}
 	
 	
