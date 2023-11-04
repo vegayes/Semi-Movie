@@ -68,6 +68,7 @@
                                         <input type="text" name="movieGenre" placeholder="장르">
                                         <input type="text" name="movieReleaseDate" placeholder="출시일(2020-01-01)">
                                     </div>
+
                                     <div class="movieFormCasting">
                                         <input type="text" name="directorNames" placeholder="감독(/구분)">
                                         <input type="text" name="actorNames" placeholder="출연진(/구분)">
@@ -76,6 +77,16 @@
                                             <input type="text" name="movieRunningTime" placeholder="상영시간(숫자만)">
                                         </div>
                                     </div>
+
+                                    <div id="movieFormCheckBox">
+                                        <c:forEach items="${cinemaList}" var = "cinema">
+                                            <div class = "checkBox-container">
+                                                <p>${cinema.cinemaName}</p>
+                                                <input type="checkbox"  value="${cinema.cinemaNo}" class = "checkBox" name="cinemaNoList">
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+
                                     <button type="submit" style="color: black;" id="insertButton" name="insert">등록하기</button>
                                 </div>
                             </div>
