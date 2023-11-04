@@ -50,7 +50,11 @@
   	
   	
   	
-
+		<!-- 영화관 정보 조회 -->
+	<select id="selectCinemaGrade" resultMap="cinema_rm">
+  		SELECT *
+		FROM "CINEMA_EVALUATION"
+  	</select>
   	
 
 </mapper>
