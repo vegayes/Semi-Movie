@@ -1,7 +1,6 @@
 package semi.project.movieInsight.mypage.dao;
 
 import java.lang.reflect.Array;
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +16,7 @@ import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.member.service.MemberServiceimpl;
 import semi.project.movieInsight.movie.dto.Movie;
 
@@ -305,12 +305,22 @@ public class ManagerDAO {
 	// 관리자 : 회원 페이지에서 댓글목록 조회
 	public List<Movie> selectMovieComment(int memberNo) {
 		
-		return sqlSession.selectList("memberMapper.selectMovieComment", memberNo);
+		return sqlSession.selectList("movieMapper.selectMovieComment", memberNo);
 	}
 
 	public List<Cinema> selectCinemaComment(int memberNo) {
 		
-		return sqlSession.selectList("memberMapper.selectCinemaComment", memberNo);
+		return sqlSession.selectList("cinemaMapper.selectCinemaComment", memberNo);
+	}
+
+	public Member selectMemberInfo(int memberNo) {
+		
+		return sqlSession.selectOne("memberMapper.selectMemberInfo", memberNo);
+	}
+
+	public int deleteMember(int memberNo) {
+		
+		return sqlSession.update("memberMapper.deleteMember", memberNo);
 	}
 
 	

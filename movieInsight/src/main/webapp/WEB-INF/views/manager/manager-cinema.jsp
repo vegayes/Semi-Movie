@@ -19,6 +19,7 @@
                 <li class="admin-list"><a href="/movieInsight/manager/cinema">영화관</a></li>
                 <li class="admin-list"><a href="/movieInsight/manager/menu">메뉴</a></li>
                 <li class="admin-list"><a href="/movieInsight/manager/promotion">이벤트</a></li>
+                <li class="admin-list"><a href="/movieInsight/">메인 페이지로</a></li>
             </ul>
         </div>
 

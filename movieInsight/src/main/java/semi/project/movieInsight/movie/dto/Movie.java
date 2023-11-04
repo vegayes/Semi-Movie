@@ -55,5 +55,5 @@ public class Movie {
     private String commentMovieWriter; // 댓글 작성자 	
     private int memberNo; // 댓글 작성자 No
     private String writerProfile;// 댓글 작성자 프로필
-
+    private String movieCommentDelYN; // 댓글 삭제여부
 }

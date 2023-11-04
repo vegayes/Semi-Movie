@@ -25,6 +25,7 @@ import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.service.ManagerService;
 
@@ -352,7 +353,7 @@ public class ManagerDetailController {
 	
 	
 	
-	@GetMapping("deleteMenu/{menuNo}")
+	@GetMapping("deleteMenu/{menuNo:^[^0]\\d*}")
 	public String deleteMenu(@PathVariable("menuNo") int menuNo,
 			RedirectAttributes ra ) {
 	   
@@ -379,13 +380,21 @@ public class ManagerDetailController {
 		// 영화관과 영화 댓글 목록 조회
 		List<Movie> movieCommentList = service.selectMovieComment(memberNo);
 		List<Cinema> cinemaCommentList = service.selectCinemaComment(memberNo);
+		Member member = service.selectMemberInfo(memberNo);
 		
 		Map<String, Object> commentMap = new HashMap<String, Object>();
 		
 		commentMap.put("movieComment", movieCommentList);
 		commentMap.put("cinemaComment", cinemaCommentList);
+		commentMap.put("member", member);
 		
-		System.out.println("commentMap : " + commentMap);
+//		for(Movie movie : movieCommentList) {
+//			System.out.println("영화댓글 : " + movie.getMovieCommentContent());
+//		}
+//		
+//		for(Cinema cinema : cinemaCommentList) {
+//			System.out.println("영화관댓글 : " + cinema.getCinemaCommentContent());
+//		}
 		
 		return commentMap;
 	}	
@@ -394,7 +403,21 @@ public class ManagerDetailController {
 	
 	
 	
-	
+	@GetMapping(value = "/deleteMember/{memberNo:^[^0]\\d*}")
+	public String deleteMember(@PathVariable("memberNo") int memberNo, 
+			RedirectAttributes ra
+			) throws Exception{
+		
+		int result = service.deleteMember(memberNo);
+		
+		if(result > 0) {
+			ra.addFlashAttribute("message","탈퇴 성공");
+		}else {
+			ra.addFlashAttribute("message","탈퇴 실패");
+		}
+		
+		return "redirect:/manager/member";
+	}
 	
 	
 	

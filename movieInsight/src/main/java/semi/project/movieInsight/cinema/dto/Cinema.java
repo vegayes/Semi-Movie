@@ -35,7 +35,9 @@ public class Cinema {
     private String writerProfile;// 댓글 작성자 프로필
     private String commentCinemaWriter; // 댓글 작성자 	
     private int memberNo; // 댓글 작성자 No
-   
+    private String cinemaCommentDelYN; // 댓글 삭제여부
+    
+    
     // 영화관 구분
     private String 	cinemaType;  // 영화관이면 C , OTT 면 O	
    
