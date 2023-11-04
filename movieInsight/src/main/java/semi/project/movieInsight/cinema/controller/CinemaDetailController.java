@@ -150,10 +150,10 @@ public class CinemaDetailController {
 					@SessionAttribute(value = "loginMember", required =false) Member loginMember) {
 		
 		
-		System.out.println("commentValue" + commentValue);
-		System.out.println("cinemaName" + cinemaName);
-		System.out.println("cinemaCommentType" + cinemaCommentType);
-		System.out.println("댓글 삽입 로그인된 회원 번호 :" + loginMember.getMemberNo());
+//		System.out.println("commentValue" + commentValue);
+//		System.out.println("cinemaName" + cinemaName);
+//		System.out.println("cinemaCommentType" + cinemaCommentType);
+//		System.out.println("댓글 삽입 로그인된 회원 번호 :" + loginMember.getMemberNo());
 		
 		cinema.setCinemaCommentContent(commentValue);
 		cinema.setCinemaGrade(cinemaGrade);
@@ -211,9 +211,9 @@ public class CinemaDetailController {
 						 Menu menu) {
 		
 		
-		System.out.println("menuGrade" + menuGrade);
-		System.out.println("cinemaName" + cinemaName);
-		System.out.println("menuSelect" + menuSelect);
+//		System.out.println("menuGrade" + menuGrade);
+//		System.out.println("cinemaName" + cinemaName);
+//		System.out.println("menuSelect" + menuSelect);
 		
 		menu.setMenuName(menuSelect);
 		menu.setMenuGrade(menuGrade);

@@ -15,9 +15,7 @@
 	    <title>관리자 페이지-회원</title>
 	     <link rel="stylesheet" href="/movieInsight/resources/css/manager/manager_member.css">
 	     <link rel="stylesheet" href="/movieInsight/resources/css/manager/member_info_popup.css">
-	     <!--  
-	     <link rel="stylesheet" href="/movieInsight/resources/css/mypage/favorite-list-popup.css">
-	     -->
+		
 	     
 	</head>
 	
@@ -31,6 +29,7 @@
 				<li class="admin-list"><a href="/movieInsight/manager/cinema">영화관</a></li>
 				<li class="admin-list"><a href="/movieInsight/manager/menu">메뉴</a></li>
 				<li class="admin-list"><a href="/movieInsight/manager/promotion">이벤트</a></li>
+				<li class="admin-list"><a href="/movieInsight/">메인 페이지로</a></li>
 	        </ul>
 	    </div>
 	    
@@ -42,8 +41,8 @@
              <div id = "manager-member-info-content">
              	<div id = "closeBtn" >&times;</div>
 	             <section class = "popup-member-info-container">
-	                <p class = "popup-member-info-title">
-	                    회원1님의 회원 정보
+	                <p class = "popup-member-info-title" id="titleElement">
+	                    
 	                </p>
 	
 	                <table class = "table-info">
@@ -54,12 +53,12 @@
 	                        <th>탈퇴여부</th>
 	                    </tr>
 	                    
-	                    <tr>
-	                        <td>user01</td>
-	                        <td>user01@naver.com</td>
-	                        <td>2023-10-01</td>
-	                        <td>X</td>
-	                    </tr>
+	                    <tr id="memberInfo">
+							<td id="idElement"></td>
+							<td id="emailElement"></td>
+							<td id="enrollDateElement"></td>
+							<td id="delYNElement"></td>
+						</tr>
 	                </table>
 	                
 	            </section>
@@ -69,8 +68,8 @@
 	                    <table class = "popup-member-write-list-table">
 	                        <thead>
 	                            <tr>
-	                                <th class = "popup-member-comment-no">
-	                                    댓글 번호
+	                                <th class = "popup-member-comment-type">
+	                                    댓글 종류
 	                                </th>
 	    
 	                                <th class = "popup-member-comment-content">
@@ -88,29 +87,8 @@
 	                            </tr>
 	                        </thead>
 
-	                        <tbody>
-	                            <tr>
-	                                <td class = "popup-member-comment-no">
-	                                    1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-content">
-	                                    댓글 내용1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-date">
-	                                    댓글 작성일1
-	                                </td>
-	    
-	                                <td class = "popup-member-comment-del-YN">
-	                                    X
-	                                </td>
-	    
-	    
-	    
-	                            </tr>
-	
-	                          
+	                        <tbody id="commentTableBody">
+	                           
 	                           
 	                        </tbody>
 	                     
@@ -134,10 +112,9 @@
 	    <div class="member-search">
 	        <input type="text" placeholder="회원 검색" id = "searchMember">
 	        <br><br><br>
-	        <span>총 회원 수 : ${memberCount}명</span> 
-	        <!--  
-	        <span>현재 접속자 수 : ###명</span><br>
-	      	-->
+
+	        <span>총 회원 수 : ${memberCount}명</span> <br>
+
 	    </div>
 	        
 	        
@@ -167,10 +144,10 @@
 		            
 		          
 		            <div class="member-buttons">
-		                <div class="edit-button" onclick ="getMemberInfo(${member.memberNo})">
+		                <div class="edit-button"  id="edit-button-${member.memberNo}" onclick ="getMemberInfo(${member.memberNo})">
 		                		조회
 		                </div>
-		                <div class="delete-button">
+		                <div class="delete-button" onclick="deleteMember(${member.memberNo})">
 		                		탈퇴
 		                </div>
 		            </div>
@@ -183,7 +160,16 @@
 	    
 
 
-	    
+		<c:if test="${not empty message}">
+         
+			<script>
+				// EL/JSTL 구문이 먼저 해석
+				// 문자열의 경우 따옴표가 없는 상태이니 옆에 붙여줘야함.
+				alert('${message}') // ${message}
+			</script>
+
+		</c:if>
+		
 		<script src="/movieInsight/resources/js/manager/manager-member.js"></script> 
 	</body>
 

@@ -1,7 +1,6 @@
 package semi.project.movieInsight.mypage.service;
 
 import java.io.File;
-import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.dao.ManagerDAO;
 
@@ -25,6 +26,8 @@ import semi.project.movieInsight.mypage.dao.ManagerDAO;
 @Service
 public class ManagerServiceImpl implements ManagerService{
 
+	
+	
 	@Autowired
 	private ManagerDAO dao;
 
@@ -392,7 +395,30 @@ public class ManagerServiceImpl implements ManagerService{
 		return dao.selectCinemaComment(memberNo);
 	}
 
+	@Override
+	public Member selectMemberInfo(int memberNo) {
 	
+		return dao.selectMemberInfo(memberNo);
+	}
+
+	
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public int deleteMember(int memberNo) throws Exception{
+		
+		int result = dao.deleteMember(memberNo);
+		
+		if(result > 0) { 
+			
+			return result;
+			
+		}else {
+			
+			 throw new RuntimeException("deleteMember delete failed ");
+		}
+		
+	}
+
 	
 
 	

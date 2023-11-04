@@ -81,18 +81,18 @@
 	</select>
 	
 	
+    <select id="selectMemberInfo" resultMap = "member_rm">
+  		SELECT * 
+  		FROM MEMBER
+  		WHERE MEMBER_NO = #{memberNo}
+    </select>
 
 
-	
-
-	<select id="selectCinemaComment">
-	
-	
-	
-	</select>
-
-
-
+	<update id="deleteMember">
+		UPDATE MEMBER  
+		SET MEMBER_DEL_YN  = 'Y'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
 
 
 

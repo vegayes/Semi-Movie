@@ -24,7 +24,7 @@
 		<result property="cinemaCommentContent" column="CINEMA_COMMENT"/>
 		<result property="cinemaCommentDate" column="CINEMA_EV_ENROLL_DATE"/>
 		<result property="cinemaGrade" column="CINEMA_GRADE"/>
-		<result property="cinemaCommentType" column="CINEMA_COMMENT_TYPE"/>
+		<result property="cinemaCommentType" column="EVALUATION_TYPE"/>
 		
 		
 
@@ -34,6 +34,7 @@
 		<result property="commentCinemaWriter" column="COMMENT_CINEMA_WRITER"/>
 		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="writerProfile" column="COMMENT_MEMBER_PROFILE"/>
+		<result property="cinemaCommentDelYN" column="CINEMA_EV_DEL_YN"/>
 
 	</resultMap>
 
@@ -147,11 +148,9 @@
   	
   	
   	<update id="deleteCinema">
-  	
   		UPDATE CINEMA c  
 		SET CINEMA_DEL_YN  = 'Y'
 		WHERE CINEMA_NO = #{cinemaNo}
-  		
   	</update>
   	
 

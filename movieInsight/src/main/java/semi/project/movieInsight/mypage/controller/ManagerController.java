@@ -144,8 +144,8 @@ public class ManagerController {
 		
 		
 		List<Movie> movieList = movieService.selectManagerMovieList();
-		
 		model.addAttribute("movieList", movieList);
+		
 		
 		//System.out.println("movieList : " + movieList);
 		

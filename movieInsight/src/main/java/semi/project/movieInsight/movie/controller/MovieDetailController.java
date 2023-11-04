@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.service.CinemaService;
 import semi.project.movieInsight.common.CookieUrlClass;
 import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
@@ -43,7 +44,8 @@ public class MovieDetailController {
 	@Autowired
 	private MovieDetailService service;
 	
-
+	@Autowired
+	private CinemaService cinemaService;
 	/** 영화 검색 후 이동 ( movieNo를 가지고 주소 설정 ) 
 	 * @param movieNo
 	 * @return
@@ -65,6 +67,8 @@ public class MovieDetailController {
 		System.out.println("검색 후 이동");
 		System.out.println(movieNo);
 		if(movieNo == 0) {
+			List<Cinema> cinemaList = cinemaService.selectManagerCinemaList();
+			model.addAttribute("cinemaList", cinemaList);
 			return "movie/movie-detail-page";
 		}
 		

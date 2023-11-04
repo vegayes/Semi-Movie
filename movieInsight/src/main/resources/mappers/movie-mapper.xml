@@ -28,7 +28,7 @@
 		<result property="commentMovieWriter" column="COMMENT_MOVIE_WRITER"/>
 		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="writerProfile" column="COMMENT_MEMBER_PROFILE"/>
-
+		<result property="movieCommentDelYN" column="MOVIE_EV_DEL_YN"/>
 		
 	</resultMap>
 	

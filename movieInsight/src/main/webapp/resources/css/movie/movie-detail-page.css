@@ -33,15 +33,15 @@ main{
 /* =========================================================== */
  
 .movieForm{
-height: 25%;
-width: 80%;
-display: flex;
-margin-bottom: 50px;
+    height: 40%;
+    width: 80%;
+    display: flex;
+    margin-bottom: 50px;
 } 
 
 .movieForm_img{
-flex-basis: 45%;
-background-size: 100% 100%;
+    flex-basis: 45%;
+    background-size: 100% 100%;
 }
 
 
@@ -56,7 +56,7 @@ background-size: 100% 100%;
 
 #movieForm-content > textarea {
     width: 80%;
-    height: 35%;
+    height: 18%;
     font-size: 15px;
     margin-left: 10%;
 }
@@ -93,7 +93,7 @@ background-size: 100% 100%;
 }
 
 .movieFormGenre {
-    flex-basis: 20%;
+    flex-basis: 15%;
     display: flex;
     font-weight : bold;
    justify-content: center;
@@ -107,7 +107,7 @@ background-size: 100% 100%;
 
 
 .movieFormCasting {
-    flex-basis: 70%;
+    flex-basis: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -132,8 +132,22 @@ background-size: 100% 100%;
 
 .movieForm_description > button {
     flex-basis: 10%;
+    
 }
 
+
+#movieFormCheckBox {
+    flex-basis: 35%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkBox-container {
+    height: 30%;
+    display: flex;
+}
 
 /* ==================================================================================================================== */
 

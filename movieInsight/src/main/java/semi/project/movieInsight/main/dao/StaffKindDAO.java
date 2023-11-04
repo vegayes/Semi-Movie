@@ -14,9 +14,14 @@ public class StaffKindDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	// 영화관 조회
+	// 영화관 테이블 이름 조회
 	public List<Cinema> cinemaStaff() {
 		return sqlSession.selectList("staffMapper.selectCinema");
+	}
+	
+	// 영화관 평가 테이블 조회
+	public List<Cinema> selectcinemaGrade() {
+		return sqlSession.selectList("staffMapper.selectCinemaGrade");
 	}
 
 	

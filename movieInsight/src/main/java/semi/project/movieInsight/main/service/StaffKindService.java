@@ -8,4 +8,6 @@ public interface StaffKindService {
 
 	List<Cinema> cinemaStaff();
 
+	List<Cinema> selectcinemaGrade();
+
 }
