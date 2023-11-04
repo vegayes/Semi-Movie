@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.service.CinemaService;
+import semi.project.movieInsight.movie.dto.Movie;
 
 @Controller
 @RequestMapping("/cinema")
@@ -51,13 +52,67 @@ public class CinemaController {
 		model.addAttribute("cinemaList", cinemaList);
 		
 		
+		model.addAttribute("pageType","cinema");
 		
         return "cinema/search-cinema";
     }
 	
 	
+	
+	
+	 
+	/** 헤더 정렬
+	 * @param query
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@GetMapping("/search/orderBy")
+    public String orderByMovie(String query, Model model,HttpServletRequest request) {
+		
+		System.out.println("orderBy 영화관 페이지 들어옴");
+		
+		System.out.println("query : " + query);
+		
+		List<Cinema> cinemaList = new ArrayList<>();
+		
+		List<Cinema> orderByList = service.orderByCinemaList(query);
+		
+		
+		
+		System.out.println("cinemaList : "+ orderByList);
+		
+		for (Cinema orderByCinema : orderByList) {
+			
+		    String cinemaName = orderByCinema.getCinemaName();
 
-	}
+		    float grade = service.cinemaGrade(cinemaName);
+
+		    // 가져온 평점을 Cinema 객체에 설정
+		    orderByCinema.setSumCinemaGrade(grade);
+		    cinemaList.add(orderByCinema);
+		}
+		
+		System.out.println("cinemaList : " + cinemaList);
+
+		
+		model.addAttribute("cinemaQuery", query);
+		model.addAttribute("cinemaList", cinemaList);
+		
+		
+		model.addAttribute("pageType","cinema");
+		
+        return "cinema/search-cinema";
+    }
+	
+	
+	
+	
+	
+	
+	
+
+}
 	
 
 

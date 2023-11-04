@@ -249,7 +249,9 @@
                                 <c:forEach items = "${visitMovie}" var="visit">
 	                                <tr class = "visit-history-list">
 	                                    <td class = "history-img-container">
-	                                        <img src = "/movieInsight/resources/images/movie/${visit.movieImg}">
+	                                    	<a href = "/movieInsight/movie/${visit.movieNo}">
+		                                        <img src = "/movieInsight/resources/images/movie/${visit.movieImg}">
+	                                    	</a>
 	                                    </td>
 	                                    <td class = "history-content-container">
 	                                        <h1> ${visit.movieTitle}</h1>
@@ -336,7 +338,7 @@
 		 				</table>		
 					</div>
 					<div class = "comment-list-content-container" id = "cinema-comment-container" style = "display : none">
- 						<table class = "comment-list-table">
+ 						<table class = "comment-list-table" id = "cinema-comment-list-table">
  							
  							<c:if test= "${empty commentCinema}">
 								<tr class = "comment-not-content">

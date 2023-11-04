@@ -68,7 +68,7 @@
 		                   	 	<%-- ③ a 태그 입력하기 진행하기! main페이지로 이동할 수 있게 --%>
 			                    <a href ="/movieInsight/movie/search/orderBy?query=인기순">#인기순</a>
 			                    <a href ="/movieInsight/movie/search/orderBy?query=최신순">#최신순</a>
-			                    <a href ="/movieInsight/movie/search/orderBy?query=장르별">#장르별</a>
+			                    <a href ="/movieInsight/movie/search/random">#장르별</a>
 			                 </div>
 		                </c:when>
 		                <%-- 1-2)영화관 메인 페이지의 경우 --%>
@@ -82,9 +82,9 @@
 			              	</form>			                
 	                   		<div class = "main-sort">
 			                	<%-- ③ a 태그 입력하기 진행하기! main페이지로 이동할 수 있게 --%>
-			                	<a href ="#">#극장 평점순</a>
-			                    <a href ="#">#직원 친절도순</a>
-			                    <a href ="#">#메뉴 만족도순</a>
+			                	<a href ="/movieInsight/cinema/search/orderBy?query=극장 평점순">#극장 평점순</a>
+			                    <a href ="/movieInsight/cinema/search/orderBy?query=직원 친절도순">#직원 친절도순</a>
+			                    <a href ="/movieInsight/cinema/search/orderBy?query=메뉴 만족도순">#메뉴 만족도순</a>
 			                </div>
 		                </c:when>
 		                <%-- 1-3)마이페이지 혹은 정렬이 필요 없지만, 헤더는 필요한 페이지의 경우 --%>

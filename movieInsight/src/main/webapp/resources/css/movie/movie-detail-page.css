@@ -353,6 +353,21 @@ star{
     background-color: #474C50;
 }
 
+
+.mmcon::-webkit-scrollbar{
+    width: 15px;
+}
+
+.mmcon::-webkit-scrollbar{
+    background: #474C50;
+}
+
+.mmcon::-webkit-scrollbar-thumb{
+    height: 15%;
+    background-color:#e63946;
+    border-radius: 10px;
+}
+
 .cinemaList {
 	 height: 130px;
     display: flex;
@@ -505,6 +520,20 @@ star{
     overflow-x: hidden;
     overflow-y: scroll;
     background-color: #474C50;
+}
+
+.combody::-webkit-scrollbar{
+    width: 15px;
+}
+
+.combody::-webkit-scrollbar{
+    background: #474C50;
+}
+
+.combody::-webkit-scrollbar-thumb{
+    height: 15%;
+    background-color:#a663cc;
+    border-radius: 10px;
 }
 
 

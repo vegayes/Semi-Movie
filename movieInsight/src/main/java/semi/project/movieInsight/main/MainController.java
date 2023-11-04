@@ -20,14 +20,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.main.service.StaffKindService;
+import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieService;
 
 
 @Controller
+@SessionAttributes("{loginMember}")
 public class MainController {
 	
 	  @Autowired
@@ -47,7 +51,7 @@ public class MainController {
 
 	
 	 @GetMapping("/movie")
-	    public String getMovies(Model model) {
+	    public String getMovies(Model model , @SessionAttribute(value = "loginMember", required =false) Member loginMember) {
 	        // 다양한 장르의 영화를 조회합니다.
 		     
 	        List<Movie> popularMovies = movieService.findMoviesByCategory("인기순");
@@ -58,10 +62,15 @@ public class MainController {
 	        List<Movie> comedyMovies = movieService.findMoviesByCategory("코미디");
 	        List<Movie> romanceMovies = movieService.findMoviesByCategory("로맨스");
 	        List<Movie> latestMovies = movieService.findMoviesByCategory("최신순");
-	        List<Movie> userPrefMovies = movieService.findMoviesByCategory("user 맞춤 영상");
+	        if(loginMember!= null) {
+	        	List<Movie> userPrefMovies = movieService.userPreMovies(loginMember.getMemberNo());	
+	        	model.addAttribute("userPrefMovies", userPrefMovies);
+	        }
 	        List<Movie> horrorMovies = movieService.findMoviesByCategory("호러");
 	        
 
+	        
+	        
 	        model.addAttribute("horrorMovies", horrorMovies);
 	        model.addAttribute("popularMovies", popularMovies);
 	        model.addAttribute("actionMovies", actionMovies);
@@ -71,12 +80,10 @@ public class MainController {
 	        model.addAttribute("comedyMovies", comedyMovies);
 	        model.addAttribute("romanceMovies", romanceMovies);
 	        model.addAttribute("latestMovies", latestMovies);
-	        model.addAttribute("userPrefMovies", userPrefMovies);
-	        
-	        
-	        System.out.println("범죄 : " + crimeMovies);
+	        	
+
 	
-           model.addAttribute("pageType","movie");
+          
            
            // 직원친절도를 위한 영화관 이름 번호 찾기
            List<Cinema> cinemaStaff = service.cinemaStaff();
@@ -91,7 +98,7 @@ public class MainController {
            // 영화관 평점 더하고 평균내기 
            
            // 영화관 평점 보내기
-
+           model.addAttribute("pageType","movie");
 	        return "movie/home-page";
    
 

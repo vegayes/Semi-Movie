@@ -96,7 +96,7 @@ public class CinemaDetailController {
 		 	
 			// 3) 영화관에서 댓글 조회 (시설 / 직원 / 메뉴 ) 
 			List<Cinema> commentCinemaList = service.commentCinemaList(cinemaName);
-			System.out.println(commentCinemaList);
+			System.out.println("commentCinemaList : " + commentCinemaList);
 			model.addAttribute("commentCinemaList", commentCinemaList);
 		 	
 			

@@ -199,6 +199,7 @@ public class MypageServiceImpl implements MypageService{
 	/**
 	 * 탈퇴 
 	 */
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int secession(int memberNo) {
 		return dao.secession(memberNo);
@@ -217,6 +218,7 @@ public class MypageServiceImpl implements MypageService{
 	/**
 	 * 방문기록 삭제 
 	 */
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int delVisit(int visitNo) {
 		return dao.delVisit(visitNo);

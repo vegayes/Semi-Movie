@@ -272,6 +272,20 @@ star{
 
 
 
+.screening_movie_detail::-webkit-scrollbar{
+    width: 15px;
+}
+
+.screening_movie_detail::-webkit-scrollbar{
+    background: #474C50;
+}
+
+.screening_movie_detail::-webkit-scrollbar-thumb{
+    height: 15%;
+    background-color:#98ce00;
+    border-radius: 10px;
+}
+
 .screening_movie_detail>a>div{
 
     /* 영화 가로줄 */
@@ -466,6 +480,22 @@ star{
     background-color: #474C50;
     overflow: hidden scroll;
 }
+
+
+.combody::-webkit-scrollbar{
+    width: 15px;
+}
+
+.combody::-webkit-scrollbar{
+    background: #474C50;
+}
+
+.combody::-webkit-scrollbar-thumb{
+    height: 15%;
+    background-color:#fde74c;
+    border-radius: 10px;
+}
+
 
 
 .comb {
@@ -1090,3 +1120,6 @@ star{
 .filled{
 	color : #ffc53a;
 }
+
+
+

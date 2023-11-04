@@ -308,7 +308,6 @@
                 <div class="combody">
                     <table class = "comment-list-table"  id = "comment-list-table-good">
 	                	<c:forEach items = "${commentCinemaList}" var="comment">
-	                		
 	                		<c:if test ="${comment.cinemaCommentType eq '친절도'}">
 	                			<tr class = "comment-grade-tr">
 		                			<td>평점 ${comment.cinemaGrade}</td>

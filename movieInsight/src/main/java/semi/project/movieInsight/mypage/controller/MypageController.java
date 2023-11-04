@@ -37,6 +37,7 @@ import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
 import semi.project.movieInsight.cinema.service.CinemaService;
 import semi.project.movieInsight.common.CookieUrlClass;
+import semi.project.movieInsight.member.controller.MemberController;
 import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.mypage.service.MypageService;
@@ -307,6 +308,14 @@ public class MypageController {
 		
 		return service.selectCommentMovie(memberNo);
 	}	
+
+	// 댓글 수정 후 마이페이지에서 조회 ( 영화관 ) 
+	@ResponseBody
+	@GetMapping(value = "/comment2/select", produces = "application/json; charset=UTF-8")
+	public List<Cinema> selectMyCinemaomment(int memberNo) {
+		
+		return service.selectCommentCinema(memberNo);
+	}	
 	
 	
 	// 댓글 수정 팝업 내용 조회하기 (영화)
@@ -415,14 +424,15 @@ public class MypageController {
 	 */
 	@ResponseBody
 	@GetMapping(value = "/secession", produces = "application/json; charset=UTF-8")
-	public int secession(int memberNo, SessionStatus status) {
+	public int secession(int memberNo, SessionStatus status, HttpServletRequest request) {
 		System.out.println("탈퇴 :" +  memberNo);
+		HttpSession session = request.getSession();
 		
 		int result = service.secession(memberNo);
 		
 		if(result > 0 ) { // 성공
 			System.out.println("탈퇴 함.");
-			status.setComplete();
+			session.invalidate();
 			result  = 1;
 		}else {
 			result = 0;

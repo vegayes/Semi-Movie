@@ -76,7 +76,6 @@ aside > a{
 .mypage-content{
 	flex: 3;
     flex-basis: 83%;
-    border: 5px solid red;
     
   }
 
@@ -90,7 +89,6 @@ aside > a{
     flex-direction: column;
     align-items: center;
 
-    border: 1px solid aqua ;
 }
 
 .mypage-info{
@@ -454,6 +452,13 @@ aside > a{
     /* overflow: auto; */
 }
 
+.history-content-container > h1{
+
+	color : #ffe45e;
+	font-weight : bold;
+	
+}
+
 .visit-history-content{
     /* flex-basis: 100%; */
 
@@ -481,7 +486,7 @@ aside > a{
 
 .visit-history-content::-webkit-scrollbar-thumb{
     height: 15%;
-    background-color:#070583;
+    background-color:#00218e;
     border-radius: 10px;
 }
 
@@ -508,9 +513,14 @@ aside > a{
 
     display: flex;
     align-items: center;
+    
+    position:relative;
+    
+	    
+	cursor: pointer;
 }
 
-.history-img-container > img{
+.history-img-container  img{
     width: 100%;
     /* height: 100%; */
 }
@@ -610,7 +620,7 @@ aside > a{
 
 .comment-list-content-container::-webkit-scrollbar-thumb{
     height: 15%;
-    background-color:#070583;
+    background-color:#ffc4c5;
     border-radius: 10px;
 }
 
@@ -1354,5 +1364,12 @@ footer>img{
     
 }
 
+#updateCommentBtn:hover{
+	 opacity: 0.85;
+}
 
 
+.history-img-container:hover{
+
+    border : 4px solid #def6ff;
+}

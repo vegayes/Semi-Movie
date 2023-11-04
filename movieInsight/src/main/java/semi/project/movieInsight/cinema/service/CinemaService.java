@@ -29,4 +29,11 @@ public interface CinemaService {
 	float cinemaGrade(String cinemaName);
 
 
+	/** 영화관 정렬 검색
+	 * @param query
+	 * @return
+	 */
+	List<Cinema> orderByCinemaList(String query);
+
+
 }

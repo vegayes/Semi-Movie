@@ -45,4 +45,12 @@ public class CinemaServiceimpl implements CinemaService {
 		return gradeDao.sumCinemaGrade(cinemaName);
 	}
 
+	/**
+	 * 영화관 정렬 검색
+	 */
+	@Override
+	public List<Cinema> orderByCinemaList(String query) {
+		return gradeDao.orderByCinemaList(query);
+	}
+
 }
