@@ -22,7 +22,7 @@ public class MemberServiceimpl implements MemberService{
 	private BCryptPasswordEncoder bcrypt;
 	
 
-	
+	// 회원 가입 서비스
 	@Transactional
 	@Override
 	public int signUp(Member inputMember) {
@@ -76,9 +76,9 @@ public class MemberServiceimpl implements MemberService{
 //			
 //			
 //		} 
-		System.out.println("loginMember : "+loginMember.getMemberPw());
-		
-		System.out.println(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw()));
+//		System.out.println("로그인 비번 : "+loginMember.getMemberPw());
+//		
+//		System.out.println(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw()));
 	
 		
 		

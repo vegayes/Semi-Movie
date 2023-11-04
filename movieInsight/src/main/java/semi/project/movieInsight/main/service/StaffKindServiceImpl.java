@@ -13,11 +13,18 @@ public class StaffKindServiceImpl implements StaffKindService{
 	
 	@Autowired
 	private StaffKindDAO dao;
-
+	
+	// 영화관 테이블 이름 조회
 	@Override
 	public List<Cinema> cinemaStaff() {
-		// TODO Auto-generated method stub
 		return dao.cinemaStaff();
+	}
+
+	// 영화관 평가 테이블 조회
+	@Override
+	public List<Cinema> selectcinemaGrade() {
+		// TODO Auto-generated method stub
+		return dao.selectcinemaGrade();
 	}
 
 }
