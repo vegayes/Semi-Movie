@@ -9,7 +9,7 @@ document.getElementById("logo").addEventListener("click", () => {
 
 
 
-
+// 로그인 아닐때 창
 function callFunction() {
 	alert("로그인 후 이용해주세요");
 	location.href="/movieInsight/member/loginPage";

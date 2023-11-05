@@ -23,7 +23,6 @@ public class StaffKindServiceImpl implements StaffKindService{
 	// 영화관 평가 테이블 조회
 	@Override
 	public List<Cinema> selectcinemaGrade() {
-		// TODO Auto-generated method stub
 		return dao.selectcinemaGrade();
 	}
 

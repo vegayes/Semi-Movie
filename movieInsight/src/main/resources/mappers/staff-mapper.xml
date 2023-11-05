@@ -29,11 +29,11 @@
 		
 
 		<result property="cinemaType" column="CINEMA_TYPE" />
-		
-
 		<result property="commentCinemaWriter" column="COMMENT_CINEMA_WRITER"/>
 		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="writerProfile" column="COMMENT_MEMBER_PROFILE"/>
+		
+		<result property="avgCinemaGrade" column="AVG_CINEMA_GRADE"/>
 
 	</resultMap>
 
@@ -50,10 +50,16 @@
   	
   	
   	
-		<!-- 영화관 정보 조회 -->
+	<!-- 영화관 직원 평점 조회(0번 이상 점수 받은 것만 조회) -->
 	<select id="selectCinemaGrade" resultMap="cinema_rm">
-  		SELECT *
-		FROM "CINEMA_EVALUATION"
+  		SELECT  CINEMA.CINEMA_NAME, CINEMA.CINEMA_NO, ROUND(SUM(CINEMA_EVALUATION.CINEMA_GRADE)) AS SUM_CINEMA_GRADE, 
+	  	ROUND(AVG(CINEMA_EVALUATION.CINEMA_GRADE),1) AS CINEMA_GRADE
+		FROM CINEMA
+		JOIN CINEMA_EVALUATION ON CINEMA.CINEMA_NO = CINEMA_EVALUATION.CINEMA_NO
+		WHERE CINEMA_EVALUATION.EVALUATION_TYPE = '친절도'
+		GROUP BY CINEMA.CINEMA_NO,CINEMA.CINEMA_NAME
+		HAVING COUNT(CINEMA_EVALUATION.CINEMA_GRADE)>=0
+		ORDER BY CINEMA_GRADE DESC
   	</select>
   	
 
