@@ -198,6 +198,13 @@ public class ManagerDAO {
 	}
 	
 	
+	public int insertMovieStatus(Map<String, Object> movieStatusMap) {
+		
+		return sqlSession.insert("movieMapper.insertMovieStatus", movieStatusMap);
+	}
+	
+	
+	
 	public int updateMovie(Movie movieInfo) {
 		
 		return sqlSession.update("movieMapper.updateMovie",movieInfo);
@@ -322,6 +329,8 @@ public class ManagerDAO {
 		
 		return sqlSession.update("memberMapper.deleteMember", memberNo);
 	}
+
+	
 
 	
 	

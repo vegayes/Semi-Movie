@@ -420,6 +420,26 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 	
+	
+	
+	
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public int insertMovieStatus(Map<String, Object> movieStatusMap) throws Exception {
+		
+		int result = dao.insertMovieStatus(movieStatusMap);
+		
+		if(result > 0) { 
+			
+			return result;
+			
+		}else {
+			
+			 throw new RuntimeException("deleteMember delete failed ");
+		}
+	}
+
+	
 
 	
 	

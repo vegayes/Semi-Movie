@@ -199,12 +199,11 @@
                     
                         <%-- 2) 검색 결과가 존재하는 경우 --%>
                 <c:otherwise> 
-                    
-                    <c:forEach items = "${movieList}"  var="movie" >
-                        <div class="screening_movie_detail">
+                    <div class="screening_movie_detail">
+                        <c:forEach items = "${movieList}"  var="movie" >
                             <a href="/movieInsight/movie/${movie.movieNo}">
                                 <div>
-
+                                    
                                     <div>			
                                         <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
                                     </div>
@@ -220,8 +219,9 @@
 
                                 </div>
                             </a>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </div>
+                       
                 </c:otherwise>
                     
             </c:choose>
