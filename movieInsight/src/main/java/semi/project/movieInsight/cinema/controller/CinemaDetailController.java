@@ -85,7 +85,7 @@ public class CinemaDetailController {
 		 	
 		 	// 2) 영화관에서 상영중인 영화 목록 조회
 		 	List<Movie> movieList = service.selectMovieList(cinemaInfo.getCinemaNo());
-		 	//System.out.println("movieList : " + movieList);
+		 	System.out.println("영화관에서 상영중인 영화 목록 movieList : " + movieList);
 		
 		 	model.addAttribute("movieList", movieList);
 		 	
