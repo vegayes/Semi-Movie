@@ -76,7 +76,7 @@ public class MemberController {
 				}
 				
 				// 클라이언트가 어떤 요청을 할 때 쿠키가 첨부될지 경로(주소)를 지정
-				cookie.setPath("/member/loginPage");
+				cookie.setPath("/");
 				resp.addCookie(cookie);
 		
 				
