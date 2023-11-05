@@ -204,6 +204,18 @@
 		,#{movieReleaseDate},#{movieAge},#{movieRunningTime},DEFAULT,DEFAULT)
 	</insert>
 	
+	<insert id="insertMovieStatus" parameterType="java.util.Map">
+		INSERT INTO MOVIE_STATUS (MOVIE_STATUS_NO, MOVIE_NO, CINEMA_NO, CINEMA_TYPE)
+	    SELECT SEQ_MOVIE_STATUS_NO.NEXTVAL, A.MOVIE_NO, A.CINEMA_NO, A.CINEMA_TYPE
+	    FROM (
+	        <foreach collection="cinemaList" item="cinema" separator=" UNION ALL ">
+	            SELECT #{insertMovieNo} as MOVIE_NO, #{cinema.cinemaNo} as CINEMA_NO, #{cinema.cinemaType} as CINEMA_TYPE
+	            FROM DUAL
+	        </foreach>
+	    ) A
+	</insert>
+	
+	
 	
 	<update id="updateMovie">
 		UPDATE MOVIE 

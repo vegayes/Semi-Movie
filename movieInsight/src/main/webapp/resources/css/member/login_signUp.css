@@ -6,7 +6,6 @@
         font-weight: 300;
         font-size: 15px;
         line-height: 1.7;
-        color: white;
         background-color: #1f2029;
         overflow-x: hidden;
       }
@@ -162,7 +161,7 @@
         display: block;
         margin: 0;
         padding: 0;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
       .form-style {
         padding: 7px 20px;
@@ -174,13 +173,14 @@
         line-height: 22px;
         letter-spacing: 0.5px;
         outline: none;
-        color: #black;
+        color: black;
         background-color: white;
         border: none;
         -webkit-transition: all 200ms linear;
         transition: all 200ms linear;
         box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
       }
+      
       .form-style:focus,
       .form-style:active {
         border: none;
@@ -368,6 +368,7 @@
         font-weight: bold;
         margin: 0;
         padding: 0;
+        color: blue;
       }
 
       #emailMessage {
@@ -375,6 +376,7 @@
         font-weight: bold;
         margin: 0;
         padding: 0;
+        color: blue;
       }
 
       #authKeyMessage {
@@ -404,8 +406,69 @@
    		form input {
    	 color: black !important;
 		}
+
+    .Gender {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .GenderM {
+      display: flex;
+    }
+
+    .GenderF {
+      display: flex;
+    }
 		
-		.gender {
-		color: black;
-		}
-		
+	 	.girl {
+	 	color: hotpink;
+	 	margin:0;
+    margin-left: 5%;
+    margin-right: 3%;
+	 	padding:0;
+    font-weight: bold;
+	 	}
+	 	
+	 	.boy {
+	 	color: blue;
+	 	margin:0;
+    margin-left: 5%;
+    margin-right: 3%;
+	 	padding:0;
+    font-weight: bold;
+	 	}
+
+     .Gender label {
+      font-size: 18px;
+      line-height: 2rem;
+      padding: 0.2em 0.4em;
+    }
+
+    [type="radio"], span {
+      vertical-align: middle;
+    }
+
+    [type="radio"] {
+      appearance: none;
+      border: 2px solid gray; /* 원의 테두리 두께 조절 */
+      border-radius: 50%; /* 원형 모양으로 만듦 */
+      width: 1.25em; /* 지름 설정 */
+      height: 1.25em; /* 지름 설정 */
+    }
+
+  
+    
+
+    [type="radio"]:hover {
+      box-shadow: 0 0 0 max(4px, 0.2em) rgb(89, 196, 27);
+      cursor: pointer;
+    }
+
+    [type="radio"]:hover + span {
+      cursor: pointer;
+    }
+
+    [type="radio"]:checked {
+      border: 2px solid rgb(71, 99, 255); /* 클릭된 상태의 테두리 스타일 설정 */
+      box-shadow: 0 0 0 max(4px, 0.2em) rgb(53, 122, 14); /* 클릭된 상태의 그림자 설정 */
+    }

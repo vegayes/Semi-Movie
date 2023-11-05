@@ -193,7 +193,7 @@ function selectFacilityCommentList() {
         .then(response => response.json()) 
         .then(list => {
             console.log(list);
-            console.log("그만하고싶은데 좀 나와주겠니?");
+            
             const commentListTable = document.getElementById('comment-list-table-facility');
             commentListTable.innerHTML = ''; // 기존 테이블 내용 초기화
 

@@ -159,22 +159,56 @@ public class ManagerDetailController {
 	 */
 	@PostMapping("insertMovie")
 	public String insertMovie(Movie movieInfo,RedirectAttributes ra,
-			@RequestParam(value = "movieImage", required = false) MultipartFile movieImage, HttpSession session
+			@RequestParam(value = "movieImage", required = false) MultipartFile movieImage, HttpSession session,
+			@RequestParam("cinemaNoList") List<Integer> cinemaNoList
 			) throws Exception{
 		
 		System.out.println("insert 컨트롤러로 전달된 movieInfo : " + movieInfo);
+		
 		String[] actorNamesArray = movieInfo.getActorNames().split("/");
 		String[] directorNamesArray = movieInfo.getDirectorNames().split("/");
 		List<String> actorNamesList = new ArrayList<>(Arrays.asList(actorNamesArray));
 		List<String> directorNamesList = new ArrayList<>(Arrays.asList(directorNamesArray));
 		
-	
 		String webPath = "/resources/images/movie/";
 		String filePath = session.getServletContext().getRealPath(webPath);
 		
 		int result = service.insertMovie(movieInfo,movieImage,filePath,actorNamesList,directorNamesList);
-		System.out.println("삽입 결과 : " + result);
-		if(result > 0) {
+	
+		
+		int insertMovieNo = service.selectMovieNo(movieInfo.getMovieTitle());
+		List<Cinema> cinemaList = new ArrayList<Cinema>();
+		
+		// movie_status 에 넣을 영화관이 O인지C인지 구분
+		for(int i = 0; i < cinemaNoList.size(); i++ ) {
+			Cinema cinema = new Cinema();
+			int cinemaNo =  cinemaNoList.get(i); 
+			cinema.setCinemaNo(cinemaNo);
+			 if (cinemaNo == 6 || cinemaNo == 7 || cinemaNo == 8 || cinemaNo == 12 || cinemaNo == 14) {
+				cinema.setCinemaType("O");
+			}else {
+				cinema.setCinemaType("C");
+			}
+			cinemaList.add(cinema);
+		}
+		
+		System.out.println("***==============================================***");
+		System.out.println("insertMovieNo : " + insertMovieNo);
+		System.out.println("cinemaNoList : " + cinemaNoList);
+		for(Cinema cinema : cinemaList) {
+			System.out.println("cinemaList 에 들어간 cinema 객체 : " + cinema);
+		}
+		
+		
+		
+		Map<String, Object> movieStatusMap = new HashMap<String, Object>();
+		movieStatusMap.put("insertMovieNo", insertMovieNo);
+		movieStatusMap.put("cinemaList", cinemaList);
+		
+		int insertMovieStatus = service.insertMovieStatus(movieStatusMap);
+		
+		
+		if(result > 0 && insertMovieStatus > 0) {
 			ra.addFlashAttribute("message","등록 성공");		
 			return "redirect:/manager/movie";
 		}else {

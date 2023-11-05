@@ -85,6 +85,8 @@ public interface ManagerService {
 
 	int deleteMember (int memberNo) throws Exception;
 
+	int insertMovieStatus(Map<String, Object> movieStatusMap) throws Exception;
+
 	
 	
 	

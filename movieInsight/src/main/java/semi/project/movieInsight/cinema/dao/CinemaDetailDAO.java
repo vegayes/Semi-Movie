@@ -149,19 +149,16 @@ public class CinemaDetailDAO {
 	 */
 	public float sumCinemaGrade(String cinemaName) {
 		
+
 //		Cinema sumcinema = sqlSession.selectOne("cinemaMapper.sumCinemaGrade",cinemaName);
 		
 		Float sumCinemaGrade = sqlSession.selectOne("cinemaMapper.sumCinemaGrade", cinemaName);
 
 		float sum = (sumCinemaGrade != null) ? sumCinemaGrade : 0.0f;
 
-	    System.out.println(sum);
+	   System.out.println(sum);
 	
-		/*
-		float sum = sqlSession.selectOne("cinemaMapper.sumCinemaGrade",cinemaName);
-	
-		System.out.println(sum);
-		*/
+
 		return sum;
 	}
 
