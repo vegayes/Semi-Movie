@@ -1844,3 +1844,26 @@ margin-right: 30px;
 .filled{
 	color : #ffc53a;
 }
+
+
+.inputUpdate{
+	height:50%;
+	width: 90%;
+	border: none;
+	margin-left: 2px;
+	background-color: white;
+	border : none;
+	padding: 2px;
+	outline: 0;  
+}
+
+.inputGrade{
+	height:100%;
+	width: 20%;
+	border: none;
+	margin-left: 10%;
+	background-color: white;
+	border : none;
+	padding: 2px;
+	outline: 0;  
+}

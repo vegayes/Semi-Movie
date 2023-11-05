@@ -146,6 +146,30 @@ public class MypageDAO {
 		return sqlSession.delete("mypageMapper.delVisit", visitNo);
 	}
 
+	/** 댓글 삭제 
+	 * @param commentDelMovie
+	 * @return
+	 */
+	public int delCommentMovie(Map<String, Object> commentDelMovie) {
+		return sqlSession.update("mypageMapper.delCommentMovie", commentDelMovie);
+	}
+
+	/** 즐겨찾기 삭제 영화관 
+	 * @param favoriteDelCinema
+	 * @return
+	 */
+	public int delFavoriteCinema(Map<String, Object> favoriteDelCinema) {
+		return sqlSession.delete("mypageMapper.delFavoriteCinema", favoriteDelCinema);
+	}
+
+	/** 영화관 댓글 삭제 
+	 * @param commentDelCinema
+	 * @return
+	 */
+	public int delCommentCinema(Map<String, Object> commentDelCinema) {
+		return sqlSession.update("mypageMapper.delCommentCinema", commentDelCinema);
+	}
+
 
 
 	

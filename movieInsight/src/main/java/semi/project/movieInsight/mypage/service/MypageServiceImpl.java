@@ -232,6 +232,34 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 
+	/**
+	 * 댓글 삭제 
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int delCommentMovie(Map<String, Object> commentDelMovie) {
+		return dao.delCommentMovie(commentDelMovie);
+	}
+
+
+	/**
+	 * 즐겨찾기 삭제 영화관 
+	 */
+	@Override
+	public int delFavoriteCinema(Map<String, Object> favoriteDelCinema) {
+		return dao.delFavoriteCinema(favoriteDelCinema);
+	}
+
+
+	/**
+	 * 뎃글 삭제 영화관
+	 */
+	@Override
+	public int delCommentCinema(Map<String, Object> commentDelCinema) {
+		return dao.delCommentCinema(commentDelCinema);
+	}
+
+
 
 
 

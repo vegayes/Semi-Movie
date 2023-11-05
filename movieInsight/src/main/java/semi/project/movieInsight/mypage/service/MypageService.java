@@ -116,6 +116,25 @@ public interface MypageService {
 	 */
 	int delVisit(int visitNo);
 
+	/** 댓글 삭제 
+	 * @param commentDelMovie
+	 * @return
+	 */
+	int delCommentMovie(Map<String, Object> commentDelMovie);
+
+
+	/** 즐겨찾기 삭제 ( 영화관) 
+	 * @param favoriteDelCinema
+	 * @return
+	 */
+	int delFavoriteCinema(Map<String, Object> favoriteDelCinema);
+
+	/**댓글 삭제 (영화관)
+	 * @param commentDelCinema
+	 * @return
+	 */
+	int delCommentCinema(Map<String, Object> commentDelCinema);
+
 
 
 	

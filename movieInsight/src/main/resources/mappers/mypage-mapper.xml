@@ -180,6 +180,15 @@
 	 	 AND  MEMBER_NO = #{memberNo}	
   	</delete>
   	
+  	<!--  즐겨찾기 삭제하기 (영화관)  -->
+	<delete id = "delFavoriteCinema">
+		 DELETE FROM CINEMA_LIKE 
+		 WHERE CINEMA_NO IN
+	  	<foreach collection="delCinemaNo" item="cinemaNo" open="(" separator="," close=")">
+	   	 #{cinemaNo}
+	 	 </foreach>
+	 	 AND  MEMBER_NO = #{memberNo}	
+  	</delete>
   	
   	
   	
@@ -223,6 +232,28 @@
 		 DELETE FROM VISIT 
 		 WHERE VISIT_NO = #{visitNo}	
 	</delete>
+	
+	<!-- 댓글 삭제 -->
+	<update id = "delCommentMovie">
+		UPDATE MOVIE_EVALUATION
+		SET MOVIE_EV_DEL_YN ='Y'
+		WHERE MOVIE_EV_NO IN
+  		<foreach collection="delMovieNo" item="commentNo" open="(" separator="," close=")">
+	   	 #{commentNo}
+	 	 </foreach>
+		 AND MEMBER_NO = #{memberNo} 	
+	</update>
+	
+	
+	<update id = "delCommentCinema">
+		UPDATE CINEMA_EVALUATION
+		SET CINEMA_EV_DEL_YN ='Y'
+		WHERE CINEMA_EV_NO IN
+  		<foreach collection="delCinemaNo" item="commentNo" open="(" separator="," close=")">
+	   	 #{commentNo}
+	 	 </foreach>
+		 AND MEMBER_NO = #{memberNo} 	
+	</update>
 	
 </mapper>
 

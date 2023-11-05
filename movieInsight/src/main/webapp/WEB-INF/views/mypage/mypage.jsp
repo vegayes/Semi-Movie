@@ -317,7 +317,7 @@
 	 							<c:forEach items = "${commentMovie}" var = "commentMovie" varStatus="status">
 		                             <tr class = "comment-list-col movieComment" >
 		                                <td class = "comment-list-check">
-		                                    <input type="checkbox" name = "comment-check" id = "check">
+		                                    <input type="checkbox" name = "comment-check" id = "check" data-commentmovieNo="${commentMovie.movieCommentNo}">
 		
 		                                    <label for="check"></label> 
 		                                </td>
@@ -350,7 +350,7 @@
 	 							<c:forEach items = "${commentCinema}" var = "commentCinema" varStatus="status">
 		                             <tr class = "comment-list-col">
 		                                <td class = "comment-list-check">
-		                                    <input type="checkbox" name = "comment-check" id = "check">
+		                                    <input type="checkbox" name = "comment-check" id = "check" data-commentCinemaNo="${commentCinema.cinemaCommentNo}">
 		                                    <label for="check"></label> 
 		                                </td>
 		                                <td class = "comment-list-content-no">${status.count}</td>

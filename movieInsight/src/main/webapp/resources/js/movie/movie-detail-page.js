@@ -286,9 +286,16 @@ function selectMovieCommentList() {
         .catch(err => console.log(err));
 }
 
-
+let isInputOpen = false;
 
 function updateComment(commentNo) {
+
+    if (isInputOpen) {
+        alert("현재 댓글 수정 진행 중인 영역이 있습니다.");
+
+        return;
+    }
+
     console.log("수정하기");
     console.log(commentNo);
 
@@ -315,6 +322,7 @@ function updateComment(commentNo) {
         console.log("내가 누른 인덱스 번호 : " + i);
 
         if (parseInt(currentCommentNo) === commentNo) {
+            isInputOpen = true; 
             const commentContent = commentContentTdList[i].innerText;
             const grade = gradeElementList[i].innerText;
             const gradeContent = parseFloat(grade);
@@ -324,6 +332,7 @@ function updateComment(commentNo) {
 
             // 입력창 교체
             const inputElement = document.createElement("input"); 
+            inputElement.classList.add("inputUpdate"); 
             inputElement.type = "text";
             inputElement.value = commentContent.trimLeft();
             
@@ -331,6 +340,7 @@ function updateComment(commentNo) {
             console.log("교체된 값 : " + inputElement.value.trimLeft());
 
             const gradeInput = document.createElement("input");
+            gradeInput.classList.add("inputGrade");
             gradeInput.type = "number";
             gradeInput.value = gradeContent;
 
@@ -361,6 +371,7 @@ function updateComment(commentNo) {
                         alert("댓글이 수정되었습니다.");
                         selectMovieCommentList();
                         selectMovieGradeUpdate();
+                        isInputOpen = false; 
                     }else{
                         alert("댓글 수정에 오류가 발생하였습니다.");
                     }
