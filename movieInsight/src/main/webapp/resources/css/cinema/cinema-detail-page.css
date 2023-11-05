@@ -624,8 +624,6 @@ star{
 }
 
 .editBtn {
-    margin-left: 58%;
-    margin-top: 2%;
     background-color: #383B3E;
     color: rgb(195, 195, 250);
     border: none;
@@ -633,7 +631,8 @@ star{
     padding: 10px 20px; 
     cursor: pointer; 
     font-size: 16px; 
-    margin-right: 10px;
+    margin: 0px;
+    margin-right: 30px;
 }
 
 .deletBtn {
@@ -648,7 +647,18 @@ star{
     margin-right: 10px;
 }
 
+.saveBtn{
+    background-color: #383B3E;
+    color: rgb(228, 199, 137);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin: 0px;
+    margin-right: 30px;
 
+}
 
 
 
@@ -989,7 +999,7 @@ star{
 
 
 .comment-list-id{
-    flex-basis: 5%;
+    flex-basis: 7%;
 
    
 
@@ -1001,7 +1011,7 @@ star{
 }
 
 .comment-list-content{
-    flex-basis: 40%;
+    flex-basis: 38%;
 
     /* background-color: green; */
 

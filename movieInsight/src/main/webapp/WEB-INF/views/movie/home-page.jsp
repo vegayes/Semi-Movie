@@ -170,7 +170,7 @@
 			<c:if test="${not empty loginMember}">
 	            <sec:authorize access="isAuthenticated()">
 				<section class="movie_list swiper main-10">
-					<span class="section_title">User 맞춤 영상</span>
+					<span class="section_title" style = "color : #ffd500; font-weight:bold;">User 맞춤 영상</span>
 					<ul class="movie_list swiper-wrapper">
 						<c:forEach var="userPref" items="${userPrefMovies}">
 							<li class="movie_item swiper-slide"><a

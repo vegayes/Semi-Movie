@@ -45,6 +45,7 @@ public class CinemaController {
 
 		    // 가져온 평점을 Cinema 객체에 설정
 		    getCinema.setSumCinemaGrade(cinemaGrade);
+		    System.out.println("평점 : " + cinemaGrade);
 		    cinemaList.add(getCinema);
 		}
 		

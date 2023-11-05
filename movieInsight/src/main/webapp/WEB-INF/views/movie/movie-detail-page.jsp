@@ -299,7 +299,7 @@
 	                	<c:forEach items = "${commentMovieList}" var="comment">
 	                		
 	                		<tr class = "comment-grade-tr">
-	                			<td>평점 <span data-movieGrade="${comment.movieGrade}">${comment.movieGrade}</span>
+	                			<td>평점 <span data-movieGrade="${comment.movieGrade}" class = "commentMovieGrade">${comment.movieGrade}</span>
 	                				<div class = "memberGrade" >
                                		</div>
 	                			</td>
@@ -319,7 +319,9 @@
                                  <td class = "comment-list-id">
                                  	${comment.commentMovieWriter} : 
                                  </td>
-                                  <td class = "comment-list-content comment-content">${comment.movieCommentContent}</td>
+                                  <td class="comment-list-content comment-content" data-commentNo="${comment.movieCommentNo}">
+                                  	${comment.movieCommentContent}
+                                  </td>
                                   <td class = "comment-list-date">${comment.movieCommentDate}</td>
                                   <td class = "comment-list-edit">
                                   	<c:if test = "${comment.commentMovieWriter eq sessionScope.loginMember.memberId}">

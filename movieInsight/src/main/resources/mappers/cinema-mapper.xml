@@ -81,7 +81,7 @@
   	<!-- 2) 검색한 영화관 결과 리스트 가져오기 --> 
   	<!--  특별관, 평점 아직 못 가져옴 -->
   	<select id = "searchCinemaList" resultMap="cinema_rm">
-  		SELECT CINEMA_NO, CINEMA_NAME, CINEMA_ADDRESS, CINEMA_CONTACT,
+  		SELECT DISTINCT CINEMA_NO, CINEMA_NAME, CINEMA_ADDRESS, CINEMA_CONTACT,
 			CINEMA_IMG, CINEMA_LINK, CINEMA_MAX_INCLUDE,  CINEMA_SPECIAL_HALL
 		FROM "CINEMA"
 		LEFT JOIN MOVIE_STATUS USING(CINEMA_NO)
@@ -265,6 +265,7 @@
   	
   	
   	<!--  영화관 평점 ( 메뉴, 시설, 친절도)  -->
+  	<!--  
   	<select id = "sumCinemaGrade"  resultType = "_float">
 		SELECT 
 		<![CDATA[
@@ -284,6 +285,29 @@
 			  					   FROM CINEMA 
 			  					   WHERE CINEMA_NAME = #{cinemaName})  
   	</select>
+  	-->
+  	<select id = "sumCinemaGrade"  resultType = "_float">
+		SELECT 
+		<![CDATA[
+		    CASE 
+		        WHEN NVL(AVG(CINEMA_GRADE), 0) = 0 AND NVL(AVG(MENU_GRADE), 0) <> 0 THEN ROUND(NVL(AVG(MENU_GRADE), 0),1)
+		        WHEN NVL(AVG(CINEMA_GRADE), 0) <> 0 AND NVL(AVG(MENU_GRADE), 0) = 0 THEN ROUND(NVL(AVG(CINEMA_GRADE), 0),1)
+		        ELSE ROUND((NVL(AVG(CINEMA_GRADE), 0) + NVL(AVG(MENU_GRADE), 0)) / 2, 1)
+		    END AS SUM_CINEMA_GRADE
+		]]>
+		FROM CINEMA
+		     LEFT JOIN CINEMA_EVALUATION USING(CINEMA_NO)
+		     LEFT JOIN MENU_STATUS USING(CINEMA_NO)
+		     LEFT JOIN MENU_RECOMMEND USING(SNACK_CINEMA_NO)
+		WHERE CINEMA_EV_DEL_YN ='N'
+		GROUP BY CINEMA_NO
+		HAVING CINEMA_NO = (SELECT CINEMA_NO
+			  					   FROM CINEMA 
+			  					   WHERE CINEMA_NAME = #{cinemaName})  
+  	</select>
+  	
+  	
+  	
   	
   	
   	

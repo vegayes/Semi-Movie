@@ -623,7 +623,9 @@
             
 			
 		</script>
-
+		<script src = "/movieInsight/resources/js/mypage/favorite.js"></script>	
+		<script src = "/movieInsight/resources/js/mypage/comment.js"></script>	
+		<script src = "/movieInsight/resources/js/mypage/visit.js"></script>	
         <script src = "/movieInsight/resources/js/mypage/mypage.js"></script>		
 		
 	</body>

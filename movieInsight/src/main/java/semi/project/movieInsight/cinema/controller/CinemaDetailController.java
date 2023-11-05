@@ -245,6 +245,21 @@ public class CinemaDetailController {
 	}
 	
 	
+	@ResponseBody
+	@GetMapping(value = "/comment/update", produces = "application/json; charset=UTF-8")
+	public int updateCommentCinema(String updatedContent , float commentGrade, int commentNo, Cinema cinema) {
+		System.out.println("댓글 조회 비동기 :" +  commentNo);
+		System.out.println("댓글 : " + updatedContent);
+		System.out.println("평점 : " + commentGrade);
+		
+		cinema.setCinemaCommentNo(commentNo);
+		cinema.setCinemaGrade(commentGrade);
+		cinema.setCinemaCommentContent(updatedContent);
+
+		
+		return service.updateCommentCinema(cinema);
+	}	
+	
 	
 	
 }

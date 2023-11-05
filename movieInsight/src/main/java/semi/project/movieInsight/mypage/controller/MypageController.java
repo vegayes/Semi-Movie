@@ -338,7 +338,7 @@ public class MypageController {
 	}
 	
 	
-	// 댓글 수정 팝업에서 진행하기
+	// 댓글 수정 팝업에서 진행하기 (영화)
 	@ResponseBody
 	@GetMapping(value ="/comment/update", produces = "application/json; charset=UTF-8")
 	public int updateMovieComment(String movieCommentContent, float movieGrade , int movieCommentNo , Movie movie) {
@@ -354,7 +354,7 @@ public class MypageController {
 		return service.updateMovieComment(movie);
 	}
 	
-	// 댓글 수정 팝업에서 진행하기
+	// 댓글 수정 팝업에서 진행하기 (영화관)
 	@ResponseBody
 	@GetMapping(value ="/comment2/update", produces = "application/json; charset=UTF-8")
 	public int updateCinemaComment(String cinemaCommentContent, float cinemaGrade , int cinemaCommentNo , Cinema cinema) {

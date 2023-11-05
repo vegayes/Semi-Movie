@@ -82,23 +82,20 @@ public class MovieDAO {
 		
 		System.out.println(genreList);
 		
-		if(genreList != null) {
-			
+	    if (genreList != null && !genreList.isEmpty()) {
 	        Random random = new Random();
 	        int randomIndex = random.nextInt(genreList.size());
-	
 	        String randomGenre = genreList.get(randomIndex);
-	
+
 	        System.out.println("랜덤으로 선택된 장르: " + randomGenre);
-	        
+
 	        userPreMovies = sqlSession.selectList("movieMapper.genreUser", randomGenre);
-			
-		}else {
-			// 아무것도 정보가 없는 경우
-			// 랜덤하게 뽑기
-			userPreMovies = sqlSession.selectList("movieMapper.random");
-			
-		}
+	    } else {
+	        // 아무것도 정보가 없는 경우
+	        // 랜덤하게 뽑기
+	        userPreMovies = sqlSession.selectList("movieMapper.random");
+	    }
+
 		
 		return userPreMovies;
 	}
