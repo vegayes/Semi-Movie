@@ -60,30 +60,22 @@ public class MemberServiceimpl implements MemberService{
 		//logger.error("오류");
 		Member loginMember = dao.login(inputMember);
 		
-//		if(loginMember != null) { // 아이디가 일치하는 회원이 조회된 경우
-//			
-//			// 입력한 pw,  암호화된 pw 같은지 확인
-//			
-//			// 같을 경우
-//			if(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw())) {
-//				
-//				// 비밀번호를 유지하지 않기 위해서 로그인 정보에서 제거
-//				loginMember.setMemberPw(null);
-//			
-//			} else { // 다를경우
-//				loginMember = null;
-//			}
-//			
-//			
-//		} 
-
-//		System.out.println("loginMember : "+loginMember.getMemberPw());
-//		System.out.println("로그인 비번 : "+loginMember.getMemberPw());
-
-//		
-//		System.out.println(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw()));
-	
-		
+		if(loginMember != null) { // 아이디가 일치하는 회원이 조회된 경우
+			
+			// 입력한 pw,  암호화된 pw 같은지 확인
+			
+			// 같을 경우
+			if(bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw())) {
+				
+				// 비밀번호를 유지하지 않기 위해서 로그인 정보에서 제거
+				loginMember.setMemberPw(null);
+			
+			} else { // 다를경우
+				loginMember = null;
+			}
+			
+			
+		} 
 		
 
 		return loginMember;

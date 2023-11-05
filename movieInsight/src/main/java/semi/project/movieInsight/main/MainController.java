@@ -90,15 +90,14 @@ public class MainController {
 		
            model.addAttribute("cinemaStaff", cinemaStaff);
            
-           // 영화관 정보 번호를 가져와서 다른 테이블에 있는 각각의 영화관 친절도 평점 조회 
+           // 직원 친절도 상위 점수 조회
            List<Cinema> cinemaGrade = service.selectcinemaGrade();
            
-           System.out.println(cinemaStaff);
-           
-           // 영화관 평점 더하고 평균내기 
+           model.addAttribute("cinemaGrade", cinemaGrade);
            
            // 영화관 평점 보내기
            model.addAttribute("pageType","movie");
+
 	        return "movie/home-page";
    
 

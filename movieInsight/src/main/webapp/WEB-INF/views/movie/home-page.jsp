@@ -71,29 +71,45 @@
 				<div class="swiper swiper-ls-2">
 					<div class="swiper-wrapper">
 						<ul class="kind_wrapper swiper-slide" id="cinemaList" >
-							<c:forEach var="cinema" items="${cinemaStaff}" varStatus="loop">
+							<c:forEach var="cinema" items="${cinemaGrade}" varStatus="loop">
 								<c:if test="${loop.index < 5}">
 									<li class="kind_item"><span>${cinema.cinemaName}</span>
 										<div>
-											<button>😀</button>
-											<button>😀</button>
-											<button>😀</button>
-											<button>😀</button>
-											<button>😀</button>
+										   <c:choose>
+							                    <c:when test="${cinema.cinemaGrade>= 1}">
+							                        <c:forEach begin="1" end="${cinema.cinemaGrade}">
+							                            <div class=emoji>😀</div>
+							                        </c:forEach>
+							                    </c:when>
+							                    <c:otherwise>
+							                        <button>점수 없음</button>
+							                    </c:otherwise>
+							                </c:choose>
 										</div>
 									</li>
 								</c:if>
 							</c:forEach>
 						</ul>
 						<ul class="kind_wrapper swiper-slide">
-							<li class="kind_item"><span>영화관 1</span>
-								<div>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-									<button>😀</button>
-								</div></li>
+							<c:forEach var="cinema" items="${cinemaGrade}" varStatus="loop">
+								<c:if test="${loop.index < 5}">
+									<li class="kind_item"><span>${cinema.cinemaName}</span>
+										<div>
+										   <c:choose>
+							                    <c:when test="${cinema.cinemaGrade>= 1}">
+							                        <c:forEach begin="1" end="${cinema.cinemaGrade}">
+							                            <button>😀</button>
+							                        </c:forEach>
+							                    </c:when>
+							                    <c:otherwise>
+							                        <button>점수 없음</button>
+							                    </c:otherwise>
+							                </c:choose>
+										</div>
+									</li>
+								</c:if>
+							</c:forEach>
+
 						</ul>
 						<ul class="kind_wrapper swiper-slide">
 							<li class="kind_item"><span>영화관 2</span>

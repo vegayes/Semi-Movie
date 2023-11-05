@@ -36,7 +36,7 @@ public class MemberController {
 	public String moveLogin() {
 		
 		return "member/login_signUp";
-//		return "redirect:/member/login";
+
 	}
 
 	
@@ -49,6 +49,8 @@ public class MemberController {
 		
 		
 			Member loginMember = service.login(inputMember);
+			
+			System.out.println(loginMember);
 			
 			String path = "redirect:";
 			if(loginMember != null) {
@@ -84,6 +86,7 @@ public class MemberController {
 			}else {
 				path += referer;
 				ra.addFlashAttribute("message", "아이디 또는 비밀번호 불일치");
+				return "redirect:/member/loginPage";
 				
 			}
 		
