@@ -85,7 +85,7 @@ public class CinemaDetailController {
 		 	
 		 	// 2) 영화관에서 상영중인 영화 목록 조회
 		 	List<Movie> movieList = service.selectMovieList(cinemaInfo.getCinemaNo());
-		 	//System.out.println("movieList : " + movieList);
+		 	System.out.println("영화관에서 상영중인 영화 목록 movieList : " + movieList);
 		
 		 	model.addAttribute("movieList", movieList);
 		 	
@@ -96,7 +96,7 @@ public class CinemaDetailController {
 		 	
 			// 3) 영화관에서 댓글 조회 (시설 / 직원 / 메뉴 ) 
 			List<Cinema> commentCinemaList = service.commentCinemaList(cinemaName);
-			System.out.println(commentCinemaList);
+			System.out.println("commentCinemaList : " + commentCinemaList);
 			model.addAttribute("commentCinemaList", commentCinemaList);
 		 	
 			
@@ -244,6 +244,21 @@ public class CinemaDetailController {
 		return service.selectCinemaInfo(cinemaName);
 	}
 	
+	
+	@ResponseBody
+	@GetMapping(value = "/comment/update", produces = "application/json; charset=UTF-8")
+	public int updateCommentCinema(String updatedContent , float commentGrade, int commentNo, Cinema cinema) {
+		System.out.println("댓글 조회 비동기 :" +  commentNo);
+		System.out.println("댓글 : " + updatedContent);
+		System.out.println("평점 : " + commentGrade);
+		
+		cinema.setCinemaCommentNo(commentNo);
+		cinema.setCinemaGrade(commentGrade);
+		cinema.setCinemaCommentContent(updatedContent);
+
+		
+		return service.updateCommentCinema(cinema);
+	}	
 	
 	
 	

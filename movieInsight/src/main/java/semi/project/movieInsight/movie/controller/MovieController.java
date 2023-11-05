@@ -3,6 +3,7 @@ package semi.project.movieInsight.movie.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -83,6 +84,7 @@ public class MovieController {
 		
 		System.out.println("query : " + query);
 		
+
 		
 		// 검색한 영화 목록 조회 서비스 호출
 		List<Movie> movieList = service.orderByMovieList(query);
@@ -96,6 +98,29 @@ public class MovieController {
         return "movie/search-movie";
     }
 	
+	@GetMapping("/search/random")
+    public String randomGenre(Model model,HttpServletRequest request) {
+		
+		
+        String[] genres = {"액션", "로맨스", "코미디", "드라마", "SF", "공포"};
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(genres.length); 
+        String randomGenre = genres[randomIndex]; 
+
+        System.out.println("랜덤으로 선택된 장르: " + randomGenre);
+		
+		// 검색한 영화 목록 조회 서비스 호출
+		List<Movie> movieList = service.orderRandomGenre(randomGenre);
+
+		
+		model.addAttribute("movieQuery", randomGenre);
+		model.addAttribute("movieList", movieList);
+
+		model.addAttribute("pageType", "movie");
+		
+        return "movie/search-movie";
+    }
 	
 	
 	

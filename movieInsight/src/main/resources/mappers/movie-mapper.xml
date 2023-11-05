@@ -204,6 +204,18 @@
 		,#{movieReleaseDate},#{movieAge},#{movieRunningTime},DEFAULT,DEFAULT)
 	</insert>
 	
+	<insert id="insertMovieStatus" parameterType="java.util.Map">
+		INSERT INTO MOVIE_STATUS (MOVIE_STATUS_NO, MOVIE_NO, CINEMA_NO, CINEMA_TYPE)
+	    SELECT SEQ_MOVIE_STATUS_NO.NEXTVAL, A.MOVIE_NO, A.CINEMA_NO, A.CINEMA_TYPE
+	    FROM (
+	        <foreach collection="cinemaList" item="cinema" separator=" UNION ALL ">
+	            SELECT #{insertMovieNo} as MOVIE_NO, #{cinema.cinemaNo} as CINEMA_NO, #{cinema.cinemaType} as CINEMA_TYPE
+	            FROM DUAL
+	        </foreach>
+	    ) A
+	</insert>
+	
+	
 	
 	<update id="updateMovie">
 		UPDATE MOVIE 
@@ -356,16 +368,154 @@
 	</select>
 
 
+	<!-- 헤더 '인기순' 누를 시 평점 기준으로 값 가져오기 -->
+	<select id = "orderByPopular" resultMap = "movie_rm">
+		WITH TOP AS (
+	    SELECT NVL(ROUND(AVG(MOVIE_GRADE), 1), 0) AS AVG_GRADE, MOVIE_NO
+	    FROM MOVIE_EVALUATION
+	    LEFT JOIN MOVIE USING(MOVIE_NO)
+	    WHERE MOVIE_EV_DEL_YN = 'N' AND MOVIE_DEL_YN = 'N'
+	    GROUP BY MOVIE_NO
+	    ORDER BY AVG_GRADE DESC
+	    FETCH FIRST 10 ROWS ONLY
+		)
+		SELECT M.*
+		FROM (
+		    SELECT 
+		        M.MOVIE_NO,
+		        M.MOVIE_TITLE,
+		        M.MOVIE_IMG,
+		        M.MOVIE_SUMMARY,
+		        M.MOVIE_GENRE,
+		        TO_CHAR(M.MOVIE_RELEASE_DATE, 'YYYY"년" MM"월" DD"일"') AS MOVIE_RELEASE_DATE,
+		        M.MOVIE_AGE,
+		        M.MOVIE_RUNNING_TIME,
+		        LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'A' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS ACTOR_NAMES,
+		        LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'D' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS DIRECTOR_NAMES,
+		        M.MOVIE_DEL_YN
+		    FROM MOVIE M
+		    JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+		    JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
+		    WHERE M.MOVIE_DEL_YN = 'N'
+		    GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN
+		) M
+		JOIN TOP T ON M.MOVIE_NO = T.MOVIE_NO
+	</select>
+
+
+	<!-- 최신순 정렬 -->
+	<select id = "orderByLatest" resultMap = "movie_rm">
+		WITH LATEST AS (
+		SELECT MOVIE_RELEASE_DATE  , MOVIE_NO
+		FROM MOVIE 
+		WHERE MOVIE_DEL_YN ='N'
+		ORDER BY MOVIE_RELEASE_DATE DESC 
+		FETCH FIRST 10 ROWS ONLY
+		)
+		SELECT M.*
+		FROM (
+		    SELECT 
+		        M.MOVIE_NO,
+		        M.MOVIE_TITLE,
+		        M.MOVIE_IMG,
+		        M.MOVIE_SUMMARY,
+		        M.MOVIE_GENRE,
+		        TO_CHAR(M.MOVIE_RELEASE_DATE, 'YYYY"년" MM"월" DD"일"') AS MOVIE_RELEASE_DATE,
+		        M.MOVIE_AGE,
+		        M.MOVIE_RUNNING_TIME,
+		        LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'A' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS ACTOR_NAMES,
+		        LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'D' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS DIRECTOR_NAMES,
+		        M.MOVIE_DEL_YN
+		    FROM MOVIE M
+		    JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+		    JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
+		    WHERE M.MOVIE_DEL_YN = 'N'
+		    GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN
+		) M
+		JOIN LATEST L ON M.MOVIE_NO = L.MOVIE_NO 
+	</select>
+
+	<!--  장르별 랜덤하게 뽑기  -->
+	<select id = "orderByGenre" resultMap = "movie_rm">
+		WITH GENRE AS (
+		SELECT MOVIE_NO 
+		FROM MOVIE 
+		WHERE MOVIE_DEL_YN = 'N' AND MOVIE_GENRE LIKE '%' || #{randomGenre}|| '%'
+		FETCH FIRST 10 ROWS ONLY
+		)
+		SELECT M.*
+		FROM (
+		    SELECT 
+		        M.MOVIE_NO,
+		        M.MOVIE_TITLE,
+		        M.MOVIE_IMG,
+		        M.MOVIE_SUMMARY,
+		        M.MOVIE_GENRE,
+		        TO_CHAR(M.MOVIE_RELEASE_DATE, 'YYYY"년" MM"월" DD"일"') AS MOVIE_RELEASE_DATE,
+		        M.MOVIE_AGE,
+		        M.MOVIE_RUNNING_TIME,
+		        LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'A' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS ACTOR_NAMES,
+		        LISTAGG(CASE WHEN C.CASTING_CATEGORY = 'D' THEN C.CASTING_NAME ELSE NULL END, ' / ') WITHIN GROUP (ORDER BY C.CASTING_NAME) AS DIRECTOR_NAMES,
+		        M.MOVIE_DEL_YN
+		    FROM MOVIE M
+		    JOIN MOVIE_CASTING MC ON M.MOVIE_NO = MC.MOVIE_NO
+		    JOIN CASTING C ON MC.CASTING_NO = C.CASTING_NO
+		    WHERE M.MOVIE_DEL_YN = 'N'
+		    GROUP BY M.MOVIE_NO, M.MOVIE_TITLE, M.MOVIE_IMG, M.MOVIE_SUMMARY, M.MOVIE_GENRE, M.MOVIE_RELEASE_DATE, M.MOVIE_AGE, M.MOVIE_RUNNING_TIME, M.MOVIE_DEL_YN
+		) M
+		JOIN GENRE G ON M.MOVIE_NO = G.MOVIE_NO 
+	</select>
+
+	<!-- user가 어떤거에 관심있는지 뽑기  -->
+	<select id = "genreList" resultType = "string">
+		SELECT
+		DISTINCT TRIM(REGEXP_SUBSTR(MOVIE_GENRE, '[^/]+', 1, LEVEL)) AS GENRE
+		FROM (
+		    SELECT MOVIE_GENRE, MOVIE_NO
+		    FROM VISIT
+		    LEFT JOIN MOVIE USING(MOVIE_NO)
+		    WHERE MEMBER_NO = #{memberNo}
+		    UNION ALL
+		    SELECT MOVIE_GENRE, MOVIE_NO
+		    FROM MOVIE_LIKE 
+		    LEFT JOIN MOVIE USING(MOVIE_NO)
+		    WHERE MEMBER_NO = #{memberNo}
+		) combined_result
+        <![CDATA[
+		CONNECT BY LEVEL <= REGEXP_COUNT(MOVIE_GENRE, '/') + 1
+		 ]]>
+	</select>
 	
+	<!-- 관심있는게 있으면 그거 기준으로 뽑기  -->
+	<select id = "genreUser" resultMap = "movie_rm">
+		SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_GENRE, MOVIE_IMG
+		FROM (
+		    SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_GENRE, MOVIE_IMG
+		    FROM MOVIE
+		    WHERE MOVIE_GENRE LIKE '%' || #{randomGenre} || '%'
+		    AND MOVIE_DEL_YN ='N'
+		    ORDER BY DBMS_RANDOM.VALUE
+		)
+		<![CDATA[
+		WHERE ROWNUM <= 5
+		]]>
+	</select>
+	
+	<!-- 아무거나 랜덤하게 뽑기 -->
+	<select id = "random" resultMap = "movie_rm">
+		SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_GENRE, MOVIE_IMG
+		FROM (
+		    SELECT MOVIE_NO, MOVIE_TITLE, MOVIE_GENRE, MOVIE_IMG
+		    FROM MOVIE
+		    WHERE MOVIE_DEL_YN ='N'
+		    ORDER BY DBMS_RANDOM.VALUE
+		)
+		<![CDATA[
+		WHERE ROWNUM <= 10
+		]]>
+	</select>
 
-
-
-
-
-
-
-
-
+	
 
 </mapper>
 

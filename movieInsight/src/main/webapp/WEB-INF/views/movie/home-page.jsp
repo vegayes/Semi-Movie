@@ -183,24 +183,27 @@
 			
 
 			</div>
-            <sec:authorize access="isAuthenticated()">
-			<section class="movie_list swiper main-10">
-				<span class="section_title">User 맞춤 영상</span>
-				<ul class="movie_list swiper-wrapper">
-					<c:forEach var="userPref" items="${userPrefMovies}">
-						<li class="movie_item swiper-slide"><a
-							href="/movieInsight/movie/${userPref.movieNo}"> <span
-								class="detail_text">상세보기</span>
-						</a> <img src="/movieInsight/resources/images/movie/${action.movieImg}"
-							width="100%" height="100%" style="object-fit: cover" /></li>
-					</c:forEach>
-				</ul>
+			<c:if test="${not empty loginMember}">
+	            <sec:authorize access="isAuthenticated()">
+				<section class="movie_list swiper main-10">
+					<span class="section_title" style = "color : #ffd500; font-weight:bold;">User 맞춤 영상</span>
+					<ul class="movie_list swiper-wrapper">
+						<c:forEach var="userPref" items="${userPrefMovies}">
+							<li class="movie_item swiper-slide"><a
+								href="/movieInsight/movie/${userPref.movieNo}"> <span
+									class="detail_text">상세보기</span>
+							</a> <img src="/movieInsight/resources/images/movie/${userPref.movieImg}"
+								width="100%" height="100%" style="object-fit: cover" /></li>
+						</c:forEach>
+					</ul>
+	
+					<!-- If we need navigation buttons -->
+					<div class="swiper-button-prev main-1-p"></div>
+					<div class="swiper-button-next main-1-n"></div>
+				</section>
+				</sec:authorize>			
+			</c:if>
 
-				<!-- If we need navigation buttons -->
-				<div class="swiper-button-prev main-1-p"></div>
-				<div class="swiper-button-next main-1-n"></div>
-			</section>
-			</sec:authorize>
 			
 			<section class="movie_list swiper main-2">
 				<span class="section_title">최신순</span>

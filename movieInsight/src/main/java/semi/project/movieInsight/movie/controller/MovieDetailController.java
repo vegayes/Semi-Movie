@@ -34,6 +34,7 @@ import semi.project.movieInsight.common.CookieUrlClass;
 import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieDetailService;
+import semi.project.movieInsight.mypage.service.MypageService;
 
 
 @Controller
@@ -52,7 +53,7 @@ public class MovieDetailController {
 	 * @throws IOException 
 	 * @throws ServletException 
 	 */
-
+	
 
 //	@GetMapping("/movie/{movieNo}")
 
@@ -236,6 +237,26 @@ public class MovieDetailController {
 	public Movie updateGrade(int movieNo) {
 		return service.selectMovie(movieNo);
 	}
+	
+	/** 댓글 수정
+	 * @param memberNo
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping(value = "/comment/update", produces = "application/json; charset=UTF-8")
+	public int updateCommentMovie(String updatedContent , float commentGrade, int commentNo, Movie movie) {
+		System.out.println("댓글 조회 비동기 :" +  commentNo);
+		System.out.println("댓글 : " + updatedContent);
+		System.out.println("평점 : " + commentGrade);
+		
+		movie.setMovieCommentNo(commentNo);
+		movie.setMovieGrade(commentGrade);
+		movie.setMovieCommentContent(updatedContent);
+
+		
+		return service.updateCommentMovie(movie);
+	}	
+	
 	
 	
 }

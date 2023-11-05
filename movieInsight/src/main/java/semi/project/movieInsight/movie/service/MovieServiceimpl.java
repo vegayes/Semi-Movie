@@ -77,11 +77,31 @@ public class MovieServiceimpl implements MovieService{
 
 
 	/**
-	 * header의 정렬 클릭 시 
+	 * header의 정렬 클릭 시  (인기순, 최신순)
 	 */
 	@Override
 	public List<Movie> orderByMovieList(String query) {
 		return dao.orderByMovieList(query);
+	}
+
+
+
+	/**
+	 * header의 정렬 클릭 시 장르별 추천
+	 */
+	@Override
+	public List<Movie> orderRandomGenre(String randomGenre) {
+		return dao.orderRandomGenre(randomGenre);
+	}
+
+
+
+	/**
+	 * 유저 추천 순
+	 */
+	@Override
+	public List<Movie> userPreMovies(int memberNo) {
+		return dao.userPreMovies(memberNo);
 	}
  
 	

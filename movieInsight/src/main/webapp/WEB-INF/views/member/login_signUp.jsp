@@ -63,6 +63,7 @@
 	                            placeholder="Your ID"
 	                            id="memberId"
 	                            autocomplete="off"
+								value="${cookie.saveId.value}"
 	                          />
 	                          <i class="input-icon uil uil-at"></i>
 	                        </div>
@@ -82,17 +83,11 @@
 	                          />
 	                          <i class="input-icon uil uil-lock-alt"></i>
 	                        </div>
-	                        <label
-	                          style="
-	                            color: black;
-	                            margin-bottom: 12px;
-	                            display: block;
-	                          "
-	                        >
-	                          <input
-	                            type="checkbox"
-	                            style="position: relative; left: 0"
-	                          />
+	                        <label style="color: black; margin-bottom: 12px; display: block;">
+								<c:if test="${not empty cookie.saveId.value}">
+									<c:set var="save" value="checked"/>
+								</c:if>
+									<input type="checkbox" name="saveId" style="position: relative; left: 0" ${save}/>
 	                          Remember ID
 	                        </label>
 	                         <button type="submit"class="btn mt-4">LOGIN</button>
@@ -169,7 +164,7 @@
 							                    <button id="checkAuthKeyBtn" type="button">인증확인</button>
 					            		   </div>
 			                        </div>
-			                        <div class="form-group mt-2">
+			                        <div class="Gender">
 			                          <h5 class="labela">NICKNAME</h5>
 			
 			                          <input
@@ -180,7 +175,7 @@
 			                            id="member_Nickname"
 			                            autocomplete="off"
 			                          />
-                                <P id="nickMessage">메세지</P>
+                                <P id="nickMessage"></P>
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
 			                        <div class="form-group mt-2">
@@ -188,10 +183,15 @@
 			
 			                          <!-- <button class="gender" id="genderM" type="button" name="memberGender" value="M">남자</button>
 			                          <button class="gender" id="genderF" type="button" name="memberGender" value="F">여자</button> -->
+										<label class="GenderM">
+											<p class="boy">남자</p> <input type="radio" class="gender" id="genderM" type="button" name="memberGender" value="M" style="width: 1em; height: 1.25em; border: 0.1em solid gray;">
+										</label>
+										
+										<label class="GenderF">
+											<p class="girl">여자</p> <input type="radio" class="gender" id="genderF" type="button" name="memberGender" value="F" style="width: 1em; height: 1.25em; border: 0.1em solid gray;">
+										</label>
 
-                                <input type="radio" class="gender" id="genderM" type="button" name="memberGender" value="M">남자
-                                <input type="radio" class="gender" id="genderF" type="button" name="memberGender" value="F">여자
-			                          <i class="input-icon uil uil-lock-alt"></i>
+											<i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
                               <button id="signUpBut" class="btn mt-4 blue" type="submit">SIGN UP</button>
 			                    </form>    
@@ -202,6 +202,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

@@ -193,7 +193,7 @@ function selectFacilityCommentList() {
         .then(response => response.json()) 
         .then(list => {
             console.log(list);
-            console.log("그만하고싶은데 좀 나와주겠니?");
+            
             const commentListTable = document.getElementById('comment-list-table-facility');
             commentListTable.innerHTML = ''; // 기존 테이블 내용 초기화
 
@@ -202,12 +202,20 @@ function selectFacilityCommentList() {
                     const gradeTr = document.createElement('tr');
                     gradeTr.classList.add('comment-grade-tr');
                     const gradeTd = document.createElement('td');
-                    gradeTd.innerText = `평점 ${comment.cinemaGrade}`;
+                    // gradeTd.innerText = `평점 ${comment.cinemaGrade}`;
+                    // gradeTr.appendChild(gradeTd);
+                    gradeTd.innerText = `평점`;
+
+                    const gradeSpan = document.createElement('span');
+                    gradeSpan.setAttribute('data-cinemaGrade', `${comment.cinemaGrade}`);
+                    gradeSpan.classList.add('commentCinemaGrade');
+                    gradeSpan.innerText = comment.cinemaGrade;
                     gradeTr.appendChild(gradeTd);
+                    gradeTr.appendChild(gradeSpan);   
     
                     const contentTr = document.createElement('tr');
                     contentTr.classList.add('comment-content-tr');
-                    contentTr.style.border = '2px solid red';
+                    // contentTr.style.border = '2px solid red';
     
                     const imgTd = document.createElement('td');
                     imgTd.classList.add('comment-img');
@@ -224,7 +232,8 @@ function selectFacilityCommentList() {
                     idTd.innerText = `${comment.commentCinemaWriter} : `;
     
                     const contentTd = document.createElement('td');
-                    contentTd.classList.add('comment-list-content', 'comment-content');
+                    contentTd.classList.add('comment-list-content');
+                    contentTd.classList.add('comment-content');
                     contentTd.innerText = comment.cinemaCommentContent;
     
                     const dateTd = document.createElement('td');
@@ -241,7 +250,7 @@ function selectFacilityCommentList() {
                         editBtn.classList.add('editBtn');
                         editBtn.innerText = '수정';
                         editBtn.onclick = function() {
-                            updateCommentModal(comment.cinemaCommentNo);
+                            updateComment(comment.cinemaCommentNo);
                         };
     
                         const deleteBtn = document.createElement('button');
@@ -278,7 +287,6 @@ function selectGoodCommentList() {
         .then(response => response.json()) 
         .then(list => {
             console.log(list);
-            console.log("그만하고싶은데 좀 나와주겠니?");
             const commentListTable = document.getElementById('comment-list-table-good');
             commentListTable.innerHTML = ''; // 기존 테이블 내용 초기화
 
@@ -287,12 +295,21 @@ function selectGoodCommentList() {
                     const gradeTr = document.createElement('tr');
                     gradeTr.classList.add('comment-grade-tr');
                     const gradeTd = document.createElement('td');
-                    gradeTd.innerText = `평점 ${comment.cinemaGrade}`;
+                    // gradeTd.innerText = `평점 ${comment.cinemaGrade}`;
+                    // gradeTr.appendChild(gradeTd);
+                    gradeTd.innerText = `평점`;
+
+                    const gradeSpan = document.createElement('span');
+                    gradeSpan.setAttribute('data-cinemaGrade', `${comment.cinemaGrade}`);
+                    gradeSpan.classList.add('commentCinemaGrade');
+                    gradeSpan.innerText = comment.cinemaGrade;
                     gradeTr.appendChild(gradeTd);
-                
+                    gradeTr.appendChild(gradeSpan);                
+
+
                     const contentTr = document.createElement('tr');
                     contentTr.classList.add('comment-content-tr');
-                    contentTr.style.border = '2px solid red';
+                    // contentTr.style.border = '2px solid red';
                 
                     const imgTd = document.createElement('td');
                     imgTd.classList.add('comment-img');
@@ -309,7 +326,8 @@ function selectGoodCommentList() {
                     idTd.innerText = `${comment.commentCinemaWriter} : `;
                 
                     const contentTd = document.createElement('td');
-                    contentTd.classList.add('comment-list-content', 'comment-content');
+                    contentTd.classList.add('comment-list-content');
+                    contentTd.classList.add('comment-content');
                     contentTd.innerText = comment.cinemaCommentContent;
                 
                     const dateTd = document.createElement('td');
@@ -326,7 +344,7 @@ function selectGoodCommentList() {
                         editBtn.classList.add('editBtn');
                         editBtn.innerText = '수정';
                         editBtn.onclick = function() {
-                            updateCommentModal(comment.cinemaCommentNo);
+                            updateComment(comment.cinemaCommentNo);
                         };
                 
                         const deleteBtn = document.createElement('button');
@@ -597,29 +615,7 @@ function deleteComment(cinemaCommentNo){
     }
 }
 
-  
-    
-// 댓글 수정 (아직 안함) btn이 왜 있었지?
-function updateComment(commentNo){
-
-    // 새로 작성된 댓글 내용 얻어오기
-    const commentContent = btn.parentElement.previousElementSibling.value;
-
-
-    fetch("/commnet/update?commentContent="+commentContent + "&commentNo="+commentNo)
-    .then(resp => resp.text())
-    .then(result => {
-        if(result > 0){
-            alert("댓글이 수정되었습니다.");
-            selectCinemaCommentList();
-            selectGoodCommentList();
-        }else{
-            alert("댓글 수정 실패");
-        }
-    })
-    .catch(err => console.log(err));
-
-}
+ 
 
 /*
 // 베스트 메뉴 다시 조회 (ajax) 
@@ -857,54 +853,107 @@ menuComment.addEventListener("click", e => {
 });
 
 
+// 수정하기 (영화관)
+function updateComment(commentNo) {
+    console.log("수정하기");
+    console.log(commentNo);
+
+    const commentContentTdList = document.querySelectorAll('.comment-content-tr .comment-list-content');
+    const gradeElementList = document.querySelectorAll(`.comment-grade-tr .commentCinemaGrade`);
+    const editButton = document.querySelectorAll(".editBtn");
+
+    var commentListIdElement = document.querySelectorAll('.comment-list-id'); // 해당 요소를 가져옵니다.
+    var commentIds = [];
+    commentListIdElement.forEach(function(comment) {
+        var id = comment.innerText.replace(" :",""); // 각 댓글의 data-id 값을 가져옵니다.
+        commentIds.push(id); // 배열에 추가합니다.
+      });
 
 
+    console.log("댓글 작성자 : " + commentIds);
+    console.log("개수 : " + editButton.length);
+    console.log("grade요소 확인 : " + gradeElementList);
 
+    for (let i = 0, k = 0; i < commentContentTdList.length; i++) {
 
+        const currentCommentNo = commentContentTdList[i].getAttribute('data-commentNo');
+        console.log("수정 No : " + currentCommentNo);
+        console.log("시작 인덱스 " + i);
 
+        if (parseInt(currentCommentNo) === commentNo) {
+            const commentContent = commentContentTdList[i].innerText;
+            const grade = gradeElementList[i].innerText;
+            const gradeContent = parseFloat(grade);
 
+            console.log("수정전 내용 : " + commentContent);
+            console.log("수정전 평점  : " + gradeContent);
 
+            // 입력창 교체
+            const inputElement = document.createElement("input"); 
+            inputElement.type = "text";
+            inputElement.value = commentContent.trimLeft();
+            
+            console.log("교체된 값 : " + inputElement.value);
+            console.log("교체된 값 : " + inputElement.value.trimLeft());
 
-function updateComment(commentNo){
-    document.addEventListener("DOMContentLoaded", function () {
-        const editButtons = document.querySelectorAll('.editBtn');
+            const gradeInput = document.createElement("input");
+            gradeInput.type = "number";
+            gradeInput.value = gradeContent;
 
-        editButtons.forEach((button) => {
-            button.addEventListener('click', function () {
-                const commentContentTd = this.parentElement.parentElement.querySelector('.comment-list-content');
-                const commentContent = commentContentTd.innerText;
+            gradeElementList[i].textContent  = "";
+            gradeElementList[i].appendChild(gradeInput);
+        
+            commentContentTdList[i].textContent  = "";
+            commentContentTdList[i].appendChild(inputElement);
 
-                // Create an input element
-                const inputElement = document.createElement('input');
-                inputElement.type = 'text';
-                inputElement.value = commentContent;
+            inputElement.focus();
 
-                // Replace the td content with the input element
-                commentContentTd.innerHTML = '';
-                commentContentTd.appendChild(inputElement);
+            const saveButton = document.createElement("button");
+            saveButton.classList.add('saveBtn');
+            saveButton.innerText = "제출";
+            saveButton.onclick = function() {
+                const updatedContent = inputElement.value;
+                const updatedGrade = gradeInput.value;
+        
+                console.log("수정된 내용 : " + updatedContent);
+                console.log("수정된 평점 : " + updatedGrade);
+        
+                fetch("/movieInsight/cinemaDetail/comment/update?updatedContent=" + updatedContent + "&commentGrade=" + updatedGrade + "&commentNo=" + commentNo)
+                .then(response => response.json()) 
+                .then(update => {
+                    console.log(update);
+                    console.log("뭐 ; " + commentNo);
+        
+                    if(update >0 ){
+                        alert("댓글이 수정되었습니다.");
 
-                // Add event listener to save changes when Enter is pressed
-                inputElement.addEventListener('keyup', function (event) {
-                    if (event.key === 'Enter') {
-                        // Save changes and update the server with AJAX or form submission
-                        const newCommentContent = this.value;
-
-                        console.log("수정할 댓글내용 : ", newCommentContent)
-                        // Restore td content
-                        
+                        selectFacilityCommentList();
+                        selectGoodCommentList();
+                        selectCinemaGradeUpdate();
+                    }else{
+                        alert("댓글 수정에 오류가 발생하였습니다.");
                     }
-                });
+        
+        
+                })
+                .catch(err => console.error(err));
+            };
+            console.log("안녕 " + i);
+            editButton[k].replaceWith(saveButton);
+        }
+        console.log(commentIds[i]);
+        console.log(memberId);
+        console.log(commentIds[i] === memberId);
+        if(commentIds[i] === memberId){
+            k++;
+        }
+        console.log("k :" + k);
 
-                this.addEventListener('click', function () {
-                    const newCommentContent = inputElement.value;
-                    console.log("수정할 댓글내용 : ", newCommentContent)
-                
-                    console.log(commentNo);
+    }
 
-
-
-                });
-            });
-        });
-    });
+    
 }
+
+
+
+

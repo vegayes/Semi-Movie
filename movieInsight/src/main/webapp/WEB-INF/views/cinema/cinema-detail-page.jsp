@@ -199,12 +199,11 @@
                     
                         <%-- 2) 검색 결과가 존재하는 경우 --%>
                 <c:otherwise> 
-                    
-                    <c:forEach items = "${movieList}"  var="movie" >
-                        <div class="screening_movie_detail">
+                    <div class="screening_movie_detail">
+                        <c:forEach items = "${movieList}"  var="movie" >
                             <a href="/movieInsight/movie/${movie.movieNo}">
                                 <div>
-
+                                    
                                     <div>			
                                         <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
                                     </div>
@@ -220,8 +219,9 @@
 
                                 </div>
                             </a>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </div>
+                       
                 </c:otherwise>
                     
             </c:choose>
@@ -240,7 +240,7 @@
 	                	<c:forEach items = "${commentCinemaList}" var="facility">
 	                		<c:if test ="${facility.cinemaCommentType eq '시설'}">
 	                			<tr class = "comment-grade-tr">
-		                			<td>평점 ${facility.cinemaGrade}</td>
+		                			<td>평점 <span data-cinemaGrade="${facility.cinemaGrade}" class = "commentCinemaGrade">${facility.cinemaGrade}</span></td>
 		                		</tr>
 		                		<tr class = "comment-content-tr" >
 		                			 <td class = "comment-img">
@@ -257,8 +257,8 @@
 	                                 <td class = "comment-list-id">
 	                                 	${facility.commentCinemaWriter} : 
 	                                 </td>
-	                                  <td class = "comment-list-content comment-content">${facility.cinemaCommentContent}</td>
-	                                  <td class = "comment-list-date">${facility.cinemaCommentDate} ${facility.cinemaCommentNo}</td>
+	                                  <td class = "comment-list-content comment-content" data-commentNo="${facility.cinemaCommentNo}">${facility.cinemaCommentContent}</td>
+	                                  <td class = "comment-list-date">${facility.cinemaCommentDate}</td>
 	                                  <td class = "comment-list-edit">
 	                                  	<c:if test = "${facility.commentCinemaWriter eq sessionScope.loginMember.memberId}">
 	    	                            	<button class="editBtn" onclick="updateComment(${facility.cinemaCommentNo})" >수정</button>
@@ -308,10 +308,9 @@
                 <div class="combody">
                     <table class = "comment-list-table"  id = "comment-list-table-good">
 	                	<c:forEach items = "${commentCinemaList}" var="comment">
-	                		
 	                		<c:if test ="${comment.cinemaCommentType eq '친절도'}">
 	                			<tr class = "comment-grade-tr">
-		                			<td>평점 ${comment.cinemaGrade}</td>
+	                				<td>평점 <span data-cinemaGrade="${comment.cinemaGrade}" class = "commentCinemaGrade">${comment.cinemaGrade}</span></td>
 		                		</tr>
 		                		<tr class = "comment-content-tr" >
 		                			 <td class = "comment-img">
@@ -328,11 +327,11 @@
 	                                 <td class = "comment-list-id">
 	                                 	${comment.commentCinemaWriter} : 
 	                                 </td>
-	                                  <td class = "comment-list-content comment-content">${comment.cinemaCommentContent}</td>
+	                                  <td class = "comment-list-content comment-content" data-commentNo="${comment.cinemaCommentNo}">${comment.cinemaCommentContent}</td>
 	                                  <td class = "comment-list-date">${comment.cinemaCommentDate}</td>
 	                                  <td class = "comment-list-edit">
 	                                  	<c:if test = "${comment.commentCinemaWriter eq sessionScope.loginMember.memberId}">
-	    	                            	<button class="editBtn" >수정</button>
+	    	                            	<button class="editBtn" onclick="updateComment(${comment.cinemaCommentNo})">수정</button>
 			                            	<button class="deletBtn" onclick="deleteComment(${comment.cinemaCommentNo})">삭제</button>                              	
 	                                  	</c:if>
 	                                  </td>

@@ -153,6 +153,7 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 	/**
 	 * 방문기록 남기기 
 	 */
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int visitMovie(int memberNo, int movieNo) {
 		
@@ -162,6 +163,18 @@ public class MovieDetailServiceImpl implements MovieDetailService{
 		visitInfo.put("movieNo", movieNo);
 		
 		return dao.visitMovie(visitInfo);
+	}
+
+	/**
+	 * 댓글 수정
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateCommentMovie(Movie movie) {
+		// 0. XSS 방지 처리 
+		movie.setMovieCommentContent(Util.XSSHandling(movie.getMovieCommentContent()));
+		
+		return dao.updateCommentMovie(movie);
 	}
 	
 	
