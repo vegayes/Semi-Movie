@@ -62,5 +62,11 @@ public interface CinemaDetailService {
 	 */
 	int insertMenuGrade(Menu menu);
 
+	/** 영화관 댓글 수정 
+	 * @param cinema
+	 * @return
+	 */
+	int updateCommentCinema(Cinema cinema);
+
 
 }

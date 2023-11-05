@@ -142,54 +142,58 @@ function selectMovieGradeUpdate() {
     .catch(err => console.error(err));
 }
 
-
+/*
 function updateComment(commentNo) {
-    var commentContentElement = document.querySelector('.comment-content-tr:nth-child(' + commentNo + ') .comment-list-content');
-    var commentContent = commentContentElement.innerText;
-    var inputElement = document.createElement('input');
-    inputElement.type = 'text';
-    inputElement.value = commentContent;
-    commentContentElement.innerHTML = '';
-    commentContentElement.appendChild(inputElement);
-}
+    console.log("수정하기");
+    console.log(commentNo);
+
+    // const commentContentTd = document.querySelector(".comment-list-content");
+    const commentContentTd = document.querySelectorAll(`.comment-content-tr .comment-list-content`);
+    console.log("수정 할 td" + commentContentTd);
+
+    for(let i = 0; i < commentContentTd.length ; i++){
+        commentContentTd[i].getAttribute('data-commentNo');
+        console.log("수정 No : " +commentContentTd[i].getAttribute('data-commentNo') );
+        if(commentContentTd[i].getAttribute('data-commentNo') === commentNo){
+            console.log("수정할 수 있음.");
+            const commentContent = commentContentTd[i].innerText;
+            console.log("댓글 수정 내용 : "+ commentContent);
+        }
 
 
-// 영화 각 평점  아이콘
-function memberGrade(grade) {
-    var fullIcons = Math.floor(grade); //정수
-    var partialIconPercentage = Math.floor(grade % 1 * 100);  // 소수
-    var padding = 20;
-
-    var gradeContainer = document.querySelector('.memberGrade');
-    gradeContainer.innerHTML = ''; // 기존의 아이콘을 모두 제거
-
-    // 정수 
-    for (var i = 0; i < fullIcons; i++) {
-        var icon = document.createElement('i');
-        icon.classList.add('fa-solid', 'fa-clapperboard', 'filled', 'grade-container-member');
-        gradeContainer.appendChild(icon);
     }
 
-    // 소수
-    if (partialIconPercentage > 0) {
-        var partialIcon = document.createElement('i');
-        partialIcon.classList.add('fa-solid', 'fa-clapperboard', 'filled', 'grade-container-member');
-        partialIcon.style.clipPath = 'polygon(0% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 100%, 0% 100%)';
-        gradeContainer.appendChild(partialIcon);
-    }
-}
+    const saveButton = document.createElement("button");
+    saveButton.classList.add('saveBtn');
+    saveButton.innerText = "제출";
+    saveButton.onclick = function() {
+        const updatedContent = inputElement.value;
+        const updatedGrade = gradeInput.value;
 
-document.addEventListener('DOMContentLoaded', function() {
-    var memberGrades = document.querySelectorAll('.memberGrade');
+        console.log("수정된 내용 : " + updatedContent);
+        console.log("수정된 평점 : " + updatedGrade);
 
-    memberGrades.forEach(function(gradeElement) {
-        var grade = gradeElement.getAttribute('data-movieGrade');
-        memberGrade(grade, gradeElement);
-    });
-});
+        fetch("/movieInsight/movie/comment/update?updatedContent=" + updatedContent + "&commentGrade=" + commentGrade + "&commentNo=" + commentNo)
+        .then(response => response.json()) 
+        .then(update => {
 
-  
+            console.log(update);
 
+            if(update >0 ){
+                alert("댓글이 수정되었습니다.");
+            }else{
+                alert("댓글 수정에 오류가 발생하였습니다.");
+            }
+
+
+        })
+        .catch(err => console.error(err));
+    };
+
+    // const editButton = document.querySelector(`.editBtn[data-commentNo="${commentNo}"]`);
+    // editButton.replaceWith(saveButton);
+
+}*/
 
 
 function selectMovieCommentList() {
@@ -206,12 +210,18 @@ function selectMovieCommentList() {
                 const gradeTr = document.createElement('tr');
                 gradeTr.classList.add('comment-grade-tr');
                 const gradeTd = document.createElement('td');
-                gradeTd.innerText = `평점 ${comment.movieGrade}`;
+                gradeTd.innerText = `평점`;
+
+                const gradeSpan = document.createElement('span');
+                gradeSpan.setAttribute('data-movieGrade', `${comment.movieGrade}`);
+                gradeSpan.classList.add('commentMovieGrade');
+                gradeSpan.innerText = comment.movieGrade;
                 gradeTr.appendChild(gradeTd);
+                gradeTr.appendChild(gradeSpan);
 
                 const contentTr = document.createElement('tr');
                 contentTr.classList.add('comment-content-tr');
-                contentTr.style.border = '2px solid blue';
+                // contentTr.style.border = '2px solid blue';
 
                 const imgTd = document.createElement('td');
                 imgTd.classList.add('comment-img');
@@ -228,7 +238,9 @@ function selectMovieCommentList() {
                 idTd.innerText = `${comment.commentMovieWriter} : `;
 
                 const contentTd = document.createElement('td');
-                contentTd.classList.add('comment-list-content', 'comment-content');
+                contentTd.classList.add('comment-list-content');
+                // contentTd.classList.add('comment-content');
+                contentTd.setAttribute('data-commentNo', `${comment.movieCommentNo}`);
                 contentTd.innerText = comment.movieCommentContent;
 
                 const dateTd = document.createElement('td');
@@ -273,6 +285,143 @@ function selectMovieCommentList() {
         })
         .catch(err => console.log(err));
 }
+
+
+
+function updateComment(commentNo) {
+    console.log("수정하기");
+    console.log(commentNo);
+
+    const commentContentTdList = document.querySelectorAll('.comment-content-tr .comment-list-content');
+    const gradeElementList = document.querySelectorAll(`.comment-grade-tr .commentMovieGrade`);
+    const editButton = document.querySelectorAll(".editBtn");
+
+    var commentListIdElement = document.querySelectorAll('.comment-list-id'); // 해당 요소를 가져옵니다.
+    var commentIds = [];
+    commentListIdElement.forEach(function(comment) {
+        var id = comment.innerText.replace(" :",""); // 각 댓글의 data-id 값을 가져옵니다.
+        commentIds.push(id); // 배열에 추가합니다.
+      });
+
+
+    console.log("댓글 작성자 : " + commentIds);
+    console.log("개수 : " + editButton.length);
+    console.log("grade요소 확인 : " + gradeElementList);
+
+    for (let i = 0 , k = 0; i < commentContentTdList.length; i++) {
+        const currentCommentNo = commentContentTdList[i].getAttribute('data-commentNo');
+        console.log("수정 No : " + typeof currentCommentNo);
+
+        console.log("내가 누른 인덱스 번호 : " + i);
+
+        if (parseInt(currentCommentNo) === commentNo) {
+            const commentContent = commentContentTdList[i].innerText;
+            const grade = gradeElementList[i].innerText;
+            const gradeContent = parseFloat(grade);
+
+            console.log("수정전 내용 : " + commentContent);
+            console.log("수정전 평점  : " + gradeContent);
+
+            // 입력창 교체
+            const inputElement = document.createElement("input"); 
+            inputElement.type = "text";
+            inputElement.value = commentContent.trimLeft();
+            
+            console.log("교체된 값 : " + inputElement.value);
+            console.log("교체된 값 : " + inputElement.value.trimLeft());
+
+            const gradeInput = document.createElement("input");
+            gradeInput.type = "number";
+            gradeInput.value = gradeContent;
+
+            gradeElementList[i].textContent  = "";
+            gradeElementList[i].appendChild(gradeInput);
+        
+            commentContentTdList[i].textContent  = "";
+            commentContentTdList[i].appendChild(inputElement);
+
+            inputElement.focus();
+
+            const saveButton = document.createElement("button");
+            saveButton.classList.add('saveBtn');
+            saveButton.innerText = "제출";
+            saveButton.onclick = function() {
+                const updatedContent = inputElement.value;
+                const updatedGrade = gradeInput.value;
+        
+                console.log("수정된 내용 : " + updatedContent);
+                console.log("수정된 평점 : " + updatedGrade);
+        
+                fetch("/movieInsight/movie/comment/update?updatedContent=" + updatedContent + "&commentGrade=" + updatedGrade + "&commentNo=" + commentNo)
+                .then(response => response.json()) 
+                .then(update => {
+                    console.log(update);
+        
+                    if(update >0 ){
+                        alert("댓글이 수정되었습니다.");
+                        selectMovieCommentList();
+                        selectMovieGradeUpdate();
+                    }else{
+                        alert("댓글 수정에 오류가 발생하였습니다.");
+                    }
+        
+        
+                })
+                .catch(err => console.error(err));
+            };
+            console.log("안녕 " + i);
+            editButton[k].replaceWith(saveButton);
+        }
+        console.log(commentIds[i]);
+        console.log(memberId);
+        console.log(commentIds[i] === memberId);
+        if(commentIds[i] === memberId){
+            k++;
+        }
+        console.log("k :" + k);
+    }
+}
+
+
+
+// 영화 각 평점  아이콘
+function memberGrade(grade) {
+    var fullIcons = Math.floor(grade); //정수
+    var partialIconPercentage = Math.floor(grade % 1 * 100);  // 소수
+    var padding = 20;
+
+    var gradeContainer = document.querySelector('.memberGrade');
+    gradeContainer.innerHTML = ''; // 기존의 아이콘을 모두 제거
+
+    // 정수 
+    for (var i = 0; i < fullIcons; i++) {
+        var icon = document.createElement('i');
+        icon.classList.add('fa-solid', 'fa-clapperboard', 'filled', 'grade-container-member');
+        gradeContainer.appendChild(icon);
+    }
+
+    // 소수
+    if (partialIconPercentage > 0) {
+        var partialIcon = document.createElement('i');
+        partialIcon.classList.add('fa-solid', 'fa-clapperboard', 'filled', 'grade-container-member');
+        partialIcon.style.clipPath = 'polygon(0% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 0%, ' + (partialIconPercentage - (padding / window.innerWidth) * 100) + '% 100%, 0% 100%)';
+        gradeContainer.appendChild(partialIcon);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var memberGrades = document.querySelectorAll('.memberGrade');
+
+    memberGrades.forEach(function(gradeElement) {
+        var grade = gradeElement.getAttribute('data-movieGrade');
+        memberGrade(grade, gradeElement);
+    });
+});
+
+  
+
+
+
     
 
 function resetGrade() {

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
 import semi.project.movieInsight.cinema.dto.Menu;
+import semi.project.movieInsight.common.utility.Util;
 import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dao.MovieDAO;
 import semi.project.movieInsight.movie.dto.Movie;
@@ -163,6 +164,9 @@ public class MypageServiceImpl implements MypageService{
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int updateMovieComment(Movie movie) {
+		// 0. XSS 방지 처리 
+		movie.setMovieCommentContent(Util.XSSHandling(movie.getMovieCommentContent()));
+		
 		return dao.updateMovieComment(movie);
 	}
 
@@ -182,6 +186,9 @@ public class MypageServiceImpl implements MypageService{
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int updateCinemaComment(Cinema cinema) {
+		// 0. XSS 방지 처리 
+		cinema.setCinemaCommentContent(Util.XSSHandling(cinema.getCinemaCommentContent()));
+		
 		return dao.updateCinemaComment(cinema);
 	}
 
@@ -199,6 +206,7 @@ public class MypageServiceImpl implements MypageService{
 	/**
 	 * 탈퇴 
 	 */
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int secession(int memberNo) {
 		return dao.secession(memberNo);
@@ -217,6 +225,7 @@ public class MypageServiceImpl implements MypageService{
 	/**
 	 * 방문기록 삭제 
 	 */
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int delVisit(int visitNo) {
 		return dao.delVisit(visitNo);

@@ -25,11 +25,23 @@ public interface MovieService {
 
 	Movie selectMovie(int movieNo);
 
-	/** header의 인기순 누르면 검색 창 페이지로 넘어감.
+	/** header의 인기순, 최신순 누르면 검색 창 페이지로 넘어감.
 	 * @param query
 	 * @return
 	 */
 	List<Movie> orderByMovieList(String query);
+
+	/**header의 장르별 누르면 검색 창 페이지로 넘어감.
+	 * @param randomGenre
+	 * @return
+	 */
+	List<Movie> orderRandomGenre(String randomGenre);
+
+	/** 유저 추천 순 
+	 * @param memberNo
+	 * @return
+	 */
+	List<Movie> userPreMovies(int memberNo);
 
 	
 

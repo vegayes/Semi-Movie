@@ -147,6 +147,19 @@ public class CinemaDetailServiceImpl implements CinemaDetailService {
 
 
 
+	/**
+	 * 영화관 댓글 수정 
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int updateCommentCinema(Cinema cinema) {
+		// 0. XSS 방지 처리 
+		cinema.setCinemaCommentContent(Util.XSSHandling(cinema.getCinemaCommentContent()));
+		return dao.updateCommentCinema(cinema);
+	}
+
+
+
 
 
 

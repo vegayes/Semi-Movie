@@ -82,6 +82,12 @@ public interface MovieDetailService {
 	 */
 	int visitMovie(int memberNo, int movieNo);
 
+	/** 댓글 /평점 수정
+	 * @param movie
+	 * @return
+	 */
+	int updateCommentMovie(Movie movie);
+
 
 	
 

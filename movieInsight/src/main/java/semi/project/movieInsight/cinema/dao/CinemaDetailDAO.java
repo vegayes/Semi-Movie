@@ -149,13 +149,49 @@ public class CinemaDetailDAO {
 	 */
 	public float sumCinemaGrade(String cinemaName) {
 		
-		Float sumCinemaGrade = sqlSession.selectOne("cinemaMapper.sumCinemaGrade",cinemaName);
+
+//		Cinema sumcinema = sqlSession.selectOne("cinemaMapper.sumCinemaGrade",cinemaName);
 		
+		Float sumCinemaGrade = sqlSession.selectOne("cinemaMapper.sumCinemaGrade", cinemaName);
+
 		float sum = (sumCinemaGrade != null) ? sumCinemaGrade : 0.0f;
-		
+
+	   System.out.println(sum);
 	
-		
+
 		return sum;
+	}
+
+
+	/** 영화관 정렬 
+	 * @param query
+	 * @return
+	 */
+	public List<Cinema> orderByCinemaList(String query) {
+		
+		List<Cinema> cinemaList = new ArrayList<Cinema>();
+		
+		if(query.equals("극장 평점순")) {
+			cinemaList = sqlSession.selectList("cinemaMapper.orderByCinema");
+			System.out.println("극장");
+		}else if (query.equals("직원 친절도순")) {
+			cinemaList = sqlSession.selectList("cinemaMapper.orderByGood");
+			System.out.println("직원");
+		}else if(query.equals("메뉴 만족도순")) {
+			cinemaList = sqlSession.selectList("cinemaMapper.orderByMenu");
+		}
+		
+		
+		return cinemaList;
+	}
+
+
+	/**  영화관 댓글 수정
+	 * @param cinema
+	 * @return
+	 */
+	public int updateCommentCinema(Cinema cinema) {
+		return sqlSession.update("mypageMapper.updateCinemaComment", cinema);
 	}
 	
 

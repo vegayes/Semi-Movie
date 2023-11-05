@@ -164,6 +164,15 @@ public class MovieDetailDAO {
 	}
 
 
+	/** 영화 댓글 수정 
+	 * @param movie
+	 * @return
+	 */
+	public int updateCommentMovie(Movie movie) {
+		return sqlSession.update("mypageMapper.updateMovieComment", movie);
+	}
+
+
 
 	
 	

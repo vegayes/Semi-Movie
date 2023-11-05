@@ -96,6 +96,8 @@ public class MemberController {
 
 		status.setComplete();
 		
+		System.out.println("로그아웃 :" + status);
+		
 		return "redirect:/movie";
 	}
 	
