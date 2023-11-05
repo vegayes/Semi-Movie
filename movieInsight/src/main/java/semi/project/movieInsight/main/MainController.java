@@ -85,15 +85,21 @@ public class MainController {
 	
           
            
-           // 직원친절도를 위한 영화관 이름 번호 찾기
-           List<Cinema> cinemaStaff = service.cinemaStaff();
-		
-           model.addAttribute("cinemaStaff", cinemaStaff);
-           
            // 직원 친절도 상위 점수 조회
            List<Cinema> cinemaGrade = service.selectcinemaGrade();
            
            model.addAttribute("cinemaGrade", cinemaGrade);
+      
+//           // cinemaGrade 리스트를 평점 역순으로 정렬
+//           cinemaGrade.sort((c1, c2) -> Double.compare(c2.getCinemaGrade(), c1.getCinemaGrade()));
+
+           // 6위부터 9위까지의 영화관을 추출
+           List<Cinema> cinemasFrom6thTo9th = cinemaGrade.subList(5, Math.min(9, cinemaGrade.size()));
+          
+           
+           System.out.println(cinemasFrom6thTo9th);
+           
+           model.addAttribute("cinemasFrom6thTo9th",cinemasFrom6thTo9th);
            
            // 영화관 평점 보내기
            model.addAttribute("pageType","movie");

@@ -6,7 +6,6 @@ import semi.project.movieInsight.cinema.dto.Cinema;
 
 public interface StaffKindService {
 
-	List<Cinema> cinemaStaff();
 
 	List<Cinema> selectcinemaGrade();
 
