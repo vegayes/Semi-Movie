@@ -75,44 +75,32 @@
 	        </div>
 	    </div>
     </div>           
+    
     <div class="cinema_promotion">
-        <a href="" class="cinema_special" id="cinema_special"></a>
-        <a href="" class="cinema_special">
-            <li>대형 스크린에 맞는 맞춤형 설계로 모든 좌석에서 최고의 몰입 가능 !!!</li> <br><br>
-            <li>Customized Projector로 비교할 수 없는 밝음과 선명한 화질 제공 !</li>  <br><br>
-            <li>완벽하게 조율된 소리와 핀 포인트 정확도로 최적의 사운드를 제공 !</li>  <br><br>
-            <li>추석 연휴 간 특별 할인 진행중 !!</li>
+        <a href="${promotion.promotionURL}" class="cinema_special" id="cinema_special" target="_blank">
+            <img src="/movieInsight/resources/images/cinema/${promotion.promotionImg}" id="promotionImg">
+        </a>
+        <a href="" class="cinema_special" target="_blank">
+            <li>${promotion.promotionType}</li> <br>
+            <li>${promotion.promotionContent}</li> 
         </a>
     </div>
 
+    
 
     <div id="cinema_promotion">
         <div class="event_promotion">
-           
-            <a href=""  class="preview_img"></a>
-            <a href=""  class="preview_text">
 
-                    &lt;씰벤져스 시사회&gt; <br>
-                   <li>응모기간</li> <br> 
-                    9월 10일 8시~9월15일 16시   <br>
-                    <li>시사회 일시</li>  <br>
-                    09월20일 오후 05시 <br>
-                    <li>시사회 장소</li> <br>
-                    메가박스 코엑스 38383E
+            <a href="${event.eventURL}"  class="preview_img"  target="_blank">
+                <img src="/movieInsight/resources/images/cinema/${event.eventImg}" id="eventImg">
+            </a>
+            <a href="${event.eventURL}"  class="preview_text" target="_blank">
+
+                &lt;${event.eventTitle}&gt; <br>
+                <li>${event.eventContent}</li>
 
             </a>
             
-            <a href="" class="discount_img"></a>
-            <a href="" class="preview_text">
-                
-                &lt;cgv용산아이파크몰&gt; <br><br> 
-                <li>티켓 할인 이벤트</li> <br>
-                10월 1일까지 최대 20% 할인 <br>
-                <li>팝콘 추가 이벤트</li> <br>
-                10월 7일까지 팝콘 M사이즈 주문 시 <br>
-                L사이즈로 무료 업그레이드
-                 
-            </a>
         </div>
     </div>
 

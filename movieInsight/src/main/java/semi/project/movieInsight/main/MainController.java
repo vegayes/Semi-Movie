@@ -24,6 +24,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
+import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.cinema.service.CinemaDetailService;
 import semi.project.movieInsight.main.service.StaffKindService;
 import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
@@ -40,6 +43,11 @@ public class MainController {
 	  @Autowired
 	  private StaffKindService service; // 직원친절도
 	
+	  @Autowired
+	  private CinemaDetailService cinemaService;
+	  
+	  
+	  
 	@RequestMapping("/")
 	public String test1() {
 
@@ -117,7 +125,12 @@ public class MainController {
 		
 		System.out.println("영화관 메인페이지 이동");
 		
+		Promotion promotion = cinemaService.getPromotionInfo();
+		Event event = cinemaService.getEventInfo();
+		
 		 model.addAttribute("pageType", "cinema");
+		 model.addAttribute("promotion", promotion);
+		 model.addAttribute("event", event);
 		
 		return "cinema/cinema-homepage";
 	}

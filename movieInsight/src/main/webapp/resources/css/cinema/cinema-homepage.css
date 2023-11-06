@@ -48,6 +48,7 @@ body {background-color: #000;  box-sizing: border-box;}
         #pagination .on {font-weight: bold; cursor: default;color:#777;}
         /* ====================지도 끝====================== */
         
+
         /* 영화이동 링크 */
         .movie_link { width: 23%; height: 50%;  border-radius: 10px;  position: fixed;  
                       background: url(/movieInsight/resources/images/cinema/44014266-영화-슬레이트.jpg), lightgray 50% / cover no-repeat;
@@ -122,25 +123,35 @@ body {background-color: #000;  box-sizing: border-box;}
 
 
         /* 특별관 설명부분 */
-        .cinema_special{  flex-basis: 45%;    margin: 30px 20px 20px 20px;  color:white;  text-decoration: none;}    
+        .cinema_special{  flex-basis: 45%;    margin: 30px 20px 20px 20px;  color:white;  
+            text-decoration: none; line-height: 50px;}  
+
+
+
         /*특별관 홍보 이미지 */
-        #cinema_special{
-            background: url(/resources/images/cinema/특별관.jpg);  background-size: cover;   background-position: center;
+        #promotionImg {
+            width: 100%;   /* 이미지를 부모 요소의 100% 너비로 설정 */
+            height: 100%;  /* 이미지를 부모 요소의 100% 높이로 설정 */
+            object-fit: cover; /* 이미지를 부모 요소의 크기에 맞게 자동 조정하며, 잘리는 부분이 생기지 않도록 함 */
         }
         
         /* 이벤트 홍보 내부 컨테이너 */
         .event_promotion{ flex-basis: 90%; border-radius: 15px; margin: 50px 0 50px 0; display: flex;
                           background: #D9D9D9; align-items: center; justify-content: space-around;}
         /* 시사회 이미지 */
-        .preview_img{background: url(/resources/images/cinema/시사회img.jpg); background-size: cover; 
-                     background-position: center; flex-basis: 20%; height: 230px; border-radius: 15px;}
+        .preview_img{ background-size: cover; background-position: center; flex-basis: 40%; height: 230px; border-radius: 15px;}
+
+        #eventImg {
+            width: 100%;   /* 이미지를 부모 요소의 100% 너비로 설정 */
+            height: 100%;  /* 이미지를 부모 요소의 100% 높이로 설정 */
+            object-fit: cover; /* 이미지를 부모 요소의 크기에 맞게 자동 조정하며, 잘리는 부분이 생기지 않도록 함 */
+        }
 
         /* 시사회,할인행사 정보        */
-        .preview_text{flex-basis: 25%; height: 230px; font-weight: bold; line-height: 130%; text-decoration: none; color: #000;}
+        .preview_text{flex-basis: 50%; height: 230px; font-weight: bold; line-height: 50px; text-decoration: none; color: #000;}
         
-        /* 할인행사 이미지 */
-        .discount_img{background: url(/resources/images/cinema/cgv용산.jfif); background-size: cover; 
-                      background-position: center; flex-basis: 20%; height: 230px; border-radius: 15px;}
+        
+        
 
         
     

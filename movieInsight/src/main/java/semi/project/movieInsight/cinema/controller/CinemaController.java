@@ -45,7 +45,7 @@ public class CinemaController {
 
 		    // 가져온 평점을 Cinema 객체에 설정
 		    getCinema.setSumCinemaGrade(cinemaGrade);
-		    System.out.println("평점 : " + cinemaGrade);
+		   // System.out.println("평점 : " + cinemaGrade);
 		    cinemaList.add(getCinema);
 		}
 		
@@ -73,7 +73,7 @@ public class CinemaController {
 		
 		System.out.println("orderBy 영화관 페이지 들어옴");
 		
-		System.out.println("query : " + query);
+		//System.out.println("query : " + query);
 		
 		List<Cinema> cinemaList = new ArrayList<>();
 		
@@ -94,7 +94,7 @@ public class CinemaController {
 		    cinemaList.add(orderByCinema);
 		}
 		
-		System.out.println("cinemaList : " + cinemaList);
+		//System.out.println("cinemaList : " + cinemaList);
 
 		
 		model.addAttribute("cinemaQuery", query);
