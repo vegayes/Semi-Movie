@@ -395,6 +395,20 @@ public class MypageController {
 		favoriteDelMovie.put("memberNo", loginMember.getMemberNo());
 		
 	    return service.delFavoriteMovie(favoriteDelMovie);
+	}	
+	
+	
+	@ResponseBody
+	@PostMapping(value = "/like2/del", produces = "application/json; charset=UTF-8" )
+	public int delCinemaComment(@RequestBody Map<String, List<Integer>> requestBody, // "delMovie" 의 key로 들어가 있음. 
+								@SessionAttribute("loginMember") Member loginMember) {
+				
+	
+		Map<String, Object> favoriteDelCinema = new HashMap<String , Object>();
+		favoriteDelCinema.put("delCinemaNo", requestBody.get("delCinema"));
+		favoriteDelCinema.put("memberNo", loginMember.getMemberNo());
+		
+	    return service.delFavoriteCinema(favoriteDelCinema);
 	}
 	
 	// 즐겨찾기 삭제 후 마이페이지에서 다시 조회 (영화) 
@@ -466,7 +480,41 @@ public class MypageController {
 		return service.visitMovie(memberNo);
 	}
 	
+	/** 댓글 삭제 
+	 * @param memberNo
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping(value = "/comement/del", produces = "application/json; charset=UTF-8")
+	public int delCommentMovie(@RequestBody Map<String, List<Integer>> requestBody,
+						@SessionAttribute("loginMember") Member loginMember) {
+		
+		System.out.println("댓글 삭제 들어옴");
+		
+		Map<String, Object> commentDelMovie = new HashMap<String , Object>();
+		commentDelMovie.put("delMovieNo", requestBody.get("delMovie"));
+		commentDelMovie.put("memberNo", loginMember.getMemberNo());
+		
+		return service.delCommentMovie(commentDelMovie);
+	}
 	
+	/** 댓글 삭제 (영화관)
+	 * @param memberNo
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping(value = "/comement2/del", produces = "application/json; charset=UTF-8")
+	public int delCommentCinema(@RequestBody Map<String, List<Integer>> requestBody,
+						@SessionAttribute("loginMember") Member loginMember) {
+		
+		System.out.println("댓글 삭제 들어옴");
+		
+		Map<String, Object> commentDelCinema = new HashMap<String , Object>();
+		commentDelCinema.put("delCinemaNo", requestBody.get("delCinemaNo"));
+		commentDelCinema.put("memberNo", loginMember.getMemberNo());
+		
+		return service.delCommentCinema(commentDelCinema);
+	}
 	
 	
 	

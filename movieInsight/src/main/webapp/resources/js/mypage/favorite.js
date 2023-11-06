@@ -330,6 +330,8 @@ function refreshFavoriteList() {
       }
     })
     .catch(err => console.error(err));
+
+    location.reload();
 }
 
 
@@ -376,6 +378,8 @@ function refreshFavoriteCinemaList() {
           }
       })
       .catch(err => console.error(err));
+
+      location.reload();
 }
 
 
@@ -464,7 +468,11 @@ document.querySelector(".favorite-delet-btn").addEventListener("click", function
   var checkedItems = document.querySelectorAll('input[name="favorite-check"]:checked');
   var a = Array.from(checkedItems);
   var selectedDelMovie = a.map(function(checkbox) {
-      return checkbox.getAttribute('data-movieno');
+      if(favoriteFlag) {
+        return checkbox.getAttribute('data-movieNo');
+      } else {
+        return checkbox.getAttribute('data-cinemaNo');
+      }
   });
 
   if (selectedDelMovie.length > 0) {
@@ -473,39 +481,74 @@ document.querySelector(".favorite-delet-btn").addEventListener("click", function
 
           console.log(selectedDelMovie);
 
-          fetch("/movieInsight/mypage/like/del", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ delMovie: selectedDelMovie })
-          })
-          .then(response => response.json()) 
-          .then(result => {
-              console.log(result);
+          //
+          if(favoriteFlag) {
+            fetch("/movieInsight/mypage/like/del", {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ delMovie: selectedDelMovie })
+            })
+            .then(response => response.json()) 
+            .then(result => {
+                console.log(result);
+          
+                selectFvMovie();
+          
+                if(result > 0){
+                  alert("즐겨찾기 삭제 완료하였습니다.");
+                  refreshFavoriteList();
+                  refreshFavoriteCinemaList();
+          
+                  modalClose();
+          
+                  var movieModal = document.querySelector('.movieModal');
+                  movieModal.style.display = "none";
 
-              selectFvMovie();
-
-              if(result > 0){
-                alert("즐겨찾기 삭제 완료하였습니다.");
-                refreshFavoriteList();
-                refreshFavoriteCinemaList();
-
-                modalClose();
-
-                var movieModal = document.querySelector('.movieModal');
-                movieModal.style.display = "none";
-
-              }else{
-                alert("즐겨찾기 삭제 실패했습니다.")
-              }
-          })
-          .catch(err => console.log(err));
+          
+                }else{
+                  alert("즐겨찾기 삭제 실패했습니다.")
+                }
+            })
+            .catch(err => console.log(err));
+          } else {
+            fetch("/movieInsight/mypage/like2/del", {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ delCinema : selectedDelMovie })
+            })
+            .then(response => response.json()) 
+            .then(result => {
+                console.log(result);
+          
+                selectFvMovie();
+          
+                if(result > 0){
+                  alert("즐겨찾기 삭제 완료하였습니다.");
+                  refreshFavoriteList();
+                  refreshFavoriteCinemaList();
+          
+                  modalClose();
+          
+                  var movieModal = document.querySelector('.movieModal');
+                  movieModal.style.display = "none";
+          
+                }else{
+                  alert("즐겨찾기 삭제 실패했습니다.")
+                }
+            })
+            .catch(err => console.log(err));
+          }
       }
+
     } else {
       alert("삭제할 항목을 선택해주세요."); 
   }
 });
+
 
 
 

@@ -12,7 +12,7 @@ function showMovieTable() {
   }
   
   
-  
+  var commentFlag = true;
   // 4) 댓글 -><영화 영화관 구분하기
   const commentMovieBtn = document.getElementById("movie-comment-btn");
   const commentCinemaBtn = document.getElementById("cinema-comment-btn");
@@ -21,7 +21,7 @@ function showMovieTable() {
   const commentCinemaContainer =document.getElementById("cinema-comment-container");
   
   commentMovieBtn.addEventListener("click" ,function(){
-      
+    commentFlag = true;
     console.log("영화 누름");
   
     commentCinemaBtn.style.opacity = "0.5";
@@ -35,7 +35,7 @@ function showMovieTable() {
   });
   
   commentCinemaBtn.addEventListener("click" ,function(){
-      
+    commentFlag = false;
     console.log("영화관 누름");
   
     commentCinemaBtn.style.opacity = "1";
@@ -136,10 +136,81 @@ function checkAllcomment(e) {
   
   
   //2-2)선택이 하나라도 없으면 전체 선택 취소
-  document.getElementsByName("comment-check").forEach(function(v) {
+  document.getElementsByName("check").forEach(function(v) {
     v.addEventListener('click', checkAllList);
   });
 
+
+//3) 삭제 
+document.querySelector(".comment-list-del-btn").addEventListener("click", function() {
+
+  var checkedItems = document.querySelectorAll('input[name="comment-check"]:checked');
+  var a = Array.from(checkedItems);
+  var selectedDelMovie = a.map(function(checkbox) {
+      if(commentFlag) {
+        return checkbox.getAttribute('data-commentmovieNo');
+      }  else{
+        return checkbox.getAttribute('data-commentCinemaNo');
+      }
+  });
+
+  if (selectedDelMovie.length > 0) {
+      var confirmed = confirm("선택된 댓글을 삭제하시겠습니까?");
+      if (confirmed) {
+
+          console.log(selectedDelMovie);
+
+          if(commentFlag) {
+            fetch("/movieInsight/mypage/comement/del", {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ delMovie: selectedDelMovie })
+            })
+            .then(response => response.json()) 
+            .then(result => {
+                console.log(result);
+
+
+                if(result > 0){
+                  alert("댓글 삭제 완료하였습니다.");
+
+
+                }else{
+                  alert("즐겨찾기 삭제 실패했습니다.")
+                }
+            })
+            .catch(err => console.log(err));
+          }else{
+            fetch("/movieInsight/mypage/comement2/del", {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ delCinemaNo: selectedDelMovie })
+            })
+            .then(response => response.json()) 
+            .then(result => {
+                console.log(result);
+
+
+                if(result > 0){
+                  alert("댓글 삭제 완료하였습니다.");
+
+
+                }else{
+                  alert("즐겨찾기 삭제 실패했습니다.")
+                }
+            })
+            .catch(err => console.log(err));
+          }
+          location.reload();
+      }
+    } else {
+      alert("삭제할 항목을 선택해주세요."); 
+  }
+});
 
 // --------------------------------------------------------------
 //  댓글 수정 팝업 

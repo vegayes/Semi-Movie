@@ -301,6 +301,9 @@ star{
     /* 영화 줄 칸 */
     flex: 1;
 
+	display : flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -322,8 +325,10 @@ star{
 .screening_movie_detail>a>div>div>img{
 
     /* 영화 이미지 */
-    width: 40%;
+   width: 45%;
     height: 70%;
+
+
 
 }
 
@@ -1132,4 +1137,25 @@ star{
 }
 
 
+.inputUpdate{
+	height:100%;
+	width: 90%;
+	border: none;
+	margin-left: 2px;
+	background-color: white;
+	border : none;
+	padding: 2px;
+	outline: 0;  
+}
+
+.inputGrade{
+	height:100%;
+	width: 20%;
+	border: none;
+	margin-left: 10%;
+	background-color: white;
+	border : none;
+	padding: 2px;
+	outline: 0;  
+}
 
