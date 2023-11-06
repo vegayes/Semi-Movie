@@ -80,9 +80,9 @@ public class MainController {
            model.addAttribute("pageType","movie");
            
             //직원친절도를 위한 영화관 이름 번호 찾기
-         List<Cinema> cinemaStaff = service.cinemaStaff();
-	
-          model.addAttribute("cinemaStaff", cinemaStaff);
+//         List<Cinema> cinemaStaff = service.cinemaStaff();
+//	
+//          model.addAttribute("cinemaStaff", cinemaStaff);
            
 
           List<Cinema> cinemaGrade = service.selectcinemaGrade();
@@ -97,7 +97,7 @@ public class MainController {
 
           // 영화관 정보 번호를 가져와서 다른 테이블에 있는 각각의 영화관 친절도 평점 조회 
            
-          System.out.println(cinemaStaff);
+//          System.out.println(cinemaStaff);
            
             //영화관 평점 더하고 평균내기 
            
