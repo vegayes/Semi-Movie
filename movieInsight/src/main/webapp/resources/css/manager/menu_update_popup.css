@@ -155,14 +155,43 @@ select{
 }
 
 
+#updateButton {
+    width: 200px;
+    height: 40px;
+
+    background-color: aliceblue;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 50px;
+}
 
 
 
+#update-del-button {
+    width: 200px;
+    height: 40px;
+
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 50px;
+
+}
 
 
-
-
-
+.update-info-container {
+    color: black;
+}
 
 
 

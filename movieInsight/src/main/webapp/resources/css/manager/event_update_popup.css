@@ -79,7 +79,7 @@
 
 .event-container{
     flex-basis: 80%;
-
+   
     display: flex;
 
     padding: 20px;
@@ -145,17 +145,23 @@ textarea{
     margin-left: 50px;
 }
 
-.btn:nth-child(2){
-    background-color: red;
+
+
+#updateButton {
+    background-color: aliceblue;
+    color: black;
+    cursor: pointer;
 }
 
 
+#update-del-button {
+    background-color: red;
+    cursor: pointer;
+}
 
-
-
-
-
-
+.event-info-container {
+    color: black;
+}
 
 
 

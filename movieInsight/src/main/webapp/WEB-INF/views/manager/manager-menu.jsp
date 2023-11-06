@@ -248,11 +248,11 @@
                             </section>
                 
                             <section class = "update-btn-container">
-                                <div class ="btn" id="updateButton">
-                                    <button>추가하기</button>
+                                <div>
+                                    <button id="updateButton" class ="btn">추가하기</button>
                                 </div>
-                                <div class ="btn" id="update-del-button">
-                                    취소하기
+                                <div>
+                                    <button id="update-del-button" class ="btn" type="reset">취소하기</button>
                                 </div>
                             </section>                          
                         </form>

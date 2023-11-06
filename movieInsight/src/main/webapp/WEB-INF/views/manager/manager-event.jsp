@@ -195,12 +195,12 @@
 							</section>
 						
 							<section class = "event-btn-container">
-								<div class ="btn">
-									<button type="submit" id="updateButton">추가하기</button>
+								<div>
+									<button type="submit" id="updateButton" class ="btn">추가하기</button>
 								</div>
 								
-								<div class ="btn">
-									<button  id="update-del-button">취소하기</button>
+								<div>
+									<button  id="update-del-button" type="reset" class ="btn">취소하기</button>
 								</div>
 								
 							</section>                             
