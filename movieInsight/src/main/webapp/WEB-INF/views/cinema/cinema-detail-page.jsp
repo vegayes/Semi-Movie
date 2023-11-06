@@ -23,7 +23,7 @@
 
                 <div>       
                     <c:choose>
-                        <c:when test="${false}">
+                        <c:when test="${loginMember.memberNo == 12}">
                             <img src="/movieInsight/resources/images/cinema/${cinemaInfo.cinemaImg}" id="cinemaImg">
                             <input type="file" name="cinemaImage"  id="fileChange" accept="image/*"> 
                         </c:when>

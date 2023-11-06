@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -31,6 +32,7 @@ import semi.project.movieInsight.mypage.service.ManagerService;
 
 @Controller
 @RequestMapping("/managerDetail")
+@SessionAttributes("{loginMember}")
 public class ManagerDetailController {
 
 // **** 관리자 페이지에서 추가,수정,삭제를 담당하는 컨트롤러 **********//
