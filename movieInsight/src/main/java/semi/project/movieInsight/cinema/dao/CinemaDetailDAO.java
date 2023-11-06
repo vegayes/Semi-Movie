@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
+import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.movie.dto.Movie;
 
 @Repository
@@ -192,6 +194,20 @@ public class CinemaDetailDAO {
 	 */
 	public int updateCommentCinema(Cinema cinema) {
 		return sqlSession.update("mypageMapper.updateCinemaComment", cinema);
+	}
+
+
+	
+	
+	public Promotion getPromotionInfo() {
+		
+		return sqlSession.selectOne("promotionMapper.getPromotionInfo");
+	}
+
+
+	public Event getEventInfo() {
+		
+		return sqlSession.selectOne("promotionMapper.getEventInfo");
 	}
 	
 

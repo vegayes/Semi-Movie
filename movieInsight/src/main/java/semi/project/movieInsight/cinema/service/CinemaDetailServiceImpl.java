@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import semi.project.movieInsight.cinema.dao.CinemaDetailDAO;
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
 import semi.project.movieInsight.cinema.dto.Menu;
+import semi.project.movieInsight.cinema.dto.Promotion;
 import semi.project.movieInsight.common.utility.Util;
 import semi.project.movieInsight.movie.dto.Movie;
 
@@ -156,6 +158,22 @@ public class CinemaDetailServiceImpl implements CinemaDetailService {
 		// 0. XSS 방지 처리 
 		cinema.setCinemaCommentContent(Util.XSSHandling(cinema.getCinemaCommentContent()));
 		return dao.updateCommentCinema(cinema);
+	}
+
+
+
+	@Override
+	public Promotion getPromotionInfo() {
+		
+		return dao.getPromotionInfo();
+	}
+
+
+
+	@Override
+	public Event getEventInfo() {
+		
+		return dao.getEventInfo();
 	}
 
 

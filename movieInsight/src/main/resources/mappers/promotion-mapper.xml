@@ -86,14 +86,22 @@
 	
 	
 	
+	<select id="getPromotionInfo" resultMap = "promotion_rm">
+		SELECT *
+		FROM CINEMA_PROMOTION 
+		ORDER BY DBMS_RANDOM.VALUE
+		FETCH FIRST 1 ROWS ONLY   	
+	</select>
+		
 	
 	
-	
-	
-	
-	
-	
-	
+	<select id="getEventInfo" resultMap = "event_rm">
+		SELECT *
+		FROM EVENT_PROMOTION 
+		ORDER BY DBMS_RANDOM.VALUE
+		FETCH FIRST 1 ROWS ONLY 
+	</select>
+
 	
 	
 	
