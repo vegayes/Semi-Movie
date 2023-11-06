@@ -164,7 +164,7 @@
 							                    <button id="checkAuthKeyBtn" type="button">인증확인</button>
 					            		   </div>
 			                        </div>
-			                        <div class="Gender">
+			                        <div class="form-group mt-2">
 			                          <h5 class="labela">NICKNAME</h5>
 			
 			                          <input
@@ -178,20 +178,23 @@
                                 <P id="nickMessage"></P>
 			                          <i class="input-icon uil uil-lock-alt"></i>
 			                        </div>
-			                        <div class="form-group mt-2">
+			                        <div class="Gender">
 			                          <h5 class="labela">GENDER</h5>
-			
-			                          <!-- <button class="gender" id="genderM" type="button" name="memberGender" value="M">남자</button>
-			                          <button class="gender" id="genderF" type="button" name="memberGender" value="F">여자</button> -->
-										<label class="GenderM">
-											<p class="boy">남자</p> <input type="radio" class="gender" id="genderM" type="button" name="memberGender" value="M" style="width: 1em; height: 1.25em; border: 0.1em solid gray;">
-										</label>
-										
-										<label class="GenderF">
-											<p class="girl">여자</p> <input type="radio" class="gender" id="genderF" type="button" name="memberGender" value="F" style="width: 1em; height: 1.25em; border: 0.1em solid gray;">
-										</label>
-
-											<i class="input-icon uil uil-lock-alt"></i>
+			                          
+			                          <label class=genderx>
+					
+					                          <!-- <button class="gender" id="genderM" type="button" name="memberGender" value="M">남자</button>
+					                          <button class="gender" id="genderF" type="button" name="memberGender" value="F">여자</button> -->
+												<label class="GenderM">
+													<p class="boy">남자</p> <input type="radio" class="gender" id="genderM" type="button" name="memberGender" value="M" style="width: 1em; height: 1.25em; border: 0.1em solid gray;">
+												</label>
+												
+												<label class="GenderF">
+													<p class="girl">여자</p> <input type="radio" class="gender" id="genderF" type="button" name="memberGender" value="F" style="width: 1em; height: 1.25em; border: 0.1em solid gray;">
+												</label>
+		
+													<i class="input-icon uil uil-lock-alt"></i>
+									 </label>
 			                        </div>
                               <button id="signUpBut" class="btn mt-4 blue" type="submit">SIGN UP</button>
 			                    </form>    

@@ -8,6 +8,7 @@
         line-height: 1.7;
         background-color: #1f2029;
         overflow-x: hidden;
+        color: white;
       }
       a {
         cursor: pointer;
@@ -356,7 +357,6 @@
       }
       
       #messageDiv_2 {
-      	color: blue;
       	font-weight: bold;
         margin: 0;
         padding: 0;
@@ -368,7 +368,6 @@
         font-weight: bold;
         margin: 0;
         padding: 0;
-        color: blue;
       }
 
       #emailMessage {
@@ -376,7 +375,6 @@
         font-weight: bold;
         margin: 0;
         padding: 0;
-        color: blue;
       }
 
       #authKeyMessage {
@@ -407,9 +405,13 @@
    	 color: black !important;
 		}
 
-    .Gender {
+     .Gender {
       display: flex;
       flex-direction: column;
+    }
+    
+    .genderx {
+     display: flex;
     }
 
     .GenderM {
@@ -427,6 +429,7 @@
     margin-right: 3%;
 	 	padding:0;
     font-weight: bold;
+    width: 60px;
 	 	}
 	 	
 	 	.boy {
@@ -436,6 +439,7 @@
     margin-right: 3%;
 	 	padding:0;
     font-weight: bold;
+     width: 60px;
 	 	}
 
      .Gender label {
