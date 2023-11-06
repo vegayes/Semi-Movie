@@ -98,8 +98,8 @@ public class MainController {
            
            model.addAttribute("cinemaGrade", cinemaGrade);
       
-//           // cinemaGrade 리스트를 평점 역순으로 정렬
-//           cinemaGrade.sort((c1, c2) -> Double.compare(c2.getCinemaGrade(), c1.getCinemaGrade()));
+           // cinemaGrade 리스트를 평점 역순으로 정렬
+           cinemaGrade.sort((c1, c2) -> Double.compare(c2.getCinemaGrade(), c1.getCinemaGrade()));
 
            // 6위부터 9위까지의 영화관을 추출
            List<Cinema> cinemasFrom6thTo9th = cinemaGrade.subList(5, Math.min(9, cinemaGrade.size()));

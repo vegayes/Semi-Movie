@@ -73,7 +73,7 @@
 						<ul class="kind_wrapper swiper-slide" id="cinemaList" >
 							<c:forEach var="cinema" items="${cinemaGrade}" varStatus="loop">
 								<c:if test="${loop.index < 5}">
-									<li class="kind_item"><span>${cinema.cinemaName}</span>
+									<li class="kind_item"><span><a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">${cinema.cinemaName}</a> ${loop.index+1}위</span>
 										<div>
 										   <c:choose>
 							                    <c:when test="${cinema.cinemaGrade>= 1}">
@@ -90,17 +90,14 @@
 						<ul class="kind_wrapper swiper-slide">
 							<c:forEach var="cinema" items="${cinemasFrom6thTo9th}" varStatus="loop">
 								<c:if test="${loop.index < 5}">
-									<li class="kind_item"><span>${cinema.cinemaName}</span>
+									<li class="kind_item"><span><a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">${cinema.cinemaName}</a> ${loop.index+6}위</span>
 										<div>
 										   <c:choose>
-							                    <c:when test="${cinema.cinemaGrade != null && cinema.cinemaGrade >= 1}">
+							                    <c:when test="${cinema.cinemaGrade != null}">
 							                        <c:forEach begin="1" end="${cinema.cinemaGrade}">
 							                         	<div class=emoji>😀</div>
 							                        </c:forEach>
 							                    </c:when>
-							                    <c:otherwise>
-							                        <button>점수 없음</button>
-							                    </c:otherwise>
 							                </c:choose>
 										</div>
 									</li>
