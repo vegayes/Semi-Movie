@@ -34,6 +34,11 @@ import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieService;
 import semi.project.movieInsight.movie.service.MovieServiceimpl;
 
+/*
+ * CSS 보안.. 
+ * 트러블 슈팅 보안
+ * 
+ * */
 
 @Controller
 @SessionAttributes("{loginMember}")
