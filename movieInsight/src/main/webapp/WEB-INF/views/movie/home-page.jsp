@@ -113,22 +113,22 @@
 				<span class="section_title">메뉴 추천</span>
 				<ul class="movie_list swiper-wrapper">
 					<li class="movie_recommand_item swiper-slide">
-						<a href="https://www.lottecinema.co.kr/NLCHS/CinemaMall/Detail?MenuId=2&ItemId=2310190004&ClassificationCode=20">
+						<a href="https://www.lottecinema.co.kr/NLCHS/CinemaMall/Detail?MenuId=2&ItemId=2310190004&ClassificationCode=20" target="_blank">
 							<img src="/movieInsight/resources/images/movie/lotte.jpg"width="100%" />
 						</a>
 					</li>
 					<li class="movie_recommand_item swiper-slide">
-						<a href="https://www.megabox.co.kr/store/detail?prdtClCd=CPC05&prdtNo=1729">
+						<a href="https://www.megabox.co.kr/store/detail?prdtClCd=CPC05&prdtNo=1729" target="_blank">
 					    	<img src="/movieInsight/resources/images/movie/코엑스-세트.jpg" width="100%" />
 					</li>
 						</a>
 					<li class="movie_recommand_item swiper-slide">
-						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100326#">
+						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100326#" target="_blank">
 							<img src="/movieInsight/resources/images/movie/cgv-popcon.jpg" width="100%" />
 					</li>
 						</a>
 					<li class="movie_recommand_item swiper-slide">
-						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100333">
+						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100333" target="_blank">
 							<img src="/movieInsight/resources/images/movie/cgv-drink.jpg"width="100%" />
 						</a>
 					</li>
