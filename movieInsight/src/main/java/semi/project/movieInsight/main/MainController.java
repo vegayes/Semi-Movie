@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
+import semi.project.movieInsight.cinema.dto.Event;
+import semi.project.movieInsight.cinema.dto.Promotion;
+import semi.project.movieInsight.cinema.service.CinemaDetailService;
 import semi.project.movieInsight.main.service.StaffKindService;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieService;
@@ -36,6 +39,9 @@ public class MainController {
 	  @Autowired
 	  private StaffKindService service; // 직원친절도
 	
+	  @Autowired
+	  private CinemaDetailService cinemaService; // 직원친절도
+	  
 	@RequestMapping("/")
 	public String test1() {
 
@@ -80,9 +86,9 @@ public class MainController {
            model.addAttribute("pageType","movie");
            
             //직원친절도를 위한 영화관 이름 번호 찾기
-         List<Cinema> cinemaStaff = service.cinemaStaff();
-	
-          model.addAttribute("cinemaStaff", cinemaStaff);
+//         List<Cinema> cinemaStaff = service.cinemaStaff();
+//	
+//          model.addAttribute("cinemaStaff", cinemaStaff);
            
 
           List<Cinema> cinemaGrade = service.selectcinemaGrade();
@@ -94,10 +100,14 @@ public class MainController {
            // 6위부터 9위까지의 영화관을 추출
            List<Cinema> cinemasFrom6thTo9th = cinemaGrade.subList(5, Math.min(9, cinemaGrade.size()));
           
+           
+           model.addAttribute("cinemasFrom6thTo9th",cinemasFrom6thTo9th);
+
+
 
           // 영화관 정보 번호를 가져와서 다른 테이블에 있는 각각의 영화관 친절도 평점 조회 
            
-          System.out.println(cinemaStaff);
+//          System.out.println(cinemaStaff);
            
             //영화관 평점 더하고 평균내기 
            
@@ -116,7 +126,12 @@ public class MainController {
 		
 		System.out.println("영화관 메인페이지 이동");
 		
-		 model.addAttribute("pageType", "cinema");
+		Promotion promotion = cinemaService.getPromotionInfo();
+		Event event = cinemaService.getEventInfo();
+		
+	   model.addAttribute("promotion", promotion);
+	   model.addAttribute("event", event);
+	   model.addAttribute("pageType", "cinema");
 		
 		return "cinema/cinema-homepage";
 	}
