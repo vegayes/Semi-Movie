@@ -84,6 +84,17 @@ public class MainController {
 	
           model.addAttribute("cinemaStaff", cinemaStaff);
            
+
+          List<Cinema> cinemaGrade = service.selectcinemaGrade();
+           model.addAttribute("cinemaGrade", cinemaGrade);
+      
+           // cinemaGrade 리스트를 평점 역순으로 정렬
+           cinemaGrade.sort((c1, c2) -> Double.compare(c2.getCinemaGrade(), c1.getCinemaGrade()));
+
+           // 6위부터 9위까지의 영화관을 추출
+           List<Cinema> cinemasFrom6thTo9th = cinemaGrade.subList(5, Math.min(9, cinemaGrade.size()));
+          
+
           // 영화관 정보 번호를 가져와서 다른 테이블에 있는 각각의 영화관 친절도 평점 조회 
            
           System.out.println(cinemaStaff);
