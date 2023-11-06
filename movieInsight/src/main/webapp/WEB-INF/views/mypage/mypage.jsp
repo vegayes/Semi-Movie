@@ -294,7 +294,7 @@
 	                            <i class="fa-solid fa-star"></i>
 	                            영화관 
 	                        </a>
-						  <div class="dropdown-content">
+						  <div class="dropdown-content" style = " display : none;">
 							  <a class = "dropdownBtn">시설 만족도</a>
 							  <a class = "dropdownBtn">직원 친절도</a>
 						  </div>
