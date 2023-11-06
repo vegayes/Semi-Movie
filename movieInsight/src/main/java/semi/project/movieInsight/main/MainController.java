@@ -20,21 +20,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import semi.project.movieInsight.cinema.dto.Cinema;
-import semi.project.movieInsight.cinema.dto.Event;
-import semi.project.movieInsight.cinema.dto.Promotion;
-import semi.project.movieInsight.cinema.service.CinemaDetailService;
 import semi.project.movieInsight.main.service.StaffKindService;
-import semi.project.movieInsight.member.dto.Member;
 import semi.project.movieInsight.movie.dto.Movie;
 import semi.project.movieInsight.movie.service.MovieService;
 
 
 @Controller
-@SessionAttributes("{loginMember}")
 public class MainController {
 	
 	  @Autowired
@@ -43,11 +36,6 @@ public class MainController {
 	  @Autowired
 	  private StaffKindService service; // 직원친절도
 	
-	  @Autowired
-	  private CinemaDetailService cinemaService;
-	  
-	  
-	  
 	@RequestMapping("/")
 	public String test1() {
 
@@ -59,9 +47,10 @@ public class MainController {
 
 	
 	 @GetMapping("/movie")
-	    public String getMovies(Model model , @SessionAttribute(value = "loginMember", required =false) Member loginMember) {
+	    public String getMovies(Model model) {
 	        // 다양한 장르의 영화를 조회합니다.
-		     
+		 
+
 	        List<Movie> popularMovies = movieService.findMoviesByCategory("인기순");
 	        List<Movie> actionMovies = movieService.findMoviesByCategory("액션");
 	        List<Movie> crimeMovies = movieService.findMoviesByCategory("범죄");
@@ -70,15 +59,10 @@ public class MainController {
 	        List<Movie> comedyMovies = movieService.findMoviesByCategory("코미디");
 	        List<Movie> romanceMovies = movieService.findMoviesByCategory("로맨스");
 	        List<Movie> latestMovies = movieService.findMoviesByCategory("최신순");
-	        if(loginMember!= null) {
-	        	List<Movie> userPrefMovies = movieService.userPreMovies(loginMember.getMemberNo());	
-	        	model.addAttribute("userPrefMovies", userPrefMovies);
-	        }
+	        List<Movie> userPrefMovies = movieService.findMoviesByCategory("user 맞춤 영상");
 	        List<Movie> horrorMovies = movieService.findMoviesByCategory("호러");
 	        
 
-	        
-	        
 	        model.addAttribute("horrorMovies", horrorMovies);
 	        model.addAttribute("popularMovies", popularMovies);
 	        model.addAttribute("actionMovies", actionMovies);
@@ -88,29 +72,25 @@ public class MainController {
 	        model.addAttribute("comedyMovies", comedyMovies);
 	        model.addAttribute("romanceMovies", romanceMovies);
 	        model.addAttribute("latestMovies", latestMovies);
-	        	
-
+	        model.addAttribute("userPrefMovies", userPrefMovies);
+	        
+	        
+	        System.out.println("범죄 : " + crimeMovies);
 	
-          
-           
-           // 직원 친절도 상위 점수 조회
-           List<Cinema> cinemaGrade = service.selectcinemaGrade();
-           
-           model.addAttribute("cinemaGrade", cinemaGrade);
-      
-//           // cinemaGrade 리스트를 평점 역순으로 정렬
-//           cinemaGrade.sort((c1, c2) -> Double.compare(c2.getCinemaGrade(), c1.getCinemaGrade()));
-
-           // 6위부터 9위까지의 영화관을 추출
-           List<Cinema> cinemasFrom6thTo9th = cinemaGrade.subList(5, Math.min(9, cinemaGrade.size()));
-          
-           
-           System.out.println(cinemasFrom6thTo9th);
-           
-           model.addAttribute("cinemasFrom6thTo9th",cinemasFrom6thTo9th);
-           
-           // 영화관 평점 보내기
            model.addAttribute("pageType","movie");
+           
+            //직원친절도를 위한 영화관 이름 번호 찾기
+         List<Cinema> cinemaStaff = service.cinemaStaff();
+	
+          model.addAttribute("cinemaStaff", cinemaStaff);
+           
+          // 영화관 정보 번호를 가져와서 다른 테이블에 있는 각각의 영화관 친절도 평점 조회 
+           
+          System.out.println(cinemaStaff);
+           
+            //영화관 평점 더하고 평균내기 
+           
+          //영화관 평점 보내기
 
 	        return "movie/home-page";
    
@@ -125,12 +105,7 @@ public class MainController {
 		
 		System.out.println("영화관 메인페이지 이동");
 		
-		Promotion promotion = cinemaService.getPromotionInfo();
-		Event event = cinemaService.getEventInfo();
-		
 		 model.addAttribute("pageType", "cinema");
-		 model.addAttribute("promotion", promotion);
-		 model.addAttribute("event", event);
 		
 		return "cinema/cinema-homepage";
 	}
