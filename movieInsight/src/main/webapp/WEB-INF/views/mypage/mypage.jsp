@@ -104,7 +104,7 @@
                                      </thead>
                                      
                                      <c:forEach items = "${movieList}" var="movie">
-	                                     <tr class = "favorite-list fvMovie" style = "border : 2px solid blue" id = "fvMovie">
+	                                     <tr class = "favorite-list fvMovie"  id = "fvMovie">
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/movie/${movie.movieImg}">
@@ -121,7 +121,7 @@
                                      </c:forEach>
                            
                                      <c:forEach items = "${cinemaList}" var="cinema">
-	                                     <tr class = "favorite-list fvCinema" style = "border : 2px solid red"  id = "fvCinema">
+	                                     <tr class = "favorite-list fvCinema"  id = "fvCinema">
 	                                         <td class = "favorite-list-img">
 	                                             <div class = "favorite-list-img-wrapper">
 	                                                 <img src="/movieInsight/resources/images/cinema/${cinema.cinemaImg}">
