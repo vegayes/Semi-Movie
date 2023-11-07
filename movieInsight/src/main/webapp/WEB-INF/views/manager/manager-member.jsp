@@ -124,7 +124,7 @@
 	       		<div class="member-list">
 	        		
 	        		<span class ="member-index">${status.count}</span>
-		            <span class="member-name">${member.memberNickname}</span>
+		            <span class="member-name">${member.memberId}</span>
 		            <span class="member-email">${member.memberEmail}</span>
 		            <span class="member-date">${member.memberEnrollDate}</span>
 		            <c:if test = "${member.memberGender eq 'M'}">

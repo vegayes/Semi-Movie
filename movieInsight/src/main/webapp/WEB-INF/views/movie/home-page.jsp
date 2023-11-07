@@ -73,7 +73,7 @@
 						<ul class="kind_wrapper swiper-slide" id="cinemaList" >
 							<c:forEach var="cinema" items="${cinemaGrade}" varStatus="loop">
 								<c:if test="${loop.index < 5}">
-									<li class="kind_item"><span>${cinema.cinemaName}</span>
+									<li class="kind_item"><span><a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">${cinema.cinemaName}</a> ${loop.index+1}위</span>
 										<div>
 										   <c:choose>
 							                    <c:when test="${cinema.cinemaGrade>= 1}">
@@ -90,17 +90,14 @@
 						<ul class="kind_wrapper swiper-slide">
 							<c:forEach var="cinema" items="${cinemasFrom6thTo9th}" varStatus="loop">
 								<c:if test="${loop.index < 5}">
-									<li class="kind_item"><span>${cinema.cinemaName}</span>
+									<li class="kind_item"><span><a href="/movieInsight/cinemaDetail/${cinema.cinemaName}">${cinema.cinemaName}</a> ${loop.index+6}위</span>
 										<div>
 										   <c:choose>
-							                    <c:when test="${cinema.cinemaGrade != null && cinema.cinemaGrade >= 1}">
+							                    <c:when test="${cinema.cinemaGrade != null}">
 							                        <c:forEach begin="1" end="${cinema.cinemaGrade}">
 							                         	<div class=emoji>😀</div>
 							                        </c:forEach>
 							                    </c:when>
-							                    <c:otherwise>
-							                        <button>점수 없음</button>
-							                    </c:otherwise>
 							                </c:choose>
 										</div>
 									</li>
@@ -116,22 +113,22 @@
 				<span class="section_title">메뉴 추천</span>
 				<ul class="movie_list swiper-wrapper">
 					<li class="movie_recommand_item swiper-slide">
-						<a href="https://www.lottecinema.co.kr/NLCHS/CinemaMall/Detail?MenuId=2&ItemId=2310190004&ClassificationCode=20">
+						<a href="https://www.lottecinema.co.kr/NLCHS/CinemaMall/Detail?MenuId=2&ItemId=2310190004&ClassificationCode=20" target="_blank">
 							<img src="/movieInsight/resources/images/movie/lotte.jpg"width="100%" />
 						</a>
 					</li>
 					<li class="movie_recommand_item swiper-slide">
-						<a href="https://www.megabox.co.kr/store/detail?prdtClCd=CPC05&prdtNo=1729">
+						<a href="https://www.megabox.co.kr/store/detail?prdtClCd=CPC05&prdtNo=1729" target="_blank">
 					    	<img src="/movieInsight/resources/images/movie/코엑스-세트.jpg" width="100%" />
 					</li>
 						</a>
 					<li class="movie_recommand_item swiper-slide">
-						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100326#">
+						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100326#" target="_blank">
 							<img src="/movieInsight/resources/images/movie/cgv-popcon.jpg" width="100%" />
 					</li>
 						</a>
 					<li class="movie_recommand_item swiper-slide">
-						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100333">
+						<a href="https://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100333" target="_blank">
 							<img src="/movieInsight/resources/images/movie/cgv-drink.jpg"width="100%" />
 						</a>
 					</li>

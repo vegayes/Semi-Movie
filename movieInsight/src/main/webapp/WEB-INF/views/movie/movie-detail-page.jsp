@@ -237,7 +237,7 @@
 
         <div class="movieP2">
             <div class="mp2Head">
-                <h1 id="mm">영화 예매</h1>
+                <h1 id="mm">영화 바로보기</h1>
             </div>
      <!--       	<form action="/Reservation" method="POST" name="movieReservation">  --> 
    				<div class = "selectCinemaList-Container">
